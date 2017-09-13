@@ -5,8 +5,78 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Forensics"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
+        WindowStyle="None"
+        WindowChrome.WindowChrome="{DynamicResource WindowChromeKey}"
+        Title="MainWindow" Height="826" Width="1322" BorderBrush="Black" MinWidth="1322" MinHeight="826">
+
+    <Window.Resources>
+        <!-- Window style -->
+        <WindowChrome x:Key="WindowChromeKey" 
+                      CaptionHeight="{StaticResource HeightTitlebar}">
+            <WindowChrome.ResizeBorderThickness>
+                <Thickness>5</Thickness>
+            </WindowChrome.ResizeBorderThickness>
+        </WindowChrome>
         
-    </Grid>
+        <!-- Title bar button style -->
+        <Style x:Key="TitleBarButStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
+                            <ContentPresenter />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="DockPanel.Dock" Value="Right" />
+            <Setter Property="Width" Value="{StaticResource WidthTitlebarButton}" />
+            
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <SolidColorBrush Color="White" Opacity="0.2" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <!-- Title bar -->
+    <DockPanel Name="mainPanel">
+        <DockPanel VerticalAlignment="Top" Height="{StaticResource HeightTitlebar}" DockPanel.Dock="Top" >
+            <DockPanel.Background>
+                <SolidColorBrush Color="{StaticResource ThemeColor}"/>
+            </DockPanel.Background>
+
+            <!-- Logo & Title -->
+            <Image VerticalAlignment="Center" Width="32" HorizontalAlignment="Left" Source="Resources/Images/logo_title.png" Margin="15,0,0,0"/>
+            <TextBlock TextWrapping="Wrap" Text="狼蛛手机检验系统V-5.0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="14" Margin="10,0,0,0"/>
+
+            <!-- Window Buttons -->
+            <Button Width="45" HorizontalContentAlignment="Center" Style="{StaticResource TitleBarButStyle}">
+                <Image Source="Resources/Images/title_close.png" Width="{StaticResource WidthTitlebarButtonImg}" Margin="0,0,6,0" />
+            </Button>
+            <Button Style="{StaticResource TitleBarButStyle}">
+                <Image Source="Resources/Images/title_max.png" Width="{StaticResource WidthTitlebarButtonImg}" />
+            </Button>
+            <Button VerticalContentAlignment="Bottom" Style="{StaticResource TitleBarButStyle}">
+                <Image Source="Resources/Images/title_min.png" Width="{StaticResource WidthTitlebarButtonImg}" Margin="0,9,0,0" />
+            </Button>
+            
+            <!-- Setting -->
+            <Button Style="{StaticResource TitleBarButStyle}">
+                <Image Source="Resources/Images/title_setting.png" Width="{StaticResource WidthTitlebarButtonImg}" />
+            </Button>
+        </DockPanel>
+
+
+    </DockPanel>
 </Window>
