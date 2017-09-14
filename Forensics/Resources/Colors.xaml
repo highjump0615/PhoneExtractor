@@ -3,5 +3,8 @@
                     xmlns:local="clr-namespace:Forensics.Resources">
 
     <Color x:Key="ThemeColor" R="21" G="126" B="243" A="255" />
-
+    
+    <!-- Bottom bar -->
+    <Color x:Key="BottomBorderColor">#e0e3e8</Color>
+    <Color x:Key="BottomColor">#f5f8fa</Color>
 </ResourceDictionary>

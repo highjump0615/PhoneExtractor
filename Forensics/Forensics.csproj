@@ -110,5 +110,32 @@
     <Resource Include="Resources\Images\title_min.png" />
     <Resource Include="Resources\Images\title_setting.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\bottom_oneclick.png" />
+    <Resource Include="Resources\Images\bottom_oneclick_hover.png" />
+    <Resource Include="Resources\Images\bottom_oneclick_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\bottom_but_android.png" />
+    <Resource Include="Resources\Images\bottom_but_apple.png" />
+    <Resource Include="Resources\Images\bottom_but_bg.png" />
+    <Resource Include="Resources\Images\bottom_but_bluetooth.png" />
+    <Resource Include="Resources\Images\bottom_but_card.png" />
+    <Resource Include="Resources\Images\bottom_but_phone.png" />
+    <Resource Include="Resources\Images\bottom_but_sim.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\bottom_but_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\bottom_tab_data.png" />
+    <Resource Include="Resources\Images\bottom_tab_home.png" />
+    <Resource Include="Resources\Images\bottom_tab_tool.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\bottom_submenu_bg_bottom.png" />
+    <Resource Include="Resources\Images\bottom_submenu_bg_middle.png" />
+    <Resource Include="Resources\Images\bottom_submenu_bg_top.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

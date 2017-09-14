@@ -2,10 +2,17 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Forensics.Resources"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
+    
+    <!-- Main window -->
+    <system:Double x:Key="HeightWindow">826</system:Double>
+    <system:Double x:Key="WidthWindow">1322</system:Double>
 
     <!-- Title bar -->
     <system:Double x:Key="HeightTitlebar">35</system:Double>
     <system:Double x:Key="WidthTitlebarButtonImg">13</system:Double>
     <system:Double x:Key="WidthTitlebarButton">35</system:Double>
+    
+    <!-- Bottom bar -->
+    <system:Double x:Key="TabButtonSize">64</system:Double>
 
 </ResourceDictionary>
