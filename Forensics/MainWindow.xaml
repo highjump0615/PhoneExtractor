@@ -114,7 +114,7 @@
                                 <SolidColorBrush Color="#cdd4ea" />
                             </Border.BorderBrush>
                             <StackPanel Orientation="Horizontal">
-                                <Ellipse Width="9" Height="9" Stroke="Black" Margin="10 0 10 0" />
+                                <Ellipse Width="{StaticResource SubmenuMarkSize}" Height="{StaticResource SubmenuMarkSize}" Stroke="Black" Margin="10 0 10 0" />
                                 <ContentPresenter VerticalAlignment="Center" />
                             </StackPanel>
                         </Border>
@@ -258,7 +258,7 @@
                             </ToggleButton>
 
                         </DockPanel>
-                        
+
                     </Border>
                 </Border>
 
@@ -275,7 +275,7 @@
                     <!-- Button 功能机提取 -->
                     <Button Style="{StaticResource BottomButStyle}" Canvas.Left="46" Canvas.Bottom="99">
                         <StackPanel Style="{StaticResource BottomButPanelStyle}">
-                                    <Image Source="Resources/Images/bottom_but_phone.png" Width="9" Height="17" />
+                            <Image Source="Resources/Images/bottom_but_phone.png" Width="9" Height="17" />
                             <TextBlock Margin="5,0,0,0" FontSize="15" >功能机提取</TextBlock>
                         </StackPanel>
                     </Button>
@@ -297,7 +297,7 @@
                     </Button>
 
                     <!-- 苹果提取菜单 -->
-                    <Grid Canvas.Left="260" Canvas.Bottom="88" Width="140">
+                    <Grid Canvas.Left="260" Canvas.Bottom="88" Width="{StaticResource WidthSubmenu}" Visibility="Collapsed">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="11"/>
                             <RowDefinition Height="*"/>
@@ -322,7 +322,7 @@
                         </StackPanel>
                         <Image Grid.Row="2" Source="Resources/Images/bottom_submenu_bg_bottom.png" Stretch="UniformToFill" />
                     </Grid>
-                    
+
                     <!-- Button 苹果提取 -->
                     <ToggleButton Style="{StaticResource BottomButStyle}" Canvas.Left="270" Canvas.Bottom="99">
                         <StackPanel Style="{StaticResource BottomButPanelStyle}">
@@ -348,9 +348,14 @@
                     </ToggleButton>
 
                 </Canvas>
-
-
             </Grid>
         </DockPanel>
+
+        <!-- Main content -->
+        <Frame Margin="0,0,0,-30"
+               Name="mainFrame"
+               Panel.ZIndex="-1"
+               Source="Home.xaml" />
+
     </DockPanel>
 </Window>

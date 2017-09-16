@@ -7,4 +7,9 @@
     <!-- Bottom bar -->
     <Color x:Key="BottomBorderColor">#e0e3e8</Color>
     <Color x:Key="BottomColor">#f5f8fa</Color>
+    
+    <!-- Home page -->
+    <Color x:Key="HomeTitleMark">#12cffe</Color>
+    <Color x:Key="GraphLineColor">#d4dadb</Color>
+    
 </ResourceDictionary>

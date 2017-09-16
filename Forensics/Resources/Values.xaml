@@ -6,6 +6,7 @@
     <!-- Main window -->
     <system:Double x:Key="HeightWindow">826</system:Double>
     <system:Double x:Key="WidthWindow">1322</system:Double>
+    <system:Double x:Key="HeightContent">672</system:Double>
 
     <!-- Title bar -->
     <system:Double x:Key="HeightTitlebar">35</system:Double>
@@ -14,5 +15,16 @@
     
     <!-- Bottom bar -->
     <system:Double x:Key="TabButtonSize">64</system:Double>
+    <system:Double x:Key="WidthSubmenu">140</system:Double>
+    <system:Double x:Key="SubmenuMarkSize">9</system:Double>
+    
+    <!-- Home page -->
+    <system:Double x:Key="WidthHomeItemTitleMark">29</system:Double>
+    <system:Double x:Key="HeightHomeItemTitleMark">7</system:Double>
+    <system:Double x:Key="MarginHomeItemTitleMark">18</system:Double>
+    <system:Double x:Key="FontsizeHomeItemTitle">18</system:Double>
+    <system:Double x:Key="WidthPieGraph">86</system:Double>
+    <system:Double x:Key="WidthBarGraph">365.5</system:Double>
+    <system:Double x:Key="HeightBarGraph">234.75</system:Double>
 
 </ResourceDictionary>
