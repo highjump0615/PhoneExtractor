@@ -54,6 +54,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Setting.xaml.cs">
+      <DependentUpon>Setting.xaml</DependentUpon>
+    </Compile>
     <Page Include="Home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -78,6 +81,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Values.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Setting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -153,6 +160,20 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\home_graph_bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\nav_but_about.png" />
+    <Resource Include="Resources\Images\nav_but_about_selected.png" />
+    <Resource Include="Resources\Images\nav_but_bg.png" />
+    <Resource Include="Resources\Images\nav_but_feedback.png" />
+    <Resource Include="Resources\Images\nav_but_feedback_selected.png" />
+    <Resource Include="Resources\Images\nav_but_find.png" />
+    <Resource Include="Resources\Images\nav_but_find_selected.png" />
+    <Resource Include="Resources\Images\nav_but_selected.png" />
+    <Resource Include="Resources\Images\nav_but_setting.png" />
+    <Resource Include="Resources\Images\nav_but_setting_selected.png" />
+    <Resource Include="Resources\Images\nav_but_update.png" />
+    <Resource Include="Resources\Images\nav_but_update_selected.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

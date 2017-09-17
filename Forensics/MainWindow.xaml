@@ -20,13 +20,6 @@
                 <Thickness>5</Thickness>
             </WindowChrome.ResizeBorderThickness>
         </WindowChrome>
-        
-        <!-- Image button base style -->
-        <ControlTemplate x:Key="ButtonBaseTemplate" TargetType="{x:Type ButtonBase}">
-            <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
-                <ContentPresenter />
-            </Border>
-        </ControlTemplate>
 
         <!-- Title bar button style -->
         <Style x:Key="TitleBarButStyle" TargetType="ButtonBase">
@@ -276,7 +269,7 @@
                     <Button Style="{StaticResource BottomButStyle}" Canvas.Left="46" Canvas.Bottom="99">
                         <StackPanel Style="{StaticResource BottomButPanelStyle}">
                             <Image Source="Resources/Images/bottom_but_phone.png" Width="9" Height="17" />
-                            <TextBlock Margin="5,0,0,0" FontSize="15" >功能机提取</TextBlock>
+                            <TextBlock Style="{StaticResource BottomButTextStyle}">功能机提取</TextBlock>
                         </StackPanel>
                     </Button>
 
@@ -355,7 +348,7 @@
         <Frame Margin="0,0,0,-30"
                Name="mainFrame"
                Panel.ZIndex="-1"
-               Source="Home.xaml" />
+               Source="Setting.xaml" />
 
     </DockPanel>
 </Window>

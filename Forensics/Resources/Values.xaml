@@ -26,5 +26,9 @@
     <system:Double x:Key="WidthPieGraph">86</system:Double>
     <system:Double x:Key="WidthBarGraph">365.5</system:Double>
     <system:Double x:Key="HeightBarGraph">234.75</system:Double>
+    
+    <!-- Setting page -->
+    <GridLength x:Key="WidthLeftNav">201</GridLength>
+    <GridLength x:Key="WidthLeftNavBorder">5</GridLength>
 
 </ResourceDictionary>

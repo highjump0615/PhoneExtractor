@@ -10,7 +10,45 @@
                 <ResourceDictionary Source="Resources\Values.xaml" />
                 <ResourceDictionary Source="Resources\Colors.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <!-- Image button base style -->
+            <ControlTemplate x:Key="ButtonBaseTemplate" TargetType="{x:Type ButtonBase}">
+                <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
+                    <ContentPresenter />
+                </Border>
+            </ControlTemplate>
+
+            <!-- Left navbar button style -->
+            <Style x:Key="NavbarButStyle" TargetType="ToggleButton">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <ImageBrush ImageSource="Resources/Images/nav_but_bg.png" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Width" Value="170" />
+                <Setter Property="Height" Value="55" />
+
+                <Style.Triggers>
+                    <Trigger Property="IsChecked" Value="True">
+                        <Setter Property="Background">
+                            <Setter.Value>
+                                <ImageBrush ImageSource="Resources/Images/nav_but_selected.png" />
+                            </Setter.Value>
+                        </Setter>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="NavbarButPanelStyle" TargetType="StackPanel">
+                <Setter Property="Orientation" Value="Horizontal" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0,0,0,10" />
+            </Style>
+            <Style x:Key="NavbarButTextStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="Margin" Value="10,0,0,0" />
+            </Style>
         </ResourceDictionary>
-        
+
     </Application.Resources>
 </Application>
