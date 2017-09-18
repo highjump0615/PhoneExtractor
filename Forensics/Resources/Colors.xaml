@@ -15,5 +15,6 @@
     <!-- Setting page -->
     <Color x:Key="NavbarColor">#e6f1fb</Color>
     <Color x:Key="NavbarBorderColor">#c2d4eb</Color>
+    <Color x:Key="SettingGrayColor">#777777</Color>
 
 </ResourceDictionary>

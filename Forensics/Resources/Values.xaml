@@ -30,5 +30,12 @@
     <!-- Setting page -->
     <GridLength x:Key="WidthLeftNav">201</GridLength>
     <GridLength x:Key="WidthLeftNavBorder">5</GridLength>
+    <system:Double x:Key="WidthSettingContent">1116</system:Double>
+    <GridLength x:Key="WidthSettingItemLabel">108</GridLength>
+    <GridLength x:Key="WidthSettingItemRight">86</GridLength>
+    <system:Double x:Key="SettingContentFontSize">14</system:Double>
+    <system:Double x:Key="RightMarginSettingLabel">20</system:Double>
+    <system:Double x:Key="TopMarginSettingLabel">10</system:Double>
+    <system:Double x:Key="TopMarginSettingGroup">20</system:Double>
 
 </ResourceDictionary>

@@ -132,6 +132,8 @@
         </Border>
         
         <!-- Content -->
-        
+        <Frame Grid.Column="2"
+               Name="mainFrame"
+               Source="SettingSetting.xaml" />
     </Grid>
 </UserControl>
