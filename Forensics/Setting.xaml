@@ -134,6 +134,6 @@
         <!-- Content -->
         <Frame Grid.Column="2"
                Name="mainFrame"
-               Source="SettingEnv.xaml" />
+               Source="SettingUpdate.xaml" />
     </Grid>
 </UserControl>

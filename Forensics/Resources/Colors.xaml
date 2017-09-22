@@ -1,8 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" >
 
-    <Color x:Key="ThemeColor" R="21" G="126" B="243" A="255" />
-    
+    <Color x:Key="ThemeColor">#157ef3</Color>
+
     <!-- Bottom bar -->
     <Color x:Key="BottomBorderColor">#e0e3e8</Color>
     <Color x:Key="BottomColor">#f5f8fa</Color>
