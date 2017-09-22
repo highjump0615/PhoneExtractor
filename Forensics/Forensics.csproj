@@ -54,8 +54,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Setting\EnvironmentItem.cs" />
+    <Compile Include="Model\Setting\ItemsForEnvironment.cs" />
     <Compile Include="Setting.xaml.cs">
       <DependentUpon>Setting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SettingEnv.xaml.cs">
+      <DependentUpon>SettingEnv.xaml</DependentUpon>
     </Compile>
     <Compile Include="SettingSetting.xaml.cs">
       <DependentUpon>SettingSetting.xaml</DependentUpon>
@@ -83,11 +88,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\SettingListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Values.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Setting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingEnv.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

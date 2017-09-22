@@ -48,6 +48,46 @@
                 <Setter Property="FontSize" Value="18" />
                 <Setter Property="Margin" Value="10,0,0,0" />
             </Style>
+
+            <!-- Setting Content Header -->
+            <Style x:Key="SettingHeaderStyle" TargetType="Border">
+                <Setter Property="Background" Value="#f7f9fb" />
+                <Setter Property="BorderThickness" Value="0 1 0 0" />
+                <Setter Property="Margin">
+                    <Setter.Value>
+                        <Thickness Bottom="{StaticResource SettingHeaderMargin}" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderBrush">
+                    <Setter.Value>
+                        <SolidColorBrush Color="#d8dce8" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect BlurRadius="10" ShadowDepth="3" Color="#f2f2f2" Direction="270"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="SettingHeaderInnerStyle" TargetType="Border">
+                <Setter Property="BorderThickness" Value="0 0 0 3" />
+                <Setter Property="BorderBrush">
+                    <Setter.Value>
+                        <SolidColorBrush Color="#61b4ff" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Padding" Value="20 13" />
+            </Style>
+            <Style x:Key="SettingHeaderTitleStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="16" />
+            </Style>
+            <Style x:Key="SettingHeaderDescStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Foreground" Value="#157ef3" />
+                <Setter Property="Margin" Value="20 0 0 0" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+            
         </ResourceDictionary>
 
     </Application.Resources>

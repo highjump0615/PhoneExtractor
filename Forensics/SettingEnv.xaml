@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="Forensics.SettingEnv"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Forensics.Model.Setting"
+             mc:Ignorable="d" 
+             d:DesignWidth="{StaticResource WidthSettingContent}" d:DesignHeight="{StaticResource HeightContent}">
+    <StackPanel Margin="20">
+
+        <StackPanel.Resources>
+
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="Resources\SettingListView.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+
+                <local:ItemsForEnvironment x:Key="MyData"/>
+            </ResourceDictionary>
+
+        </StackPanel.Resources>
+
+        <!-- header -->
+        <Border Style="{StaticResource SettingHeaderStyle}">
+            <Border Style="{StaticResource SettingHeaderInnerStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource SettingHeaderTitleStyle}">环境检查</TextBlock>
+                    <TextBlock Style="{StaticResource SettingHeaderDescStyle}">提示：电脑的杀毒软件会提示是否禁止启动，请点击“否”</TextBlock>
+                </StackPanel>
+            </Border>
+        </Border>
+
+        <ListView ItemsSource="{StaticResource MyData}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="FontSize" Value="13" />
+                    <Setter Property="Height" Value="42" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="名称" DisplayMemberBinding="{Binding Path=Name}" />
+                    <GridViewColumn Header="状态" DisplayMemberBinding="{Binding Path=StatusDescription}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </StackPanel>
+</UserControl>
