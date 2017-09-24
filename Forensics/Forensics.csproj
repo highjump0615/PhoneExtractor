@@ -54,6 +54,61 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataCase.xaml.cs">
+      <DependentUpon>DataCase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataCaseDetail.xaml.cs">
+      <DependentUpon>DataCaseDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataManagement.xaml.cs">
+      <DependentUpon>DataManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DataManagement\Case.cs" />
+    <Compile Include="Model\DataManagement\Evidence.cs" />
+    <Compile Include="Model\DataManagement\ItemsForEvidence.cs" />
+    <Compile Include="Model\DataManagement\ItemsForCase.cs" />
+    <Compile Include="Model\Setting\EnvironmentItem.cs" />
+    <Compile Include="Model\Setting\ItemsForEnvironment.cs" />
+    <Compile Include="Setting.xaml.cs">
+      <DependentUpon>Setting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SettingAbout.xaml.cs">
+      <DependentUpon>SettingAbout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SettingEnv.xaml.cs">
+      <DependentUpon>SettingEnv.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SettingFeedback.xaml.cs">
+      <DependentUpon>SettingFeedback.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SettingSetting.xaml.cs">
+      <DependentUpon>SettingSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SettingUpdate.xaml.cs">
+      <DependentUpon>SettingUpdate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolManagement.xaml.cs">
+      <DependentUpon>ToolManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolSystem.xaml.cs">
+      <DependentUpon>ToolSystem.xaml</DependentUpon>
+    </Compile>
+    <Page Include="DataCase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataCaseDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -62,10 +117,57 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources\Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\SettingListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Values.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Setting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingAbout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingEnv.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingFeedback.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingUpdate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToolManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToolSystem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -92,6 +194,97 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\logo_title.png" />
+    <Resource Include="Resources\Images\title_close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\title_max.png" />
+    <Resource Include="Resources\Images\title_min.png" />
+    <Resource Include="Resources\Images\title_setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\bottom_oneclick.png" />
+    <Resource Include="Resources\Images\bottom_oneclick_hover.png" />
+    <Resource Include="Resources\Images\bottom_oneclick_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\bottom_but_android.png" />
+    <Resource Include="Resources\Images\bottom_but_apple.png" />
+    <Resource Include="Resources\Images\bottom_but_bg.png" />
+    <Resource Include="Resources\Images\bottom_but_bluetooth.png" />
+    <Resource Include="Resources\Images\bottom_but_card.png" />
+    <Resource Include="Resources\Images\bottom_but_phone.png" />
+    <Resource Include="Resources\Images\bottom_but_sim.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\bottom_but_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\bottom_tab_data.png" />
+    <Resource Include="Resources\Images\bottom_tab_home.png" />
+    <Resource Include="Resources\Images\bottom_tab_tool.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\bottom_submenu_bg_bottom.png" />
+    <Resource Include="Resources\Images\bottom_submenu_bg_middle.png" />
+    <Resource Include="Resources\Images\bottom_submenu_bg_top.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\home_phone_android.png" />
+    <Resource Include="Resources\Images\home_phone_usb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\home_item_title_bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\home_graph_bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\nav_but_about.png" />
+    <Resource Include="Resources\Images\nav_but_about_selected.png" />
+    <Resource Include="Resources\Images\nav_but_bg.png" />
+    <Resource Include="Resources\Images\nav_but_feedback.png" />
+    <Resource Include="Resources\Images\nav_but_feedback_selected.png" />
+    <Resource Include="Resources\Images\nav_but_find.png" />
+    <Resource Include="Resources\Images\nav_but_find_selected.png" />
+    <Resource Include="Resources\Images\nav_but_selected.png" />
+    <Resource Include="Resources\Images\nav_but_setting.png" />
+    <Resource Include="Resources\Images\nav_but_setting_selected.png" />
+    <Resource Include="Resources\Images\nav_but_update.png" />
+    <Resource Include="Resources\Images\nav_but_update_selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\logo_setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\setting_qrcode.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\nav_but_case.png" />
+    <Resource Include="Resources\Images\nav_but_case_selected.png" />
+    <Resource Include="Resources\Images\nav_but_evid.png" />
+    <Resource Include="Resources\Images\nav_but_evid_selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\btn_case_back.png" />
+    <Resource Include="Resources\Images\case_samaple_img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\tool_android.png" />
+    <Resource Include="Resources\Images\tool_android_selected.png" />
+    <Resource Include="Resources\Images\tool_apple.png" />
+    <Resource Include="Resources\Images\tool_apple_selected.png" />
+    <Resource Include="Resources\Images\tool_near.png" />
+    <Resource Include="Resources\Images\tool_near_selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\tool\calculator.png" />
+    <Resource Include="Resources\Images\tool\device.png" />
+    <Resource Include="Resources\Images\tool\log.png" />
+    <Resource Include="Resources\Images\tool\permission.png" />
+    <Resource Include="Resources\Images\tool\task.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

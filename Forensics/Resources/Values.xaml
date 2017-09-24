@@ -1,0 +1,48 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Forensics.Resources"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    
+    <!-- Main window -->
+    <system:Double x:Key="HeightWindow">826</system:Double>
+    <system:Double x:Key="WidthWindow">1322</system:Double>
+    <system:Double x:Key="HeightContent">672</system:Double>
+
+    <!-- Title bar -->
+    <system:Double x:Key="HeightTitlebar">35</system:Double>
+    <system:Double x:Key="WidthTitlebarButtonImg">13</system:Double>
+    <system:Double x:Key="WidthTitlebarButton">35</system:Double>
+    
+    <!-- Bottom bar -->
+    <system:Double x:Key="TabButtonSize">64</system:Double>
+    <system:Double x:Key="WidthSubmenu">140</system:Double>
+    <system:Double x:Key="SubmenuMarkSize">9</system:Double>
+    
+    <!-- Home page -->
+    <system:Double x:Key="WidthHomeItemTitleMark">29</system:Double>
+    <system:Double x:Key="HeightHomeItemTitleMark">7</system:Double>
+    <system:Double x:Key="MarginHomeItemTitleMark">18</system:Double>
+    <system:Double x:Key="FontsizeHomeItemTitle">18</system:Double>
+    <system:Double x:Key="WidthPieGraph">86</system:Double>
+    <system:Double x:Key="WidthBarGraph">365.5</system:Double>
+    <system:Double x:Key="HeightBarGraph">234.75</system:Double>
+    
+    <!-- Setting page -->
+    <GridLength x:Key="WidthLeftNav">201</GridLength>
+    <GridLength x:Key="WidthLeftNavBorder">5</GridLength>
+    <system:Double x:Key="WidthSettingContent">1116</system:Double>
+    <GridLength x:Key="WidthSettingItemLabel">108</GridLength>
+    <GridLength x:Key="WidthSettingItemRight">86</GridLength>
+    <system:Double x:Key="SettingContentMargin">20</system:Double>
+    <system:Double x:Key="SettingContentFontSize">14</system:Double>
+    <system:Double x:Key="RightMarginSettingLabel">20</system:Double>
+    <system:Double x:Key="TopMarginSettingLabel">10</system:Double>
+    <system:Double x:Key="TopMarginSettingGroup">20</system:Double>
+    <system:Double x:Key="SettingListviewMargin">17</system:Double>
+    <system:Double x:Key="SettingHeaderMargin">15</system:Double>
+    
+    <!-- Tool page -->
+    <system:Double x:Key="ToolTitlebarSize">16</system:Double>
+    <Thickness x:Key="ToolTitlebarTextMargin" Left="50" />
+
+</ResourceDictionary>

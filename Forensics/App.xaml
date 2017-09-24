@@ -4,6 +4,226 @@
              xmlns:local="clr-namespace:Forensics"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources\Values.xaml" />
+                <ResourceDictionary Source="Resources\Colors.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Image button base style -->
+            <ControlTemplate x:Key="ButtonBaseTemplate" TargetType="{x:Type ButtonBase}">
+                <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
+                    <ContentPresenter />
+                </Border>
+            </ControlTemplate>
+
+            <!-- Left navbar button style -->
+            <Style x:Key="NavbarButStyle" TargetType="ToggleButton">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <ImageBrush ImageSource="Resources/Images/nav_but_bg.png" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Width" Value="170" />
+                <Setter Property="Height" Value="55" />
+
+                <Style.Triggers>
+                    <Trigger Property="IsChecked" Value="True">
+                        <Setter Property="Background">
+                            <Setter.Value>
+                                <ImageBrush ImageSource="Resources/Images/nav_but_selected.png" />
+                            </Setter.Value>
+                        </Setter>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="NavbarButPanelStyle" TargetType="StackPanel">
+                <Setter Property="Orientation" Value="Horizontal" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0,0,0,10" />
+            </Style>
+            <Style x:Key="NavbarButTextStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="Margin" Value="10,0,0,0" />
+            </Style>
+
+            <!-- Setting Content -->
+            <Thickness x:Key="SettingContentMarginValue" 
+                       Left="{StaticResource SettingContentMargin}" 
+                       Right="{StaticResource SettingContentMargin}" 
+                       Top="{StaticResource SettingContentMargin}" 
+                       Bottom="{StaticResource SettingContentMargin}" />
+
+            <!-- Setting Content Header -->
+            <Style x:Key="SettingHeaderStyle" TargetType="Border">
+                <Setter Property="Background" Value="#f7f9fb" />
+                <Setter Property="BorderThickness" Value="0 1 0 0" />
+                <Setter Property="Margin">
+                    <Setter.Value>
+                        <Thickness Bottom="{StaticResource SettingHeaderMargin}" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderBrush">
+                    <Setter.Value>
+                        <SolidColorBrush Color="#d8dce8" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect BlurRadius="10" ShadowDepth="3" Color="#f2f2f2" Direction="270"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="SettingHeaderInnerStyle" TargetType="Border">
+                <Setter Property="BorderThickness" Value="0 0 0 3" />
+                <Setter Property="BorderBrush">
+                    <Setter.Value>
+                        <SolidColorBrush Color="#61b4ff" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Padding" Value="20 13" />
+            </Style>
+            <Style x:Key="SettingHeaderTitleStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="16" />
+            </Style>
+            <Style x:Key="SettingHeaderDescStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Foreground" Value="#157ef3" />
+                <Setter Property="Margin" Value="20 0 0 0" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="SettingButton" TargetType="Button">
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border BorderBrush="{x:Null}" CornerRadius="5">
+                                <Border.Background>
+                                    <SolidColorBrush Color="{StaticResource ThemeColor}" />
+                                </Border.Background>
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="listHeaderStyle" TargetType="Border">
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="3" />
+                <Setter Property="Height" Value="40" />
+                <Setter Property="BorderBrush" Value="#c2d4eb" />
+                <Setter Property="Background" Value="#e6f1fb" />
+            </Style>
+            <Style x:Key="listHeaderTextStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="Margin" Value="10 0 10 0" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+            <Style x:Key="listContentTextStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="Margin" Value="10 0 10 0" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+            <Style x:Key="listDashBorder" TargetType="Rectangle">
+                <Setter Property="Stroke" Value="#d8dce8" />
+                <Setter Property="Height" Value="1" />
+                <Setter Property="StrokeThickness" Value="1" />
+                <Setter Property="StrokeDashArray" Value="4 4" />
+                <Setter Property="SnapsToDevicePixels" Value="True" />
+                <Setter Property="VerticalAlignment" Value="Bottom" />
+            </Style>
+            <Style x:Key="transparentButton" TargetType="Button">
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="Background" Value="{x:Null}" />
+                <Setter Property="BorderBrush" Value="{x:Null}" />
+                <Setter Property="Foreground">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{StaticResource ThemeColor}" />
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
+            <!-- home -->
+            <Style x:Key="TitlebarStyle" TargetType="Grid">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <ImageBrush ImageSource="Resources/Images/home_item_title_bg.png" />
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="TitlebarMarkStyle" TargetType="Rectangle">
+                <Setter Property="Width" Value="{StaticResource WidthHomeItemTitleMark}" />
+                <Setter Property="Height" Value="{StaticResource HeightHomeItemTitleMark}" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="Fill">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{StaticResource HomeTitleMark}" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Margin">
+                    <Setter.Value>
+                        <Thickness Left="{StaticResource MarginHomeItemTitleMark}" />
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
+            <!-- Tool -->
+            <Style x:Key="ToolHeaderStyle" TargetType="Grid" BasedOn="{StaticResource TitlebarStyle}">
+                <Setter Property="Height" Value="50" />
+                <Setter Property="Margin">
+                    <Setter.Value>
+                        <Thickness Bottom="{StaticResource SettingContentMargin}" />
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="ToolHeaderMarkStyle" TargetType="Rectangle" BasedOn="{StaticResource TitlebarMarkStyle}">
+                <Setter Property="Width" Value="17" />
+                <Setter Property="Height" Value="6" />
+            </Style>
+
+            <Style x:Key="toolButtonStyle" TargetType="Button">
+                <Setter Property="Width" Value="130" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderBrush" Value="{x:Null}" />
+                <Setter Property="Margin" Value="0 0 0 15" />
+
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Grid>
+                                        <Grid.Background>
+                                            <LinearGradientBrush StartPoint="0.5,0.0" EndPoint="0.5,1.0">
+                                                <GradientStop Color="#e5e5e6" Offset="0.0" />
+                                                <GradientStop Color="#f9fafb" Offset="1" />
+                                            </LinearGradientBrush>
+                                        </Grid.Background>
+                                        <Rectangle Width="25" Height="3" Fill="#14d0ff" VerticalAlignment="Top" />
+                                        <ContentPresenter VerticalAlignment="Center" />
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="toolButtonImageStyle" TargetType="Image">
+                <Setter Property="Height" Value="90" />
+                <Setter Property="Stretch" Value="None" />
+            </Style>
+            <Style x:Key="toolButtonTextStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Height" Value="35" />
+                <Setter Property="TextAlignment" Value="Center" />
+            </Style>
+
+        </ResourceDictionary>
+
     </Application.Resources>
 </Application>

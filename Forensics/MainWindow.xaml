@@ -5,8 +5,350 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Forensics"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        WindowStyle="None"
+        WindowChrome.WindowChrome="{DynamicResource WindowChromeKey}"
+        Title="MainWindow" 
+        Height="{StaticResource HeightWindow}" Width="{StaticResource WidthWindow}"
+        BorderBrush="Black" 
+        MinWidth="{StaticResource WidthWindow}" MinHeight="{StaticResource HeightWindow}">
+
+    <Window.Resources>
+        <!-- Window style -->
+        <WindowChrome x:Key="WindowChromeKey" 
+                      CaptionHeight="{StaticResource HeightTitlebar}">
+            <WindowChrome.ResizeBorderThickness>
+                <Thickness>5</Thickness>
+            </WindowChrome.ResizeBorderThickness>
+        </WindowChrome>
+
+        <!-- Title bar button style -->
+        <Style x:Key="TitleBarButStyle" TargetType="ButtonBase">
+            <Setter Property="Template" Value="{StaticResource ButtonBaseTemplate}" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="DockPanel.Dock" Value="Right" />
+            <Setter Property="Width" Value="{StaticResource WidthTitlebarButton}" />
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <SolidColorBrush Color="White" Opacity="0.2" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Oneclick button style -->
+        <Style x:Key="OneclickButStyle" TargetType="ButtonBase">
+            <Setter Property="Template" Value="{StaticResource ButtonBaseTemplate}" />
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources/Images/bottom_oneclick.png" />
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="Resources/Images/bottom_oneclick_hover.png" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Bottom menu button style -->
+        <Style x:Key="BottomButStyle" TargetType="ButtonBase">
+            <Setter Property="Template" Value="{StaticResource ButtonBaseTemplate}" />
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources/Images/bottom_but_bg.png" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Width" Value="120" />
+            <Setter Property="Height" Value="34" />
+            
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="Resources/Images/bottom_but_hover.png" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="BottomButPanelStyle" TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0,0,0,2.5" />
+        </Style>
+        <Style x:Key="BottomButTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Margin" Value="5,0,0,0" />
+        </Style>
+
+        <!-- Bottom button submenu style -->
+        <Style x:Key="BottomSubmenuButStyle" TargetType="Button">
+            <Setter Property="Width" Value="112" />
+            <Setter Property="Height" Value="28" />
+            <Setter Property="Background" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="1" CornerRadius="2">
+                            <Border.BorderBrush>
+                                <SolidColorBrush Color="#cdd4ea" />
+                            </Border.BorderBrush>
+                            <StackPanel Orientation="Horizontal">
+                                <Ellipse Width="{StaticResource SubmenuMarkSize}" Height="{StaticResource SubmenuMarkSize}" Stroke="Black" Margin="10 0 10 0" />
+                                <ContentPresenter VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <SolidColorBrush Color="#e7efff" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Bottom tab button style -->
+        <Style x:Key="TabbarButStyle" TargetType="ToggleButton">
+            <Setter Property="Template" Value="{StaticResource ButtonBaseTemplate}" />
+            <Setter Property="Background" Value="{x:Null}" />
+            <Setter Property="BorderBrush" Value="{x:Null}" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="DockPanel.Dock" Value="Right" />
+            <Setter Property="Width" Value="136" />
+            
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <LinearGradientBrush StartPoint="0.5,0.0" EndPoint="0.5,1.0">
+                                <GradientStop Color="#d8dbde" Offset="0.0" />
+                                <GradientStop Color="#eceff2" Offset="1" />
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="TabbarButTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Margin" Value="0,5,0,0" />
+            <Setter Property="TextAlignment" Value="Center" />
+        </Style>
+
+    </Window.Resources>
+
+    <DockPanel Name="mainPanel">
+        <!-- Title bar -->
+        <DockPanel VerticalAlignment="Top" Height="{StaticResource HeightTitlebar}" DockPanel.Dock="Top" >
+            <DockPanel.Background>
+                <SolidColorBrush Color="{StaticResource ThemeColor}"/>
+            </DockPanel.Background>
+
+            <!-- Logo & Title -->
+            <Image VerticalAlignment="Center" Width="32" HorizontalAlignment="Left" Source="Resources/Images/logo_title.png" Margin="15,0,0,0"/>
+            <TextBlock TextWrapping="Wrap" Text="狼蛛手机检验系统V-5.0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="14" Margin="10,0,0,0"/>
+
+            <!-- Window Buttons -->
+            <Button Width="45" HorizontalContentAlignment="Center" Style="{StaticResource TitleBarButStyle}">
+                <Image Source="Resources/Images/title_close.png" Width="{StaticResource WidthTitlebarButtonImg}" Margin="0,0,6,0" />
+            </Button>
+            <Button Style="{StaticResource TitleBarButStyle}">
+                <Image Source="Resources/Images/title_max.png" Width="{StaticResource WidthTitlebarButtonImg}" />
+            </Button>
+            <Button Style="{StaticResource TitleBarButStyle}">
+                <Image Source="Resources/Images/title_min.png" Width="{StaticResource WidthTitlebarButtonImg}" Margin="0,9,0,0" />
+            </Button>
+
+            <!-- Setting -->
+            <Button Style="{StaticResource TitleBarButStyle}">
+                <Image Source="Resources/Images/title_setting.png" Width="{StaticResource WidthTitlebarButtonImg}" />
+            </Button>
+        </DockPanel>
+
+        <!-- Bottom bar -->
+        <DockPanel VerticalAlignment="Bottom" Height="139" DockPanel.Dock="Bottom" >
+            <!-- Background -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="414"/>
+                    <ColumnDefinition Width="34"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0">
+                    <Border BorderThickness="0 1 0 0">
+                        <Border.Background>
+                            <SolidColorBrush Color="{DynamicResource BottomColor}"/>
+                        </Border.Background>
+                        <Border.BorderBrush>
+                            <SolidColorBrush Color="{DynamicResource BottomBorderColor}"/>
+                        </Border.BorderBrush>
+                    </Border>
+                </Border>
+                <Canvas Grid.Column="1" >
+                    <Polyline Points="0,0 34,30">
+                        <Polyline.Stroke>
+                            <SolidColorBrush Color="{StaticResource BottomBorderColor}" />
+                        </Polyline.Stroke>
+                    </Polyline>
+                    <Polygon Points="0,0 34,30 0,30" Height="139" Width="35" Stretch="UniformToFill" Margin="-1,0,0,0">
+                        <Polygon.Fill>
+                            <SolidColorBrush Color="{StaticResource BottomColor}" />
+                        </Polygon.Fill>
+                    </Polygon>
+                </Canvas>
+                <Border Grid.Column="2" Margin="0 30 0 0">
+                    <Border BorderThickness="0 1 0 0">
+                        <Border.Background>
+                            <SolidColorBrush Color="{StaticResource BottomColor}"/>
+                        </Border.Background>
+                        <Border.BorderBrush>
+                            <SolidColorBrush Color="{StaticResource BottomBorderColor}"/>
+                        </Border.BorderBrush>
+
+                        <DockPanel>
+                            <!-- Tab Button 工具管理 -->
+                            <ToggleButton Style="{StaticResource TabbarButStyle}">
+                                <StackPanel VerticalAlignment="Center">
+                                    <Image Source="Resources/Images/bottom_tab_tool.png" Width="{StaticResource TabButtonSize}" Height="{StaticResource TabButtonSize}" />
+                                    <TextBlock Style="{StaticResource TabbarButTextStyle}">工具管理</TextBlock>
+                                </StackPanel>
+                            </ToggleButton>
+
+                            <!-- Tab Button 资料浏览 -->
+                            <ToggleButton Style="{StaticResource TabbarButStyle}">
+                                <StackPanel VerticalAlignment="Center">
+                                    <Image Source="Resources/Images/bottom_tab_data.png" Width="{StaticResource TabButtonSize}" Height="{StaticResource TabButtonSize}" />
+                                    <TextBlock Style="{StaticResource TabbarButTextStyle}">资料浏览</TextBlock>
+                                </StackPanel>
+                            </ToggleButton>
+
+                            <!-- Tab Button 首页 -->
+                            <ToggleButton Style="{StaticResource TabbarButStyle}" IsChecked="True">
+                                <StackPanel VerticalAlignment="Center">
+                                    <Image Source="Resources/Images/bottom_tab_home.png" Width="{StaticResource TabButtonSize}" Height="{StaticResource TabButtonSize}" />
+                                    <TextBlock Style="{StaticResource TabbarButTextStyle}">首页</TextBlock>
+                                </StackPanel>
+                            </ToggleButton>
+
+                        </DockPanel>
+
+                    </Border>
+                </Border>
+
+                <!-- Button 快速检测 -->
+                <Button Width="86" Height="83" HorizontalAlignment="Left" Margin="173,0,0,0" Style="{StaticResource OneclickButStyle}"
+                        BorderBrush="{x:Null}">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image Source="Resources/Images/bottom_oneclick_icon.png" Width="14" Height="13" />
+                        <TextBlock Margin="2,0,0,0" FontSize="13" >快速检测</TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <Canvas Width="448">
+                    <!-- Button 功能机提取 -->
+                    <Button Style="{StaticResource BottomButStyle}" Canvas.Left="46" Canvas.Bottom="99">
+                        <StackPanel Style="{StaticResource BottomButPanelStyle}">
+                            <Image Source="Resources/Images/bottom_but_phone.png" Width="9" Height="17" />
+                            <TextBlock Style="{StaticResource BottomButTextStyle}">功能机提取</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Button SIM卡提取 -->
+                    <Button Style="{StaticResource BottomButStyle}" Canvas.Left="19" Canvas.Bottom="54">
+                        <StackPanel Style="{StaticResource BottomButPanelStyle}">
+                            <Image Source="Resources/Images/bottom_but_sim.png" Width="16" Height="12" />
+                            <TextBlock Style="{StaticResource BottomButTextStyle}">SIM卡提取</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Button 蓝牙提取 -->
+                    <Button Style="{StaticResource BottomButStyle}" Canvas.Left="46" Canvas.Bottom="9">
+                        <StackPanel Style="{StaticResource BottomButPanelStyle}">
+                            <Image Source="Resources/Images/bottom_but_bluetooth.png" Width="12" Height="16" />
+                            <TextBlock Style="{StaticResource BottomButTextStyle}">蓝牙提取</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- 苹果提取菜单 -->
+                    <Grid Canvas.Left="260" Canvas.Bottom="88" Width="{StaticResource WidthSubmenu}" Visibility="Collapsed">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="11"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="16"/>
+                        </Grid.RowDefinitions>
+
+                        <Image Grid.Row="0" Source="Resources/Images/bottom_submenu_bg_top.png" Stretch="UniformToFill" />
+                        <StackPanel Grid.Row="1">
+                            <StackPanel.Background>
+                                <ImageBrush ImageSource="Resources/Images/bottom_submenu_bg_middle.png" Stretch="UniformToFill" />
+                            </StackPanel.Background>
+
+                            <Button Style="{StaticResource BottomSubmenuButStyle}" Margin="0,0,0,5">
+                                <TextBlock>自动连接</TextBlock>
+                            </Button>
+                            <Button Style="{StaticResource BottomSubmenuButStyle}" Margin="0,0,0,5">
+                                <TextBlock>手动连接</TextBlock>
+                            </Button>
+                            <Button Style="{StaticResource BottomSubmenuButStyle}" Margin="0,0,0,40">
+                                <TextBlock>密码破解</TextBlock>
+                            </Button>
+                        </StackPanel>
+                        <Image Grid.Row="2" Source="Resources/Images/bottom_submenu_bg_bottom.png" Stretch="UniformToFill" />
+                    </Grid>
+
+                    <!-- Button 苹果提取 -->
+                    <ToggleButton Style="{StaticResource BottomButStyle}" Canvas.Left="270" Canvas.Bottom="99">
+                        <StackPanel Style="{StaticResource BottomButPanelStyle}">
+                            <Image Source="Resources/Images/bottom_but_apple.png" Width="12" Height="14" />
+                            <TextBlock Style="{StaticResource BottomButTextStyle}">苹果提取</TextBlock>
+                        </StackPanel>
+                    </ToggleButton>
+
+                    <!-- Button 安卓提取 -->
+                    <ToggleButton Style="{StaticResource BottomButStyle}" Canvas.Left="298" Canvas.Bottom="54">
+                        <StackPanel Style="{StaticResource BottomButPanelStyle}">
+                            <Image Source="Resources/Images/bottom_but_android.png" Width="14" Height="16" />
+                            <TextBlock Style="{StaticResource BottomButTextStyle}">安卓提取</TextBlock>
+                        </StackPanel>
+                    </ToggleButton>
+
+                    <!-- Button 存储卡提取 -->
+                    <ToggleButton Style="{StaticResource BottomButStyle}" Canvas.Left="270" Canvas.Bottom="9">
+                        <StackPanel Style="{StaticResource BottomButPanelStyle}">
+                            <Image Source="Resources/Images/bottom_but_card.png" Width="12" Height="16" />
+                            <TextBlock Style="{StaticResource BottomButTextStyle}">存储卡提取</TextBlock>
+                        </StackPanel>
+                    </ToggleButton>
+
+                </Canvas>
+            </Grid>
+        </DockPanel>
+
+        <!-- Main content -->
+        <Frame Margin="0,0,0,-30"
+               Name="mainFrame"
+               Panel.ZIndex="-1"
+               Source="ToolManagement.xaml" />
+
+    </DockPanel>
 </Window>

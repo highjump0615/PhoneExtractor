@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="Forensics.SettingFeedback"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Forensics"
+             mc:Ignorable="d" 
+             d:DesignWidth="{StaticResource WidthSettingContent}" d:DesignHeight="{StaticResource HeightContent}">
+
+    <UserControl.Resources>
+        <Style x:Key="textLabel" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="TextAlignment" Value="Right" />
+            <Setter Property="Padding" Value="0 10 10 0" />
+        </Style>
+        <Style x:Key="editText" TargetType="TextBox">
+            <Setter Property="Background" Value="#f2f4f6" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="#c2d4eb" />
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+
+        <Style x:Key="SettingFrameButton" TargetType="Button">
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="5" BorderThickness="1">
+                            <Border.BorderBrush>
+                                <SolidColorBrush Color="{StaticResource SettingGrayColor}" />
+                            </Border.BorderBrush>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    
+    <StackPanel Margin="{StaticResource SettingContentMarginValue}">
+
+        <!-- header -->
+        <Border Style="{StaticResource SettingHeaderStyle}">
+            <Border Style="{StaticResource SettingHeaderInnerStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource SettingHeaderTitleStyle}">用户反馈</TextBlock>
+                    <TextBlock Style="{StaticResource SettingHeaderDescStyle}">感谢您给我们提出的意见和建议！我们会尽快对您的反馈进行处理。</TextBlock>
+                </StackPanel>
+            </Border>
+        </Border>
+
+        <Grid Margin="20 0 0 0" Width="630" HorizontalAlignment="Left">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="81" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- 标题 -->
+            <TextBlock Grid.Row="0" Grid.Column="0" 
+                       Style="{StaticResource textLabel}">
+                标题：
+            </TextBlock>
+            <TextBox Grid.Row="0" Grid.Column="1" 
+                     Style="{StaticResource editText}" 
+                     Height="40"
+                     Margin="0 0 0 10"/>
+
+            <!-- 内容 -->
+            <TextBlock Grid.Row="1" Grid.Column="0" 
+                       Style="{StaticResource textLabel}">
+                内容：
+            </TextBlock>
+            <TextBox Grid.Row="1" Grid.Column="1" 
+                     Style="{StaticResource editText}" 
+                     Height="340"
+                     Margin="0 0 0 15"/>
+
+            <Button Grid.Row="2" Grid.Column="1" 
+                    Width="96" Height="30" HorizontalAlignment="Right"
+                    Style="{StaticResource SettingFrameButton}">
+                确认提交
+            </Button>
+        </Grid>
+        
+    </StackPanel>
+    
+</UserControl>

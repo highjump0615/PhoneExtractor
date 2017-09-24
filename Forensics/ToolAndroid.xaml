@@ -1,0 +1,117 @@
+﻿<UserControl x:Class="Forensics.ToolAndroid"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Forensics"
+             mc:Ignorable="d" 
+             d:DesignWidth="{StaticResource WidthSettingContent}" d:DesignHeight="{StaticResource HeightContent}">
+
+    <StackPanel Margin="{StaticResource SettingContentMarginValue}">
+
+        <!-- header -->
+        <Grid Grid.Row="0" Style="{StaticResource ToolHeaderStyle}">
+            <Rectangle Style="{StaticResource ToolHeaderMarkStyle}" />
+            <TextBlock VerticalAlignment="Center" 
+                       FontSize="{StaticResource ToolTitlebarSize}" 
+                       Margin="{StaticResource ToolTitlebarTextMargin}">
+                共5个工具
+            </TextBlock>
+            <Button Style="{StaticResource transparentButton}" Padding="10 0"
+                    HorizontalAlignment="Right"
+                    FontSize="{StaticResource ToolTitlebarSize}" >
+                + 添加工具
+            </Button>
+        </Grid>
+
+        <WrapPanel>
+            <Button Style="{StaticResource toolButtonStyle}">
+                <StackPanel>
+                    <Image Source="Resources/Images/tool/root1.png" Style="{StaticResource toolButtonImageStyle}" />
+                    <TextBlock Style="{StaticResource toolButtonTextStyle}">ROOT工具1</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource toolButtonStyle}">
+                <StackPanel>
+                    <Image Source="Resources/Images/tool/root2.png" Style="{StaticResource toolButtonImageStyle}" />
+                    <TextBlock Style="{StaticResource toolButtonTextStyle}">ROOT工具2</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource toolButtonStyle}">
+                <StackPanel>
+                    <Image Source="Resources/Images/tool/android_adbcheck.png" Style="{StaticResource toolButtonImageStyle}" />
+                    <TextBlock Style="{StaticResource toolButtonTextStyle}">ADB端口检测</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource toolButtonStyle}">
+                <StackPanel>
+                    <Image Source="Resources/Images/tool/android_adb.png" Style="{StaticResource toolButtonImageStyle}" />
+                    <TextBlock Style="{StaticResource toolButtonTextStyle}">ADB工具</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource toolButtonStyle}">
+                <StackPanel>
+                    <Image Source="Resources/Images/tool/android_backup.png" Style="{StaticResource toolButtonImageStyle}" />
+                    <TextBlock Style="{StaticResource toolButtonTextStyle}">备份工具</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource toolButtonStyle}">
+                <StackPanel>
+                    <Image Source="Resources/Images/tool/android_process.png" Style="{StaticResource toolButtonImageStyle}" />
+                    <TextBlock Style="{StaticResource toolButtonTextStyle}">系统进程</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource toolButtonStyle}">
+                <StackPanel>
+                    <Image Source="Resources/Images/tool/android_image.png" Style="{StaticResource toolButtonImageStyle}" />
+                    <TextBlock Style="{StaticResource toolButtonTextStyle}">镜像工具</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource toolButtonStyle}">
+                <StackPanel>
+                    <Image Source="Resources/Images/tool/android_qqbackup.png" Style="{StaticResource toolButtonImageStyle}" />
+                    <TextBlock Style="{StaticResource toolButtonTextStyle}">微信QQ备份</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource toolButtonStyle}">
+                <StackPanel>
+                    <Image Source="Resources/Images/tool/android_sdcard.png" Style="{StaticResource toolButtonImageStyle}" />
+                    <TextBlock Style="{StaticResource toolButtonTextStyle}">SD card 提取</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource toolButtonStyle}">
+                <StackPanel>
+                    <Image Source="Resources/Images/tool/android_dbcheck.png" Style="{StaticResource toolButtonImageStyle}" />
+                    <TextBlock Style="{StaticResource toolButtonTextStyle}">DB 查看器</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource toolButtonStyle}">
+                <StackPanel>
+                    <Image Source="Resources/Images/tool/android_unzip.png" Style="{StaticResource toolButtonImageStyle}" />
+                    <TextBlock Style="{StaticResource toolButtonTextStyle}">安卓备份解压</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource toolButtonStyle}">
+                <StackPanel>
+                    <Image Source="Resources/Images/tool/android_huawei.png" Style="{StaticResource toolButtonImageStyle}" />
+                    <TextBlock Style="{StaticResource toolButtonTextStyle}">华为备份解压</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource toolButtonStyle}">
+                <StackPanel>
+                    <Image Source="Resources/Images/tool/android_vivo.png" Style="{StaticResource toolButtonImageStyle}" />
+                    <TextBlock Style="{StaticResource toolButtonTextStyle}">VIVO生成备份</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource toolButtonStyle}">
+                <StackPanel>
+                    <Image Source="Resources/Images/tool/android_wechat.png" Style="{StaticResource toolButtonImageStyle}" />
+                    <TextBlock Style="{StaticResource toolButtonTextStyle}">微信语音转码</TextBlock>
+                </StackPanel>
+            </Button>
+
+        </WrapPanel>
+
+    </StackPanel>
+    
+</UserControl>
