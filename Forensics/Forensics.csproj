@@ -57,10 +57,15 @@
     <Compile Include="DataCase.xaml.cs">
       <DependentUpon>DataCase.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataCaseDetail.xaml.cs">
+      <DependentUpon>DataCaseDetail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DataManagement.xaml.cs">
       <DependentUpon>DataManagement.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\DataManagement\Case.cs" />
+    <Compile Include="Model\DataManagement\Evidence.cs" />
+    <Compile Include="Model\DataManagement\ItemsForEvidence.cs" />
     <Compile Include="Model\DataManagement\ItemsForCase.cs" />
     <Compile Include="Model\Setting\EnvironmentItem.cs" />
     <Compile Include="Model\Setting\ItemsForEnvironment.cs" />
@@ -83,6 +88,10 @@
       <DependentUpon>SettingUpdate.xaml</DependentUpon>
     </Compile>
     <Page Include="DataCase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataCaseDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -243,6 +252,10 @@
     <Resource Include="Resources\Images\nav_but_case_selected.png" />
     <Resource Include="Resources\Images\nav_but_evid.png" />
     <Resource Include="Resources\Images\nav_but_evid_selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\btn_case_back.png" />
+    <Resource Include="Resources\Images\case_samaple_img.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

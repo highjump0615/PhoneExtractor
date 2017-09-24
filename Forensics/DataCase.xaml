@@ -82,30 +82,9 @@
                 </Button>
             </Border>
         </Border>
-
-        <!--<ListView ItemsSource="{StaticResource MyData}">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="FontSize" Value="13" />
-                    <Setter Property="Height" Value="42" />
-                </Style>
-            </ListView.ItemContainerStyle>
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="编号" DisplayMemberBinding="{Binding Path=Id}" />
-                    <GridViewColumn Header="案件名称" DisplayMemberBinding="{Binding Path=Name}"/>
-                    <GridViewColumn Header="创建时间" DisplayMemberBinding="{Binding Path=Date}"/>
-                    <GridViewColumn Header="物证数量" DisplayMemberBinding="{Binding Path=Evidences}"/>
-                    <GridViewColumn Header="路径" DisplayMemberBinding="{Binding Path=Path}"/>
-                    <GridViewColumn Header="简要描述" DisplayMemberBinding="{Binding Path=Desc}"/>
-                    <GridViewColumn Header="操作" />
-                </GridView>
-            </ListView.View>
-        </ListView>-->
-
-        <HeaderedItemsControl ItemsSource="{Binding Mode=Default, Source={StaticResource MyData}}">
-            
-        </HeaderedItemsControl>
+        
+        <!-- ListView -->
+        <HeaderedItemsControl ItemsSource="{Binding Mode=Default, Source={StaticResource MyData}}" />
 
     </StackPanel>
 </UserControl>
