@@ -39,30 +39,6 @@
                 <GridLength x:Key="GraphHeaderHeight">80</GridLength>
                 <GridLength x:Key="GraphLeftWidth">32</GridLength>
                 <GridLength x:Key="GraphBottomHeight">47</GridLength>
-                
-                <Style x:Key="TitlebarStyle" TargetType="Grid">
-                    <Setter Property="Background">
-                        <Setter.Value>
-                            <ImageBrush ImageSource="Resources/Images/home_item_title_bg.png" />
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-
-                <Style x:Key="TitlebarMarkStyle" TargetType="Rectangle">
-                    <Setter Property="Width" Value="{StaticResource WidthHomeItemTitleMark}" />
-                    <Setter Property="Height" Value="{StaticResource HeightHomeItemTitleMark}" />
-                    <Setter Property="HorizontalAlignment" Value="Left" />
-                    <Setter Property="Fill">
-                        <Setter.Value>
-                            <SolidColorBrush Color="{StaticResource HomeTitleMark}" />
-                        </Setter.Value>
-                    </Setter>
-                    <Setter Property="Margin">
-                        <Setter.Value>
-                            <Thickness Left="{StaticResource MarginHomeItemTitleMark}" />
-                        </Setter.Value>
-                    </Setter>
-                </Style>
 
                 <Style x:Key="ShadowStyle" TargetType="Rectangle">
                     <Setter Property="Height" Value="17" />

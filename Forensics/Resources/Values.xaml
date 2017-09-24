@@ -40,5 +40,9 @@
     <system:Double x:Key="TopMarginSettingGroup">20</system:Double>
     <system:Double x:Key="SettingListviewMargin">17</system:Double>
     <system:Double x:Key="SettingHeaderMargin">15</system:Double>
+    
+    <!-- Tool page -->
+    <system:Double x:Key="ToolTitlebarSize">16</system:Double>
+    <Thickness x:Key="ToolTitlebarTextMargin" Left="50" />
 
 </ResourceDictionary>

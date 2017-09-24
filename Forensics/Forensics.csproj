@@ -87,6 +87,12 @@
     <Compile Include="SettingUpdate.xaml.cs">
       <DependentUpon>SettingUpdate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ToolManagement.xaml.cs">
+      <DependentUpon>ToolManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolSystem.xaml.cs">
+      <DependentUpon>ToolSystem.xaml</DependentUpon>
+    </Compile>
     <Page Include="DataCase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -151,6 +157,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SettingUpdate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToolManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToolSystem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -256,6 +270,21 @@
   <ItemGroup>
     <Resource Include="Resources\Images\btn_case_back.png" />
     <Resource Include="Resources\Images\case_samaple_img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\tool_android.png" />
+    <Resource Include="Resources\Images\tool_android_selected.png" />
+    <Resource Include="Resources\Images\tool_apple.png" />
+    <Resource Include="Resources\Images\tool_apple_selected.png" />
+    <Resource Include="Resources\Images\tool_near.png" />
+    <Resource Include="Resources\Images\tool_near_selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\tool\calculator.png" />
+    <Resource Include="Resources\Images\tool\device.png" />
+    <Resource Include="Resources\Images\tool\log.png" />
+    <Resource Include="Resources\Images\tool\permission.png" />
+    <Resource Include="Resources\Images\tool\task.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
