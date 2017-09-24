@@ -54,6 +54,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataCase.xaml.cs">
+      <DependentUpon>DataCase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataManagement.xaml.cs">
+      <DependentUpon>DataManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DataManagement\Case.cs" />
+    <Compile Include="Model\DataManagement\ItemsForCase.cs" />
     <Compile Include="Model\Setting\EnvironmentItem.cs" />
     <Compile Include="Model\Setting\ItemsForEnvironment.cs" />
     <Compile Include="Setting.xaml.cs">
@@ -74,6 +82,14 @@
     <Compile Include="SettingUpdate.xaml.cs">
       <DependentUpon>SettingUpdate.xaml</DependentUpon>
     </Compile>
+    <Page Include="DataCase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -221,6 +237,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\setting_qrcode.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\nav_but_case.png" />
+    <Resource Include="Resources\Images\nav_but_case_selected.png" />
+    <Resource Include="Resources\Images\nav_but_evid.png" />
+    <Resource Include="Resources\Images\nav_but_evid_selected.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

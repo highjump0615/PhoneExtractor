@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="Forensics.DataManagement"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Forensics"
+             mc:Ignorable="d" 
+             d:DesignHeight="{StaticResource HeightContent}" d:DesignWidth="{StaticResource WidthWindow}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource WidthLeftNav}" />
+            <ColumnDefinition Width="{StaticResource WidthLeftNavBorder}" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Nav bar -->
+        <StackPanel Grid.Column="0">
+            <StackPanel.Background>
+                <SolidColorBrush Color="{StaticResource NavbarColor}" />
+            </StackPanel.Background>
+
+            <!-- 案件管理 -->
+            <ToggleButton Style="{StaticResource NavbarButStyle}" Margin="0 25 0 0" IsChecked="True">
+                <ToggleButton.Template>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
+                            <StackPanel Style="{StaticResource NavbarButPanelStyle}">
+                                <Image Name="imgIcon" Source="Resources/Images/nav_but_case.png" Stretch="None" />
+                                <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}">案件管理</TextBlock>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="imgIcon" Property="Source" Value="Resources/Images/nav_but_case_selected.png" />
+                                <Setter TargetName="txtName" Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </ToggleButton.Template>
+            </ToggleButton>
+
+            <!-- 物证管理 -->
+            <ToggleButton Style="{StaticResource NavbarButStyle}" Margin="0 3 0 0">
+                <ToggleButton.Template>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
+                            <StackPanel Style="{StaticResource NavbarButPanelStyle}">
+                                <Image Name="imgIcon" Source="Resources/Images/nav_but_evid.png" Stretch="None" />
+                                <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}">物证管理</TextBlock>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="imgIcon" Property="Source" Value="Resources/Images/nav_but_evid_selected.png" />
+                                <Setter TargetName="txtName" Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </ToggleButton.Template>
+            </ToggleButton>
+        </StackPanel>
+
+        <!-- Border -->
+        <Border Grid.Column="1" BorderThickness="1 0">
+            <Border.BorderBrush>
+                <SolidColorBrush Color="{StaticResource NavbarBorderColor}" />
+            </Border.BorderBrush>
+            <Border.Background>
+                <SolidColorBrush Color="{StaticResource NavbarColor}" />
+            </Border.Background>
+        </Border>
+
+        <!-- Content -->
+        <Frame Grid.Column="2"
+               Name="mainFrame"
+               Source="DataCase.xaml" />
+    </Grid>
+
+</UserControl>

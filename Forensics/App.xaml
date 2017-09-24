@@ -94,7 +94,60 @@
                 <Setter Property="Margin" Value="20 0 0 0" />
                 <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
-            
+
+            <Style x:Key="SettingButton" TargetType="Button">
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border BorderBrush="{x:Null}" CornerRadius="5">
+                                <Border.Background>
+                                    <SolidColorBrush Color="{StaticResource ThemeColor}" />
+                                </Border.Background>
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="listHeaderStyle" TargetType="Border">
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="3" />
+                <Setter Property="Height" Value="40" />
+                <Setter Property="BorderBrush" Value="#c2d4eb" />
+                <Setter Property="Background" Value="#e6f1fb" />
+            </Style>
+            <Style x:Key="listHeaderTextStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="Margin" Value="10 0 10 0" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+            <Style x:Key="listContentTextStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="Margin" Value="10 0 10 0" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+            <Style x:Key="listDashBorder" TargetType="Rectangle">
+                <Setter Property="Stroke" Value="#d8dce8" />
+                <Setter Property="Height" Value="1" />
+                <Setter Property="StrokeThickness" Value="1" />
+                <Setter Property="StrokeDashArray" Value="4 4" />
+                <Setter Property="SnapsToDevicePixels" Value="True" />
+                <Setter Property="VerticalAlignment" Value="Bottom" />
+            </Style>
+            <Style x:Key="transparentButton" TargetType="Button">
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="Background" Value="{x:Null}" />
+                <Setter Property="BorderBrush" Value="{x:Null}" />
+                <Setter Property="Foreground">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{StaticResource ThemeColor}" />
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
         </ResourceDictionary>
 
     </Application.Resources>

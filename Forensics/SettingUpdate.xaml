@@ -6,25 +6,7 @@
              xmlns:local="clr-namespace:Forensics"
              mc:Ignorable="d" 
              d:DesignWidth="{StaticResource WidthSettingContent}" d:DesignHeight="{StaticResource HeightContent}">
-    <UserControl.Resources>
-        <Style x:Key="SettingButton" TargetType="Button">
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="FontSize" Value="15" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border BorderBrush="{x:Null}" CornerRadius="5">
-                            <Border.Background>
-                                <SolidColorBrush Color="{StaticResource ThemeColor}" />
-                            </Border.Background>
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </UserControl.Resources>
-
+   
     <StackPanel Margin="{StaticResource SettingContentMarginValue}">
         
         <!-- header -->

@@ -9,19 +9,15 @@
 
     <UserControl.Resources>
         <Style x:Key="textLabel" TargetType="TextBlock">
-            <Style.Setters>
-                <Setter Property="FontSize" Value="15" />
-                <Setter Property="TextAlignment" Value="Right" />
-                <Setter Property="Padding" Value="0 10 10 0" />
-            </Style.Setters>
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="TextAlignment" Value="Right" />
+            <Setter Property="Padding" Value="0 10 10 0" />
         </Style>
         <Style x:Key="editText" TargetType="TextBox">
-            <Style.Setters>
-                <Setter Property="Background" Value="#f2f4f6" />
-                <Setter Property="BorderThickness" Value="1" />
-                <Setter Property="BorderBrush" Value="#c2d4eb" />
-                <Setter Property="FontSize" Value="16" />
-            </Style.Setters>
+            <Setter Property="Background" Value="#f2f4f6" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="#c2d4eb" />
+            <Setter Property="FontSize" Value="16" />
         </Style>
 
         <Style x:Key="SettingFrameButton" TargetType="Button">

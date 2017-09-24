@@ -9,10 +9,8 @@
 
     <UserControl.Resources>
         <Style x:Key="textAbout" TargetType="TextBlock">
-            <Style.Setters>
-                <Setter Property="FontSize" Value="14" />
-                <Setter Property="VerticalAlignment" Value="Center" />
-            </Style.Setters>
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
     </UserControl.Resources>
 
