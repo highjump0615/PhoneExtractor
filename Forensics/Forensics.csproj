@@ -59,8 +59,14 @@
     <Compile Include="Setting.xaml.cs">
       <DependentUpon>Setting.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SettingAbout.xaml.cs">
+      <DependentUpon>SettingAbout.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SettingEnv.xaml.cs">
       <DependentUpon>SettingEnv.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SettingFeedback.xaml.cs">
+      <DependentUpon>SettingFeedback.xaml</DependentUpon>
     </Compile>
     <Compile Include="SettingSetting.xaml.cs">
       <DependentUpon>SettingSetting.xaml</DependentUpon>
@@ -103,7 +109,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SettingAbout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SettingEnv.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingFeedback.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -201,6 +215,12 @@
     <Resource Include="Resources\Images\nav_but_setting_selected.png" />
     <Resource Include="Resources\Images\nav_but_update.png" />
     <Resource Include="Resources\Images\nav_but_update_selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\logo_setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\setting_qrcode.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

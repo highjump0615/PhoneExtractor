@@ -33,6 +33,7 @@
     <system:Double x:Key="WidthSettingContent">1116</system:Double>
     <GridLength x:Key="WidthSettingItemLabel">108</GridLength>
     <GridLength x:Key="WidthSettingItemRight">86</GridLength>
+    <system:Double x:Key="SettingContentMargin">20</system:Double>
     <system:Double x:Key="SettingContentFontSize">14</system:Double>
     <system:Double x:Key="RightMarginSettingLabel">20</system:Double>
     <system:Double x:Key="TopMarginSettingLabel">10</system:Double>

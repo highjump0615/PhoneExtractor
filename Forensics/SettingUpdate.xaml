@@ -24,8 +24,8 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    
-    <StackPanel Margin="20">
+
+    <StackPanel Margin="{StaticResource SettingContentMarginValue}">
         
         <!-- header -->
         <Border Style="{StaticResource SettingHeaderStyle}">
@@ -38,14 +38,19 @@
 
         <Border Background="#f2f4f6" BorderThickness="1" BorderBrush="#c2d4eb">
             <TextBlock xml:space="preserve" FontSize="16" Foreground="#777777">
-        EDEC V5.0.0 更新        更新日期：2017-08-05
-        新增：            -已提取设备数据查看
+        EDEC V5.0.0 更新
+        更新日期：2017-08-05
+
+        新增：
+            -已提取设备数据查看
             -已提取设备数据查看
             
-        改进：            -已提取设备数据查看
+        改进：
+            -已提取设备数据查看
             -已提取设备数据查看
             
-        修复：            -已提取设备数据查看
+        修复：
+            -已提取设备数据查看
             -已提取设备数据查看
                 
                 

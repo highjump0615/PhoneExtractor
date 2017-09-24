@@ -49,6 +49,13 @@
                 <Setter Property="Margin" Value="10,0,0,0" />
             </Style>
 
+            <!-- Setting Content -->
+            <Thickness x:Key="SettingContentMarginValue" 
+                       Left="{StaticResource SettingContentMargin}" 
+                       Right="{StaticResource SettingContentMargin}" 
+                       Top="{StaticResource SettingContentMargin}" 
+                       Bottom="{StaticResource SettingContentMargin}" />
+
             <!-- Setting Content Header -->
             <Style x:Key="SettingHeaderStyle" TargetType="Border">
                 <Setter Property="Background" Value="#f7f9fb" />
