@@ -24,5 +24,42 @@ namespace Forensics
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Close window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void onButClose(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        /// <summary>
+        /// Maximize/Restore window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void onButMaximize(object sender, RoutedEventArgs e)
+        {
+            if (this.WindowState == WindowState.Maximized)
+            {
+                this.WindowState = WindowState.Normal;
+            }
+            else
+            {
+                this.WindowState = WindowState.Maximized;
+            }
+        }
+
+        /// <summary>
+        /// Minimize window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void onButMinimize(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
     }
 }

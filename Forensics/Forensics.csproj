@@ -87,12 +87,22 @@
     <Compile Include="SettingUpdate.xaml.cs">
       <DependentUpon>SettingUpdate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ToolAndroid.xaml.cs">
+      <DependentUpon>ToolAndroid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolApple.xaml.cs">
+      <DependentUpon>ToolApple.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ToolManagement.xaml.cs">
       <DependentUpon>ToolManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolOther.xaml.cs">
+      <DependentUpon>ToolOther.xaml</DependentUpon>
     </Compile>
     <Compile Include="ToolSystem.xaml.cs">
       <DependentUpon>ToolSystem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\MainViewModel.cs" />
     <Page Include="DataCase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -160,7 +170,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ToolAndroid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToolApple.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ToolManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToolOther.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -285,6 +307,29 @@
     <Resource Include="Resources\Images\tool\log.png" />
     <Resource Include="Resources\Images\tool\permission.png" />
     <Resource Include="Resources\Images\tool\task.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\tool\android_adb.png" />
+    <Resource Include="Resources\Images\tool\android_adbcheck.png" />
+    <Resource Include="Resources\Images\tool\android_backup.png" />
+    <Resource Include="Resources\Images\tool\android_dbcheck.png" />
+    <Resource Include="Resources\Images\tool\android_huawei.png" />
+    <Resource Include="Resources\Images\tool\android_image.png" />
+    <Resource Include="Resources\Images\tool\android_process.png" />
+    <Resource Include="Resources\Images\tool\android_qqbackup.png" />
+    <Resource Include="Resources\Images\tool\android_sdcard.png" />
+    <Resource Include="Resources\Images\tool\android_unzip.png" />
+    <Resource Include="Resources\Images\tool\android_vivo.png" />
+    <Resource Include="Resources\Images\tool\android_wechat.png" />
+    <Resource Include="Resources\Images\tool\apple_backup.png" />
+    <Resource Include="Resources\Images\tool\apple_plist.png" />
+    <Resource Include="Resources\Images\tool\other_function.png" />
+    <Resource Include="Resources\Images\tool\other_sim.png" />
+    <Resource Include="Resources\Images\tool\root1.png" />
+    <Resource Include="Resources\Images\tool\root2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Command\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
