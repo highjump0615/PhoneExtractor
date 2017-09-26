@@ -4,29 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Forensics"
-        xmlns:viewModels="clr-namespace:Forensics.ViewModel"
         mc:Ignorable="d"
         WindowStyle="None"
         WindowChrome.WindowChrome="{DynamicResource WindowChromeKey}"
         Title="MainWindow" 
         Height="{StaticResource HeightWindow}" Width="{StaticResource WidthWindow}"
         BorderBrush="Black" 
-        MinWidth="{StaticResource WidthWindow}" MinHeight="{StaticResource HeightWindow}" >
+        MinWidth="{StaticResource WidthWindow}" MinHeight="{StaticResource HeightWindow}" MouseDown="onMouseDown" >
 
     <Window.Resources>
 
-        <!-- Sub pages -->
-        <DataTemplate DataType="{x:Type viewModels:MainHomeViewModel}">
-            <local:Home />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModels:MainDataViewModel}">
-            <local:DataManagement />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModels:MainToolViewModel}">
-            <local:ToolManagement />
-        </DataTemplate>
-
-
+        <!-- visibility -->
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
+        
         <!-- Window style -->
         <WindowChrome x:Key="WindowChromeKey" 
                       CaptionHeight="{StaticResource HeightTitlebar}">
@@ -54,6 +44,10 @@
                     </Setter>
                 </Trigger>
             </Style.Triggers>
+        </Style>
+        <Style x:Key="SettingButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="19" />
+            <Setter Property="Template" Value="{StaticResource ButtonBaseTemplate}" />
         </Style>
 
         <!-- Oneclick button style -->
@@ -193,9 +187,10 @@
             </Button>
 
             <!-- Setting -->
-            <Button Style="{StaticResource TitleBarButStyle}">
+            <Button Style="{StaticResource TitleBarButStyle}" Command="{Binding GoToSettingCommand}">
                 <Image Source="Resources/Images/title_setting.png" Width="{StaticResource WidthTitlebarButtonImg}" />
             </Button>
+
         </DockPanel>
 
         <!-- Bottom bar -->
@@ -304,7 +299,43 @@
                     </Button>
 
                     <!-- 苹果提取菜单 -->
-                    <Grid Canvas.Left="260" Canvas.Bottom="88" Width="{StaticResource WidthSubmenu}" Visibility="Collapsed">
+                    <Grid Canvas.Left="260" Canvas.Bottom="88" Width="{StaticResource WidthSubmenu}" 
+                          Visibility="{Binding ElementName=butAppleExtract, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="11"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="16"/>
+                        </Grid.RowDefinitions>
+
+                        <Image Grid.Row="0" Source="Resources/Images/bottom_submenu_bg_top.png" Stretch="UniformToFill" />
+                        <StackPanel Grid.Row="1">
+                            <StackPanel.Background>
+                                <ImageBrush ImageSource="Resources/Images/bottom_submenu_bg_middle.png" Stretch="UniformToFill" />
+                            </StackPanel.Background>
+
+                            <Button Style="{StaticResource BottomSubmenuButStyle}" Margin="0,0,0,5">
+                                <TextBlock>同步获取</TextBlock>
+                            </Button>
+                            <Button Style="{StaticResource BottomSubmenuButStyle}" Margin="0,0,0,40">
+                                <TextBlock>密码文件绕过</TextBlock>
+                            </Button>
+                        </StackPanel>
+                        <Image Grid.Row="2" Source="Resources/Images/bottom_submenu_bg_bottom.png" Stretch="UniformToFill" />
+                    </Grid>
+
+                    <!-- Button 苹果提取 -->
+                    <RadioButton Style="{StaticResource BottomButStyle}" 
+                                  x:Name="butAppleExtract"
+                                  Canvas.Left="270" Canvas.Bottom="99">
+                        <StackPanel Style="{StaticResource BottomButPanelStyle}">
+                            <Image Source="Resources/Images/bottom_but_apple.png" Width="12" Height="14" />
+                            <TextBlock Style="{StaticResource BottomButTextStyle}">苹果提取</TextBlock>
+                        </StackPanel>
+                    </RadioButton>
+
+                    <!-- 安卓提取菜单 -->
+                    <Grid Canvas.Left="288" Canvas.Bottom="44" Width="{StaticResource WidthSubmenu}"
+                          Visibility="{Binding ElementName=butAndroidExtract, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="11"/>
                             <RowDefinition Height="*"/>
@@ -329,22 +360,16 @@
                         </StackPanel>
                         <Image Grid.Row="2" Source="Resources/Images/bottom_submenu_bg_bottom.png" Stretch="UniformToFill" />
                     </Grid>
-
-                    <!-- Button 苹果提取 -->
-                    <ToggleButton Style="{StaticResource BottomButStyle}" Canvas.Left="270" Canvas.Bottom="99">
-                        <StackPanel Style="{StaticResource BottomButPanelStyle}">
-                            <Image Source="Resources/Images/bottom_but_apple.png" Width="12" Height="14" />
-                            <TextBlock Style="{StaticResource BottomButTextStyle}">苹果提取</TextBlock>
-                        </StackPanel>
-                    </ToggleButton>
-
+                    
                     <!-- Button 安卓提取 -->
-                    <ToggleButton Style="{StaticResource BottomButStyle}" Canvas.Left="298" Canvas.Bottom="54">
+                    <RadioButton Style="{StaticResource BottomButStyle}" 
+                                  x:Name="butAndroidExtract"
+                                  Canvas.Left="298" Canvas.Bottom="54">
                         <StackPanel Style="{StaticResource BottomButPanelStyle}">
                             <Image Source="Resources/Images/bottom_but_android.png" Width="14" Height="16" />
                             <TextBlock Style="{StaticResource BottomButTextStyle}">安卓提取</TextBlock>
                         </StackPanel>
-                    </ToggleButton>
+                    </RadioButton>
 
                     <!-- Button 存储卡提取 -->
                     <ToggleButton Style="{StaticResource BottomButStyle}" Canvas.Left="270" Canvas.Bottom="9">

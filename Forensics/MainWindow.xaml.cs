@@ -65,5 +65,19 @@ namespace Forensics
         {
             this.WindowState = WindowState.Minimized;
         }
+
+        ///// <summary>
+        ///// 隐藏所有菜单
+        ///// </summary>
+        private void hideMenus()
+        {
+            this.butAppleExtract.IsChecked = false;
+            this.butAndroidExtract.IsChecked = false;
+        }
+
+        private void onMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            hideMenus();
+        }
     }
 }

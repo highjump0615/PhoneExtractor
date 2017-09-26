@@ -21,9 +21,9 @@
             </StackPanel.Background>
 
             <!-- 系统工具 -->
-            <ToggleButton Style="{StaticResource NavbarButStyle}" Margin="0 25 0 0" IsChecked="True">
-                <ToggleButton.Template>
-                    <ControlTemplate TargetType="ToggleButton">
+            <RadioButton Style="{StaticResource NavbarButStyle}" Margin="0 25 0 0" IsChecked="True" Command="{Binding GoToSystemCommand}">
+                <RadioButton.Template>
+                    <ControlTemplate TargetType="RadioButton">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
                             <StackPanel Style="{StaticResource NavbarButPanelStyle}">
                                 <Image Name="imgIcon" Source="Resources/Images/nav_but_setting.png" Stretch="None" />
@@ -37,13 +37,13 @@
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
-                </ToggleButton.Template>
-            </ToggleButton>
+                </RadioButton.Template>
+            </RadioButton>
 
             <!-- 安卓相关 -->
-            <ToggleButton Style="{StaticResource NavbarButStyle}" Margin="0 3 0 0">
-                <ToggleButton.Template>
-                    <ControlTemplate TargetType="ToggleButton">
+            <RadioButton Style="{StaticResource NavbarButStyle}" Margin="0 3 0 0" Command="{Binding GoToAndroidCommand}">
+                <RadioButton.Template>
+                    <ControlTemplate TargetType="RadioButton">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
                             <StackPanel Style="{StaticResource NavbarButPanelStyle}">
                                 <Image Name="imgIcon" Source="Resources/Images/tool_android.png" Stretch="None" />
@@ -57,13 +57,13 @@
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
-                </ToggleButton.Template>
-            </ToggleButton>
+                </RadioButton.Template>
+            </RadioButton>
 
             <!-- 苹果相关 -->
-            <ToggleButton Style="{StaticResource NavbarButStyle}" Margin="0 3 0 0">
-                <ToggleButton.Template>
-                    <ControlTemplate TargetType="ToggleButton">
+            <RadioButton Style="{StaticResource NavbarButStyle}" Margin="0 3 0 0" Command="{Binding GoToAppleCommand}">
+                <RadioButton.Template>
+                    <ControlTemplate TargetType="RadioButton">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
                             <StackPanel Style="{StaticResource NavbarButPanelStyle}">
                                 <Image Name="imgIcon" Source="Resources/Images/tool_apple.png" Stretch="None" />
@@ -77,13 +77,13 @@
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
-                </ToggleButton.Template>
-            </ToggleButton>
+                </RadioButton.Template>
+            </RadioButton>
 
             <!-- 附件工具 -->
-            <ToggleButton Style="{StaticResource NavbarButStyle}" Margin="0 3 0 0">
-                <ToggleButton.Template>
-                    <ControlTemplate TargetType="ToggleButton">
+            <RadioButton Style="{StaticResource NavbarButStyle}" Margin="0 3 0 0" Command="{Binding GoToOtherCommand}">
+                <RadioButton.Template>
+                    <ControlTemplate TargetType="RadioButton">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
                             <StackPanel Style="{StaticResource NavbarButPanelStyle}">
                                 <Image Name="imgIcon" Source="Resources/Images/tool_near.png" Stretch="None" />
@@ -97,8 +97,8 @@
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
-                </ToggleButton.Template>
-            </ToggleButton>
+                </RadioButton.Template>
+            </RadioButton>
         </StackPanel>
 
         <!-- Border -->
@@ -112,9 +112,9 @@
         </Border>
 
         <!-- Content -->
-        <Frame Grid.Column="2"
-               Name="mainFrame"
-               Source="ToolSystem.xaml" />
+        <ContentControl Grid.Column="2"
+                        Name="mainFrame"
+                        Content="{Binding SelectedChild}" />
     </Grid>
     
 </UserControl>

@@ -21,9 +21,9 @@
             </StackPanel.Background>
 
             <!-- 案件管理 -->
-            <ToggleButton Style="{StaticResource NavbarButStyle}" Margin="0 25 0 0" IsChecked="True">
-                <ToggleButton.Template>
-                    <ControlTemplate TargetType="ToggleButton">
+            <RadioButton Style="{StaticResource NavbarButStyle}" Margin="0 25 0 0" IsChecked="True" Command="{Binding GoToCaseCommand}" >
+                <RadioButton.Template>
+                    <ControlTemplate TargetType="RadioButton">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
                             <StackPanel Style="{StaticResource NavbarButPanelStyle}">
                                 <Image Name="imgIcon" Source="Resources/Images/nav_but_case.png" Stretch="None" />
@@ -37,13 +37,13 @@
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
-                </ToggleButton.Template>
-            </ToggleButton>
+                </RadioButton.Template>
+            </RadioButton>
 
             <!-- 物证管理 -->
-            <ToggleButton Style="{StaticResource NavbarButStyle}" Margin="0 3 0 0">
-                <ToggleButton.Template>
-                    <ControlTemplate TargetType="ToggleButton">
+            <RadioButton Style="{StaticResource NavbarButStyle}" Margin="0 3 0 0" Command="{Binding GoToCaseDetailCommand}" >
+                <RadioButton.Template>
+                    <ControlTemplate TargetType="RadioButton">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
                             <StackPanel Style="{StaticResource NavbarButPanelStyle}">
                                 <Image Name="imgIcon" Source="Resources/Images/nav_but_evid.png" Stretch="None" />
@@ -57,8 +57,8 @@
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
-                </ToggleButton.Template>
-            </ToggleButton>
+                </RadioButton.Template>
+            </RadioButton>
         </StackPanel>
 
         <!-- Border -->
@@ -72,9 +72,9 @@
         </Border>
 
         <!-- Content -->
-        <Frame Grid.Column="2"
-               Name="mainFrame"
-               Source="DataCaseDetail.xaml" />
+        <ContentControl Grid.Column="2"
+                        Name="mainFrame"
+                        Content="{Binding SelectedChild}" />
     </Grid>
 
 </UserControl>

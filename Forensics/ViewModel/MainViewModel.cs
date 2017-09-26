@@ -14,8 +14,19 @@ namespace Forensics.ViewModel
         Main,
         MainHome,
         MainData,
+        DataCase,
+        DataCaseDetail,
         MainTool,
+        ToolSystem,
+        ToolAndroid,
+        ToolApple,
+        ToolOther,
         Setting,
+        SettingSetting,
+        SettingEnv,
+        SettingUpgrade,
+        SettingFeedback,
+        SettingAbout,
     };
 
     public class MainViewModel : HostViewModel
@@ -47,6 +58,15 @@ namespace Forensics.ViewModel
             get { return _goToToolCommand ?? (_goToToolCommand = new DelegateCommand(GoToToolPage)); }
         }
 
+        /// <summary>
+        /// 设置页面命令
+        /// </summary>
+        private ICommand _goToSettingCommand;
+        public ICommand GoToSettingCommand
+        {
+            get { return _goToSettingCommand ?? (_goToSettingCommand = new DelegateCommand(GoToSettingPage)); }
+        }
+
         public override Pages PageIndex
         {
             get { return Pages.Main; }
@@ -57,6 +77,7 @@ namespace Forensics.ViewModel
             this.RegisterChild<MainHomeViewModel>(() => new MainHomeViewModel());
             this.RegisterChild<MainDataViewModel>(() => new MainDataViewModel());
             this.RegisterChild<MainToolViewModel>(() => new MainToolViewModel());
+            this.RegisterChild<MainSettingViewModel>(() => new MainSettingViewModel());
 
             this.SelectedChild = GetChild(typeof(MainHomeViewModel));
         }
@@ -91,6 +112,14 @@ namespace Forensics.ViewModel
         private void GoToToolPage()
         {
             this.SelectedChild = GetChild(typeof(MainToolViewModel));
+        }
+
+        /// <summary>
+        /// 跳转到设置页面
+        /// </summary>
+        private void GoToSettingPage()
+        {
+            this.SelectedChild = GetChild(typeof(MainSettingViewModel));
         }
     }
 }
