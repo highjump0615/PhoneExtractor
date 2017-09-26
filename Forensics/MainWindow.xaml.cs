@@ -79,5 +79,10 @@ namespace Forensics
         {
             hideMenus();
         }
+
+        private void onButSettingItem(object sender, RoutedEventArgs e)
+        {
+            this.butSetting.IsChecked = false;
+        }
     }
 }

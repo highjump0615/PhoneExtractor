@@ -111,5 +111,9 @@ namespace Forensics.ViewModel
             this.SelectedChild = GetChild(typeof(SettingAboutViewModel));
         }
 
+        public void SelectChildViewModel(Type viewModelType)
+        {
+            this.SelectedChild = GetChild(viewModelType);
+        }
     }
 }

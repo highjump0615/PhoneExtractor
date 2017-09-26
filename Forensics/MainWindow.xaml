@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Forensics"
+        xmlns:ViewModel="clr-namespace:Forensics.ViewModel"
         mc:Ignorable="d"
         WindowStyle="None"
         WindowChrome.WindowChrome="{DynamicResource WindowChromeKey}"
@@ -46,8 +47,27 @@
             </Style.Triggers>
         </Style>
         <Style x:Key="SettingButtonStyle" TargetType="Button">
-            <Setter Property="Height" Value="19" />
+            <Setter Property="Height" Value="29" />
+            <Setter Property="Background" Value="Transparent" />
             <Setter Property="Template" Value="{StaticResource ButtonBaseTemplate}" />
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <SolidColorBrush Color="#e7efff" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="SettingButImgStyle" TargetType="Image">
+            <Setter Property="Margin" Value="11 7"/>
+            <Setter Property="Width" Value="16"/>
+        </Style>
+        <Style x:Key="SettingButTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
 
         <!-- Oneclick button style -->
@@ -187,9 +207,70 @@
             </Button>
 
             <!-- Setting -->
-            <Button Style="{StaticResource TitleBarButStyle}" Command="{Binding GoToSettingCommand}">
+            <ToggleButton Style="{StaticResource TitleBarButStyle}" x:Name="butSetting">
                 <Image Source="Resources/Images/title_setting.png" Width="{StaticResource WidthTitlebarButtonImg}" />
-            </Button>
+            </ToggleButton>
+
+            <!-- Setting Menu -->
+            <Popup IsOpen="{Binding ElementName=butSetting, Path=IsChecked}"
+                    PopupAnimation="Slide"
+                    Placement="Bottom" PlacementTarget="{Binding ElementName=butSetting}"
+                    VerticalOffset="2"
+                    StaysOpen="False">
+                
+                <Border Width="120" 
+                        Background="White"
+                        BorderBrush="#a0bfe1" BorderThickness="1">
+                    
+                    <StackPanel>
+                        
+                        <Button Style="{StaticResource SettingButtonStyle}" 
+                                Command="{Binding GoToSettingCommand}" CommandParameter="{x:Type ViewModel:SettingSettingViewModel}" 
+                                Click="onButSettingItem">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Style="{StaticResource SettingButImgStyle}" Source="Resources/Images/nav_but_setting.png" />
+                                <TextBlock Style="{StaticResource SettingButTextStyle}">系统设置</TextBlock>
+                            </StackPanel>
+                        </Button>
+                        
+                        <Button Style="{StaticResource SettingButtonStyle}"
+                                Command="{Binding GoToSettingCommand}" CommandParameter="{x:Type ViewModel:SettingEnvViewModel}"
+                                Click="onButSettingItem">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Style="{StaticResource SettingButImgStyle}" Source="Resources/Images/nav_but_find.png" />
+                                <TextBlock Style="{StaticResource SettingButTextStyle}">环境检测</TextBlock>
+                            </StackPanel>
+                        </Button>
+                        
+                        <Button Style="{StaticResource SettingButtonStyle}"
+                                Command="{Binding GoToSettingCommand}" CommandParameter="{x:Type ViewModel:SettingUpgradeViewModel}"
+                                Click="onButSettingItem">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Style="{StaticResource SettingButImgStyle}" Source="Resources/Images/nav_but_update.png" />
+                                <TextBlock Style="{StaticResource SettingButTextStyle}">在线更新</TextBlock>
+                            </StackPanel>
+                        </Button>
+                        
+                        <Button Style="{StaticResource SettingButtonStyle}"
+                                Command="{Binding GoToSettingCommand}" CommandParameter="{x:Type ViewModel:SettingFeedbackViewModel}" 
+                                Click="onButSettingItem">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Style="{StaticResource SettingButImgStyle}" Source="Resources/Images/nav_but_feedback.png" />
+                                <TextBlock Style="{StaticResource SettingButTextStyle}">用户反馈</TextBlock>
+                            </StackPanel>
+                        </Button>
+                        
+                        <Button Style="{StaticResource SettingButtonStyle}"
+                                Command="{Binding GoToSettingCommand}" CommandParameter="{x:Type ViewModel:SettingAboutViewModel}"
+                                Click="onButSettingItem">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Style="{StaticResource SettingButImgStyle}" Source="Resources/Images/nav_but_about.png" />
+                                <TextBlock Style="{StaticResource SettingButTextStyle}">关于我们</TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Border>
+            </Popup>
 
         </DockPanel>
 
@@ -236,7 +317,17 @@
 
                         <DockPanel>
                             <!-- Tab Button 工具管理 -->
-                            <RadioButton Command="{Binding GoToToolCommand}" Style="{StaticResource TabbarButStyle}">
+                            <RadioButton Command="{Binding GoToToolCommand}">
+                                <RadioButton.Style>
+                                    <Style TargetType="RadioButton" BasedOn="{StaticResource TabbarButStyle}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding SelectedChild.PageIndex}" Value="{x:Static ViewModel:Pages.MainTool}">
+                                                <Setter Property="IsChecked" Value="True" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </RadioButton.Style>
+                                
                                 <StackPanel VerticalAlignment="Center">
                                     <Image Source="Resources/Images/bottom_tab_tool.png" Width="{StaticResource TabButtonSize}" Height="{StaticResource TabButtonSize}" />
                                     <TextBlock Style="{StaticResource TabbarButTextStyle}">工具管理</TextBlock>
@@ -244,7 +335,17 @@
                             </RadioButton>
 
                             <!-- Tab Button 资料浏览 -->
-                            <RadioButton Command="{Binding GoToDataCommand}" Style="{StaticResource TabbarButStyle}">
+                            <RadioButton Command="{Binding GoToDataCommand}">
+                                <RadioButton.Style>
+                                    <Style TargetType="RadioButton" BasedOn="{StaticResource TabbarButStyle}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding SelectedChild.PageIndex}" Value="{x:Static ViewModel:Pages.MainData}">
+                                                <Setter Property="IsChecked" Value="True" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </RadioButton.Style>
+                                
                                 <StackPanel VerticalAlignment="Center">
                                     <Image Source="Resources/Images/bottom_tab_data.png" Width="{StaticResource TabButtonSize}" Height="{StaticResource TabButtonSize}" />
                                     <TextBlock Style="{StaticResource TabbarButTextStyle}">资料浏览</TextBlock>
@@ -252,7 +353,17 @@
                             </RadioButton>
 
                             <!-- Tab Button 首页 -->
-                            <RadioButton Command="{Binding GoToHomeCommand}" Style="{StaticResource TabbarButStyle}" IsChecked="True">
+                            <RadioButton Command="{Binding GoToHomeCommand}" >
+                                <RadioButton.Style>
+                                    <Style TargetType="RadioButton" BasedOn="{StaticResource TabbarButStyle}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding SelectedChild.PageIndex}" Value="{x:Static ViewModel:Pages.MainHome}">
+                                                <Setter Property="IsChecked" Value="True" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </RadioButton.Style>
+
                                 <StackPanel VerticalAlignment="Center">
                                     <Image Source="Resources/Images/bottom_tab_home.png" Width="{StaticResource TabButtonSize}" Height="{StaticResource TabButtonSize}" />
                                     <TextBlock Style="{StaticResource TabbarButTextStyle}">首页</TextBlock>

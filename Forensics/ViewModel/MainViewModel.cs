@@ -23,7 +23,7 @@ namespace Forensics.ViewModel
         ToolOther,
         Setting,
         SettingSetting,
-        SettingEnv,
+        SettingEnv = 13,
         SettingUpgrade,
         SettingFeedback,
         SettingAbout,
@@ -117,9 +117,11 @@ namespace Forensics.ViewModel
         /// <summary>
         /// 跳转到设置页面
         /// </summary>
-        private void GoToSettingPage()
+        private void GoToSettingPage(object param)
         {
             this.SelectedChild = GetChild(typeof(MainSettingViewModel));
+
+            ((MainSettingViewModel)this.SelectedChild).SelectChildViewModel((Type)param);
         }
     }
 }

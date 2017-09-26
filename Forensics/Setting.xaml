@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Forensics"
+             xmlns:ViewModel="clr-namespace:Forensics.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="{StaticResource HeightContent}" d:DesignWidth="{StaticResource WidthWindow}">
     <Grid>
@@ -20,7 +21,17 @@
             </StackPanel.Background>
 
             <!-- 系统设置 -->
-            <RadioButton Style="{StaticResource NavbarButStyle}" Margin="0 25 0 0" IsChecked="True" Command="{Binding GoToSettingCommand}">
+            <RadioButton Margin="0 25 0 0" Command="{Binding GoToSettingCommand}">
+                <RadioButton.Style>
+                    <Style TargetType="RadioButton" BasedOn="{StaticResource NavbarButStyle}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedChild.PageIndex}" Value="{x:Static ViewModel:Pages.SettingSetting}">
+                                <Setter Property="IsChecked" Value="True" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </RadioButton.Style>
+                
                 <RadioButton.Template>
                     <ControlTemplate TargetType="RadioButton">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
@@ -40,7 +51,17 @@
             </RadioButton>
 
             <!-- 环境检查 -->
-            <RadioButton Style="{StaticResource NavbarButStyle}" Margin="0 3 0 0" Command="{Binding GoToEnvCommand}">
+            <RadioButton Margin="0 3 0 0" Command="{Binding GoToEnvCommand}">
+                <RadioButton.Style>
+                    <Style TargetType="RadioButton" BasedOn="{StaticResource NavbarButStyle}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedChild.PageIndex}" Value="{x:Static ViewModel:Pages.SettingEnv}">
+                                <Setter Property="IsChecked" Value="True" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </RadioButton.Style>
+                
                 <RadioButton.Template>
                     <ControlTemplate TargetType="RadioButton">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
@@ -60,7 +81,17 @@
             </RadioButton>
 
             <!-- 在线更新 -->
-            <RadioButton Style="{StaticResource NavbarButStyle}" Margin="0 3 0 0" Command="{Binding GoToUpgradeCommand}">
+            <RadioButton Margin="0 3 0 0" Command="{Binding GoToUpgradeCommand}">
+                <RadioButton.Style>
+                    <Style TargetType="RadioButton" BasedOn="{StaticResource NavbarButStyle}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedChild.PageIndex}" Value="{x:Static ViewModel:Pages.SettingUpgrade}">
+                                <Setter Property="IsChecked" Value="True" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </RadioButton.Style>
+                
                 <RadioButton.Template>
                     <ControlTemplate TargetType="RadioButton">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
@@ -80,7 +111,17 @@
             </RadioButton>
 
             <!-- 用户反馈 -->
-            <RadioButton Style="{StaticResource NavbarButStyle}" Margin="0 3 0 0" Command="{Binding GoToFeedbackCommand}">
+            <RadioButton Margin="0 3 0 0" Command="{Binding GoToFeedbackCommand}">
+                <RadioButton.Style>
+                    <Style TargetType="RadioButton" BasedOn="{StaticResource NavbarButStyle}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedChild.PageIndex}" Value="{x:Static ViewModel:Pages.SettingFeedback}">
+                                <Setter Property="IsChecked" Value="True" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </RadioButton.Style>
+                
                 <RadioButton.Template>
                     <ControlTemplate TargetType="RadioButton">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
@@ -100,7 +141,17 @@
             </RadioButton>
 
             <!-- 关于系统 -->
-            <RadioButton Style="{StaticResource NavbarButStyle}" Margin="0 3 0 0" Command="{Binding GoToAboutCommand}">
+            <RadioButton Margin="0 3 0 0" Command="{Binding GoToAboutCommand}">
+                <RadioButton.Style>
+                    <Style TargetType="RadioButton" BasedOn="{StaticResource NavbarButStyle}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedChild.PageIndex}" Value="{x:Static ViewModel:Pages.SettingAbout}">
+                                <Setter Property="IsChecked" Value="True" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </RadioButton.Style>
+                
                 <RadioButton.Template>
                     <ControlTemplate TargetType="RadioButton">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
