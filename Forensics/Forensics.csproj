@@ -54,6 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Command\DelegateCommand.cs" />
     <Compile Include="DataCase.xaml.cs">
       <DependentUpon>DataCase.xaml</DependentUpon>
     </Compile>
@@ -102,7 +103,14 @@
     <Compile Include="ToolSystem.xaml.cs">
       <DependentUpon>ToolSystem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\HostViewModel.cs" />
+    <Compile Include="ViewModel\MainToolViewModel.cs" />
+    <Compile Include="ViewModel\MainDataViewModel.cs" />
+    <Compile Include="ViewModel\MainHomeViewModel.cs" />
+    <Compile Include="ViewModel\MainSettingViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\ObservableObject.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
     <Page Include="DataCase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -328,8 +336,6 @@
     <Resource Include="Resources\Images\tool\root1.png" />
     <Resource Include="Resources\Images\tool\root2.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Command\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

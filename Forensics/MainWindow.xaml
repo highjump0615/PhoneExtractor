@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Forensics.ViewModel"
+        xmlns:local="clr-namespace:Forensics"
+        xmlns:viewModels="clr-namespace:Forensics.ViewModel"
         mc:Ignorable="d"
         WindowStyle="None"
         WindowChrome.WindowChrome="{DynamicResource WindowChromeKey}"
@@ -13,6 +14,19 @@
         MinWidth="{StaticResource WidthWindow}" MinHeight="{StaticResource HeightWindow}" >
 
     <Window.Resources>
+
+        <!-- Sub pages -->
+        <DataTemplate DataType="{x:Type viewModels:MainHomeViewModel}">
+            <local:Home />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:MainDataViewModel}">
+            <local:DataManagement />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:MainToolViewModel}">
+            <local:ToolManagement />
+        </DataTemplate>
+
+
         <!-- Window style -->
         <WindowChrome x:Key="WindowChromeKey" 
                       CaptionHeight="{StaticResource HeightTitlebar}">
@@ -129,7 +143,7 @@
         <!-- Bottom tab button style -->
         <Style x:Key="TabbarButStyle" TargetType="ToggleButton">
             <Setter Property="Template" Value="{StaticResource ButtonBaseTemplate}" />
-            <Setter Property="Background" Value="{x:Null}" />
+            <Setter Property="Background" Value="Transparent" />
             <Setter Property="BorderBrush" Value="{x:Null}" />
             <Setter Property="HorizontalAlignment" Value="Right" />
             <Setter Property="DockPanel.Dock" Value="Right" />
@@ -227,28 +241,28 @@
 
                         <DockPanel>
                             <!-- Tab Button 工具管理 -->
-                            <ToggleButton Style="{StaticResource TabbarButStyle}">
+                            <RadioButton Command="{Binding GoToToolCommand}" Style="{StaticResource TabbarButStyle}">
                                 <StackPanel VerticalAlignment="Center">
                                     <Image Source="Resources/Images/bottom_tab_tool.png" Width="{StaticResource TabButtonSize}" Height="{StaticResource TabButtonSize}" />
                                     <TextBlock Style="{StaticResource TabbarButTextStyle}">工具管理</TextBlock>
                                 </StackPanel>
-                            </ToggleButton>
+                            </RadioButton>
 
                             <!-- Tab Button 资料浏览 -->
-                            <ToggleButton Style="{StaticResource TabbarButStyle}">
+                            <RadioButton Command="{Binding GoToDataCommand}" Style="{StaticResource TabbarButStyle}">
                                 <StackPanel VerticalAlignment="Center">
                                     <Image Source="Resources/Images/bottom_tab_data.png" Width="{StaticResource TabButtonSize}" Height="{StaticResource TabButtonSize}" />
                                     <TextBlock Style="{StaticResource TabbarButTextStyle}">资料浏览</TextBlock>
                                 </StackPanel>
-                            </ToggleButton>
+                            </RadioButton>
 
                             <!-- Tab Button 首页 -->
-                            <ToggleButton Style="{StaticResource TabbarButStyle}" IsChecked="True">
+                            <RadioButton Command="{Binding GoToHomeCommand}" Style="{StaticResource TabbarButStyle}" IsChecked="True">
                                 <StackPanel VerticalAlignment="Center">
                                     <Image Source="Resources/Images/bottom_tab_home.png" Width="{StaticResource TabButtonSize}" Height="{StaticResource TabButtonSize}" />
                                     <TextBlock Style="{StaticResource TabbarButTextStyle}">首页</TextBlock>
                                 </StackPanel>
-                            </ToggleButton>
+                            </RadioButton>
 
                         </DockPanel>
 
@@ -345,10 +359,10 @@
         </DockPanel>
 
         <!-- Main content -->
-        <Frame Margin="0,0,0,-30"
+        <ContentControl Margin="0,0,0,-30"
                Name="mainFrame"
                Panel.ZIndex="-1"
-               Source="{Binding Path=CurrentPage}" />
+               Content="{Binding SelectedChild}" />
 
     </DockPanel>
 </Window>

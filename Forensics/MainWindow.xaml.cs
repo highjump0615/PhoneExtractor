@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Forensics.ViewModel;
 
 namespace Forensics
 {
@@ -23,6 +24,9 @@ namespace Forensics
         public MainWindow()
         {
             InitializeComponent();
+
+            this.DataContext = new MainViewModel();
+            this.Closing += (s, e) => ((ViewModelBase)this.DataContext).Dispose();
         }
 
         /// <summary>
