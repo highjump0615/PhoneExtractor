@@ -83,13 +83,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\DelegateCommand.cs" />
-    <Compile Include="DataCase.xaml.cs">
+    <Compile Include="View\Data\DataCase.xaml.cs">
       <DependentUpon>DataCase.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DataCaseDetail.xaml.cs">
+    <Compile Include="View\Data\DataCaseDetail.xaml.cs">
       <DependentUpon>DataCaseDetail.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DataManagement.xaml.cs">
+    <Compile Include="View\Data\DataManagement.xaml.cs">
       <DependentUpon>DataManagement.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\DataManagement\Case.cs" />
@@ -98,71 +98,71 @@
     <Compile Include="Model\DataManagement\ItemsForCase.cs" />
     <Compile Include="Model\Setting\EnvironmentItem.cs" />
     <Compile Include="Model\Setting\ItemsForEnvironment.cs" />
-    <Compile Include="Setting.xaml.cs">
+    <Compile Include="View\Setting\Setting.xaml.cs">
       <DependentUpon>Setting.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SettingAbout.xaml.cs">
+    <Compile Include="View\Setting\SettingAbout.xaml.cs">
       <DependentUpon>SettingAbout.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SettingEnv.xaml.cs">
+    <Compile Include="View\Setting\SettingEnv.xaml.cs">
       <DependentUpon>SettingEnv.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SettingFeedback.xaml.cs">
+    <Compile Include="View\Setting\SettingFeedback.xaml.cs">
       <DependentUpon>SettingFeedback.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SettingSetting.xaml.cs">
+    <Compile Include="View\Setting\SettingSetting.xaml.cs">
       <DependentUpon>SettingSetting.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SettingUpdate.xaml.cs">
+    <Compile Include="View\Setting\SettingUpdate.xaml.cs">
       <DependentUpon>SettingUpdate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ToolAndroid.xaml.cs">
+    <Compile Include="View\Tool\ToolAndroid.xaml.cs">
       <DependentUpon>ToolAndroid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ToolApple.xaml.cs">
+    <Compile Include="View\Tool\ToolApple.xaml.cs">
       <DependentUpon>ToolApple.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ToolManagement.xaml.cs">
+    <Compile Include="View\Tool\ToolManagement.xaml.cs">
       <DependentUpon>ToolManagement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ToolOther.xaml.cs">
+    <Compile Include="View\Tool\ToolOther.xaml.cs">
       <DependentUpon>ToolOther.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ToolSystem.xaml.cs">
+    <Compile Include="View\Tool\ToolSystem.xaml.cs">
       <DependentUpon>ToolSystem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\DataCaseDetailViewModel.cs" />
-    <Compile Include="ViewModel\DataCaseViewModel.cs" />
-    <Compile Include="ViewModel\HostViewModel.cs" />
-    <Compile Include="ViewModel\MainToolViewModel.cs" />
-    <Compile Include="ViewModel\MainDataViewModel.cs" />
-    <Compile Include="ViewModel\MainHomeViewModel.cs" />
-    <Compile Include="ViewModel\MainSettingViewModel.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\ObservableObject.cs" />
-    <Compile Include="ViewModel\SettingEnvViewModel.cs" />
-    <Compile Include="ViewModel\SettingFeedbackViewModel.cs" />
-    <Compile Include="ViewModel\SettingAboutViewModel.cs" />
-    <Compile Include="ViewModel\SettingUpgradeViewModel.cs" />
-    <Compile Include="ViewModel\SettingSettingViewModel.cs" />
-    <Compile Include="ViewModel\ToolAndroidViewModel.cs" />
-    <Compile Include="ViewModel\ToolAppleViewModel.cs" />
-    <Compile Include="ViewModel\ToolOtherViewModel.cs" />
-    <Compile Include="ViewModel\ToolSystemViewModel.cs" />
-    <Compile Include="ViewModel\ViewModelBase.cs" />
-    <Page Include="DataCase.xaml">
+    <Compile Include="ViewModel\Data\DataCaseDetailViewModel.cs" />
+    <Compile Include="ViewModel\Data\DataCaseViewModel.cs" />
+    <Compile Include="ViewModel\Base\HostViewModel.cs" />
+    <Compile Include="ViewModel\Main\MainToolViewModel.cs" />
+    <Compile Include="ViewModel\Main\MainDataViewModel.cs" />
+    <Compile Include="ViewModel\Main\MainHomeViewModel.cs" />
+    <Compile Include="ViewModel\Main\MainSettingViewModel.cs" />
+    <Compile Include="ViewModel\Main\MainViewModel.cs" />
+    <Compile Include="ViewModel\Base\ObservableObject.cs" />
+    <Compile Include="ViewModel\Setting\SettingEnvViewModel.cs" />
+    <Compile Include="ViewModel\Setting\SettingFeedbackViewModel.cs" />
+    <Compile Include="ViewModel\Setting\SettingAboutViewModel.cs" />
+    <Compile Include="ViewModel\Setting\SettingUpgradeViewModel.cs" />
+    <Compile Include="ViewModel\Setting\SettingSettingViewModel.cs" />
+    <Compile Include="ViewModel\Tool\ToolAndroidViewModel.cs" />
+    <Compile Include="ViewModel\Tool\ToolAppleViewModel.cs" />
+    <Compile Include="ViewModel\Tool\ToolOtherViewModel.cs" />
+    <Compile Include="ViewModel\Tool\ToolSystemViewModel.cs" />
+    <Compile Include="ViewModel\Base\ViewModelBase.cs" />
+    <Page Include="View\Data\DataCase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataCaseDetail.xaml">
+    <Page Include="View\Data\DataCaseDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataManagement.xaml">
+    <Page Include="View\Data\DataManagement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Home.xaml">
+    <Page Include="View\Home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -174,7 +174,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Home.xaml.cs">
+    <Compile Include="View\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
@@ -193,47 +193,47 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Setting.xaml">
+    <Page Include="View\Setting\Setting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SettingAbout.xaml">
+    <Page Include="View\Setting\SettingAbout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SettingEnv.xaml">
+    <Page Include="View\Setting\SettingEnv.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SettingFeedback.xaml">
+    <Page Include="View\Setting\SettingFeedback.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SettingSetting.xaml">
+    <Page Include="View\Setting\SettingSetting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SettingUpdate.xaml">
+    <Page Include="View\Setting\SettingUpdate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ToolAndroid.xaml">
+    <Page Include="View\Tool\ToolAndroid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ToolApple.xaml">
+    <Page Include="View\Tool\ToolApple.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ToolManagement.xaml">
+    <Page Include="View\Tool\ToolManagement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ToolOther.xaml">
+    <Page Include="View\Tool\ToolOther.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ToolSystem.xaml">
+    <Page Include="View\Tool\ToolSystem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -387,6 +387,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="View\Apple\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

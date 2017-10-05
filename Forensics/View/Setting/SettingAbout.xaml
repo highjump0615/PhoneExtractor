@@ -27,7 +27,7 @@
 
         <StackPanel Margin="20 40 20 0">
             <StackPanel Orientation="Horizontal" Margin="0 0 0 20">
-                <Image Source="Resources/Images/logo_setting.png" Stretch="None" />
+                <Image Source="/Resources/Images/logo_setting.png" Stretch="None" />
                 <TextBlock Style="{StaticResource textAbout}" Margin="15 -5 0 0">狼蛛手机检测系统 V-5.0.0</TextBlock>
             </StackPanel>
 
@@ -39,7 +39,7 @@
             <TextBlock Style="{StaticResource textAbout}" Margin="0 0 0 15">
                 官方公众号：
             </TextBlock>
-            <Image Source="Resources/Images/setting_qrcode.png" Stretch="None" HorizontalAlignment="Left" />
+            <Image Source="/Resources/Images/setting_qrcode.png" Stretch="None" HorizontalAlignment="Left" />
         </StackPanel>
 
     </StackPanel>

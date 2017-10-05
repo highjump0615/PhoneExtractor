@@ -12,7 +12,7 @@
 
             <ResourceDictionary>
                 <ResourceDictionary.MergedDictionaries>
-                    <ResourceDictionary Source="Resources\SettingListView.xaml" />
+                    <ResourceDictionary Source="/Resources\SettingListView.xaml" />
                 </ResourceDictionary.MergedDictionaries>
 
                 <local:ItemsForEnvironment x:Key="MyData"/>

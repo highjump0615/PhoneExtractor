@@ -76,7 +76,7 @@
             <Border Style="{StaticResource SettingHeaderInnerStyle}">
                 <Button Height="28" HorizontalAlignment="Right" Style="{StaticResource SettingButton}" >
                     <StackPanel Orientation="Horizontal" Margin="10 0 10 0">
-                        <Image Source="Resources/Images/nav_but_case_selected.png" Width="17" Margin="0 0 7 0" />
+                        <Image Source="/Resources/Images/nav_but_case_selected.png" Width="17" Margin="0 0 7 0" />
                         <TextBlock>案件导入</TextBlock>
                     </StackPanel>
                 </Button>

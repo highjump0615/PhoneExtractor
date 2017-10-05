@@ -26,13 +26,13 @@
                     <ControlTemplate TargetType="RadioButton">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
                             <StackPanel Style="{StaticResource NavbarButPanelStyle}">
-                                <Image Name="imgIcon" Source="Resources/Images/nav_but_case.png" Stretch="None" />
+                                <Image Name="imgIcon" Source="/Resources/Images/nav_but_case.png" Stretch="None" />
                                 <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}">案件管理</TextBlock>
                             </StackPanel>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="imgIcon" Property="Source" Value="Resources/Images/nav_but_case_selected.png" />
+                                <Setter TargetName="imgIcon" Property="Source" Value="/Resources/Images/nav_but_case_selected.png" />
                                 <Setter TargetName="txtName" Property="Foreground" Value="White" />
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -46,13 +46,13 @@
                     <ControlTemplate TargetType="RadioButton">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
                             <StackPanel Style="{StaticResource NavbarButPanelStyle}">
-                                <Image Name="imgIcon" Source="Resources/Images/nav_but_evid.png" Stretch="None" />
+                                <Image Name="imgIcon" Source="/Resources/Images/nav_but_evid.png" Stretch="None" />
                                 <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}">物证管理</TextBlock>
                             </StackPanel>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="imgIcon" Property="Source" Value="Resources/Images/nav_but_evid_selected.png" />
+                                <Setter TargetName="imgIcon" Property="Source" Value="/Resources/Images/nav_but_evid_selected.png" />
                                 <Setter TargetName="txtName" Property="Foreground" Value="White" />
                             </Trigger>
                         </ControlTemplate.Triggers>

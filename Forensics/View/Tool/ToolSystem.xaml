@@ -30,31 +30,31 @@
         <WrapPanel>
             <Button Style="{StaticResource toolButtonStyle}">
                 <StackPanel>
-                    <Image Source="Resources/Images/tool/task.png" Style="{StaticResource toolButtonImageStyle}" />
+                    <Image Source="/Resources/Images/tool/task.png" Style="{StaticResource toolButtonImageStyle}" />
                     <TextBlock Style="{StaticResource toolButtonTextStyle}">任务管理器</TextBlock>
                 </StackPanel>
             </Button>
             <Button Style="{StaticResource toolButtonStyle}">
                 <StackPanel>
-                    <Image Source="Resources/Images/tool/device.png" Style="{StaticResource toolButtonImageStyle}" />
+                    <Image Source="/Resources/Images/tool/device.png" Style="{StaticResource toolButtonImageStyle}" />
                     <TextBlock Style="{StaticResource toolButtonTextStyle}">设备管理器</TextBlock>
                 </StackPanel>
             </Button>
             <Button Style="{StaticResource toolButtonStyle}">
                 <StackPanel>
-                    <Image Source="Resources/Images/tool/calculator.png" Style="{StaticResource toolButtonImageStyle}" />
+                    <Image Source="/Resources/Images/tool/calculator.png" Style="{StaticResource toolButtonImageStyle}" />
                     <TextBlock Style="{StaticResource toolButtonTextStyle}">计算器</TextBlock>
                 </StackPanel>
             </Button>
             <Button Style="{StaticResource toolButtonStyle}">
                 <StackPanel>
-                    <Image Source="Resources/Images/tool/permission.png" Style="{StaticResource toolButtonImageStyle}" />
+                    <Image Source="/Resources/Images/tool/permission.png" Style="{StaticResource toolButtonImageStyle}" />
                     <TextBlock Style="{StaticResource toolButtonTextStyle}">权限管理</TextBlock>
                 </StackPanel>
             </Button>
             <Button Style="{StaticResource toolButtonStyle}">
                 <StackPanel>
-                    <Image Source="Resources/Images/tool/log.png" Style="{StaticResource toolButtonImageStyle}" />
+                    <Image Source="/Resources/Images/tool/log.png" Style="{StaticResource toolButtonImageStyle}" />
                     <TextBlock Style="{StaticResource toolButtonTextStyle}">日志查看</TextBlock>
                 </StackPanel>
             </Button>

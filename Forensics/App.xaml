@@ -9,8 +9,8 @@
         <ResourceDictionary>
             
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources\Values.xaml" />
-                <ResourceDictionary Source="Resources\Colors.xaml" />
+                <ResourceDictionary Source="/Resources\Values.xaml" />
+                <ResourceDictionary Source="/Resources\Colors.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <!-- Image button base style -->
@@ -24,7 +24,7 @@
             <Style x:Key="NavbarButStyle" TargetType="ToggleButton">
                 <Setter Property="Background">
                     <Setter.Value>
-                        <ImageBrush ImageSource="Resources/Images/nav_but_bg.png" />
+                        <ImageBrush ImageSource="/Resources/Images/nav_but_bg.png" />
                     </Setter.Value>
                 </Setter>
                 <Setter Property="Width" Value="170" />
@@ -34,7 +34,7 @@
                     <Trigger Property="IsChecked" Value="True">
                         <Setter Property="Background">
                             <Setter.Value>
-                                <ImageBrush ImageSource="Resources/Images/nav_but_selected.png" />
+                                <ImageBrush ImageSource="/Resources/Images/nav_but_selected.png" />
                             </Setter.Value>
                         </Setter>
                     </Trigger>
@@ -154,7 +154,7 @@
             <Style x:Key="TitlebarStyle" TargetType="Grid">
                 <Setter Property="Background">
                     <Setter.Value>
-                        <ImageBrush ImageSource="Resources/Images/home_item_title_bg.png" />
+                        <ImageBrush ImageSource="/Resources/Images/home_item_title_bg.png" />
                     </Setter.Value>
                 </Setter>
             </Style>

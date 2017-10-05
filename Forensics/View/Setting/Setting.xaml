@@ -36,13 +36,13 @@
                     <ControlTemplate TargetType="RadioButton">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
                             <StackPanel Style="{StaticResource NavbarButPanelStyle}">
-                                <Image Name="imgIcon" Source="Resources/Images/nav_but_setting.png" Stretch="None" />
+                                <Image Name="imgIcon" Source="/Resources/Images/nav_but_setting.png" Stretch="None" />
                                 <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}">系统设置</TextBlock>
                             </StackPanel>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="imgIcon" Property="Source" Value="Resources/Images/nav_but_setting_selected.png" />
+                                <Setter TargetName="imgIcon" Property="Source" Value="/Resources/Images/nav_but_setting_selected.png" />
                                 <Setter TargetName="txtName" Property="Foreground" Value="White" />
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -66,13 +66,13 @@
                     <ControlTemplate TargetType="RadioButton">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
                             <StackPanel Style="{StaticResource NavbarButPanelStyle}">
-                                <Image Name="imgIcon" Source="Resources/Images/nav_but_find.png" Stretch="None" />
+                                <Image Name="imgIcon" Source="/Resources/Images/nav_but_find.png" Stretch="None" />
                                 <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}">环境检查</TextBlock>
                             </StackPanel>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="imgIcon" Property="Source" Value="Resources/Images/nav_but_find_selected.png" />
+                                <Setter TargetName="imgIcon" Property="Source" Value="/Resources/Images/nav_but_find_selected.png" />
                                 <Setter TargetName="txtName" Property="Foreground" Value="White" />
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -96,13 +96,13 @@
                     <ControlTemplate TargetType="RadioButton">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
                             <StackPanel Style="{StaticResource NavbarButPanelStyle}">
-                                <Image Name="imgIcon" Source="Resources/Images/nav_but_update.png" Stretch="None" />
+                                <Image Name="imgIcon" Source="/Resources/Images/nav_but_update.png" Stretch="None" />
                                 <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}">在线更新</TextBlock>
                             </StackPanel>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="imgIcon" Property="Source" Value="Resources/Images/nav_but_update_selected.png" />
+                                <Setter TargetName="imgIcon" Property="Source" Value="/Resources/Images/nav_but_update_selected.png" />
                                 <Setter TargetName="txtName" Property="Foreground" Value="White" />
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -126,13 +126,13 @@
                     <ControlTemplate TargetType="RadioButton">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
                             <StackPanel Style="{StaticResource NavbarButPanelStyle}">
-                                <Image Name="imgIcon" Source="Resources/Images/nav_but_feedback.png" Stretch="None" />
+                                <Image Name="imgIcon" Source="/Resources/Images/nav_but_feedback.png" Stretch="None" />
                                 <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}">用户反馈</TextBlock>
                             </StackPanel>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="imgIcon" Property="Source" Value="Resources/Images/nav_but_feedback_selected.png" />
+                                <Setter TargetName="imgIcon" Property="Source" Value="/Resources/Images/nav_but_feedback_selected.png" />
                                 <Setter TargetName="txtName" Property="Foreground" Value="White" />
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -156,13 +156,13 @@
                     <ControlTemplate TargetType="RadioButton">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
                             <StackPanel Style="{StaticResource NavbarButPanelStyle}">
-                                <Image Name="imgIcon" Source="Resources/Images/nav_but_about.png" Stretch="None" />
+                                <Image Name="imgIcon" Source="/Resources/Images/nav_but_about.png" Stretch="None" />
                                 <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}">关于系统</TextBlock>
                             </StackPanel>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="imgIcon" Property="Source" Value="Resources/Images/nav_but_about_selected.png" />
+                                <Setter TargetName="imgIcon" Property="Source" Value="/Resources/Images/nav_but_about_selected.png" />
                                 <Setter TargetName="txtName" Property="Foreground" Value="White" />
                             </Trigger>
                         </ControlTemplate.Triggers>

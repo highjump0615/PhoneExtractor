@@ -26,13 +26,13 @@
                     <ControlTemplate TargetType="RadioButton">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
                             <StackPanel Style="{StaticResource NavbarButPanelStyle}">
-                                <Image Name="imgIcon" Source="Resources/Images/nav_but_setting.png" Stretch="None" />
+                                <Image Name="imgIcon" Source="/Resources/Images/nav_but_setting.png" Stretch="None" />
                                 <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}">系统工具</TextBlock>
                             </StackPanel>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="imgIcon" Property="Source" Value="Resources/Images/nav_but_setting_selected.png" />
+                                <Setter TargetName="imgIcon" Property="Source" Value="/Resources/Images/nav_but_setting_selected.png" />
                                 <Setter TargetName="txtName" Property="Foreground" Value="White" />
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -46,13 +46,13 @@
                     <ControlTemplate TargetType="RadioButton">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
                             <StackPanel Style="{StaticResource NavbarButPanelStyle}">
-                                <Image Name="imgIcon" Source="Resources/Images/tool_android.png" Stretch="None" />
+                                <Image Name="imgIcon" Source="/Resources/Images/tool_android.png" Stretch="None" />
                                 <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}">安卓相关</TextBlock>
                             </StackPanel>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="imgIcon" Property="Source" Value="Resources/Images/tool_android_selected.png" />
+                                <Setter TargetName="imgIcon" Property="Source" Value="/Resources/Images/tool_android_selected.png" />
                                 <Setter TargetName="txtName" Property="Foreground" Value="White" />
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -66,13 +66,13 @@
                     <ControlTemplate TargetType="RadioButton">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
                             <StackPanel Style="{StaticResource NavbarButPanelStyle}">
-                                <Image Name="imgIcon" Source="Resources/Images/tool_apple.png" Stretch="None" />
+                                <Image Name="imgIcon" Source="/Resources/Images/tool_apple.png" Stretch="None" />
                                 <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}">苹果相关</TextBlock>
                             </StackPanel>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="imgIcon" Property="Source" Value="Resources/Images/tool_apple_selected.png" />
+                                <Setter TargetName="imgIcon" Property="Source" Value="/Resources/Images/tool_apple_selected.png" />
                                 <Setter TargetName="txtName" Property="Foreground" Value="White" />
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -86,13 +86,13 @@
                     <ControlTemplate TargetType="RadioButton">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
                             <StackPanel Style="{StaticResource NavbarButPanelStyle}">
-                                <Image Name="imgIcon" Source="Resources/Images/tool_near.png" Stretch="None" />
+                                <Image Name="imgIcon" Source="/Resources/Images/tool_near.png" Stretch="None" />
                                 <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}">附件工具</TextBlock>
                             </StackPanel>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="imgIcon" Property="Source" Value="Resources/Images/tool_near_selected.png" />
+                                <Setter TargetName="imgIcon" Property="Source" Value="/Resources/Images/tool_near_selected.png" />
                                 <Setter TargetName="txtName" Property="Foreground" Value="White" />
                             </Trigger>
                         </ControlTemplate.Triggers>

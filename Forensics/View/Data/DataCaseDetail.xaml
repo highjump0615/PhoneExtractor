@@ -81,7 +81,7 @@
         <Border Style="{StaticResource SettingHeaderStyle}" Background="{x:Null}">
             <Button Height="28" HorizontalAlignment="Left" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="13" Margin="10 ">
                 <StackPanel Orientation="Horizontal" Margin="10 0 10 0">
-                    <Image Source="Resources/Images/btn_case_back.png" Stretch="None" Margin="0 0 7 0" />
+                    <Image Source="/Resources/Images/btn_case_back.png" Stretch="None" Margin="0 0 7 0" />
                     <TextBlock>保存并返回</TextBlock>
                 </StackPanel>
             </Button>
@@ -89,7 +89,7 @@
         
         <!-- Image & Desc -->
         <StackPanel Orientation="Horizontal" Margin="20 10">
-            <Image Source="Resources/Images/case_samaple_img.png" Width="86" Height="86" Margin="0 0 20 0" />
+            <Image Source="/Resources/Images/case_samaple_img.png" Width="86" Height="86" Margin="0 0 20 0" />
             <StackPanel>
                 <StackPanel.Resources>
                     <Style TargetType="TextBlock">

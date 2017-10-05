@@ -17,10 +17,10 @@
         <Border Grid.Column="0" Grid.Row="0">
             <Border Width="264" Height="568">
                 <Border.Background>
-                    <ImageBrush ImageSource="Resources/Images/home_phone_android.png" />
+                    <ImageBrush ImageSource="/Resources/Images/home_phone_android.png" />
                 </Border.Background>
                 <StackPanel VerticalAlignment="Center">
-                    <Image Source="Resources/Images/home_phone_usb.png" Stretch="Fill" Width="50" Height="202" />
+                    <Image Source="/Resources/Images/home_phone_usb.png" Stretch="Fill" Width="50" Height="202" />
                     <Border CornerRadius="10" Background="#40000000" HorizontalAlignment="Center" Padding="10 5" Margin="0,-100,0,0" VerticalAlignment="Center">
                         <TextBlock HorizontalAlignment="Center" Foreground="White" FontSize="14">手机未连接</TextBlock>
                     </Border>
@@ -257,7 +257,7 @@
                     <!-- Content -->
                     <Grid Grid.Row="1">
                         <Grid.Background>
-                            <ImageBrush ImageSource="Resources/Images/home_graph_bg.png"></ImageBrush>
+                            <ImageBrush ImageSource="/Resources/Images/home_graph_bg.png"></ImageBrush>
                         </Grid.Background>
 
                         <Grid Margin="5">
@@ -343,7 +343,7 @@
                     <!-- Content -->
                     <Grid Grid.Row="1">
                         <Grid.Background>
-                            <ImageBrush ImageSource="Resources/Images/home_graph_bg.png"></ImageBrush>
+                            <ImageBrush ImageSource="/Resources/Images/home_graph_bg.png"></ImageBrush>
                         </Grid.Background>
 
                         <Grid Margin="5">
