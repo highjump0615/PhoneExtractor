@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Forensics.View
 {
     /// <summary>
-    /// Interaction logic for DataCase.xaml
+    /// Interaction logic for StepContent.xaml
     /// </summary>
-    public partial class DataCase : UserControl
+    public partial class StepContent : UserControl
     {
-        public DataCase()
+        public StepContent()
         {
             InitializeComponent();
         }

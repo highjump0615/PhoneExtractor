@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Forensics
+namespace Forensics.View
 {
     /// <summary>
     /// Interaction logic for DataCaseDetail.xaml

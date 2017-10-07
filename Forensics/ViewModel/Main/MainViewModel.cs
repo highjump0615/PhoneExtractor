@@ -27,6 +27,8 @@ namespace Forensics.ViewModel
         SettingUpgrade,
         SettingFeedback,
         SettingAbout,
+
+        Other,
     };
 
     public class MainViewModel : HostViewModel

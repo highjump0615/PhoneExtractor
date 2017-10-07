@@ -13,13 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Forensics.ViewModel;
+using Forensics.View.Apple;
 
 namespace Forensics
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : WindowBase
     {
         public MainWindow()
         {
@@ -27,16 +28,6 @@ namespace Forensics
 
             this.DataContext = new MainViewModel();
             this.Closing += (s, e) => ((ViewModelBase)this.DataContext).Dispose();
-        }
-
-        /// <summary>
-        /// Close window
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void onButClose(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
 
         /// <summary>
@@ -83,6 +74,20 @@ namespace Forensics
         private void onButSettingItem(object sender, RoutedEventArgs e)
         {
             this.butSetting.IsChecked = false;
+        }
+
+        /// <summary>
+        /// 苹果同步获取
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void onButApplySync(object sender, RoutedEventArgs e)
+        {
+            hideMenus();
+
+            var windowAppleSync = new AppleSync();
+            windowAppleSync.Owner = this;
+            windowAppleSync.ShowDialog();
         }
     }
 }

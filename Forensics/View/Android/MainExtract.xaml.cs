@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Forensics.View
+namespace Forensics.View.Android
 {
     /// <summary>
-    /// Interaction logic for DataCase.xaml
+    /// Interaction logic for MainExtract.xaml
     /// </summary>
-    public partial class DataCase : UserControl
+    public partial class MainExtract : UserControl
     {
-        public DataCase()
+        public MainExtract()
         {
             InitializeComponent();
         }
