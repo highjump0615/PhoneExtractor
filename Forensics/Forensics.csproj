@@ -109,6 +109,9 @@
     <Compile Include="ViewModel\Apple\AppleSyncViewModel.cs" />
     <Compile Include="ViewModel\Home\HomeHomeViewModel.cs" />
     <Compile Include="ViewModel\Android\MainExtractViewModel.cs" />
+    <Compile Include="View\Android\AndroidConnectAuto.xaml.cs">
+      <DependentUpon>AndroidConnectAuto.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Android\MainExtract.xaml.cs">
       <DependentUpon>MainExtract.xaml</DependentUpon>
     </Compile>
@@ -189,6 +192,10 @@
     <Compile Include="ViewModel\Tool\ToolSystemViewModel.cs" />
     <Compile Include="ViewModel\Base\ViewModelBase.cs" />
     <Compile Include="WindowBase.cs" />
+    <Page Include="View\Android\AndroidConnectAuto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Android\MainExtract.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

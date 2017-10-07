@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static Forensics.ViewModel.AppleSyncViewModel;
 
 namespace Forensics.View.Apple
 {
@@ -20,11 +21,11 @@ namespace Forensics.View.Apple
     /// </summary>
     public partial class AppleSync : WindowBase
     {
-        public AppleSync()
+        public AppleSync(AppleSyncType type)
         {
             InitializeComponent();
 
-            this.DataContext = new AppleSyncViewModel();
+            this.DataContext = new AppleSyncViewModel(type);
         }
 
         /// <summary>

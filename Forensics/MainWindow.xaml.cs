@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Forensics.ViewModel;
 using Forensics.View.Apple;
+using static Forensics.ViewModel.AppleSyncViewModel;
 
 namespace Forensics
 {
@@ -84,13 +85,27 @@ namespace Forensics
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void onButApplySync(object sender, RoutedEventArgs e)
+        private void onButAppleSync(object sender, RoutedEventArgs e)
         {
             hideMenus();
 
-            var windowAppleSync = new AppleSync();
+            var windowAppleSync = new AppleSync(AppleSyncType.APPLESYNC);
             windowAppleSync.Owner = this;
             windowAppleSync.ShowDialog();
+        }
+
+        /// <summary>
+        /// 苹果密码绕过
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void onButAppleBypass(object sender, RoutedEventArgs e)
+        {
+            hideMenus();
+
+            var windowAppleBypass = new AppleSync(AppleSyncType.APPLEBYPASS);
+            windowAppleBypass.Owner = this;
+            windowAppleBypass.ShowDialog();
         }
     }
 }

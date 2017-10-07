@@ -401,10 +401,10 @@
                                 <ImageBrush ImageSource="/Resources/Images/bottom_submenu_bg_middle.png" Stretch="UniformToFill" />
                             </StackPanel.Background>
 
-                            <Button Style="{StaticResource BottomSubmenuButStyle}" Margin="0,0,0,5" Click="onButApplySync">
+                            <Button Style="{StaticResource BottomSubmenuButStyle}" Margin="0,0,0,5" Click="onButAppleSync">
                                 <TextBlock>同步获取</TextBlock>
                             </Button>
-                            <Button Style="{StaticResource BottomSubmenuButStyle}" Margin="0,0,0,40">
+                            <Button Style="{StaticResource BottomSubmenuButStyle}" Margin="0,0,0,40" Click="onButAppleBypass">
                                 <TextBlock>密码文件绕过</TextBlock>
                             </Button>
                         </StackPanel>
