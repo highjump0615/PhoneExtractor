@@ -18,5 +18,8 @@
     
     <!-- Sync window -->
     <Color x:Key="SyncWindowBorderColor">#0c6ad2</Color>
+    
+    <!-- Extract page -->
+    <Color x:Key="ExtractThemeColor">#f9fcff</Color>
 
 </ResourceDictionary>

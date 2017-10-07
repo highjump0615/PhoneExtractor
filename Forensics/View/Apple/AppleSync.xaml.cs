@@ -26,5 +26,16 @@ namespace Forensics.View.Apple
 
             this.DataContext = new AppleSyncViewModel();
         }
+
+        /// <summary>
+        /// 开始提取
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void onButStart(object sender, RoutedEventArgs e)
+        {
+            Globals.Instance.MainVM.GoToExtractPage();
+            onButClose(sender, e);
+        }
     }
 }

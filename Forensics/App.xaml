@@ -241,7 +241,7 @@
             
             <!-- 首页 -->
             <DataTemplate DataType="{x:Type viewModels:MainHomeViewModel}">
-                <local:Home />
+                <view:HomeMain />
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewModels:MainDataViewModel}">
                 <view:DataManagement />
@@ -252,7 +252,15 @@
             <DataTemplate DataType="{x:Type viewModels:MainSettingViewModel}">
                 <local:Setting />
             </DataTemplate>
-
+            
+            <!-- 首页内容 -->
+            <DataTemplate DataType="{x:Type viewModels:HomeHomeViewModel}">
+                <view:HomeHome />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModels:MainExtractViewModel}">
+                <view:MainExtract />
+            </DataTemplate>
+            
             <!-- 资料管理 -->
             <DataTemplate DataType="{x:Type viewModels:DataCaseViewModel}">
                 <view:DataCase />

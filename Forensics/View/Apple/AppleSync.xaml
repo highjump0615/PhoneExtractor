@@ -99,7 +99,7 @@
             </Border.BorderBrush>
 
             <Button Style="{StaticResource SyncMainButton}" 
-                    IsEnabled="{Binding IsStartAvailable}">
+                    IsEnabled="{Binding IsStartAvailable}" Click="onButStart">
                 开始提取
             </Button>
         </Border>

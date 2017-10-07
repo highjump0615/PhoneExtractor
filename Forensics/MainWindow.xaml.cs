@@ -26,7 +26,10 @@ namespace Forensics
         {
             InitializeComponent();
 
-            this.DataContext = new MainViewModel();
+            MainViewModel mainVM = new MainViewModel();
+            Globals.Instance.MainVM = mainVM;
+
+            this.DataContext = mainVM;
             this.Closing += (s, e) => ((ViewModelBase)this.DataContext).Dispose();
         }
 

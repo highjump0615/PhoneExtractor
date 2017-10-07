@@ -103,9 +103,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\DelegateCommand.cs" />
+    <Compile Include="Globals.cs" />
     <Compile Include="Model\Extract\SystemLog.cs" />
     <Compile Include="ViewModel\Apple\AppleStepViewModel.cs" />
     <Compile Include="ViewModel\Apple\AppleSyncViewModel.cs" />
+    <Compile Include="ViewModel\Home\HomeHomeViewModel.cs" />
+    <Compile Include="ViewModel\Android\MainExtractViewModel.cs" />
     <Compile Include="View\Android\MainExtract.xaml.cs">
       <DependentUpon>MainExtract.xaml</DependentUpon>
     </Compile>
@@ -210,7 +213,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Home\Home.xaml">
+    <Page Include="View\Home\HomeMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -222,8 +225,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\Home\Home.xaml.cs">
-      <DependentUpon>Home.xaml</DependentUpon>
+    <Compile Include="View\Home\HomeMain.xaml.cs">
+      <DependentUpon>HomeMain.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -447,6 +450,9 @@
   <ItemGroup>
     <Resource Include="Resources\Images\extract\ext_apple_img.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Images\extract\progrss_bg.png" />
+    <Resource Include="Resources\Images\extract\progrss_on.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

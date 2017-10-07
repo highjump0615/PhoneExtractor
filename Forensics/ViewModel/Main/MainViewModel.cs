@@ -13,6 +13,8 @@ namespace Forensics.ViewModel
     {
         Main,
         MainHome,
+        HomeHome,
+        HomeExtract,
         MainData,
         DataCase,
         DataCaseDetail,
@@ -23,7 +25,7 @@ namespace Forensics.ViewModel
         ToolOther,
         Setting,
         SettingSetting,
-        SettingEnv = 13,
+        SettingEnv,
         SettingUpgrade,
         SettingFeedback,
         SettingAbout,
@@ -124,6 +126,15 @@ namespace Forensics.ViewModel
             this.SelectedChild = GetChild(typeof(MainSettingViewModel));
 
             ((MainSettingViewModel)this.SelectedChild).SelectChildViewModel((Type)param);
+        }
+
+        /// <summary>
+        /// 跳转到提取页面
+        /// </summary>
+        public void GoToExtractPage()
+        {
+            this.SelectedChild = GetChild(typeof(MainHomeViewModel));
+            ((MainHomeViewModel)this.SelectedChild).showExtractPage();
         }
     }
 }

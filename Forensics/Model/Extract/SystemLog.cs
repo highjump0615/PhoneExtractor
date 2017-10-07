@@ -10,6 +10,13 @@ namespace Forensics.Model.Extract
     {
         // 时间
         public DateTime Date { get; set; }
+        public String DateDesc
+        {
+            get
+            {
+                return Date.ToString("yyyy-MM-dd HH:mm:ss");
+            }
+        }
 
         // 项目
         public String Item { get; set; }

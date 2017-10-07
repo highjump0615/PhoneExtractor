@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Forensics
+namespace Forensics.View
 {
     /// <summary>
-    /// Interaction logic for Home.xaml
+    /// Interaction logic for HomeMain.xaml
     /// </summary>
-    public partial class Home : UserControl
+    public partial class HomeMain : UserControl
     {
-        public Home()
+        public HomeMain()
         {
             InitializeComponent();
         }

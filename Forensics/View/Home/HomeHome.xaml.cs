@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Forensics.View.Home
+namespace Forensics.View
 {
     /// <summary>
     /// Interaction logic for HomeHome.xaml
