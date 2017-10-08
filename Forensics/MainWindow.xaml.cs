@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Forensics.ViewModel;
 using Forensics.View.Apple;
 using static Forensics.ViewModel.AppleSyncViewModel;
+using Forensics.View;
 
 namespace Forensics
 {
@@ -106,6 +107,20 @@ namespace Forensics
             var windowAppleBypass = new AppleSync(AppleSyncType.APPLEBYPASS);
             windowAppleBypass.Owner = this;
             windowAppleBypass.ShowDialog();
+        }
+
+        /// <summary>
+        /// 安卓自动连接
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void onButAndroidConnectAuto(object sender, RoutedEventArgs e)
+        {
+            hideMenus();
+
+            var windowAndroid = new AndroidConnectAuto();
+            windowAndroid.Owner = this;
+            windowAndroid.ShowDialog();
         }
     }
 }

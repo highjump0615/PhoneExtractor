@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Forensics.ViewModel.Android;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,18 @@ namespace Forensics.View
         public AndroidConnectAuto()
         {
             InitializeComponent();
+
+            this.DataContext = new AndroidConnectViewModel();
+        }
+
+        /// <summary>
+        /// 返回
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void onButBack(object sender, RoutedEventArgs e)
+        {
+            onButClose(sender, e);
         }
     }
 }

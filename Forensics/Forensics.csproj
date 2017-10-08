@@ -82,6 +82,9 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -105,8 +108,12 @@
     <Compile Include="Command\DelegateCommand.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="Model\Extract\SystemLog.cs" />
+    <Compile Include="ViewModel\Android\AndroidConnectViewModel.cs" />
+    <Compile Include="ViewModel\Android\AndroidStepViewModel.cs" />
     <Compile Include="ViewModel\Apple\AppleStepViewModel.cs" />
     <Compile Include="ViewModel\Apple\AppleSyncViewModel.cs" />
+    <Compile Include="ViewModel\Apple\StepViewModel.cs" />
+    <Compile Include="ViewModel\Base\BaseStepViewModel.cs" />
     <Compile Include="ViewModel\Home\HomeHomeViewModel.cs" />
     <Compile Include="ViewModel\Android\MainExtractViewModel.cs" />
     <Compile Include="View\Android\AndroidConnectAuto.xaml.cs">
@@ -114,6 +121,9 @@
     </Compile>
     <Compile Include="View\Android\MainExtract.xaml.cs">
       <DependentUpon>MainExtract.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Android\AndroidStepContent.xaml.cs">
+      <DependentUpon>AndroidStepContent.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Apple\AppleSync.xaml.cs">
       <DependentUpon>AppleSync.xaml</DependentUpon>
@@ -199,6 +209,10 @@
     <Page Include="View\Android\MainExtract.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Android\AndroidStepContent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Apple\AppleSync.xaml">
       <SubType>Designer</SubType>
@@ -319,6 +333,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Forensics_TemporaryKey.pfx" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -460,6 +475,25 @@
   <ItemGroup>
     <Resource Include="Resources\Images\extract\progrss_bg.png" />
     <Resource Include="Resources\Images\extract\progrss_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\android\and_connect_auto_2_1.png" />
+    <Resource Include="Resources\Images\android\and_connect_auto_2_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\android\and_connect_auto_40_1.png" />
+    <Resource Include="Resources\Images\android\and_connect_auto_40_2.png" />
+    <Resource Include="Resources\Images\android\and_connect_auto_42_1.png" />
+    <Resource Include="Resources\Images\android\and_connect_auto_42_2.png" />
+    <Resource Include="Resources\Images\android\and_connect_auto_42_3.png" />
+    <Resource Include="Resources\Images\android\and_connect_auto_50_1.png" />
+    <Resource Include="Resources\Images\android\and_connect_auto_50_2.png" />
+    <Resource Include="Resources\Images\android\and_connect_auto_50_3.png" />
+    <Resource Include="Resources\Images\android\and_connect_auto_60_1.png" />
+    <Resource Include="Resources\Images\android\and_connect_auto_60_2.png" />
+    <Resource Include="Resources\Images\android\and_connect_auto_70_1.png" />
+    <Resource Include="Resources\Images\android\and_connect_auto_70_2.png" />
+    <Resource Include="Resources\Images\android\and_connect_auto_70_3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

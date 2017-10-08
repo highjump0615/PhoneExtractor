@@ -41,6 +41,14 @@ namespace Forensics.ViewModel
         }
 
         /// <summary>
+        /// 清空视图
+        /// </summary>
+        protected void ClearChild()
+        {
+            _childrenList.Clear();
+        }
+
+        /// <summary>
         /// 添加视图
         /// </summary>
         /// <param name="viewModel"></param>

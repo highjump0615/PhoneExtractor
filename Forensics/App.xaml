@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:Forensics"
              xmlns:view="clr-namespace:Forensics.View"
              xmlns:viewModels="clr-namespace:Forensics.ViewModel"
+             xmlns:viewModelAndroid="clr-namespace:Forensics.ViewModel.Android"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
 
@@ -304,6 +305,9 @@
             <DataTemplate DataType="{x:Type viewModels:AppleStepViewModel}">
                 <view:StepContent />
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModelAndroid:AndroidStepViewModel}">
+                <view:AndroidStepContent />
+            </DataTemplate>
             
             <!-- Title bar -->
             <Style x:Key="titlebarTextStyle" TargetType="TextBlock">
@@ -333,6 +337,13 @@
                 </Style.Triggers>
             </Style>
 
+            <!-- Connect Dialog -->
+            <Style x:Key="NavButStyle" TargetType="Button">
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderBrush" Value="{x:Null}" />
+                <Setter Property="Template" Value="{StaticResource ButtonBaseTemplate}" />
+            </Style>
         </ResourceDictionary>
 
     </Application.Resources>

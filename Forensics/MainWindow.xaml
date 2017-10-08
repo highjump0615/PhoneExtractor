@@ -436,7 +436,7 @@
                                 <ImageBrush ImageSource="/Resources/Images/bottom_submenu_bg_middle.png" Stretch="UniformToFill" />
                             </StackPanel.Background>
 
-                            <Button Style="{StaticResource BottomSubmenuButStyle}" Margin="0,0,0,5">
+                            <Button Style="{StaticResource BottomSubmenuButStyle}" Margin="0,0,0,5" Click="onButAndroidConnectAuto">
                                 <TextBlock>自动连接</TextBlock>
                             </Button>
                             <Button Style="{StaticResource BottomSubmenuButStyle}" Margin="0,0,0,5">

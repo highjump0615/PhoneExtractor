@@ -56,13 +56,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-
-        <Style x:Key="NavButStyle" TargetType="Button">
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="Background" Value="Transparent" />
-            <Setter Property="BorderBrush" Value="{x:Null}" />
-            <Setter Property="Template" Value="{StaticResource ButtonBaseTemplate}" />
-        </Style>
+        
     </Window.Resources>
 
     <DockPanel>
