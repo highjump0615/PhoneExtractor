@@ -19,7 +19,7 @@ namespace Forensics.ViewModel
         DataCase,
         DataCaseDetail,
         MainTool,
-        ToolSystem,
+        ToolList,
         ToolAndroid,
         ToolApple,
         ToolOther,

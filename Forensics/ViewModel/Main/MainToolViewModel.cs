@@ -8,42 +8,38 @@ using System.Windows.Input;
 
 namespace Forensics.ViewModel
 {
-    class MainToolViewModel : HostViewModel
+    public enum ToolsType
+    {
+        /// <summary>
+        /// 系统工具
+        /// </summary>
+        System = 1,
+
+        /// <summary>
+        /// 安卓工具
+        /// </summary>
+        Android,
+
+        /// <summary>
+        /// 苹果工具
+        /// </summary>
+        Apple,
+
+        /// <summary>
+        /// 附件工具
+        /// </summary>
+        Other
+    }
+
+    public class MainToolViewModel : HostViewModel
     {
         /// <summary>
         /// 系统工具命令
         /// </summary>
-        private ICommand _goToSystemCommand;
-        public ICommand GoToSystemCommand
+        private ICommand _goToToolCommand;
+        public ICommand GoToToolCommand
         {
-            get { return _goToSystemCommand ?? (_goToSystemCommand = new DelegateCommand(GoToSytemToolPage)); }
-        }
-
-        /// <summary>
-        /// 安卓工具命令
-        /// </summary>
-        private ICommand _goToAndroidCommand;
-        public ICommand GoToAndroidCommand
-        {
-            get { return _goToAndroidCommand ?? (_goToAndroidCommand = new DelegateCommand(GoToAndroidToolPage)); }
-        }
-
-        /// <summary>
-        /// 苹果工具命令
-        /// </summary>
-        private ICommand _goToAppleCommand;
-        public ICommand GoToAppleCommand
-        {
-            get { return _goToAppleCommand ?? (_goToAppleCommand = new DelegateCommand(GoToAppleToolPage)); }
-        }
-
-        /// <summary>
-        /// 附件工具命令
-        /// </summary>
-        private ICommand _goToOtherCommand;
-        public ICommand GoToOtherCommand
-        {
-            get { return _goToOtherCommand ?? (_goToOtherCommand = new DelegateCommand(GoToOtherToolPage)); }
+            get { return _goToToolCommand ?? (_goToToolCommand = new DelegateCommand(GoToToolPage)); }
         }
 
         public override Pages PageIndex
@@ -53,44 +49,19 @@ namespace Forensics.ViewModel
 
         public MainToolViewModel()
         {
-            this.RegisterChild<ToolSystemViewModel>(() => new ToolSystemViewModel());
-            this.RegisterChild<ToolAndroidViewModel>(() => new ToolAndroidViewModel());
-            this.RegisterChild<ToolAppleViewModel>(() => new ToolAppleViewModel());
-            this.RegisterChild<ToolOtherViewModel>(() => new ToolOtherViewModel());
+            this.RegisterChild<ToolListViewModel>(() => new ToolListViewModel());
 
-            this.SelectedChild = GetChild(typeof(ToolSystemViewModel));
+            // 默认是系统工具
+            GoToToolPage(ToolsType.System);
         }
 
         /// <summary>
         /// 跳转到系统工具页
         /// </summary>
-        private void GoToSytemToolPage()
+        private void GoToToolPage(object param)
         {
-            this.SelectedChild = GetChild(typeof(ToolSystemViewModel));
-        }
-
-        /// <summary>
-        /// 跳转到安卓工具页
-        /// </summary>
-        private void GoToAndroidToolPage()
-        {
-            this.SelectedChild = GetChild(typeof(ToolAndroidViewModel));
-        }
-
-        /// <summary>
-        /// 跳转到苹果工具页
-        /// </summary>
-        private void GoToAppleToolPage()
-        {
-            this.SelectedChild = GetChild(typeof(ToolAppleViewModel));
-        }
-
-        /// <summary>
-        /// 跳转到附件工具页
-        /// </summary>
-        private void GoToOtherToolPage()
-        {
-            this.SelectedChild = GetChild(typeof(ToolOtherViewModel));
+            this.SelectedChild = GetChild(typeof(ToolListViewModel));
+            ((ToolListViewModel)this.SelectedChild).showTools((ToolsType)param);
         }
     }
 }

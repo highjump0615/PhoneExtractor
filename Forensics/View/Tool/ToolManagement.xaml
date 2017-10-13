@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Forensics"
+             xmlns:ViewModels="clr-namespace:Forensics.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="{StaticResource HeightContent}" d:DesignWidth="{StaticResource WidthWindow}">
 
@@ -21,7 +22,9 @@
             </StackPanel.Background>
 
             <!-- 系统工具 -->
-            <RadioButton Style="{StaticResource NavbarButStyle}" Margin="0 25 0 0" IsChecked="True" Command="{Binding GoToSystemCommand}">
+            <RadioButton Style="{StaticResource NavbarButStyle}" Margin="0 25 0 0" IsChecked="True" 
+                         Command="{Binding GoToToolCommand}"
+                         CommandParameter="{x:Static ViewModels:ToolsType.System}">
                 <RadioButton.Template>
                     <ControlTemplate TargetType="RadioButton">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
@@ -41,7 +44,9 @@
             </RadioButton>
 
             <!-- 安卓相关 -->
-            <RadioButton Style="{StaticResource NavbarButStyle}" Margin="0 3 0 0" Command="{Binding GoToAndroidCommand}">
+            <RadioButton Style="{StaticResource NavbarButStyle}" Margin="0 3 0 0" 
+                         Command="{Binding GoToToolCommand}"
+                         CommandParameter="{x:Static ViewModels:ToolsType.Android}">
                 <RadioButton.Template>
                     <ControlTemplate TargetType="RadioButton">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
@@ -61,7 +66,9 @@
             </RadioButton>
 
             <!-- 苹果相关 -->
-            <RadioButton Style="{StaticResource NavbarButStyle}" Margin="0 3 0 0" Command="{Binding GoToAppleCommand}">
+            <RadioButton Style="{StaticResource NavbarButStyle}" Margin="0 3 0 0" 
+                         Command="{Binding GoToToolCommand}"
+                         CommandParameter="{x:Static ViewModels:ToolsType.Apple}">
                 <RadioButton.Template>
                     <ControlTemplate TargetType="RadioButton">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
@@ -81,7 +88,9 @@
             </RadioButton>
 
             <!-- 附件工具 -->
-            <RadioButton Style="{StaticResource NavbarButStyle}" Margin="0 3 0 0" Command="{Binding GoToOtherCommand}">
+            <RadioButton Style="{StaticResource NavbarButStyle}" Margin="0 3 0 0" 
+                         Command="{Binding GoToToolCommand}"
+                         CommandParameter="{x:Static ViewModels:ToolsType.Other}">
                 <RadioButton.Template>
                     <ControlTemplate TargetType="RadioButton">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">

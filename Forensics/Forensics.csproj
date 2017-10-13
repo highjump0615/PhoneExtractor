@@ -35,7 +35,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -84,6 +84,9 @@
   <ItemGroup>
     <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -167,20 +170,11 @@
     <Compile Include="View\Setting\SettingUpdate.xaml.cs">
       <DependentUpon>SettingUpdate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Tool\ToolAndroid.xaml.cs">
-      <DependentUpon>ToolAndroid.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Tool\ToolApple.xaml.cs">
-      <DependentUpon>ToolApple.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Tool\ToolManagement.xaml.cs">
       <DependentUpon>ToolManagement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Tool\ToolOther.xaml.cs">
-      <DependentUpon>ToolOther.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Tool\ToolSystem.xaml.cs">
-      <DependentUpon>ToolSystem.xaml</DependentUpon>
+    <Compile Include="View\Tool\ToolList.xaml.cs">
+      <DependentUpon>ToolList.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\Data\DataCaseDetailViewModel.cs" />
     <Compile Include="ViewModel\Data\DataCaseViewModel.cs" />
@@ -196,10 +190,7 @@
     <Compile Include="ViewModel\Setting\SettingAboutViewModel.cs" />
     <Compile Include="ViewModel\Setting\SettingUpgradeViewModel.cs" />
     <Compile Include="ViewModel\Setting\SettingSettingViewModel.cs" />
-    <Compile Include="ViewModel\Tool\ToolAndroidViewModel.cs" />
-    <Compile Include="ViewModel\Tool\ToolAppleViewModel.cs" />
-    <Compile Include="ViewModel\Tool\ToolOtherViewModel.cs" />
-    <Compile Include="ViewModel\Tool\ToolSystemViewModel.cs" />
+    <Compile Include="ViewModel\Tool\ToolListViewModel.cs" />
     <Compile Include="ViewModel\Base\ViewModelBase.cs" />
     <Compile Include="WindowBase.cs" />
     <Page Include="View\Android\AndroidConnectAuto.xaml">
@@ -293,23 +284,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Tool\ToolAndroid.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Tool\ToolApple.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\Tool\ToolManagement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Tool\ToolOther.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Tool\ToolSystem.xaml">
+    <Page Include="View\Tool\ToolList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -427,33 +406,6 @@
     <Resource Include="Resources\Images\tool_near_selected.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\tool\calculator.png" />
-    <Resource Include="Resources\Images\tool\device.png" />
-    <Resource Include="Resources\Images\tool\log.png" />
-    <Resource Include="Resources\Images\tool\permission.png" />
-    <Resource Include="Resources\Images\tool\task.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\tool\android_adb.png" />
-    <Resource Include="Resources\Images\tool\android_adbcheck.png" />
-    <Resource Include="Resources\Images\tool\android_backup.png" />
-    <Resource Include="Resources\Images\tool\android_dbcheck.png" />
-    <Resource Include="Resources\Images\tool\android_huawei.png" />
-    <Resource Include="Resources\Images\tool\android_image.png" />
-    <Resource Include="Resources\Images\tool\android_process.png" />
-    <Resource Include="Resources\Images\tool\android_qqbackup.png" />
-    <Resource Include="Resources\Images\tool\android_sdcard.png" />
-    <Resource Include="Resources\Images\tool\android_unzip.png" />
-    <Resource Include="Resources\Images\tool\android_vivo.png" />
-    <Resource Include="Resources\Images\tool\android_wechat.png" />
-    <Resource Include="Resources\Images\tool\apple_backup.png" />
-    <Resource Include="Resources\Images\tool\apple_plist.png" />
-    <Resource Include="Resources\Images\tool\other_function.png" />
-    <Resource Include="Resources\Images\tool\other_sim.png" />
-    <Resource Include="Resources\Images\tool\root1.png" />
-    <Resource Include="Resources\Images\tool\root2.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
@@ -494,6 +446,16 @@
     <Resource Include="Resources\Images\android\and_connect_auto_70_1.png" />
     <Resource Include="Resources\Images\android\and_connect_auto_70_2.png" />
     <Resource Include="Resources\Images\android\and_connect_auto_70_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ForensicsBLL\ForensicsBLL.csproj">
+      <Project>{0FBA2D56-7D07-4A18-9E25-2FAD77DE66A9}</Project>
+      <Name>ForensicsBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ForensicsModel\ForensicsModel.csproj">
+      <Project>{23C960B9-CD9F-4734-8E7A-9A04B14917A9}</Project>
+      <Name>ForensicsModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -271,17 +271,8 @@
             </DataTemplate>
 
             <!-- 工具管理 -->
-            <DataTemplate DataType="{x:Type viewModels:ToolSystemViewModel}">
-                <local:ToolSystem />
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModels:ToolAndroidViewModel}">
-                <local:ToolAndroid />
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModels:ToolAppleViewModel}">
-                <local:ToolApple />
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModels:ToolOtherViewModel}">
-                <local:ToolOther />
+            <DataTemplate DataType="{x:Type viewModels:ToolListViewModel}">
+                <local:ToolList />
             </DataTemplate>
 
             <!-- 设置 -->

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Forensics
 {
     /// <summary>
-    /// Interaction logic for ToolAndroid.xaml
+    /// Interaction logic for ToolSystem.xaml
     /// </summary>
-    public partial class ToolAndroid : UserControl
+    public partial class ToolList : UserControl
     {
-        public ToolAndroid()
+        public ToolList()
         {
             InitializeComponent();
         }
