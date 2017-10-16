@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Forensics"
              xmlns:view="clr-namespace:Forensics.View"
+             xmlns:viewHome="clr-namespace:Forensics.View.Home"
              xmlns:viewModels="clr-namespace:Forensics.ViewModel"
+             xmlns:viewModelMain="clr-namespace:Forensics.ViewModel.Main"
              xmlns:viewModelAndroid="clr-namespace:Forensics.ViewModel.Android"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
@@ -243,6 +245,9 @@
             <!-- 首页 -->
             <DataTemplate DataType="{x:Type viewModels:MainHomeViewModel}">
                 <view:HomeMain />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModelMain:PhoneReadyViewModel}">
+                <viewHome:LeftPhoneReady />
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewModels:MainDataViewModel}">
                 <view:DataManagement />

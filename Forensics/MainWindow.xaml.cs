@@ -93,6 +93,11 @@ namespace Forensics
             var windowAppleSync = new AppleSync(AppleSyncType.APPLESYNC);
             windowAppleSync.Owner = this;
             windowAppleSync.ShowDialog();
+
+            if (windowAppleSync.DialogResult == true)
+            {
+                ((MainViewModel)this.DataContext).GoToExtractPage(MainHomeViewModel.ExtractType.Apple);
+            }
         }
 
         /// <summary>
@@ -121,6 +126,16 @@ namespace Forensics
             var windowAndroid = new AndroidConnectAuto();
             windowAndroid.Owner = this;
             windowAndroid.ShowDialog();
+        }
+
+        /// <summary>
+        /// 点击设置菜单
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void onButSettingClick(object sender, RoutedEventArgs e)
+        {
+            hideMenus();
         }
     }
 }

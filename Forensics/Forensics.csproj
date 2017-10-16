@@ -88,6 +88,10 @@
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Manzana, Version=1.6.1.3, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\Manzana.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -113,14 +117,19 @@
     <Compile Include="Model\Extract\SystemLog.cs" />
     <Compile Include="ViewModel\Android\AndroidConnectViewModel.cs" />
     <Compile Include="ViewModel\Android\AndroidStepViewModel.cs" />
+    <Compile Include="ViewModel\Android\ExtractProgressViewModel.cs" />
     <Compile Include="ViewModel\Apple\AppleStepViewModel.cs" />
     <Compile Include="ViewModel\Apple\AppleSyncViewModel.cs" />
     <Compile Include="ViewModel\Apple\StepViewModel.cs" />
     <Compile Include="ViewModel\Base\BaseStepViewModel.cs" />
     <Compile Include="ViewModel\Home\HomeHomeViewModel.cs" />
     <Compile Include="ViewModel\Android\MainExtractViewModel.cs" />
+    <Compile Include="ViewModel\Main\PhoneReadyViewModel.cs" />
     <Compile Include="View\Android\AndroidConnectAuto.xaml.cs">
       <DependentUpon>AndroidConnectAuto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Android\ExtractProgressControl.xaml.cs">
+      <DependentUpon>ExtractProgressControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Android\MainExtract.xaml.cs">
       <DependentUpon>MainExtract.xaml</DependentUpon>
@@ -151,6 +160,9 @@
     <Compile Include="Model\Setting\ItemsForEnvironment.cs" />
     <Compile Include="View\Home\HomeHome.xaml.cs">
       <DependentUpon>HomeHome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Home\LeftPhoneReady.xaml.cs">
+      <DependentUpon>LeftPhoneReady.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Setting\Setting.xaml.cs">
       <DependentUpon>Setting.xaml</DependentUpon>
@@ -194,6 +206,10 @@
     <Compile Include="ViewModel\Base\ViewModelBase.cs" />
     <Compile Include="WindowBase.cs" />
     <Page Include="View\Android\AndroidConnectAuto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Android\ExtractProgressControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -257,6 +273,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Home\HomeHome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Home\LeftPhoneReady.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -456,6 +476,9 @@
       <Project>{23C960B9-CD9F-4734-8E7A-9A04B14917A9}</Project>
       <Name>ForensicsModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Lib\Manzana.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

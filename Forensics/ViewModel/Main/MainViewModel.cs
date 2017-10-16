@@ -1,4 +1,5 @@
 ﻿using Forensics.Command;
+using Forensics.ViewModel.Main;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using static Forensics.ViewModel.MainHomeViewModel;
 
 namespace Forensics.ViewModel
 {
@@ -131,10 +133,12 @@ namespace Forensics.ViewModel
         /// <summary>
         /// 跳转到提取页面
         /// </summary>
-        public void GoToExtractPage()
+        public void GoToExtractPage(ExtractType type)
         {
             this.SelectedChild = GetChild(typeof(MainHomeViewModel));
-            ((MainHomeViewModel)this.SelectedChild).showExtractPage();
+
+            MainHomeViewModel vm = (MainHomeViewModel)this.SelectedChild;
+            vm.showExtractPage(type);
         }
     }
 }

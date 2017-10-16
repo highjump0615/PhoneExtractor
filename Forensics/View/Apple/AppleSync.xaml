@@ -7,6 +7,7 @@
                  xmlns:base="clr-namespace:Forensics"
                  mc:Ignorable="d"
                  WindowStyle="None"
+                 ShowInTaskbar="False"
                  Title="AppleSync" 
                  WindowChrome.WindowChrome="{StaticResource SubWindowChromeKey}"
                  MinHeight="{StaticResource HeightSyncWindow}" MinWidth="{StaticResource WidthSyncWindow}"
@@ -78,7 +79,10 @@
                 <TextBlock TextWrapping="Wrap" Style="{StaticResource titlebarTextStyle}" Text="iTunes同步获取，操作提示" Margin="20,0,0,0"/>
 
                 <!-- Window Buttons -->
-                <Button Width="40" HorizontalContentAlignment="Center" Style="{StaticResource TitleBarButStyle}" Click="onButClose">
+                <Button Width="40" 
+                        HorizontalContentAlignment="Center" 
+                        Style="{StaticResource TitleBarButStyle}"
+                        IsCancel="True">
                     <Image Source="/Resources/Images/title_close.png" Width="{StaticResource WidthTitlebarButtonImg}" Margin="0,0,4,0" />
                 </Button>
             </DockPanel>

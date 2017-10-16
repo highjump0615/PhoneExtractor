@@ -8,6 +8,7 @@
                  xmlns:local="clr-namespace:Forensics.View"
                  mc:Ignorable="d"
                  WindowStyle="None"
+                 ShowInTaskbar="False"
                  WindowChrome.WindowChrome="{StaticResource SubWindowChromeKey}"
                  MinHeight="{StaticResource HeightSyncWindow}" MinWidth="{StaticResource WidthSyncWindow}"
                  MaxHeight="{StaticResource HeightSyncWindow}" MaxWidth="{StaticResource WidthSyncWindow}"

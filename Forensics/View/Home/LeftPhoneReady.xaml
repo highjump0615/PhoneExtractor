@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="Forensics.View.Home.LeftPhoneReady"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Forensics.View.Home"
+             mc:Ignorable="d"
+             d:DesignHeight="{StaticResource HeightContent}" d:DesignWidth="422"
+             Background="{x:Null}">
+    
+    <Grid>
+        <Image Width="264" Height="568" Source="/Resources/Images/home_phone_android.png" />
+        <StackPanel VerticalAlignment="Center">
+            <Image Source="/Resources/Images/home_phone_usb.png" Stretch="Fill" Width="50" Height="202" />
+            <Border CornerRadius="10" Background="#40000000" HorizontalAlignment="Center" Padding="10 5" Margin="0,-100,0,0" VerticalAlignment="Center">
+                <TextBlock HorizontalAlignment="Center" Foreground="White" FontSize="14">手机未连接</TextBlock>
+            </Border>
+        </StackPanel>
+    </Grid>
+</UserControl>

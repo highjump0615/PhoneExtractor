@@ -35,8 +35,7 @@ namespace Forensics.View.Apple
         /// <param name="e"></param>
         private void onButStart(object sender, RoutedEventArgs e)
         {
-            Globals.Instance.MainVM.GoToExtractPage();
-            onButClose(sender, e);
+            DialogResult = true;
         }
     }
 }

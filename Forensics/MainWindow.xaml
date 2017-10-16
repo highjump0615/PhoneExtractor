@@ -184,7 +184,7 @@
             </Button>
 
             <!-- Setting -->
-            <ToggleButton Style="{StaticResource TitleBarButStyle}" x:Name="butSetting">
+            <ToggleButton Style="{StaticResource TitleBarButStyle}" x:Name="butSetting" Click="onButSettingClick">
                 <Image Source="/Resources/Images/title_setting.png" Width="{StaticResource WidthTitlebarButtonImg}" />
             </ToggleButton>
 

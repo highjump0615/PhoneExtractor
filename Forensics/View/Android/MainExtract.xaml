@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Forensics.View"
+             xmlns:local="clr-namespace:Forensics.View.Android"
              xmlns:model="clr-namespace:Forensics.Model.Extract"
              mc:Ignorable="d" 
              d:DesignHeight="{StaticResource HeightHomeContent}" d:DesignWidth="{StaticResource WidthHomeContent}">
@@ -84,59 +84,6 @@
             </StackPanel>
         </DataTemplate>
 
-        <!-- Progress style -->
-        <Style x:Key="ProressBorderStyle" TargetType="Border">
-            <Setter Property="Effect">
-                <Setter.Value>
-                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Color="#f2f2f2" Direction="270"/>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <!-- Button style -->
-        <Style x:Key="ProgressButtonStyle" TargetType="Button">
-            <Setter Property="Width" Value="88" />
-            <Setter Property="Height" Value="28" />
-            <Setter Property="FontSize" Value="14" />
-            <Setter Property="HorizontalAlignment" Value="Right" />
-            <Setter Property="VerticalAlignment" Value="Top" />
-            <Setter Property="Foreground">
-                <Setter.Value>
-                    <SolidColorBrush Color="{StaticResource ThemeColor}" />
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border CornerRadius="13" BorderThickness="1">
-                            <Border.BorderBrush>
-                                <SolidColorBrush Color="{StaticResource ThemeColor}" />
-                            </Border.BorderBrush>
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsEnabled" Value="False">
-                    <Setter Property="Foreground">
-                        <Setter.Value>
-                            <SolidColorBrush Color="{StaticResource SettingGrayColor}" />
-                        </Setter.Value>
-                    </Setter>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border CornerRadius="13" BorderThickness="1" BorderBrush="#c4c4c4" Background="#e5e5e5">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
     </UserControl.Resources>
 
     <Grid Margin="20 15">
@@ -176,62 +123,7 @@
         </DockPanel>
 
         <!-- 进度条 -->
-        <Border Grid.Row="1" Margin="0 20" 
-                Style="{StaticResource ProressBorderStyle}">
-            
-            <Border.Background>
-                <SolidColorBrush Color="{StaticResource ExtractThemeColor}" />
-            </Border.Background>
-
-            <Grid>
-                <!-- title -->
-                <TextBlock FontSize="22" Margin="12" HorizontalAlignment="Left" VerticalAlignment="Top">
-                    提取安卓设备完成
-                </TextBlock>
-                <!-- Description -->
-                <TextBlock FontSize="14" Margin="12,45,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"
-                           Foreground="#999999">
-                    提取安卓设备完成
-                </TextBlock>
-                <!-- Percent -->
-                <TextBlock FontSize="22" Margin="0 12" HorizontalAlignment="Center" VerticalAlignment="Top">
-                    <TextBlock.Foreground>
-                        <SolidColorBrush Color="{StaticResource ThemeColor}" />
-                    </TextBlock.Foreground>
-                    100%
-                </TextBlock>
-
-                <!-- buttons -->
-                <Button Style="{StaticResource ProgressButtonStyle}" Margin="0,12,14,0"
-                        IsEnabled="False">
-                    停止
-                </Button>
-                <Button Style="{StaticResource ProgressButtonStyle}" Margin="0,12,114,0" >
-                    重新提取
-                </Button>
-                
-                <!-- progress -->
-                <Grid Height="30" VerticalAlignment="Bottom" Margin="12 12">
-                    <Grid.Background>
-                        <ImageBrush ImageSource="/Forensics;component/Resources/Images/extract/progrss_bg.png" 
-                                    Stretch="None" 
-                                    TileMode="Tile" 
-                                    Viewport="0,0,12,30" 
-                                    ViewportUnits="Absolute" />
-                    </Grid.Background>
-                    <Rectangle Width="150" HorizontalAlignment="Left">
-                        <Rectangle.Fill>
-                            <ImageBrush ImageSource="/Forensics;component/Resources/Images/extract/progrss_on.png" 
-                                    Stretch="None" 
-                                    TileMode="Tile" 
-                                    Viewport="0,0,12,30" 
-                                    ViewportUnits="Absolute" />
-                        </Rectangle.Fill>
-                    </Rectangle>
-                </Grid>
-            </Grid>
-
-        </Border>
+        <local:ExtractProgressControl Grid.Row="1" Margin="0 20" DataContext="{Binding progressVM}" />
 
     </Grid>
 
