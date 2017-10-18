@@ -121,6 +121,18 @@ namespace Forensics
         }
 
         /// <summary>
+        /// 打开添加物证
+        /// </summary>
+        public void openAddEvidence()
+        {
+            hideMenus();
+
+            var wEvidence = new DialogAddEvidence();
+            wEvidence.Owner = this;
+            wEvidence.ShowDialog();
+        }
+
+        /// <summary>
         /// 苹果密码绕过
         /// </summary>
         /// <param name="sender"></param>

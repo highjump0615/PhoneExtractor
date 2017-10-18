@@ -571,6 +571,19 @@ namespace Forensics.ViewModel
             }
         }
 
+        /// <summary>
+        /// 提取完成后处理
+        /// </summary>
+        private void doFinsihExtract()
+        {
+            setProgress("提取完成", null, 100);
+            addSystemLog("分析数据文件结束，提取全部完成。", "结束");
+
+            // 打开添加案件窗口
+            MainWindow viewMain = (MainWindow)Globals.Instance.MainVM.View;
+            viewMain.openAddEvidence();
+        }
+
         private void parseAll92(IDictionary mbdb)
         {
             var sd = mbdb["Applications"] as Dictionary<object, object>;

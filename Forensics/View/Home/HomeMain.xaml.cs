@@ -29,8 +29,11 @@ namespace Forensics.View
         private void onDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             // VM里设置view
-            MainHomeViewModel vm = (MainHomeViewModel)e.NewValue;
-            vm.View = this;
+            ViewModelBase vm = (ViewModelBase)e.NewValue;
+            if (vm != null)
+            {
+                vm.View = this;
+            }
         }
     }
 }

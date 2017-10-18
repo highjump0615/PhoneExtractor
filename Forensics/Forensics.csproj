@@ -212,6 +212,9 @@
     <Compile Include="Model\DataManagement\ItemsForCase.cs" />
     <Compile Include="Model\Setting\EnvironmentItem.cs" />
     <Compile Include="Model\Setting\ItemsForEnvironment.cs" />
+    <Compile Include="View\Dialog\DialogAddEvidence.xaml.cs">
+      <DependentUpon>DialogAddEvidence.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Dialog\DialogConnectSuccess.xaml.cs">
       <DependentUpon>DialogConnectSuccess.xaml</DependentUpon>
     </Compile>
@@ -304,6 +307,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Data\DataManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialog\DialogAddEvidence.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

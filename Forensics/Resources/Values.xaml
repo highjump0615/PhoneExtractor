@@ -58,5 +58,10 @@
     <system:Double x:Key="WidthStepContent">757</system:Double>
     <system:Double x:Key="HeightStepContent">340</system:Double>
     <system:Double x:Key="HeightDialogBottomBar">70</system:Double>
+    
+    <!-- Add evidence page -->
+    <system:Double x:Key="WidthEvidenceAddDialog">765</system:Double>
+    <system:Double x:Key="HeightEvidenceAddDialog">525</system:Double>
+    <system:Double x:Key="HeightInputItem">30</system:Double>
 
 </ResourceDictionary>
