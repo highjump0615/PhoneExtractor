@@ -249,6 +249,9 @@
             <DataTemplate DataType="{x:Type viewModelMain:PhoneReadyViewModel}">
                 <viewHome:LeftPhoneReady />
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModelMain:PhoneInfoViewModel}">
+                <viewHome:LeftPhoneInfo />
+            </DataTemplate>
             <DataTemplate DataType="{x:Type viewModels:MainDataViewModel}">
                 <view:DataManagement />
             </DataTemplate>
@@ -340,6 +343,47 @@
                 <Setter Property="BorderBrush" Value="{x:Null}" />
                 <Setter Property="Template" Value="{StaticResource ButtonBaseTemplate}" />
             </Style>
+            
+            <Style x:Key="SyncMainButton" TargetType="Button">
+                <Setter Property="Width" Value="126" />
+                <Setter Property="Height" Value="40" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Foreground" Value="White" />
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border BorderBrush="{x:Null}" CornerRadius="5">
+                                <Border.Background>
+                                    <SolidColorBrush Color="{StaticResource ThemeColor}" />
+                                </Border.Background>
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+
+                <Style.Triggers>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter Property="Foreground">
+                            <Setter.Value>
+                                <SolidColorBrush Color="{StaticResource SettingGrayColor}" />
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border BorderBrush="{x:Null}" CornerRadius="5" Background="#c7cacd">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
         </ResourceDictionary>
 
     </Application.Resources>

@@ -1,4 +1,5 @@
-﻿using Forensics.ViewModel.Main;
+﻿using Forensics.Model.Device;
+using Forensics.ViewModel.Main;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,19 +31,38 @@ namespace Forensics.ViewModel
 
             this.SelectedChild = GetChild(typeof(HomeHomeViewModel));
 
+            // 未连接
             this.PhoneArea = new PhoneReadyViewModel();
+        }
+
+        /// <summary>
+        /// 显示设备信息
+        /// </summary>
+        public void showDeviceInfo()
+        {
+            MainViewModel mainVM = Globals.Instance.MainVM;
+            if (mainVM.CurrentDevice == null)
+            {
+                this.PhoneArea = new PhoneReadyViewModel();
+            }
+            else
+            {
+                this.PhoneArea = new PhoneInfoAppleViewModel(mainVM.CurrentDevice.DeviceProperty);
+            }
+
+            PropertyChanging("PhoneArea");
         }
 
         /// <summary>
         /// 打开提取页面
         /// </summary>
-        public void showExtractPage(ExtractType type)
+        public void showExtractPage(ExtractType type, string saveExtractPath = null)
         {
             // 打开提取页面
             this.SelectedChild = GetChild(typeof(MainExtractViewModel));
 
             MainExtractViewModel vm = (MainExtractViewModel)SelectedChild;
-            vm.startExtract(type);
+            vm.startExtract(type, saveExtractPath);
         }
     }
 }

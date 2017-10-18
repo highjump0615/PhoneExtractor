@@ -13,6 +13,21 @@ namespace Forensics.ViewModel.Android
         public GridLength PercentWidth { get; set; }
         public GridLength PercentLeftWidth { get; set; }
 
+        private string _title;
+        public string Title
+        {
+            get
+            {
+                return _title;
+            }
+            set
+            {
+                _title = value;
+                PropertyChanging("Title");
+            }
+        }
+        public string Desc { get; set; }
+
         private int _percent;
         public int Percent
         {
@@ -26,17 +41,18 @@ namespace Forensics.ViewModel.Android
                 PercentLeftWidth = new GridLength(100 - value, GridUnitType.Star);
 
                 _percent = value;
+
+                PropertyChanging("Percent");
+                PropertyChanging("PercentWidth");
+                PropertyChanging("PercentLeftWidth");
             }
         }
 
         public override Pages PageIndex => throw new NotImplementedException();
 
-        public string Title { get; set; }
-        public string Desc { get; set; }
-
         public ExtractProgressViewModel()
         {
-            Title = "提取安卓设备";
+            Desc = "提取安卓设备";
 
             this.Percent = 0;
         }
@@ -45,7 +61,7 @@ namespace Forensics.ViewModel.Android
         {
             if (type == ExtractType.Apple)
             {
-                Title = "提取苹果设备";
+                Desc = "提取苹果设备";
             }
         }
     }

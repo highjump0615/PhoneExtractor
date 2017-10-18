@@ -59,6 +59,11 @@ namespace Forensics.ViewModel
 
         protected ViewModelBase GetChild(Type type)
         {
+            if (_selectedChild != null && _selectedChild.GetType() == type)
+            {
+                return _selectedChild;
+            }
+
             Contract.Requires(type != null);
             if (_childrenMap.ContainsKey(type) == false)
                 throw new InvalidOperationException("Can't resolve type " + type.ToString());

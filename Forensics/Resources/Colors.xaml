@@ -21,5 +21,8 @@
     
     <!-- Extract page -->
     <Color x:Key="ExtractThemeColor">#f9fcff</Color>
+    
+    <!-- Dialog -->
+    <Color x:Key="DialogBottomColor">#e1ecf8</Color>
 
 </ResourceDictionary>

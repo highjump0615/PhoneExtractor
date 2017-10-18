@@ -16,6 +16,7 @@ using Forensics.ViewModel;
 using Forensics.View.Apple;
 using static Forensics.ViewModel.AppleSyncViewModel;
 using Forensics.View;
+using Forensics.View.Dialog;
 
 namespace Forensics
 {
@@ -29,6 +30,7 @@ namespace Forensics
             InitializeComponent();
 
             MainViewModel mainVM = new MainViewModel();
+            mainVM.View = this;
             Globals.Instance.MainVM = mainVM;
 
             this.DataContext = mainVM;
@@ -97,6 +99,24 @@ namespace Forensics
             if (windowAppleSync.DialogResult == true)
             {
                 ((MainViewModel)this.DataContext).GoToExtractPage(MainHomeViewModel.ExtractType.Apple);
+            }
+        }
+
+        /// <summary>
+        /// 打开连接成功对话框
+        /// </summary>
+        public void openConnectSuccess()
+        {
+            hideMenus();
+
+            var wSuccess = new DialogConnectSuccess();
+            wSuccess.Owner = this;
+            wSuccess.ShowDialog();
+
+            if (wSuccess.DialogResult == true)
+            {
+                var strPath = wSuccess.FileControl.TextPath.Text;
+                ((MainViewModel)this.DataContext).GoToExtractPage(MainHomeViewModel.ExtractType.Apple, strPath);
             }
         }
 

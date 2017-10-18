@@ -1,15 +1,20 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Forensics.ViewModel
 {
     public abstract class ViewModelBase : ObservableObject, IDisposable
     {
         public abstract Pages PageIndex { get; }
+        public Control View;
+
+        private static readonly ILog Log = LogManager.GetLogger(typeof(ViewModelBase));
 
         protected virtual void OnDispose()
         {
@@ -19,6 +24,22 @@ namespace Forensics.ViewModel
         public void Dispose()
         {
             OnDispose();
+        }
+
+        /// <summary>
+        /// 添加log
+        /// </summary>
+        /// <param name="message"></param>
+        protected void saveErrorLog(string message)
+        {
+            try
+            {
+                Log.Error(message, null);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.Data.ToString(), ex);
+            }
         }
     }
 }

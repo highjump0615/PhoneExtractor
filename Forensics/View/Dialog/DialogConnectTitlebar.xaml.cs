@@ -1,5 +1,4 @@
-﻿using Forensics.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,23 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Forensics.View
+namespace Forensics.View.Dialog
 {
     /// <summary>
-    /// Interaction logic for HomeMain.xaml
+    /// Interaction logic for DialogConnectTitlebar.xaml
     /// </summary>
-    public partial class HomeMain : UserControl
+    public partial class DialogConnectTitlebar : UserControl
     {
-        public HomeMain()
+        public DialogConnectTitlebar()
         {
             InitializeComponent();
-        }
-
-        private void onDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            // VM里设置view
-            MainHomeViewModel vm = (MainHomeViewModel)e.NewValue;
-            vm.View = this;
         }
     }
 }

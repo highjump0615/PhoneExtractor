@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Forensics.View"
+             xmlns:dlgControl="clr-namespace:Forensics.View.Dialog"
              mc:Ignorable="d" 
              d:DesignHeight="{StaticResource HeightStepContent}" d:DesignWidth="{StaticResource WidthStepContent}">
     <Grid>
@@ -12,28 +13,10 @@
                    VerticalAlignment="Center"
                    Margin="60 0" Text="{Binding Desc}" />
 
-        <StackPanel Orientation="Horizontal" 
-                    VerticalAlignment="Top" 
-                    HorizontalAlignment="Left" 
-                    Height="30" Margin="30 280 0 0"
-                    Visibility="{Binding ShowSavePath, Converter={StaticResource BoolToVisibility}}">
-            <TextBlock FontSize="16" Foreground="White" VerticalAlignment="Center">
-                存储目录：
-            </TextBlock>
-            <TextBox VerticalContentAlignment="Center" FontSize="14" Width="252">
-                <TextBox.Foreground>
-                    <SolidColorBrush Color="{StaticResource SettingGrayColor}" />
-                </TextBox.Foreground>
-                C:\Users\Chris\Downloads
-            </TextBox>
-            <Button Width="64" 
-                    Background="#91c5ff" 
-                    Margin="10 0 0 0"
-                    FontSize="16"
-                    Foreground="#003167">
-                浏览
-            </Button>
-        </StackPanel>
+        <dlgControl:DialogSelectFile VerticalAlignment="Top" 
+                                     HorizontalAlignment="Left" 
+                                     Height="30" Margin="30 280 0 0"
+                                     Visibility="{Binding ShowSavePath, Converter={StaticResource BoolToVisibility}}" />
 
         <Image Width="252" Height="307" 
                Source="{Binding ImageSrc}" 

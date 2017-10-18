@@ -9,7 +9,8 @@
              Background="{x:Null}">
     
     <Grid>
-        <Image Width="264" Height="568" Source="/Resources/Images/home_phone_android.png" />
+        <Image Width="{StaticResource WidthLeftPhoneImage}" Height="{StaticResource HeightLeftPhoneImage}" 
+               Source="/Resources/Images/home_phone_android.png" />
         <StackPanel VerticalAlignment="Center">
             <Image Source="/Resources/Images/home_phone_usb.png" Stretch="Fill" Width="50" Height="202" />
             <Border CornerRadius="10" Background="#40000000" HorizontalAlignment="Center" Padding="10 5" Margin="0,-100,0,0" VerticalAlignment="Center">

@@ -1,5 +1,4 @@
-﻿using Forensics.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,26 +10,28 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Forensics.View
+namespace Forensics.View.Dialog
 {
     /// <summary>
-    /// Interaction logic for HomeMain.xaml
+    /// Interaction logic for DialogConnectSucess.xaml
     /// </summary>
-    public partial class HomeMain : UserControl
+    public partial class DialogConnectSuccess : Window
     {
-        public HomeMain()
+        public DialogConnectSuccess()
         {
             InitializeComponent();
         }
 
-        private void onDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        /// <summary>
+        /// 下一步
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void onButNext(object sender, RoutedEventArgs e)
         {
-            // VM里设置view
-            MainHomeViewModel vm = (MainHomeViewModel)e.NewValue;
-            vm.View = this;
+            DialogResult = true;
         }
     }
 }
