@@ -18,7 +18,7 @@ namespace Forensics.View
     /// <summary>
     /// Interaction logic for StepContent.xaml
     /// </summary>
-    public partial class StepContent : UserControl
+    public partial class StepContent : UserControlBase
     {
         public StepContent()
         {

@@ -1,5 +1,6 @@
 ﻿using Forensics.Command;
 using Forensics.Model.Device;
+using Forensics.View.Dialog;
 using Forensics.ViewModel.Main;
 using log4net;
 using Manzana;
@@ -9,6 +10,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Forensics.ViewModel
@@ -217,11 +219,26 @@ namespace Forensics.ViewModel
 
             // 显示设备信息
             showDeviceInfo();
-
-            // 弹出连接成功对话框
+            
+            // 弹出连接成功对话框，如果已有弹出的窗口，则忽略            
             MainWindow viewMain = (MainWindow)this.View;
             viewMain.Dispatcher.Invoke(new Action(() => {
-                viewMain.openConnectSuccess();
+                if (App.Current.MainWindow.OwnedWindows.Count == 0)
+                {
+                    viewMain.openConnectSuccess();
+                }
+                else
+                {
+                    foreach (Window wnd in App.Current.MainWindow.OwnedWindows)
+                    {
+                        // 等待窗口，把它关闭进入提取阶段
+                        if (wnd is DialogConnectWaiting)
+                        {
+                            wnd.Close();
+                            GoToExtractPage(MainHomeViewModel.ExtractType.Apple, viewMain.ExtractPath);
+                        }
+                    }
+                }
             }));
         }
 

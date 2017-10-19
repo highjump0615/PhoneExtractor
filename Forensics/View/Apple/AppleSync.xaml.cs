@@ -21,6 +21,8 @@ namespace Forensics.View.Apple
     /// </summary>
     public partial class AppleSync : WindowBase
     {
+        public string ExtractPath { get; set; }
+
         public AppleSync(AppleSyncType type)
         {
             InitializeComponent();
@@ -35,6 +37,13 @@ namespace Forensics.View.Apple
         /// <param name="e"></param>
         private void onButStart(object sender, RoutedEventArgs e)
         {
+            // 获取提取路径
+            AppleSyncViewModel vm = (AppleSyncViewModel)this.DataContext;
+            AppleStepViewModel vmStep = (AppleStepViewModel)vm.GetChildAt(vm.GetCount() - 1);
+            StepContent stepView = (StepContent)vmStep.View;
+
+            this.ExtractPath = stepView.FileControl.TextPath.Text;
+
             DialogResult = true;
         }
     }

@@ -77,7 +77,7 @@ namespace Forensics.ViewModel
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
-        protected ViewModelBase GetChildAt(int index)
+        public ViewModelBase GetChildAt(int index)
         {
             return _childrenList[index];
         }
@@ -86,7 +86,7 @@ namespace Forensics.ViewModel
         /// 获取视图数量
         /// </summary>
         /// <returns></returns>
-        protected int GetCount()
+        public int GetCount()
         {
             return _childrenList.Count();
         }

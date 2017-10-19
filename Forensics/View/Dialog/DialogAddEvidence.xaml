@@ -78,7 +78,7 @@
 
     </Window.Resources>
     
-    <Grid>
+    <Grid Height="574">
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
             <RowDefinition Height="*" />
@@ -128,6 +128,14 @@
                 <StackPanel Style="{StaticResource ItemStyle}">
                     <TextBlock Style="{StaticResource LabelStyle}">
                         物证编号
+                    </TextBlock>
+                    <ComboBox Style="{StaticResource ComboboxStyle}" />
+                </StackPanel>
+
+                <!-- 案件名称 -->
+                <StackPanel Style="{StaticResource ItemStyle}">
+                    <TextBlock Style="{StaticResource LabelStyle}">
+                        案件名称
                     </TextBlock>
                     <TextBox Style="{StaticResource TextInputStyle}"></TextBox>
                 </StackPanel>
@@ -209,7 +217,8 @@
                 <Button Style="{StaticResource DialogButton}" 
                         Width="107" Height="38"
                         HorizontalAlignment="Right"
-                        Margin="0 0 10 0">
+                        Margin="0 0 10 0"
+                        IsCancel="True">
                     取消
                 </Button>
             </StackPanel>

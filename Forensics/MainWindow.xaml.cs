@@ -25,6 +25,8 @@ namespace Forensics
     /// </summary>
     public partial class MainWindow : WindowBase
     {
+        public string ExtractPath { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -98,8 +100,32 @@ namespace Forensics
 
             if (windowAppleSync.DialogResult == true)
             {
-                ((MainViewModel)this.DataContext).GoToExtractPage(MainHomeViewModel.ExtractType.Apple);
+                MainViewModel mainVM = (MainViewModel)this.DataContext;
+                this.ExtractPath = windowAppleSync.ExtractPath;
+
+                if (mainVM.CurrentDevice != null)
+                {
+                    // 打开提取页面
+                    mainVM.GoToExtractPage(MainHomeViewModel.ExtractType.Apple, this.ExtractPath);
+                }
+                else
+                {
+                    // 打开等待连接窗口
+                    openConnectWaiting();
+                }
             }
+        }
+
+        /// <summary>
+        /// 打开等待连接对话框
+        /// </summary>
+        public void openConnectWaiting()
+        {
+            hideMenus();
+
+            var wWaiting = new DialogConnectWaiting();
+            wWaiting.Owner = this;
+            wWaiting.ShowDialog();
         }
 
         /// <summary>
@@ -115,8 +141,8 @@ namespace Forensics
 
             if (wSuccess.DialogResult == true)
             {
-                var strPath = wSuccess.FileControl.TextPath.Text;
-                ((MainViewModel)this.DataContext).GoToExtractPage(MainHomeViewModel.ExtractType.Apple, strPath);
+                this.ExtractPath = wSuccess.FileControl.TextPath.Text;
+                ((MainViewModel)this.DataContext).GoToExtractPage(MainHomeViewModel.ExtractType.Apple, this.ExtractPath);
             }
         }
 

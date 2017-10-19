@@ -149,6 +149,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WpfAnimatedGif, Version=1.4.15.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfAnimatedGif.1.4.15\lib\net\WpfAnimatedGif.dll</HintPath>
+    </Reference>
     <Reference Include="ZipStorer, Version=3.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ZipStorer.3.4.0\lib\net452\ZipStorer.dll</HintPath>
     </Reference>
@@ -197,6 +200,7 @@
     <Compile Include="View\Apple\StepContent.xaml.cs">
       <DependentUpon>StepContent.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Base\UserControlBase.cs" />
     <Compile Include="View\Data\DataCase.xaml.cs">
       <DependentUpon>DataCase.xaml</DependentUpon>
     </Compile>
@@ -214,6 +218,9 @@
     <Compile Include="Model\Setting\ItemsForEnvironment.cs" />
     <Compile Include="View\Dialog\DialogAddEvidence.xaml.cs">
       <DependentUpon>DialogAddEvidence.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialog\DialogConnectWaiting.xaml.cs">
+      <DependentUpon>DialogConnectWaiting.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Dialog\DialogConnectSuccess.xaml.cs">
       <DependentUpon>DialogConnectSuccess.xaml</DependentUpon>
@@ -313,6 +320,10 @@
     <Page Include="View\Dialog\DialogAddEvidence.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialog\DialogConnectWaiting.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Dialog\DialogConnectSuccess.xaml">
       <SubType>Designer</SubType>
@@ -581,6 +592,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModel\Dialog\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\dialog\dlg_connecting.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets')" />

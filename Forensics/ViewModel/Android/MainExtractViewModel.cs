@@ -61,7 +61,7 @@ namespace Forensics.ViewModel
             if (saveExtractPath != null)
             {
                 savePath = saveExtractPath;
-            }            
+            }
             if (!Directory.Exists(savePath))
             {
                 Directory.CreateDirectory(savePath);
@@ -84,9 +84,10 @@ namespace Forensics.ViewModel
         /// <param name="result"></param>
         private void addSystemLog(string item, string result)
         {
-            App.Current.Dispatcher.Invoke(new Action(() => {
+            App.Current.Dispatcher.Invoke(new Action(() =>
+            {
                 this.LogList.Add(new SystemLog() { Date = DateTime.Now, Item = item, Result = result });
-            }));            
+            }));
         }
 
         /// <summary>
@@ -118,6 +119,12 @@ namespace Forensics.ViewModel
         private void backupThread()
         {
             DeviceInfo currentDevice = Globals.Instance.MainVM.CurrentDevice;
+
+            // 设备中途已卸载
+            if (currentDevice == null)
+            {
+                return;
+            }
             DeviceProperty devProp = currentDevice.DeviceProperty;
 
             // 初始化
@@ -231,9 +238,9 @@ namespace Forensics.ViewModel
                         progressVM.Percent = 80;
                         //AnalysisProc();
 
-                        setProgress("提取完成", null, 100);
 
-                        addSystemLog("分析数据文件结束，提取全部完成。", "结束");
+                        // 提取成功
+                        doFinishExtract();
                     }
                     else if (File.Exists(ios10dbFile))
                     {
@@ -563,9 +570,9 @@ namespace Forensics.ViewModel
 
                         //AnalysisProc(sender, e);
 
-                        setProgress("提取完成", null, 100);
 
-                        addSystemLog("分析数据文件结束，提取全部完成。", "结束");
+                        // 提取成功
+                        doFinishExtract();
                     }
                 }
             }
@@ -574,14 +581,17 @@ namespace Forensics.ViewModel
         /// <summary>
         /// 提取完成后处理
         /// </summary>
-        private void doFinsihExtract()
+        private void doFinishExtract()
         {
             setProgress("提取完成", null, 100);
             addSystemLog("分析数据文件结束，提取全部完成。", "结束");
 
-            // 打开添加案件窗口
-            MainWindow viewMain = (MainWindow)Globals.Instance.MainVM.View;
-            viewMain.openAddEvidence();
+            App.Current.Dispatcher.Invoke(new Action(() =>
+            {
+                // 打开添加案件窗口
+                MainWindow viewMain = (MainWindow)Globals.Instance.MainVM.View;
+                viewMain.openAddEvidence();
+            }));
         }
 
         private void parseAll92(IDictionary mbdb)

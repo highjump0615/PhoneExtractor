@@ -61,7 +61,7 @@
     
     <!-- Add evidence page -->
     <system:Double x:Key="WidthEvidenceAddDialog">765</system:Double>
-    <system:Double x:Key="HeightEvidenceAddDialog">525</system:Double>
+    <system:Double x:Key="HeightEvidenceAddDialog">574</system:Double>
     <system:Double x:Key="HeightInputItem">30</system:Double>
 
 </ResourceDictionary>
