@@ -93,7 +93,7 @@
                 </Setter>
             </Style>
 
-            <Style x:Key="CheckboxStyle" TargetType="CheckBox">
+            <Style x:Key="CheckboxStyle" TargetType="RadioButton">
                 <Setter Property="FontSize" Value="{StaticResource SettingContentFontSize}" />
                 <Setter Property="VerticalContentAlignment" Value="Center" />
             </Style>
@@ -123,8 +123,12 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}">默认路径:</TextBlock>
-                        <TextBox Grid.Column="1" Style="{StaticResource TextInputStyle}">D:\Ryan\CASE</TextBox>
-                        <Button Grid.Column="2" Style="{StaticResource RightButStyle}">选择</Button>
+                        <TextBox Grid.Column="1" 
+                                 Style="{StaticResource TextInputStyle}" 
+                                 IsEnabled="False"
+                                 Name="TextCaseDirectory" 
+                                 Text="{Binding Path=DefaultPathCase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <Button Grid.Column="2" Style="{StaticResource RightButStyle}" Click="onBrowseDirectoryCase">选择</Button>
                     </Grid>
                 </Border>
                 <TextBlock Style="{StaticResource TextFrameTitleStyle}">案件目录设置</TextBlock>
@@ -146,16 +150,22 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
-                            <CheckBox Grid.Column="0" Style="{StaticResource CheckboxStyle}" 
-                                      HorizontalAlignment="Right">
-                                <CheckBox.Margin>
+                            <RadioButton Grid.Column="0" 
+                                         Name="RadioNamingDefault"
+                                         Style="{StaticResource CheckboxStyle}" 
+                                         HorizontalAlignment="Right"
+                                         IsChecked="{Binding NamingRuleOption, Converter={StaticResource EnumToBool}, ConverterParameter=Default}">
+                                <RadioButton.Margin>
                                     <Thickness Right="{StaticResource RightMarginSettingLabel}" />
-                                </CheckBox.Margin>
+                                </RadioButton.Margin>
                                 默认
-                            </CheckBox>
-                            <CheckBox Grid.Column="1" Style="{StaticResource CheckboxStyle}" IsEnabled="False">
+                            </RadioButton>
+                            <RadioButton Grid.Column="1" 
+                                         Style="{StaticResource CheckboxStyle}"
+                                         Name="RadioNamingCustom"
+                                         IsChecked="{Binding NamingRuleOption, Converter={StaticResource EnumToBool}, ConverterParameter=Custom}">
                                 自定义
-                            </CheckBox>
+                            </RadioButton>
                         </Grid>
 
                         <!-- 案件编号 -->
@@ -170,7 +180,10 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}">案件编号:</TextBlock>
-                            <TextBox Grid.Column="1" Style="{StaticResource TextInputStyle}">[Case]+序列号</TextBox>
+                            <TextBox Grid.Column="1" 
+                                     Style="{StaticResource TextInputStyle}"
+                                     IsEnabled="{Binding IsChecked, ElementName=RadioNamingCustom}"
+                                     Text="{Binding RuleCaseNo}" />
                         </Grid>
 
                         <!-- 物证编号 -->
@@ -185,7 +198,10 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}">物证编号:</TextBlock>
-                            <TextBox Grid.Column="1" Style="{StaticResource TextInputStyle}">[Evidence]+时间戳</TextBox>
+                            <TextBox Grid.Column="1" 
+                                     Style="{StaticResource TextInputStyle}"
+                                     IsEnabled="{Binding IsChecked, ElementName=RadioNamingCustom}"
+                                     Text="{Binding RuleEviNo}" />
                         </Grid>
 
                         <!-- 案件目录 -->
@@ -200,7 +216,10 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}">案件目录:</TextBlock>
-                            <TextBox Grid.Column="1" Style="{StaticResource TextInputStyle}">[CaseNo]_时间戳</TextBox>
+                            <TextBox Grid.Column="1" 
+                                     Style="{StaticResource TextInputStyle}"
+                                     IsEnabled="{Binding IsChecked, ElementName=RadioNamingCustom}"
+                                     Text="{Binding RuleCase}" />
                         </Grid>
 
                         <!-- 物证目录 -->
@@ -215,7 +234,10 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}">物证目录:</TextBlock>
-                            <TextBox Grid.Column="1" Style="{StaticResource TextInputStyle}" IsEnabled="False">[CellBrand]_序列号</TextBox>
+                            <TextBox Grid.Column="1" 
+                                     Style="{StaticResource TextInputStyle}" 
+                                     IsEnabled="{Binding IsChecked, ElementName=RadioNamingCustom}"
+                                     Text="{Binding RuleEvidence}" />
                         </Grid>
 
                         <!-- 物证原始目录 -->
@@ -230,7 +252,10 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}">物证原始目录:</TextBlock>
-                            <TextBox Grid.Column="1" Style="{StaticResource TextInputStyle}" IsEnabled="False">Data</TextBox>
+                            <TextBox Grid.Column="1" 
+                                     Style="{StaticResource TextInputStyle}" 
+                                     IsEnabled="{Binding IsChecked, ElementName=RadioNamingCustom}"
+                                     Text="{Binding RuleRaw}" />
                         </Grid>
 
                         <!-- 物证解析目录 -->
@@ -245,7 +270,10 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}">物证解析目录:</TextBlock>
-                            <TextBox Grid.Column="1" Style="{StaticResource TextInputStyle}" IsEnabled="False">Xml</TextBox>
+                            <TextBox Grid.Column="1" 
+                                     Style="{StaticResource TextInputStyle}" 
+                                     IsEnabled="{Binding IsChecked, ElementName=RadioNamingCustom}"
+                                     Text="{Binding RuleData}" />
                         </Grid>
 
                         <!-- 物证报告目录 -->
@@ -260,7 +288,10 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}">物证报告目录:</TextBlock>
-                            <TextBox Grid.Column="1" Style="{StaticResource TextInputStyle}" IsEnabled="False">Report</TextBox>
+                            <TextBox Grid.Column="1" 
+                                     Style="{StaticResource TextInputStyle}" 
+                                     IsEnabled="{Binding IsChecked, ElementName=RadioNamingCustom}"
+                                     Text="{Binding RuleReport}" />
                         </Grid>
 
                         <!-- 检验人姓名 -->
@@ -275,7 +306,9 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}">检验人姓名:</TextBlock>
-                            <TextBox Grid.Column="1" Style="{StaticResource TextInputStyle}"></TextBox>
+                            <TextBox Grid.Column="1" 
+                                     Style="{StaticResource TextInputStyle}"
+                                     Text="{Binding Path=Examiner, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </Grid>
                     </StackPanel>
                 </Border>
@@ -318,9 +351,12 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}">选择时区:</TextBlock>
-                        <ComboBox Grid.Column="1" Style="{StaticResource ComboboxStyle}">
-                            <ComboBoxItem IsSelected="True">中国标准时间</ComboBoxItem>
-                        </ComboBox>
+                        <ComboBox Grid.Column="1" 
+                                  Style="{StaticResource ComboboxStyle}"
+                                  ItemsSource="{Binding ListTimeZone, Mode=OneWay}" 
+                                  DisplayMemberPath="DisplayName" 
+                                  SelectedValuePath="Id"
+                                  SelectedValue="{Binding TimeZoneSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     </Grid>
                 </Border>
                 <TextBlock Style="{StaticResource TextFrameTitleStyle}">系统时区</TextBlock>
@@ -340,8 +376,12 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}">默认目录:</TextBlock>
-                        <TextBox Grid.Column="1" Style="{StaticResource TextInputStyle}" IsEnabled="False">E:\EDEC_mmdb\tool\MMDB</TextBox>
-                        <Button Grid.Column="2" Style="{StaticResource RightButStyle}">选择</Button>
+                        <TextBox Grid.Column="1" 
+                                 Style="{StaticResource TextInputStyle}" 
+                                 IsEnabled="False"
+                                 Name="TextWcDirectory" 
+                                 Text="{Binding Path=DefaultPathWc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Button Grid.Column="2" Style="{StaticResource RightButStyle}" Click="onBrowseDirectoryWc">选择</Button>
                     </Grid>
                 </Border>
                 <TextBlock Style="{StaticResource TextFrameTitleStyle}">彩虹表目录</TextBlock>
@@ -361,14 +401,17 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}">默认目录:</TextBlock>
-                        <TextBox Grid.Column="1" Style="{StaticResource TextInputStyle}">E:\Ryan\E5\maps</TextBox>
-                        <Button Grid.Column="2" Style="{StaticResource RightButStyle}">选择</Button>
+                        <TextBox Grid.Column="1" 
+                                 Style="{StaticResource TextInputStyle}"
+                                 Name="TextMapDirectory" 
+                                 Text="{Binding Path=DefaultPathMap, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <Button Grid.Column="2" Style="{StaticResource RightButStyle}" Click="onBrowseDirectoryMap">选择</Button>
                     </Grid>
                 </Border>
                 <TextBlock Style="{StaticResource TextFrameTitleStyle}">离线地图</TextBlock>
             </Grid>
 
-            <!-- 照片数据分页上线 -->
+            <!-- 照片数据分页上限 -->
             <Grid>
                 <Grid.Margin>
                     <Thickness Top="{StaticResource TopMarginSettingGroup}" />
@@ -382,11 +425,21 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}">默认大小:</TextBlock>
-                        <TextBox Grid.Column="1" Style="{StaticResource TextInputStyle}">0</TextBox>
+                        <TextBox Grid.Column="1" 
+                                 Style="{StaticResource TextInputStyle}"
+                                 Text="{Binding Path=PhotoLimit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     </Grid>
                 </Border>
-                <TextBlock Style="{StaticResource TextFrameTitleStyle}">照片数据分页上线</TextBlock>
+                <TextBlock Style="{StaticResource TextFrameTitleStyle}">照片数据分页上限</TextBlock>
             </Grid>
+
+            <Button Width="97" Height="35" 
+                Style="{StaticResource SettingButton}" 
+                HorizontalAlignment="Right"
+                Margin="0 20 0 0"
+                Command="{Binding SaveCommand}">
+                保存
+            </Button>
         </StackPanel>
     </Grid>
 

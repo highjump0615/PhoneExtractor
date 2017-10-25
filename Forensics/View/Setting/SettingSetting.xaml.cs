@@ -24,5 +24,46 @@ namespace Forensics
         {
             InitializeComponent();
         }
+
+        private void setFolderPath(TextBox tb)
+        {
+            using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
+            {
+                dialog.SelectedPath = this.TextCaseDirectory.Text;
+
+                System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+                tb.Text = dialog.SelectedPath;
+            }
+        }
+
+        /// <summary>
+        /// 案件默认路径
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void onBrowseDirectoryCase(object sender, RoutedEventArgs e)
+        {
+            setFolderPath(this.TextCaseDirectory);
+        }
+
+        /// <summary>
+        /// 彩虹表默认路径
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void onBrowseDirectoryWc(object sender, RoutedEventArgs e)
+        {
+            setFolderPath(this.TextWcDirectory);
+        }
+
+        /// <summary>
+        /// 离线地图默认路径
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void onBrowseDirectoryMap(object sender, RoutedEventArgs e)
+        {
+            setFolderPath(this.TextMapDirectory);
+        }
     }
 }
