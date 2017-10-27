@@ -11,8 +11,6 @@
         
         <ResourceDictionary>
 
-            <local:ItemsForCase x:Key="MyData"/>
-
             <Style TargetType="HeaderedItemsControl">
                 <Setter Property="Template">
                     <Setter.Value>
@@ -21,19 +19,20 @@
                                 <Border Style="{StaticResource listHeaderStyle}">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="2*" />
-                                            <ColumnDefinition Width="2*" />
-                                            <ColumnDefinition Width="4*" />
-                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="150" />
+                                            <ColumnDefinition Width="150" />
+                                            <ColumnDefinition Width="150" />
+                                            <ColumnDefinition Width="90" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="120" />
                                         </Grid.ColumnDefinitions>
 
-                                        <TextBlock Grid.Column="0" Style="{StaticResource listHeaderTextStyle}">案件名称</TextBlock>
-                                        <TextBlock Grid.Column="1" Style="{StaticResource listHeaderTextStyle}">提取时间</TextBlock>
-                                        <TextBlock Grid.Column="2" Style="{StaticResource listHeaderTextStyle}">路径</TextBlock>
-                                        <TextBlock Grid.Column="3" Style="{StaticResource listHeaderTextStyle}"
-                                                   HorizontalAlignment="Right">
-                                            操作
-                                        </TextBlock>
+                                        <TextBlock Grid.Column="0" Style="{StaticResource listHeaderTextStyle}">编号</TextBlock>
+                                        <TextBlock Grid.Column="1" Style="{StaticResource listHeaderTextStyle}">案件名称</TextBlock>
+                                        <TextBlock Grid.Column="2" Style="{StaticResource listHeaderTextStyle}">创建时间</TextBlock>
+                                        <TextBlock Grid.Column="3" Style="{StaticResource listHeaderTextStyle}">物证数量</TextBlock>
+                                        <TextBlock Grid.Column="4" Style="{StaticResource listHeaderTextStyle}">路径</TextBlock>
+                                        <TextBlock Grid.Column="5" Style="{StaticResource listHeaderTextStyle}" HorizontalAlignment="Right">操作</TextBlock>
                                     </Grid>
                                 </Border>
                                 <Grid>
@@ -45,23 +44,27 @@
                 </Setter>
             </Style>
             
-            <DataTemplate DataType="{x:Type local:Case}">
+            <DataTemplate DataType="{x:Type local:Case2}">
                 <StackPanel>
                     <Grid Height="40">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*" />
-                            <ColumnDefinition Width="2*" />
-                            <ColumnDefinition Width="4*" />
-                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="90" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="120" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="0" Style="{StaticResource listContentTextStyle}" Text="{Binding Name}" />
-                        <TextBlock Grid.Column="1" Style="{StaticResource listContentTextStyle}" Text="{Binding Id}" />
-                        <TextBlock Grid.Column="2" Style="{StaticResource listContentTextStyle}" Text="{Binding Path}" />
-                        <Button Grid.Column="3" Style="{StaticResource transparentButton}" Width="94" HorizontalAlignment="Right">解析并查看</Button>
+                        <TextBlock Grid.Column="0" Style="{StaticResource listContentTextStyle}" Text="{Binding CASE_NUMBER}" />
+                        <TextBlock Grid.Column="1" Style="{StaticResource listContentTextStyle}" Text="{Binding CASE_NAME}" />
+                        <TextBlock Grid.Column="2" Style="{StaticResource listContentTextStyle}" Text="{Binding DateText}" />
+                        <TextBlock Grid.Column="3" Style="{StaticResource listContentTextStyle}" Text="{Binding EVIDENCECOUNT}" />
+                        <TextBlock Grid.Column="4" Style="{StaticResource listContentTextStyle}" Text="{Binding CASE_PATH}" />
+                        <Button Grid.Column="5" Style="{StaticResource transparentButton}" Width="94" HorizontalAlignment="Right">解析并查看</Button>
                         
                         <!-- Border -->
-                        <Rectangle Style="{StaticResource listDashBorder}" Grid.ColumnSpan="4" />
+                        <Rectangle Style="{StaticResource listDashBorder}" Grid.ColumnSpan="6" />
                     </Grid>
                 </StackPanel>
             </DataTemplate>
@@ -69,12 +72,17 @@
         </ResourceDictionary>
     </UserControl.Resources>
     
-    <StackPanel Margin="{StaticResource SettingContentMarginValue}">
+    <Grid Margin="{StaticResource SettingContentMarginValue}">
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="72" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
         <!-- header -->
-        <Border Style="{StaticResource SettingHeaderStyle}">
+        <Border Grid.Row="0" Style="{StaticResource SettingHeaderStyle}">
             <Border Style="{StaticResource SettingHeaderInnerStyle}">
-                <Button Height="28" HorizontalAlignment="Right" Style="{StaticResource SettingButton}" >
+                <Button HorizontalAlignment="Right" Style="{StaticResource SettingButton}" >
                     <StackPanel Orientation="Horizontal" Margin="10 0 10 0">
                         <Image Source="/Resources/Images/nav_but_case_selected.png" Width="17" Margin="0 0 7 0" />
                         <TextBlock>案件导入</TextBlock>
@@ -82,9 +90,11 @@
                 </Button>
             </Border>
         </Border>
-        
-        <!-- ListView -->
-        <HeaderedItemsControl ItemsSource="{Binding Mode=Default, Source={StaticResource MyData}}" />
 
-    </StackPanel>
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <!-- ListView -->
+            <HeaderedItemsControl ItemsSource="{Binding ListCase, Mode=Default}" />
+        </ScrollViewer>
+
+    </Grid>
 </UserControl>

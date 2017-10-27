@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,5 +29,18 @@ namespace Forensics.Util
         public static PhoneDevice CurrentPD;   //current device info add 201506
 
         public static RuleName Rulename = new RuleName();  //20160323 add for name logic function su
+
+        #region Upcasting
+        public static TDerived ToDerived<TBase, TDerived>(TBase tBase) where TDerived : TBase, new()
+        {
+            TDerived tDerived = new TDerived();
+            foreach (PropertyInfo propBase in typeof(TBase).GetProperties())
+            {
+                PropertyInfo propDerived = typeof(TDerived).GetProperty(propBase.Name);
+                propDerived.SetValue(tDerived, propBase.GetValue(tBase, null), null);
+            }
+            return tDerived;
+        }
+        #endregion
     }
 }

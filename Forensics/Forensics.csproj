@@ -215,10 +215,9 @@
     <Compile Include="View\Data\DataManagement.xaml.cs">
       <DependentUpon>DataManagement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\DataManagement\Case.cs" />
+    <Compile Include="Model\DataManagement\Case2.cs" />
     <Compile Include="Model\DataManagement\Evidence.cs" />
     <Compile Include="Model\DataManagement\ItemsForEvidence.cs" />
-    <Compile Include="Model\DataManagement\ItemsForCase.cs" />
     <Compile Include="Model\Setting\EnvironmentItem.cs" />
     <Compile Include="Model\Setting\ItemsForEnvironment.cs" />
     <Compile Include="View\Dialog\DialogAddEvidence.xaml.cs">
