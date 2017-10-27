@@ -1255,7 +1255,7 @@ namespace Forensics.DAL
         /// <returns></returns>
         public List<Evidence> GetAllEvidences(String path)
         {
-            List<Evidence> evidenceList = null;
+            List<Evidence> evidenceList = new List<Evidence>();
             if (File.Exists(path))
             {
 
@@ -1278,7 +1278,6 @@ namespace Forensics.DAL
                     reader = cmd.ExecuteReader();
                     if (reader.HasRows)
                     {
-                        evidenceList = new List<Evidence>();
                         while (reader.Read())
                         {
                             DateTime datetime = DateTime.Now;

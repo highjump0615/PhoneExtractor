@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CaseManager.cs" />
+    <Compile Include="DataManager.cs" />
     <Compile Include="EvidenceManager.cs" />
     <Compile Include="JournalManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

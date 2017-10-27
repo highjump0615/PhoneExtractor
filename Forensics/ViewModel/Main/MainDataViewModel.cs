@@ -1,4 +1,5 @@
 ﻿using Forensics.Command;
+using Forensics.Model.DataManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,15 +20,6 @@ namespace Forensics.ViewModel
             get { return _goToCaseCommand ?? (_goToCaseCommand = new DelegateCommand(GoToCasePage)); }
         }
 
-        /// <summary>
-        /// 详情页命令
-        /// </summary>
-        private ICommand _goToCaseDetailCommand;
-        public ICommand GoToCaseDetailCommand
-        {
-            get { return _goToCaseDetailCommand ?? (_goToCaseDetailCommand = new DelegateCommand(GoToCaseDetailPage)); }
-        }
-
         public override Pages PageIndex
         {
             get { return Pages.MainData; }
@@ -35,8 +27,7 @@ namespace Forensics.ViewModel
 
         public MainDataViewModel()
         {
-            this.RegisterChild<DataCaseViewModel>(() => new DataCaseViewModel());
-            this.RegisterChild<DataCaseDetailViewModel>(() => new DataCaseDetailViewModel());
+            this.RegisterChild<DataCaseViewModel>(() => new DataCaseViewModel(this));
 
             this.SelectedChild = GetChild(typeof(DataCaseViewModel));
         }
@@ -44,7 +35,7 @@ namespace Forensics.ViewModel
         /// <summary>
         /// 跳转到案件管理页
         /// </summary>
-        private void GoToCasePage()
+        public void GoToCasePage()
         {
             this.SelectedChild = GetChild(typeof(DataCaseViewModel));
         }
@@ -52,9 +43,10 @@ namespace Forensics.ViewModel
         /// <summary>
         /// 跳转到案件详情页
         /// </summary>
-        private void GoToCaseDetailPage()
+        /// <param name="caseInfo"></param>
+        public void GoToCaseDetailPage(Case2 caseInfo)
         {
-            this.SelectedChild = GetChild(typeof(DataCaseDetailViewModel));
+            this.SelectedChild = new DataCaseDetailViewModel(this, caseInfo);
         }
     }
 }

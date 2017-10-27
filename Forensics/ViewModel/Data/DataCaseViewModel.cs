@@ -1,4 +1,5 @@
 ﻿using Forensics.BLL;
+using Forensics.Command;
 using Forensics.Model;
 using Forensics.Model.DataManagement;
 using Forensics.Util;
@@ -8,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Forensics.ViewModel
 {
@@ -22,8 +24,20 @@ namespace Forensics.ViewModel
             get { return Pages.DataCase; }
         }
 
-        public DataCaseViewModel()
+        /// <summary>
+        /// 详情命令
+        /// </summary>
+        private ICommand _goToDetailCommand;
+        public ICommand GoToDetailCommand
         {
+            get { return _goToDetailCommand ?? (_goToDetailCommand = new DelegateCommand(GoToDetailPage)); }
+        }
+
+        public DataCaseViewModel(ViewModelBase vmParent)
+        {
+            this.ViewModelParent = vmParent;
+
+            // 获取案件列表
             List<Case> caseList = caseManager.GetCaseByWhere("all");
             InitialCaseInfo(caseList);
         }
@@ -39,6 +53,16 @@ namespace Forensics.ViewModel
                 Case2 c2 = CommonUtil.ToDerived<Case, Case2>(c);
                 ListCase.Add(c2);
             }
+        }
+
+        /// <summary>
+        /// 跳转到详情页
+        /// </summary>
+        private void GoToDetailPage(object param)
+        {
+            Case2 caseInfo = (Case2)param;
+            MainDataViewModel parentVM = (MainDataViewModel)this.ViewModelParent;
+            parentVM.GoToCaseDetailPage(caseInfo);
         }
     }
 }

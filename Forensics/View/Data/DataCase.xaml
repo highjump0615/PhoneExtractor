@@ -61,7 +61,14 @@
                         <TextBlock Grid.Column="2" Style="{StaticResource listContentTextStyle}" Text="{Binding DateText}" />
                         <TextBlock Grid.Column="3" Style="{StaticResource listContentTextStyle}" Text="{Binding EVIDENCECOUNT}" />
                         <TextBlock Grid.Column="4" Style="{StaticResource listContentTextStyle}" Text="{Binding CASE_PATH}" />
-                        <Button Grid.Column="5" Style="{StaticResource transparentButton}" Width="94" HorizontalAlignment="Right">解析并查看</Button>
+                        <Button Grid.Column="5" 
+                                Style="{StaticResource transparentButton}" 
+                                Width="94" 
+                                HorizontalAlignment="Right"
+                                Command="{Binding DataContext.GoToDetailCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                CommandParameter="{Binding}">
+                            解析并查看
+                        </Button>
                         
                         <!-- Border -->
                         <Rectangle Style="{StaticResource listDashBorder}" Grid.ColumnSpan="6" />

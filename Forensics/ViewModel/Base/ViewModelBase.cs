@@ -12,7 +12,8 @@ namespace Forensics.ViewModel
     public abstract class ViewModelBase : ObservableObject, IDisposable
     {
         public abstract Pages PageIndex { get; }
-        public Control View;
+        public Control View { get; set; }
+        public ViewModelBase ViewModelParent { get; set; }
 
         private static readonly ILog Log = LogManager.GetLogger(typeof(ViewModelBase));
 
