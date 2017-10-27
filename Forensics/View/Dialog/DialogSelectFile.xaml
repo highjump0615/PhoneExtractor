@@ -16,7 +16,7 @@
             <TextBox.Foreground>
                 <SolidColorBrush Color="{StaticResource SettingGrayColor}" />
             </TextBox.Foreground>
-            C:\Users\Chris\Downloads
+            D:\Users\Chris\Downloads
         </TextBox>
         <Button Width="64" 
                     Background="#91c5ff" 

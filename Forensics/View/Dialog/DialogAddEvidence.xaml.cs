@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Forensics.ViewModel.Dialog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,13 @@ namespace Forensics.View.Dialog
     /// </summary>
     public partial class DialogAddEvidence : Window
     {
-        public DialogAddEvidence()
+        public DialogAddEvidence(string savePath)
         {
             InitializeComponent();
+
+            DialogEvidenceViewModel vm = new DialogEvidenceViewModel(savePath);
+            vm.View = this;
+            this.DataContext = vm;
         }
     }
 }

@@ -590,7 +590,7 @@ namespace Forensics.ViewModel
             {
                 // 打开添加案件窗口
                 MainWindow viewMain = (MainWindow)Globals.Instance.MainVM.View;
-                viewMain.openAddEvidence();
+                viewMain.openAddEvidence(savePath);
             }));
         }
 

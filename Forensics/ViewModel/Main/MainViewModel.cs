@@ -1,4 +1,6 @@
-﻿using Forensics.Command;
+﻿using Forensics.BLL;
+using Forensics.Command;
+using Forensics.Model;
 using Forensics.Model.Device;
 using Forensics.View.Dialog;
 using Forensics.ViewModel.Main;
@@ -116,6 +118,23 @@ namespace Forensics.ViewModel
                 saveErrorLog(ex.HelpLink);
                 saveErrorLog(ex.StackTrace);
                 saveErrorLog(ex.TargetSite.ToString());
+            }
+
+            //
+            // 用户
+            //
+            string msg = "";
+            UserManager um = new UserManager();
+            User user = um.Login("admin", "ecryan", out msg);
+            if (user == null)
+            {
+                MessageBox.Show(msg);
+                return;
+            }
+            else
+            {
+                //保存登录人信息
+                User.LoginUser = user;
             }
         }
 

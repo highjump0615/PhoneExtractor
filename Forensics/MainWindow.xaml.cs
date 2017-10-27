@@ -149,11 +149,11 @@ namespace Forensics
         /// <summary>
         /// 打开添加物证
         /// </summary>
-        public void openAddEvidence()
+        public void openAddEvidence(string savePath)
         {
             hideMenus();
 
-            var wEvidence = new DialogAddEvidence();
+            var wEvidence = new DialogAddEvidence(savePath);
             wEvidence.Owner = this;
             wEvidence.ShowDialog();
         }
@@ -165,11 +165,18 @@ namespace Forensics
         /// <param name="e"></param>
         private void onButAppleBypass(object sender, RoutedEventArgs e)
         {
-            hideMenus();
+            //hideMenus();
 
-            var windowAppleBypass = new AppleSync(AppleSyncType.APPLEBYPASS);
-            windowAppleBypass.Owner = this;
-            windowAppleBypass.ShowDialog();
+            //var windowAppleBypass = new AppleSync(AppleSyncType.APPLEBYPASS);
+            //windowAppleBypass.Owner = this;
+            //windowAppleBypass.ShowDialog();
+
+            //CommonUtil.CurrentPD.IMEI_string = imei;
+            //CommonUtil.CurrentPD.Phone_os = "iOS " + labelVersion.Text;
+            //CommonUtil.CurrentPD.Phone_model = productType;
+            //CommonUtil.CurrentPD.Phone_brand = "Apple";
+            //CommonUtil.CurrentPD.Case_ai_file = applexmlPath;
+            openAddEvidence("f:\\temp\\Data");
         }
 
         /// <summary>

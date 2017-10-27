@@ -41,9 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CaseManager.cs" />
+    <Compile Include="EvidenceManager.cs" />
     <Compile Include="JournalManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ToolManager.cs" />
+    <Compile Include="UserManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ForensicsDAL\ForensicsDAL.csproj">

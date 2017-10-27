@@ -121,7 +121,8 @@
                     <TextBlock Style="{StaticResource LabelStyle}">
                         物证名称
                     </TextBlock>
-                    <TextBox Style="{StaticResource TextInputStyle}"></TextBox>
+                    <TextBox Style="{StaticResource TextInputStyle}"
+                             Text="{Binding EvidenceName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
                 
                 <!-- 物证编号 -->
@@ -129,7 +130,11 @@
                     <TextBlock Style="{StaticResource LabelStyle}">
                         物证编号
                     </TextBlock>
-                    <ComboBox Style="{StaticResource ComboboxStyle}" />
+                    <ComboBox Style="{StaticResource ComboboxStyle}"
+                              ItemsSource="{Binding ListEvidence, Mode=TwoWay}" 
+                              DisplayMemberPath="EVIDENCE_NUMBER" 
+                              SelectedValuePath="EVIDENCE_NUMBER"
+                              SelectedValue="{Binding EvidenceSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
 
                 <!-- 案件名称 -->
@@ -137,7 +142,8 @@
                     <TextBlock Style="{StaticResource LabelStyle}">
                         案件名称
                     </TextBlock>
-                    <TextBox Style="{StaticResource TextInputStyle}"></TextBox>
+                    <TextBox Style="{StaticResource TextInputStyle}"
+                             Text="{Binding CaseName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
 
                 <!-- 案件编号 -->
@@ -145,7 +151,11 @@
                     <TextBlock Style="{StaticResource LabelStyle}">
                         案件编号
                     </TextBlock>
-                    <ComboBox Style="{StaticResource ComboboxStyle}" />
+                    <ComboBox Style="{StaticResource ComboboxStyle}"
+                              ItemsSource="{Binding ListCase, Mode=OneWay}" 
+                              DisplayMemberPath="CASE_NUMBER" 
+                              SelectedValuePath="CASE_NUMBER"
+                              SelectedValue="{Binding CaseSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
 
                 <!-- 手机号 -->
@@ -153,13 +163,15 @@
                     <TextBlock Style="{StaticResource LabelStyle}">
                         手机号1
                     </TextBlock>
-                    <TextBox Style="{StaticResource TextInputStyle}"></TextBox>
+                    <TextBox Style="{StaticResource TextInputStyle}"
+                             Text="{Binding Phone1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
                 <StackPanel Style="{StaticResource ItemStyle}">
                     <TextBlock Style="{StaticResource LabelStyle}">
                         手机号2
                     </TextBlock>
-                    <TextBox Style="{StaticResource TextInputStyle}"></TextBox>
+                    <TextBox Style="{StaticResource TextInputStyle}"
+                             Text="{Binding Phone2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
             </StackPanel>
 
@@ -176,26 +188,29 @@
                 <!-- 姓名 -->
                 <StackPanel Style="{StaticResource ItemStyle}">
                     <TextBlock Style="{StaticResource LabelStyle}">姓名</TextBlock>
-                    <TextBox Style="{StaticResource TextInputStyle}"></TextBox>
+                    <TextBox Style="{StaticResource TextInputStyle}"
+                             Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
                 
                 <!-- 性别 -->
                 <StackPanel Style="{StaticResource ItemStyle}">
                     <TextBlock Style="{StaticResource LabelStyle}">性别</TextBlock>
-                    <RadioButton Margin="0 0 30 0">男</RadioButton>
-                    <RadioButton>女</RadioButton>
+                    <RadioButton Margin="0 0 30 0" IsChecked="{Binding Gender, Converter={StaticResource EnumToBool}, ConverterParameter=Male}">男</RadioButton>
+                    <RadioButton IsChecked="{Binding Gender, Converter={StaticResource EnumToBool}, ConverterParameter=Female}">女</RadioButton>
                 </StackPanel>
 
                 <!-- 民族 -->
                 <StackPanel Style="{StaticResource ItemStyle}">
                     <TextBlock Style="{StaticResource LabelStyle}">民族</TextBlock>
-                    <TextBox Style="{StaticResource TextInputStyle}"></TextBox>
+                    <TextBox Style="{StaticResource TextInputStyle}"
+                             Text="{Binding Nation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
 
                 <!-- 身份证 -->
                 <StackPanel Style="{StaticResource ItemStyle}">
                     <TextBlock Style="{StaticResource LabelStyle}">身份证</TextBlock>
-                    <TextBox Style="{StaticResource TextInputStyle}"></TextBox>
+                    <TextBox Style="{StaticResource TextInputStyle}"
+                             Text="{Binding IdNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
             </StackPanel>
 
@@ -210,7 +225,8 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Style="{StaticResource SyncMainButton}" 
                         Width="107" Height="38"
-                        Margin="0 0 10 0">
+                        Margin="0 0 10 0"
+                        Command="{Binding SaveCommand}">
                     确定
                 </Button>
 
