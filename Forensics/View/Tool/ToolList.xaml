@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="Forensics.ToolList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Forensics"
+             mc:Ignorable="d" 
+             d:DesignWidth="{StaticResource WidthSettingContent}" d:DesignHeight="{StaticResource HeightContent}">
+
+    <UserControl.Resources>
+    </UserControl.Resources>
+
+    <StackPanel Margin="{StaticResource SettingContentMarginValue}">
+        
+        <!-- header -->
+        <Grid Grid.Row="0" Style="{StaticResource ToolHeaderStyle}">
+            <Rectangle Style="{StaticResource ToolHeaderMarkStyle}" />
+            <TextBlock VerticalAlignment="Center" 
+                       FontSize="{StaticResource ToolTitlebarSize}" 
+                       Margin="{StaticResource ToolTitlebarTextMargin}"
+                       Text="{Binding listTool.Count, StringFormat='共{0}个工具'}">
+            </TextBlock>
+            <Button Style="{StaticResource transparentButton}" Padding="10 0"
+                    HorizontalAlignment="Right"
+                    FontSize="{StaticResource ToolTitlebarSize}" >
+                + 添加工具
+            </Button>
+        </Grid>
+
+        <ItemsControl Name="icTools" ItemsSource="{Binding listTool}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Style="{StaticResource toolButtonStyle}"
+                            Command="{Binding Path=DataContext.OpenToolCommand, ElementName=icTools}"
+                            CommandParameter="{Binding}">
+                        <StackPanel>
+                            <Image Source="{Binding TOOL_IMG}" Style="{StaticResource toolButtonImageStyle}" />
+                            <TextBlock Text="{Binding TOOL_NAME}" Style="{StaticResource toolButtonTextStyle}" />
+                        </StackPanel>
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+            
+    </StackPanel>
+
+</UserControl>

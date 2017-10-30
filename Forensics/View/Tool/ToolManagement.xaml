@@ -1,0 +1,129 @@
+﻿<UserControl x:Class="Forensics.ToolManagement"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Forensics"
+             xmlns:ViewModels="clr-namespace:Forensics.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="{StaticResource HeightContent}" d:DesignWidth="{StaticResource WidthWindow}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource WidthLeftNav}" />
+            <ColumnDefinition Width="{StaticResource WidthLeftNavBorder}" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Nav bar -->
+        <StackPanel Grid.Column="0">
+            <StackPanel.Background>
+                <SolidColorBrush Color="{StaticResource NavbarColor}" />
+            </StackPanel.Background>
+
+            <!-- 系统工具 -->
+            <RadioButton Style="{StaticResource NavbarButStyle}" Margin="0 25 0 0" IsChecked="True" 
+                         Command="{Binding GoToToolCommand}"
+                         CommandParameter="{x:Static ViewModels:ToolsType.System}">
+                <RadioButton.Template>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
+                            <StackPanel Style="{StaticResource NavbarButPanelStyle}">
+                                <Image Name="imgIcon" Source="/Resources/Images/nav_but_setting.png" Stretch="None" />
+                                <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}">系统工具</TextBlock>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="imgIcon" Property="Source" Value="/Resources/Images/nav_but_setting_selected.png" />
+                                <Setter TargetName="txtName" Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </RadioButton.Template>
+            </RadioButton>
+
+            <!-- 安卓相关 -->
+            <RadioButton Style="{StaticResource NavbarButStyle}" Margin="0 3 0 0" 
+                         Command="{Binding GoToToolCommand}"
+                         CommandParameter="{x:Static ViewModels:ToolsType.Android}">
+                <RadioButton.Template>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
+                            <StackPanel Style="{StaticResource NavbarButPanelStyle}">
+                                <Image Name="imgIcon" Source="/Resources/Images/tool_android.png" Stretch="None" />
+                                <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}">安卓相关</TextBlock>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="imgIcon" Property="Source" Value="/Resources/Images/tool_android_selected.png" />
+                                <Setter TargetName="txtName" Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </RadioButton.Template>
+            </RadioButton>
+
+            <!-- 苹果相关 -->
+            <RadioButton Style="{StaticResource NavbarButStyle}" Margin="0 3 0 0" 
+                         Command="{Binding GoToToolCommand}"
+                         CommandParameter="{x:Static ViewModels:ToolsType.Apple}">
+                <RadioButton.Template>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
+                            <StackPanel Style="{StaticResource NavbarButPanelStyle}">
+                                <Image Name="imgIcon" Source="/Resources/Images/tool_apple.png" Stretch="None" />
+                                <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}">苹果相关</TextBlock>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="imgIcon" Property="Source" Value="/Resources/Images/tool_apple_selected.png" />
+                                <Setter TargetName="txtName" Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </RadioButton.Template>
+            </RadioButton>
+
+            <!-- 附件工具 -->
+            <RadioButton Style="{StaticResource NavbarButStyle}" Margin="0 3 0 0" 
+                         Command="{Binding GoToToolCommand}"
+                         CommandParameter="{x:Static ViewModels:ToolsType.Other}">
+                <RadioButton.Template>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
+                            <StackPanel Style="{StaticResource NavbarButPanelStyle}">
+                                <Image Name="imgIcon" Source="/Resources/Images/tool_near.png" Stretch="None" />
+                                <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}">附件工具</TextBlock>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="imgIcon" Property="Source" Value="/Resources/Images/tool_near_selected.png" />
+                                <Setter TargetName="txtName" Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </RadioButton.Template>
+            </RadioButton>
+        </StackPanel>
+
+        <!-- Border -->
+        <Border Grid.Column="1" BorderThickness="1 0">
+            <Border.BorderBrush>
+                <SolidColorBrush Color="{StaticResource NavbarBorderColor}" />
+            </Border.BorderBrush>
+            <Border.Background>
+                <SolidColorBrush Color="{StaticResource NavbarColor}" />
+            </Border.Background>
+        </Border>
+
+        <!-- Content -->
+        <ContentControl Grid.Column="2"
+                        Name="mainFrame"
+                        Content="{Binding SelectedChild}" />
+    </Grid>
+    
+</UserControl>

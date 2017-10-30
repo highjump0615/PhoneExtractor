@@ -26,6 +26,10 @@
     <system:Double x:Key="WidthPieGraph">86</system:Double>
     <system:Double x:Key="WidthBarGraph">365.5</system:Double>
     <system:Double x:Key="HeightBarGraph">234.75</system:Double>
+    <system:Double x:Key="WidthHomeContent">856</system:Double>
+    <system:Double x:Key="HeightHomeContent">658</system:Double>
+    <system:Double x:Key="WidthLeftPhoneImage">264</system:Double>
+    <system:Double x:Key="HeightLeftPhoneImage">568</system:Double>
     
     <!-- Setting page -->
     <GridLength x:Key="WidthLeftNav">201</GridLength>
@@ -44,5 +48,20 @@
     <!-- Tool page -->
     <system:Double x:Key="ToolTitlebarSize">16</system:Double>
     <Thickness x:Key="ToolTitlebarTextMargin" Left="50" />
+    
+    <!-- Apple Sync window -->
+    <system:Double x:Key="WidthSyncWindow">765</system:Double>
+    <system:Double x:Key="HeightSyncWindow">450</system:Double>
+    <system:Double x:Key="HeightSyncTitlebar">32</system:Double>
+    
+    <!-- Step content -->
+    <system:Double x:Key="WidthStepContent">757</system:Double>
+    <system:Double x:Key="HeightStepContent">340</system:Double>
+    <system:Double x:Key="HeightDialogBottomBar">70</system:Double>
+    
+    <!-- Add evidence page -->
+    <system:Double x:Key="WidthEvidenceAddDialog">765</system:Double>
+    <system:Double x:Key="HeightEvidenceAddDialog">574</system:Double>
+    <system:Double x:Key="HeightInputItem">30</system:Double>
 
 </ResourceDictionary>

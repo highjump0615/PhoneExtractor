@@ -1,0 +1,120 @@
+﻿<base:WindowBase x:Class="Forensics.View.AndroidConnectAuto"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:base="clr-namespace:Forensics"
+                 xmlns:fa="clr-namespace:FontAwesome.WPF;assembly=FontAwesome.WPF"
+                 xmlns:local="clr-namespace:Forensics.View"
+                 mc:Ignorable="d"
+                 WindowStyle="None"
+                 ShowInTaskbar="False"
+                 WindowChrome.WindowChrome="{StaticResource SubWindowChromeKey}"
+                 MinHeight="{StaticResource HeightSyncWindow}" MinWidth="{StaticResource WidthSyncWindow}"
+                 MaxHeight="{StaticResource HeightSyncWindow}" MaxWidth="{StaticResource WidthSyncWindow}"
+                 WindowStartupLocation="CenterOwner">
+    <Window.Background>
+        <SolidColorBrush Color="{StaticResource ThemeColor}" />
+    </Window.Background>
+
+    <Window.Resources>
+        <Style x:Key="CaptionStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+    </Window.Resources>
+
+    <DockPanel>
+        <!-- Title bar -->
+        <Border VerticalAlignment="Top" 
+                Height="62" 
+                DockPanel.Dock="Top"
+                BorderThickness="0 0 0 1">
+            <Border.BorderBrush>
+                <SolidColorBrush Color="{StaticResource SyncWindowBorderColor}" />
+            </Border.BorderBrush>
+
+            <Grid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top"
+                            Margin="20 5">
+                    <fa:FontAwesome Icon="Android" 
+                                    FontSize="23" 
+                                    Foreground="#98c13b" />
+                    <TextBlock Foreground="White" FontSize="14" VerticalAlignment="Center"
+                               Margin="7 0 0 0">
+                        连接设备
+                    </TextBlock>
+                </StackPanel>
+
+                <!-- Window Buttons -->
+                <Button Width="40" Height="30" 
+                        HorizontalContentAlignment="Center" 
+                        Style="{StaticResource TitleBarButStyle}" 
+                        Click="onButClose" VerticalAlignment="Top">
+                    <Image Source="/Resources/Images/title_close.png" Width="{StaticResource WidthTitlebarButtonImg}" Margin="0,0,4,0" />
+                </Button>
+
+                <!-- title -->
+                <TextBlock FontSize="18" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="44,30.6,0,0">
+                    请参考以下教程，在手机上打开“USB调试”开关
+                </TextBlock>
+
+                <!-- version combo box-->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,34.66,45,0">
+                    <TextBlock Style="{StaticResource CaptionStyle}" 
+                               VerticalAlignment="Center"
+                               Margin="0 0 7 0">
+                        安卓版本
+                    </TextBlock>
+                    <ComboBox Width="90" SelectedValuePath="Tag" SelectedValue="{Binding Version}">
+                        <ComboBoxItem Tag="20">2.1 - 2.3.7</ComboBoxItem>
+                        <ComboBoxItem Tag="40">4.0 - 4.1.2</ComboBoxItem>
+                        <ComboBoxItem Tag="42">4.2 - 4.4</ComboBoxItem>
+                        <ComboBoxItem Tag="50">5.0级以上</ComboBoxItem>
+                        <ComboBoxItem Tag="60">6.0级以上</ComboBoxItem>
+                        <ComboBoxItem Tag="70">7.0级以上</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- bottom bar -->
+        <Grid Height="53" DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
+            <TextBlock Style="{StaticResource CaptionStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,12,0,0">
+                温馨提示：若设备的USB连接模式处于仅充电状态，将无法连接至手机
+            </TextBlock>
+            <Button FontSize="16" Foreground="#ffe404" 
+                    Background="Transparent" BorderBrush="{x:Null}" 
+                    HorizontalAlignment="Right" VerticalAlignment="Top"
+                    Margin="0,12,50,0" Click="onButBack">
+                返回
+            </Button>
+        </Grid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="17*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <!-- Content -->
+            <ContentControl Content="{Binding SelectedChild}" Grid.ColumnSpan="2" />
+
+            <!-- nav buttons -->
+            <Button Style="{StaticResource NavButStyle}" 
+                    HorizontalAlignment="Left"
+                    Margin="20 0 0 0"
+                    Command="{Binding GoToPrevCommand}"
+                    Visibility="{Binding IsPrevVisible, Converter={StaticResource BoolToVisibility}}">
+                <Image Source="/Forensics;component/Resources/Images/extract/ext_nav_left.png" Stretch="None" />
+            </Button>
+            <Button Style="{StaticResource NavButStyle}" 
+                    HorizontalAlignment="Right"
+                    Margin="0 0 20 0"
+                    Command="{Binding GoToNextCommand}"
+                    Visibility="{Binding IsNextVisible, Converter={StaticResource BoolToVisibility}}" Grid.Column="1">
+                <Image Source="/Forensics;component/Resources/Images/extract/ext_nav_right.png" Stretch="None" />
+            </Button>
+        </Grid>
+    </DockPanel>
+
+</base:WindowBase>

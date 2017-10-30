@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="Forensics.SettingAbout"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Forensics"
+             mc:Ignorable="d" 
+             d:DesignWidth="{StaticResource WidthSettingContent}" d:DesignHeight="{StaticResource HeightContent}">
+
+    <UserControl.Resources>
+        <Style x:Key="textAbout" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel Margin="{StaticResource SettingContentMarginValue}">
+
+        <!-- header -->
+        <Border Style="{StaticResource SettingHeaderStyle}">
+            <Border Style="{StaticResource SettingHeaderInnerStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource SettingHeaderTitleStyle}">关于系统</TextBlock>
+                </StackPanel>
+            </Border>
+        </Border>
+
+        <StackPanel Margin="20 40 20 0">
+            <StackPanel Orientation="Horizontal" Margin="0 0 0 20">
+                <Image Source="/Resources/Images/logo_setting.png" Stretch="None" />
+                <TextBlock Style="{StaticResource textAbout}" Margin="15 -5 0 0">狼蛛手机检测系统 V-5.0.0</TextBlock>
+            </StackPanel>
+
+            <TextBlock Style="{StaticResource textAbout}" Margin="0 0 0 20">
+                官方网站：
+                <Hyperlink>http://www.ecryan.com.cn/</Hyperlink>
+            </TextBlock>
+
+            <TextBlock Style="{StaticResource textAbout}" Margin="0 0 0 15">
+                官方公众号：
+            </TextBlock>
+            <Image Source="/Resources/Images/setting_qrcode.png" Stretch="None" HorizontalAlignment="Left" />
+        </StackPanel>
+
+    </StackPanel>
+
+</UserControl>

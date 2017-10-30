@@ -1,0 +1,28 @@
+﻿<local:UserControlBase x:Class="Forensics.View.StepContent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Forensics.View"
+             xmlns:dlgControl="clr-namespace:Forensics.View.Dialog"
+             mc:Ignorable="d" 
+             d:DesignHeight="{StaticResource HeightStepContent}" d:DesignWidth="{StaticResource WidthStepContent}"
+             DataContextChanged="onDataContextChanged">
+    <Grid>
+        <TextBlock FontSize="18" 
+                   Foreground="White" 
+                   VerticalAlignment="Center"
+                   Margin="60 0" Text="{Binding Desc}" />
+
+        <dlgControl:DialogSelectFile x:Name="FileControl"
+                                     VerticalAlignment="Top" 
+                                     HorizontalAlignment="Left" 
+                                     Height="30" Margin="30 280 0 0"
+                                     Visibility="{Binding ShowSavePath, Converter={StaticResource BoolToVisibility}}" />
+
+        <Image Width="252" Height="307" 
+               Source="{Binding ImageSrc}" 
+               HorizontalAlignment="Right"
+               Margin="0 0 60 0"/>
+    </Grid>
+</local:UserControlBase>

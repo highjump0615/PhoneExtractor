@@ -1,0 +1,58 @@
+﻿<Window x:Class="Forensics.View.Dialog.DialogConnectSuccess"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Forensics.View.Dialog"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        ShowInTaskbar="False"
+        WindowChrome.WindowChrome="{StaticResource SubWindowChromeKey}"
+        MinHeight="{StaticResource HeightSyncWindow}" MinWidth="{StaticResource WidthSyncWindow}"
+        MaxHeight="{StaticResource HeightSyncWindow}" MaxWidth="{StaticResource WidthSyncWindow}"
+        WindowStartupLocation="CenterOwner">
+    
+    <Window.Background>
+        <SolidColorBrush Color="{StaticResource ThemeColor}" />
+    </Window.Background>
+    
+    <DockPanel>
+        <local:DialogConnectTitlebar DockPanel.Dock="Top" />
+
+        <!-- Bottom bar -->
+        <Border VerticalAlignment="Bottom" 
+                Height="{StaticResource HeightDialogBottomBar}" 
+                DockPanel.Dock="Bottom" 
+                BorderThickness="0 1 0 0">
+            <Border.Background>
+                <SolidColorBrush Color="{StaticResource DialogBottomColor}" />
+            </Border.Background>
+            <Border.BorderBrush>
+                <SolidColorBrush Color="{StaticResource SyncWindowBorderColor}" />
+            </Border.BorderBrush>
+
+            <Button Style="{StaticResource SyncMainButton}" 
+                    HorizontalAlignment="Right"
+                    Margin="0 0 40 0" Click="onButNext">
+                下一步
+            </Button>
+        </Border>
+        
+        <!-- Content -->
+        <StackPanel Margin="20">
+            <Image Source="/Forensics;component/Resources/Images/dialog/dlg_con_success.png" Stretch="None" />
+            <TextBlock FontSize="18"
+                       Foreground="#07307b"
+                       TextAlignment="Center"
+                       Margin="20">
+                恭喜您，设备连接成功！
+            </TextBlock>
+
+            <local:DialogSelectFile x:Name="FileControl"
+                                    Height="30" 
+                                    HorizontalAlignment="Center" 
+                                    Margin="0 10 0 0" />
+        </StackPanel>
+
+    </DockPanel>
+</Window>
