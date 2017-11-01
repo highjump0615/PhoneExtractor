@@ -17,6 +17,7 @@ using Forensics.View.Apple;
 using static Forensics.ViewModel.AppleSyncViewModel;
 using Forensics.View;
 using Forensics.View.Dialog;
+using System.Threading;
 
 namespace Forensics
 {
@@ -147,6 +148,27 @@ namespace Forensics
         }
 
         /// <summary>
+        /// 打开连接失败
+        /// </summary>
+        public void openConnectFail()
+        {
+            hideMenus();
+
+            var wFail = new DialogConnectFail();
+            wFail.Owner = this;
+            wFail.ShowDialog();
+
+            if (wFail.DialogResult == true)
+            {
+                hideMenus();
+
+                var windowAndroid = new AndroidConnectAuto();
+                windowAndroid.Owner = this;
+                windowAndroid.ShowDialog();
+            }
+        }
+
+        /// <summary>
         /// 打开添加物证
         /// </summary>
         public void openAddEvidence(string savePath)
@@ -186,12 +208,17 @@ namespace Forensics
         /// <param name="e"></param>
         private void onButAndroidConnectAuto(object sender, RoutedEventArgs e)
         {
+            
+
+            // 显示正在连接
             hideMenus();
 
-            var windowAndroid = new AndroidConnectAuto();
-            windowAndroid.Owner = this;
-            windowAndroid.ShowDialog();
+            var wWaiting = new DialogConnectWaiting();
+            wWaiting.Owner = this;
+            wWaiting.ShowDialog();
         }
+
+        
 
         /// <summary>
         /// 点击设置菜单

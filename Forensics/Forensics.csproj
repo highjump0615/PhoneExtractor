@@ -120,6 +120,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\Manzana.dll</HintPath>
     </Reference>
+    <Reference Include="RyLib">
+      <HintPath>Lib\RyLib.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -134,6 +137,7 @@
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.105.2\lib\net451\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Serialization.Plists">
       <HintPath>Lib\System.Runtime.Serialization.Plists.dll</HintPath>
     </Reference>
@@ -220,6 +224,9 @@
     <Compile Include="Model\Setting\ItemsForEnvironment.cs" />
     <Compile Include="View\Dialog\DialogAddEvidence.xaml.cs">
       <DependentUpon>DialogAddEvidence.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialog\DialogConnectFail.xaml.cs">
+      <DependentUpon>DialogConnectFail.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Dialog\DialogConnectWaiting.xaml.cs">
       <DependentUpon>DialogConnectWaiting.xaml</DependentUpon>
@@ -320,6 +327,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Dialog\DialogAddEvidence.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialog\DialogConnectFail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -592,7 +603,9 @@
   <ItemGroup>
     <Resource Include="Resources\Images\dialog\dlg_con_success.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Images\dialog\dlg_con_fail.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\dialog\dlg_connecting.gif" />
   </ItemGroup>

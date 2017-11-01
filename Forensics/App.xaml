@@ -386,6 +386,13 @@
                 </Style.Triggers>
             </Style>
 
+            <Style x:Key="BackButStyle" TargetType="Button">
+                <Setter Property="HorizontalAlignment" Value="Right" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderBrush" Value="{x:Null}" />
+                <Setter Property="Foreground" Value="#ffe404" />
+            </Style>
+
         </ResourceDictionary>
 
     </Application.Resources>
