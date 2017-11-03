@@ -77,4 +77,44 @@ namespace Forensics.ViewModel.Main
             this.DeviceInfo = strDevInfo;
         }
     }
+
+    /// <summary>
+    /// 安卓手机信息
+    /// </summary>
+    public class PhoneInfoAndroidViewModel : PhoneInfoViewModel
+    {
+        public PhoneInfoAndroidViewModel(DeviceProperty dp)
+        {
+            this.MarginInfo = new Thickness(0, 130, 0, 0);
+            this.PhoneImage = "/Resources/Images/home_phone_android.png";
+
+            // 设备名称
+            this.DeviceName = dp.ModelNumber;
+
+            var strDevInfo = "";
+
+            // 操作系统
+            strDevInfo += "操作系统: " + dp.OSVersion + "\n";
+            // IMEI
+            strDevInfo += "IMEI: " + dp.IMEI + "\n";
+            // 品牌
+            strDevInfo += "品牌: " + dp.Brand + "\n";
+            // 型号
+            strDevInfo += "型号: " + dp.ModelNumber + "\n";
+            // 序列号
+            strDevInfo += "序列号: " + dp.SerialNumber + "\n";
+            // root状态
+            strDevInfo += "root状态: ";
+            if (dp.IsRooted)
+            {
+                strDevInfo += "Rooted\n";
+            }
+            else
+            {
+                strDevInfo += "Unroot\n";
+            }
+
+            this.DeviceInfo = strDevInfo;
+        }
+    }
 }

@@ -298,12 +298,29 @@ namespace Forensics.ViewModel
 
         private void ConnectAndroidThread()
         {
-            RyLib.AndroidExtractHelp AExtractHelp = new RyLib.AndroidExtractHelp();
+            Thread.Sleep(1500);
 
-            Thread.Sleep(2000);
+            RyLib.AndroidExtractHelp AExtractHelp = new RyLib.AndroidExtractHelp();
 
             if (RyLib.ToolBox.MobileIsOnLine())
             {
+                var strOSVer = RyLib.ToolBox.MobileOSVersion();
+
+                AExtractHelp.GetDeviceBasicInfo();
+
+                // 添加设备
+                DeviceProperty devProperty = new DeviceProperty()
+                {
+                    OSVersion = strOSVer,
+                    IMEI = AExtractHelp.deviceInfo.imei,
+                    Brand = AExtractHelp.deviceInfo.brand,
+                    ModelNumber = AExtractHelp.deviceInfo.model,
+                    SerialNumber = AExtractHelp.deviceInfo.serialNo,
+                    IsRooted = RyLib.ToolBox.MobileIsRoot()
+                };
+
+                this.CurrentDevice = new DeviceInfo(devProperty);
+                showDeviceInfo();
             }
             else
             {
@@ -356,25 +373,27 @@ namespace Forensics.ViewModel
             //myTest = new afcTest(myAfcAct);
             //this.Invoke(myTest);
 
-            DeviceProperty myIphoneProperty;
-            myIphoneProperty.UniqueChipID = iPhoneInterface.UniqueChipID;
-            myIphoneProperty.UniqueDeviceID = iPhoneInterface.DeviceId;
-            myIphoneProperty.Name = iPhoneInterface.DeviceName;
-            myIphoneProperty.SerialNumber = iPhoneInterface.SerialNumber;
-            myIphoneProperty.ProductType = iPhoneInterface.ProductType;
-            myIphoneProperty.ProductVersion = iPhoneInterface.ProductVersion;
-            myIphoneProperty.IMEI = iPhoneInterface.IMEI;
-            myIphoneProperty.ICCID = iPhoneInterface.ICCID;
-            myIphoneProperty.IMSI = iPhoneInterface.IMSI;
-            myIphoneProperty.ActivationState = iPhoneInterface.ActivationState;
-            myIphoneProperty.BasebandMasterKeyHash = iPhoneInterface.BasebandMasterKeyHash;
-            myIphoneProperty.BuildVersion = iPhoneInterface.BuildVersion;
-            myIphoneProperty.Class = iPhoneInterface.DeviceType;
-            myIphoneProperty.ModelNumber = iPhoneInterface.ModelNumber;
-            myIphoneProperty.PhoneNumber = iPhoneInterface.PhoneNumber;
-            myIphoneProperty.SIMStatus = iPhoneInterface.SIMStatus;
-            myIphoneProperty.BluetoothAddress = iPhoneInterface.BluetoothAddress;
-            myIphoneProperty.WiFiAddress = iPhoneInterface.WiFiAddress;
+            DeviceProperty myIphoneProperty = new DeviceProperty()
+            {
+                UniqueChipID = iPhoneInterface.UniqueChipID,
+                UniqueDeviceID = iPhoneInterface.DeviceId,
+                Name = iPhoneInterface.DeviceName,
+                SerialNumber = iPhoneInterface.SerialNumber,
+                ProductType = iPhoneInterface.ProductType,
+                ProductVersion = iPhoneInterface.ProductVersion,
+                IMEI = iPhoneInterface.IMEI,
+                ICCID = iPhoneInterface.ICCID,
+                IMSI = iPhoneInterface.IMSI,
+                ActivationState = iPhoneInterface.ActivationState,
+                BasebandMasterKeyHash = iPhoneInterface.BasebandMasterKeyHash,
+                BuildVersion = iPhoneInterface.BuildVersion,
+                Class = iPhoneInterface.DeviceType,
+                ModelNumber = iPhoneInterface.ModelNumber,
+                PhoneNumber = iPhoneInterface.PhoneNumber,
+                SIMStatus = iPhoneInterface.SIMStatus,
+                BluetoothAddress = iPhoneInterface.BluetoothAddress,
+                WiFiAddress = iPhoneInterface.WiFiAddress
+            };
 
             this.CurrentDevice = new DeviceInfo(myIphoneProperty);
 

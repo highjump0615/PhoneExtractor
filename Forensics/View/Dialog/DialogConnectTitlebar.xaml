@@ -7,7 +7,7 @@
              xmlns:fa="clr-namespace:FontAwesome.WPF;assembly=FontAwesome.WPF"
              mc:Ignorable="d" 
              d:DesignWidth="{StaticResource WidthSyncWindow}">
-    
+
     <Border VerticalAlignment="Top" 
             BorderThickness="0 0 0 1">
         <Border.BorderBrush>
@@ -18,12 +18,11 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top"
                             Margin="20 5">
                 <fa:FontAwesome Icon="Android" 
-                                    FontSize="23" 
-                                    Foreground="#98c13b" />
+                                FontSize="22" 
+                                Foreground="#98c13b" />
                 <TextBlock Foreground="White" FontSize="14" VerticalAlignment="Center"
-                               Margin="7 0 0 0">
-                        连接设备
-                </TextBlock>
+                           Margin="7 0 0 0"
+                           Text="{Binding Title, RelativeSource={RelativeSource AncestorType=UserControl}}" />
             </StackPanel>
 
             <!-- Window Buttons -->

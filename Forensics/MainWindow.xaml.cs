@@ -187,38 +187,22 @@ namespace Forensics
         /// <param name="e"></param>
         private void onButAppleBypass(object sender, RoutedEventArgs e)
         {
-            //hideMenus();
-
-            //var windowAppleBypass = new AppleSync(AppleSyncType.APPLEBYPASS);
-            //windowAppleBypass.Owner = this;
-            //windowAppleBypass.ShowDialog();
-
-            //CommonUtil.CurrentPD.IMEI_string = imei;
-            //CommonUtil.CurrentPD.Phone_os = "iOS " + labelVersion.Text;
-            //CommonUtil.CurrentPD.Phone_model = productType;
-            //CommonUtil.CurrentPD.Phone_brand = "Apple";
-            //CommonUtil.CurrentPD.Case_ai_file = applexmlPath;
-            openAddEvidence("f:\\temp\\Data");
         }
 
         /// <summary>
-        /// 安卓自动连接
+        /// 安卓手动连接
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void onButAndroidConnectAuto(object sender, RoutedEventArgs e)
-        {
-            
-
+        private void onAndroidManual(object sender, RoutedEventArgs e)
+        {           
             // 显示正在连接
             hideMenus();
 
-            var wWaiting = new DialogConnectWaiting();
-            wWaiting.Owner = this;
-            wWaiting.ShowDialog();
+            var wDialog = new DialogSelectModel();
+            wDialog.Owner = this;
+            wDialog.ShowDialog();
         }
-
-        
 
         /// <summary>
         /// 点击设置菜单

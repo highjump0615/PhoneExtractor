@@ -169,13 +169,16 @@
     <Compile Include="Command\DelegateCommand.cs" />
     <Compile Include="Converter\EnumToBoolConverter.cs" />
     <Compile Include="Globals.cs" />
+    <Compile Include="Model\Device\BrandInfo.cs" />
     <Compile Include="Model\Device\DeviceInfo.cs" />
     <Compile Include="Model\Device\DeviceProperty.cs" />
     <Compile Include="Model\Device\IPhone.cs" />
     <Compile Include="Model\Device\iPhoneApps.cs" />
+    <Compile Include="Model\Device\PhoneInfo.cs" />
     <Compile Include="Model\Extract\SystemLog.cs" />
     <Compile Include="SQLiteViewer\SQLiteHelper.cs" />
     <Compile Include="Util\CommonUtil.cs" />
+    <Compile Include="Util\DatabaseUtil.cs" />
     <Compile Include="Util\PropertyList-1_0.cs" />
     <Compile Include="Util\RuleName.cs" />
     <Compile Include="Util\xdict.cs" />
@@ -187,6 +190,7 @@
     <Compile Include="ViewModel\Apple\StepViewModel.cs" />
     <Compile Include="ViewModel\Base\BaseStepViewModel.cs" />
     <Compile Include="ViewModel\Dialog\DialogEvidenceViewModel.cs" />
+    <Compile Include="ViewModel\Dialog\DialogManualViewModel.cs" />
     <Compile Include="ViewModel\Home\HomeHomeViewModel.cs" />
     <Compile Include="ViewModel\Android\MainExtractViewModel.cs" />
     <Compile Include="ViewModel\Main\PhoneInfoViewModel.cs" />
@@ -239,6 +243,9 @@
     </Compile>
     <Compile Include="View\Dialog\DialogSelectFile.xaml.cs">
       <DependentUpon>DialogSelectFile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialog\DialogSelectModel.xaml.cs">
+      <DependentUpon>DialogSelectModel.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Home\HomeHome.xaml.cs">
       <DependentUpon>HomeHome.xaml</DependentUpon>
@@ -347,6 +354,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Dialog\DialogSelectFile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialog\DialogSelectModel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -608,6 +619,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\dialog\dlg_connecting.gif" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Images\brand\Huawei.png" />
+    <Resource Include="Resources\Images\brand\Meizu.png" />
+    <Resource Include="Resources\Images\brand\OPPO.png" />
+    <Resource Include="Resources\Images\brand\Samsung.png" />
+    <Resource Include="Resources\Images\brand\VIVO.png" />
+    <Resource Include="Resources\Images\brand\Xiaomi.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets')" />

@@ -8,17 +8,19 @@ namespace Forensics.Model.Device
 {
     public struct DeviceProperty
     {
-        public string Name;
         public string SerialNumber;
-        public string ProductType;
+        public string ModelNumber;
         public string IMEI;
+
+        // 苹果设备
+        public string Name;
+        public string ProductType;
         public string ICCID;
         public string IMSI;
         public string ActivationState;
         public string BasebandMasterKeyHash;
         public string BuildVersion;
         public string Class;
-        public string ModelNumber;
         public string PhoneNumber;
         public string ProductVersion;
         public string SIMStatus;
@@ -26,6 +28,11 @@ namespace Forensics.Model.Device
         public string UniqueDeviceID;
         public string BluetoothAddress;
         public string WiFiAddress;
+
+        // 安卓
+        public string OSVersion;
+        public string Brand;
+        public bool IsRooted;
     };
 
 }
