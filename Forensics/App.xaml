@@ -4,9 +4,11 @@
              xmlns:local="clr-namespace:Forensics"
              xmlns:converter="clr-namespace:Forensics.Converter"
              xmlns:view="clr-namespace:Forensics.View"
+             xmlns:viewData="clr-namespace:Forensics.View.Data"
              xmlns:viewHome="clr-namespace:Forensics.View.Home"
              xmlns:viewModels="clr-namespace:Forensics.ViewModel"
              xmlns:viewModelMain="clr-namespace:Forensics.ViewModel.Main"
+             xmlns:viewModelData="clr-namespace:Forensics.ViewModel.Data"
              xmlns:viewModelAndroid="clr-namespace:Forensics.ViewModel.Android"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
@@ -278,6 +280,9 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewModels:DataCaseDetailViewModel}">
                 <view:DataCaseDetail />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModelData:DataEvidenceViewModel}">
+                <viewData:DataEvidence />
             </DataTemplate>
 
             <!-- 工具管理 -->

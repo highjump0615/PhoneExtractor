@@ -29,6 +29,7 @@ namespace Forensics.ViewModel
         HomeExtract,
         MainData,
         DataCase,
+        DataEvidence,
         DataCaseDetail,
         MainTool,
         ToolList,

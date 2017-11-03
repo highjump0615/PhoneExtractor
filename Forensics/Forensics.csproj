@@ -189,6 +189,7 @@
     <Compile Include="ViewModel\Apple\AppleSyncViewModel.cs" />
     <Compile Include="ViewModel\Apple\StepViewModel.cs" />
     <Compile Include="ViewModel\Base\BaseStepViewModel.cs" />
+    <Compile Include="ViewModel\Data\DataEvidenceViewModel.cs" />
     <Compile Include="ViewModel\Dialog\DialogEvidenceViewModel.cs" />
     <Compile Include="ViewModel\Dialog\DialogManualViewModel.cs" />
     <Compile Include="ViewModel\Home\HomeHomeViewModel.cs" />
@@ -219,6 +220,9 @@
     </Compile>
     <Compile Include="View\Data\DataCaseDetail.xaml.cs">
       <DependentUpon>DataCaseDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Data\DataEvidence.xaml.cs">
+      <DependentUpon>DataEvidence.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Data\DataManagement.xaml.cs">
       <DependentUpon>DataManagement.xaml</DependentUpon>
@@ -326,6 +330,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Data\DataCaseDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Data\DataEvidence.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

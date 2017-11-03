@@ -41,7 +41,9 @@
             </RadioButton>
 
             <!-- 物证管理 -->
-            <RadioButton Style="{StaticResource NavbarButStyle}" Margin="0 3 0 0" Command="{Binding GoToCaseDetailCommand}" >
+            <RadioButton Style="{StaticResource NavbarButStyle}" 
+                         Margin="0 3 0 0" 
+                         Command="{Binding GoToEvidenceCommand}" >
                 <RadioButton.Template>
                     <ControlTemplate TargetType="RadioButton">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">

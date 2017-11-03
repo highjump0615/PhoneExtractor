@@ -1,5 +1,6 @@
 ﻿using Forensics.Command;
 using Forensics.Model.DataManagement;
+using Forensics.ViewModel.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,21 @@ namespace Forensics.ViewModel
     class MainDataViewModel : HostViewModel
     {
         /// <summary>
-        /// 首页命令
+        /// 案件列表命令
         /// </summary>
         private ICommand _goToCaseCommand;
         public ICommand GoToCaseCommand
         {
             get { return _goToCaseCommand ?? (_goToCaseCommand = new DelegateCommand(GoToCasePage)); }
+        }
+
+        /// <summary>
+        /// 物证列表命令
+        /// </summary>
+        private ICommand _goToEvidenceCommand;
+        public ICommand GoToEvidenceCommand
+        {
+            get { return _goToEvidenceCommand ?? (_goToEvidenceCommand = new DelegateCommand(GoToEvidencePage)); }
         }
 
         public override Pages PageIndex
@@ -28,6 +38,7 @@ namespace Forensics.ViewModel
         public MainDataViewModel()
         {
             this.RegisterChild<DataCaseViewModel>(() => new DataCaseViewModel(this));
+            this.RegisterChild<DataEvidenceViewModel>(() => new DataEvidenceViewModel());
 
             this.SelectedChild = GetChild(typeof(DataCaseViewModel));
         }
@@ -38,6 +49,14 @@ namespace Forensics.ViewModel
         public void GoToCasePage()
         {
             this.SelectedChild = GetChild(typeof(DataCaseViewModel));
+        }
+
+        /// <summary>
+        /// 跳转到物证列表页
+        /// </summary>
+        private void GoToEvidencePage()
+        {
+            this.SelectedChild = GetChild(typeof(DataEvidenceViewModel));
         }
 
         /// <summary>
