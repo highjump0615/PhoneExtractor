@@ -303,7 +303,8 @@ namespace Forensics.ViewModel
 
             RyLib.AndroidExtractHelp AExtractHelp = new RyLib.AndroidExtractHelp();
 
-            if (RyLib.ToolBox.MobileIsOnLine())
+            bool bRes = RyLib.ToolBox.MobileIsOnLine();
+            if (bRes)
             {
                 var strOSVer = RyLib.ToolBox.MobileOSVersion();
 
@@ -323,18 +324,22 @@ namespace Forensics.ViewModel
                 this.CurrentDevice = new DeviceInfo(devProperty);
                 showDeviceInfo();
             }
-            else
+
+            MainWindow viewMain = (MainWindow)this.View;
+            viewMain.Dispatcher.Invoke(new Action(() =>
             {
-                // 连接失败, 弹出失败
-                MainWindow viewMain = (MainWindow)this.View;
-                viewMain.Dispatcher.Invoke(new Action(() =>
+                closeWaiting();
+                if (bRes)
                 {
-                    if (closeWaiting())
-                    {
-                        viewMain.openConnectFail();
-                    }
-                }));
-            }
+                    viewMain.openConnectSuccess();
+                }
+                else
+                {
+                    // 连接失败, 弹出失败
+                    viewMain.openConnectFail();
+                }
+            }));
+
         }
 
         /// <summary>
