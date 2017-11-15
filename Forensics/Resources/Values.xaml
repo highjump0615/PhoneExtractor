@@ -63,5 +63,9 @@
     <system:Double x:Key="WidthEvidenceAddDialog">765</system:Double>
     <system:Double x:Key="HeightEvidenceAddDialog">574</system:Double>
     <system:Double x:Key="HeightInputItem">30</system:Double>
+    
+    <!-- select extract type page -->
+    <system:Double x:Key="HeightExtractType">233</system:Double>
+    <GridLength x:Key="HeightExtractTypeFirst">233</GridLength>
 
 </ResourceDictionary>

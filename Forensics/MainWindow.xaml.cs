@@ -107,7 +107,7 @@ namespace Forensics
                 if (mainVM.CurrentDevice != null)
                 {
                     // 打开提取页面
-                    mainVM.GoToExtractPage(MainHomeViewModel.ExtractType.Apple, this.ExtractPath);
+                    mainVM.GoToExtractPage(MainHomeViewModel.DeviceType.Apple, this.ExtractPath);
                 }
                 else
                 {
@@ -132,7 +132,7 @@ namespace Forensics
         /// <summary>
         /// 打开连接成功对话框
         /// </summary>
-        public void openConnectSuccess()
+        public void openConnectSuccess(MainHomeViewModel.DeviceType devType)
         {
             hideMenus();
 
@@ -142,8 +142,19 @@ namespace Forensics
 
             if (wSuccess.DialogResult == true)
             {
-                this.ExtractPath = wSuccess.FileControl.TextPath.Text;
-                ((MainViewModel)this.DataContext).GoToExtractPage(MainHomeViewModel.ExtractType.Apple, this.ExtractPath);
+                // 苹果设备直接进入提取页面
+                if (devType == MainHomeViewModel.DeviceType.Apple)
+                {
+                    this.ExtractPath = wSuccess.FileControl.TextPath.Text;
+                    ((MainViewModel)this.DataContext).GoToExtractPage(devType, this.ExtractPath);
+                }
+                // 安卓设备要进入选择提取方式的界面
+                else if (devType == MainHomeViewModel.DeviceType.Android)
+                {
+                    var wExtractType = new DialogSelectExtractType();
+                    wExtractType.Owner = this;
+                    wExtractType.ShowDialog();
+                }
             }
         }
 
@@ -199,9 +210,14 @@ namespace Forensics
             // 显示正在连接
             hideMenus();
 
-            var wDialog = new DialogSelectModel();
+            //var wDialog = new DialogSelectModel();
+            //wDialog.Owner = this;
+            //wDialog.ShowDialog();
+
+            var wDialog = new DialogSelectExtractType();
             wDialog.Owner = this;
             wDialog.ShowDialog();
+
         }
 
         /// <summary>

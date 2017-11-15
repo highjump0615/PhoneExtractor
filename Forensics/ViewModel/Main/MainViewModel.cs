@@ -43,6 +43,9 @@ namespace Forensics.ViewModel
         SettingFeedback,
         SettingAbout,
 
+        // 提取方式
+        ExtractTypeSecondary,
+
         Other,
     };
 
@@ -299,7 +302,7 @@ namespace Forensics.ViewModel
 
         private void ConnectAndroidThread()
         {
-            Thread.Sleep(1500);
+            Thread.Sleep(500);
 
             RyLib.AndroidExtractHelp AExtractHelp = new RyLib.AndroidExtractHelp();
 
@@ -331,7 +334,7 @@ namespace Forensics.ViewModel
                 closeWaiting();
                 if (bRes)
                 {
-                    viewMain.openConnectSuccess();
+                    viewMain.openConnectSuccess(MainHomeViewModel.DeviceType.Android);
                 }
                 else
                 {
@@ -359,7 +362,7 @@ namespace Forensics.ViewModel
         /// <summary>
         /// 跳转到提取页面
         /// </summary>
-        public void GoToExtractPage(MainHomeViewModel.ExtractType type, string saveExtractPath = null)
+        public void GoToExtractPage(MainHomeViewModel.DeviceType type, string saveExtractPath = null)
         {
             this.SelectedChild = GetChild(typeof(MainHomeViewModel));
 
@@ -422,14 +425,14 @@ namespace Forensics.ViewModel
             viewMain.Dispatcher.Invoke(new Action(() => {
                 if (App.Current.MainWindow.OwnedWindows.Count == 0)
                 {
-                    viewMain.openConnectSuccess();
+                    viewMain.openConnectSuccess(MainHomeViewModel.DeviceType.Apple);
                 }
                 else
                 {
                     // 等待窗口，把它关闭进入提取阶段
                     if (closeWaiting())
                     {
-                        GoToExtractPage(MainHomeViewModel.ExtractType.Apple, viewMain.ExtractPath);
+                        GoToExtractPage(MainHomeViewModel.DeviceType.Apple, viewMain.ExtractPath);
                     }
                 }
             }));

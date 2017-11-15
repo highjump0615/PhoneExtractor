@@ -1,0 +1,141 @@
+﻿<UserControl x:Class="Forensics.View.Dialog.ExtractTypePrimary"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Forensics.View.Dialog"
+             mc:Ignorable="d" 
+             d:DesignHeight="418" d:DesignWidth="655">
+
+    <UserControl.Resources>
+        
+        <Style x:Key="itemButtonStyle" TargetType="ToggleButton">
+            <Setter Property="Template" Value="{StaticResource ButtonBaseTemplate}" />
+            <Setter Property="Width" Value="106" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="{x:Null}" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value="0.5" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ItemBorderImageStyle" BasedOn="{StaticResource ExtractTypeItemBorderImageStyle}" TargetType="Border">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=ToggleButton}}" Value="True">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="/Forensics;component/Resources/Images/dialog/dlg_exttype_selected_bg.png" />
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="itemButtonTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0 10 0 0" />
+
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=ToggleButton}}" Value="True">
+                    <Setter Property="Foreground" Value="#4effff" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="MarkImageStyle" TargetType="Image">
+            <Setter Property="Visibility" Value="Hidden" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=ToggleButton}}" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+    </UserControl.Resources>
+    
+    <Grid Grid.Column="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource HeightExtractTypeFirst}" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Padding="{StaticResource SelectExtractTypeMargin}"
+                BorderThickness="0 0 0 1" BorderBrush="#0c6ad2">
+            <StackPanel>
+                <!-- 一般提取选项 -->
+                <ItemsControl ItemsSource="{Binding listNormalTypes}" Name="icGeneral">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <ToggleButton Style="{StaticResource itemButtonStyle}"
+                                          IsChecked="{Binding IsSelected, Mode=OneWay}"
+                                          Command="{Binding Path=DataContext.GoToSecondaryCommand, ElementName=icGeneral}"
+                                          CommandParameter="{Binding}">
+                                <Grid>
+                                    <StackPanel>
+                                        <Border Style="{StaticResource ItemBorderImageStyle}">
+                                            <Image Source="{Binding ImagePath}" Stretch="None" />
+                                        </Border>
+                                        <TextBlock Text="{Binding Name}" Style="{StaticResource itemButtonTextStyle}" />
+                                    </StackPanel>
+                                    <Image Style="{StaticResource MarkImageStyle}" 
+                                           Source="/Forensics;component/Resources/Images/dialog/ext_type_selected.png" Stretch="None"
+                                           Margin="0 70 0 0"/>
+                                </Grid>
+                            </ToggleButton>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                
+                <!-- 开始提取 -->
+                <Button Width="122" Height="30" Style="{StaticResource ExtractButtonStyle}"
+                        HorizontalAlignment="Right"
+                        Margin="0 20 20 0" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Forensics;component/Resources/Images/dialog/dlg_out_mark.png" Stretch="None" />
+                        <TextBlock Margin="10 0 0 0">
+                            开始提取
+                        </TextBlock>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="1" Padding="{StaticResource SelectExtractTypeMargin}">
+            <!-- 高级提取项 -->
+            <ItemsControl ItemsSource="{Binding listAdvancedTypes}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <RadioButton Style="{StaticResource itemButtonStyle}"
+                                     GroupName="Advanced">
+                            <Grid>
+                                <StackPanel>
+                                    <Border Style="{StaticResource ItemBorderImageStyle}">
+                                        <Image Source="{Binding ImagePath}" Stretch="None" />
+                                    </Border>
+                                    <TextBlock Text="{Binding Name}" Style="{StaticResource itemButtonTextStyle}" />
+                                </StackPanel>
+                                <Image Style="{StaticResource MarkImageStyle}" 
+                                       Source="/Forensics;component/Resources/Images/dialog/ext_type_selected.png" Stretch="None"
+                                       Margin="0 70 0 0"/>
+                            </Grid>
+                        </RadioButton>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+    </Grid>
+</UserControl>

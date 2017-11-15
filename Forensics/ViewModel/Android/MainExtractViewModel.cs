@@ -22,7 +22,7 @@ namespace Forensics.ViewModel
 {
     class MainExtractViewModel : ViewModelBase
     {
-        private ExtractType Type = ExtractType.Apple;
+        private DeviceType Type = DeviceType.Apple;
 
         public ExtractProgressViewModel progressVM { get; set; }
         public ObservableCollection<SystemLog> LogList { get; set; }
@@ -54,7 +54,7 @@ namespace Forensics.ViewModel
         /// 开始提取
         /// </summary>
         /// <param name="type"></param>
-        public void startExtract(ExtractType type, string saveExtractPath = null)
+        public void startExtract(DeviceType type, string saveExtractPath = null)
         {
             this.Type = type;
 
@@ -130,7 +130,7 @@ namespace Forensics.ViewModel
             // 初始化
             SerialNumber = devProp.SerialNumber;
 
-            if (Type == ExtractType.Apple)
+            if (Type == DeviceType.Apple)
             {
                 addSystemLog("数据备份中，请勿中途卸载设备...", "开始");
             }

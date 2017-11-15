@@ -175,6 +175,8 @@
     <Compile Include="Model\Device\IPhone.cs" />
     <Compile Include="Model\Device\iPhoneApps.cs" />
     <Compile Include="Model\Device\PhoneInfo.cs" />
+    <Compile Include="Model\Extract\Act.cs" />
+    <Compile Include="Model\Extract\ExtractType.cs" />
     <Compile Include="Model\Extract\SystemLog.cs" />
     <Compile Include="SQLiteViewer\SQLiteHelper.cs" />
     <Compile Include="Util\CommonUtil.cs" />
@@ -191,7 +193,10 @@
     <Compile Include="ViewModel\Base\BaseStepViewModel.cs" />
     <Compile Include="ViewModel\Data\DataEvidenceViewModel.cs" />
     <Compile Include="ViewModel\Dialog\DialogEvidenceViewModel.cs" />
+    <Compile Include="ViewModel\Dialog\DialogExtractTypeViewModel.cs" />
     <Compile Include="ViewModel\Dialog\DialogManualViewModel.cs" />
+    <Compile Include="ViewModel\Dialog\ExtractTypePrimaryViewModel.cs" />
+    <Compile Include="ViewModel\Dialog\ExtractTypeSecondaryViewModel.cs" />
     <Compile Include="ViewModel\Home\HomeHomeViewModel.cs" />
     <Compile Include="ViewModel\Android\MainExtractViewModel.cs" />
     <Compile Include="ViewModel\Main\PhoneInfoViewModel.cs" />
@@ -245,11 +250,20 @@
     <Compile Include="View\Dialog\DialogConnectTitlebar.xaml.cs">
       <DependentUpon>DialogConnectTitlebar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Dialog\DialogSelectExtractType.xaml.cs">
+      <DependentUpon>DialogSelectExtractType.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Dialog\DialogSelectFile.xaml.cs">
       <DependentUpon>DialogSelectFile.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Dialog\DialogSelectModel.xaml.cs">
       <DependentUpon>DialogSelectModel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialog\ExtractTypePrimary.xaml.cs">
+      <DependentUpon>ExtractTypePrimary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialog\ExtractTypeSecondary.xaml.cs">
+      <DependentUpon>ExtractTypeSecondary.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Home\HomeHome.xaml.cs">
       <DependentUpon>HomeHome.xaml</DependentUpon>
@@ -361,11 +375,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Dialog\DialogSelectExtractType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Dialog\DialogSelectFile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Dialog\DialogSelectModel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialog\ExtractTypePrimary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialog\ExtractTypeSecondary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -628,7 +654,6 @@
   <ItemGroup>
     <Resource Include="Resources\Images\dialog\dlg_connecting.gif" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\Images\brand\Huawei.png" />
     <Resource Include="Resources\Images\brand\Meizu.png" />
@@ -636,6 +661,16 @@
     <Resource Include="Resources\Images\brand\Samsung.png" />
     <Resource Include="Resources\Images\brand\VIVO.png" />
     <Resource Include="Resources\Images\brand\Xiaomi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\dialog\dlg_out_mark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\dialog\dlg_exttype_bg.png" />
+    <Resource Include="Resources\Images\dialog\dlg_exttype_selected_bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\dialog\ext_type_selected.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets')" />

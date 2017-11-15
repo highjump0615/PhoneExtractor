@@ -10,8 +10,9 @@ namespace Forensics.ViewModel
 {
     public class MainHomeViewModel : HostViewModel
     {
-        public enum ExtractType {
+        public enum DeviceType {
             Apple,
+            Android
         }
 
         /// <summary>
@@ -72,7 +73,7 @@ namespace Forensics.ViewModel
         /// <summary>
         /// 打开提取页面
         /// </summary>
-        public void showExtractPage(ExtractType type, string saveExtractPath = null)
+        public void showExtractPage(DeviceType type, string saveExtractPath = null)
         {
             // 打开提取页面
             this.SelectedChild = GetChild(typeof(MainExtractViewModel));

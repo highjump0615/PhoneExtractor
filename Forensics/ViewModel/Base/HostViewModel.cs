@@ -57,6 +57,16 @@ namespace Forensics.ViewModel
             _childrenList.Add(viewModel);
         }
 
+        /// <summary>
+        /// 返回上一层
+        /// </summary>
+        /// <returns></returns>
+        protected ViewModelBase PopChild()
+        {
+            _childrenList.Remove(_childrenList[_childrenList.Count() - 1]);
+            return _childrenList.Last();
+        }
+
         protected ViewModelBase GetChild(Type type)
         {
             if (_selectedChild != null && _selectedChild.GetType() == type)
