@@ -46,5 +46,15 @@ namespace Forensics.View.Dialog
 
             sv.ScrollToHorizontalOffset(sv.HorizontalOffset + offset);
         }
+        
+        /// <summary>
+        /// 点击开始连接
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void onButConnect(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+        }
     }
 }

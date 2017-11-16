@@ -76,6 +76,7 @@
                         <DataTemplate>
                             <ToggleButton Style="{StaticResource itemButtonStyle}"
                                           IsChecked="{Binding IsSelected, Mode=OneWay}"
+                                          IsEnabled="{Binding IsAvailable, Mode=OneWay}"
                                           Command="{Binding Path=DataContext.GoToSecondaryCommand, ElementName=icGeneral}"
                                           CommandParameter="{Binding}">
                                 <Grid>

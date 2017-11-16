@@ -1,4 +1,5 @@
-﻿using Forensics.Model.Extract;
+﻿using Forensics.Model.Device;
+using Forensics.Model.Extract;
 using Forensics.Util;
 using Forensics.ViewModel;
 using System;
@@ -110,5 +111,7 @@ namespace Forensics
         public MainViewModel MainVM { get; set; }
 
         public List<ActGroup> MainActGroup { get; set; } = new List<ActGroup>();
+
+        public PhoneInfo AndroidPhoneSelected { get; set; }
     }
 }

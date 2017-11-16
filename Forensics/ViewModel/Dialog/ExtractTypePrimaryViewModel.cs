@@ -1,7 +1,10 @@
 ﻿using Forensics.Command;
 using Forensics.Model.Extract;
+using Forensics.Util;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,6 +37,40 @@ namespace Forensics.ViewModel.Dialog
 
             this.listNormalTypes = Globals.Instance.MainActGroup[0].Acts.ToList();
             this.listAdvancedTypes = Globals.Instance.MainActGroup[1].Acts.ToList();
+
+            // 品种
+            if (Globals.Instance.AndroidPhoneSelected != null)
+            {
+                string strConnection = ConfigurationManager.ConnectionStrings["mdb_phone"].ToString();
+                string strQuery = "select * from edec_support_act where BrandModelID = \"" + Globals.Instance.AndroidPhoneSelected.BrandModelID + "\"; ";
+
+                DataTable dt = DatabaseUtil.Query(strQuery, strConnection);
+                foreach (DataRow tmpdr in dt.Rows)
+                {
+                    var strActId = int.Parse(tmpdr["ACT_ID"].ToString());
+
+                    var act = this.listNormalTypes.Where(x => x.Id == strActId).FirstOrDefault();
+                    if (act == null)
+                    {
+                        act = this.listAdvancedTypes.Where(x => x.Id == strActId).FirstOrDefault();
+                    }
+
+                    if (act != null)
+                    {
+                        act.IsAvailable = true;
+                    }
+                }
+            }
+            else
+            {
+                // 自动连接，先能用所有的
+                foreach (Act at in this.listNormalTypes)
+                {
+                    at.IsAvailable = true;
+                }
+            }
+
+            // 多中选一
         }
 
         /// <summary>

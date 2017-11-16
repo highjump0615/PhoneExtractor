@@ -207,17 +207,18 @@ namespace Forensics
         /// <param name="e"></param>
         private void onAndroidManual(object sender, RoutedEventArgs e)
         {           
-            // 显示正在连接
             hideMenus();
 
-            //var wDialog = new DialogSelectModel();
-            //wDialog.Owner = this;
-            //wDialog.ShowDialog();
-
-            var wDialog = new DialogSelectExtractType();
+            var wDialog = new DialogSelectModel();
             wDialog.Owner = this;
             wDialog.ShowDialog();
 
+            if (wDialog.DialogResult == true)
+            {
+                var wExtract = new DialogSelectExtractType();
+                wExtract.Owner = this;
+                wExtract.ShowDialog();
+            }
         }
 
         /// <summary>

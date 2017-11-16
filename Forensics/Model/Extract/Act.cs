@@ -21,10 +21,17 @@ namespace Forensics.Model.Extract
             }
         }
 
+        public bool IsAvailable { get; set; } = false;
+
         public bool IsSelected
         {
             get
             {
+                if (!this.IsAvailable)
+                {
+                    return false;
+                }
+
                 // 至少有一个提取方式选择的就设置为选择
                 return this.listExtractType.Where(x => x.IsSelected == true).Count() > 0 ? true : false;
             }

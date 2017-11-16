@@ -1,4 +1,5 @@
-﻿using Forensics.Model.Device;
+﻿using Forensics.Command;
+using Forensics.Model.Device;
 using Forensics.Util;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Forensics.ViewModel.Dialog
 {
@@ -73,9 +75,26 @@ namespace Forensics.ViewModel.Dialog
             }
         }
 
+        /// <summary>
+        /// 开始连接命令
+        /// </summary>
+        private ICommand _startConnectCommand;
+        public ICommand StartConnectCommand
+        {
+            get { return _startConnectCommand ?? (_startConnectCommand = new DelegateCommand(StartConnect)); }
+        }
+
         public DialogManualViewModel()
         {
             getPhones(null);
+        }
+
+        /// <summary>
+        /// 开始连接
+        /// </summary>
+        private void StartConnect()
+        {
+            Globals.Instance.AndroidPhoneSelected = this.listPhone[this.SelectedIndexPhone];
         }
 
         /// <summary>
@@ -130,6 +149,9 @@ namespace Forensics.ViewModel.Dialog
 
             PropertyChanging("listPhone");
             PropertyChanging("listBrand");
+
+            // 初始化选中的手机
+            this.SelectedIndexPhone = -1;
         }
     }
 }

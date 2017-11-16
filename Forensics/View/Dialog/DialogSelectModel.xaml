@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Forensics.View.Dialog"
         xmlns:fa="clr-namespace:FontAwesome.WPF;assembly=FontAwesome.WPF"
+        xmlns:converter="clr-namespace:Forensics.Converter"
         mc:Ignorable="d"
         WindowStyle="None"
         ShowInTaskbar="False"
@@ -19,6 +20,8 @@
     </Window.Background>
 
     <Window.Resources>
+        <converter:GreaterThanZeroConverter x:Key="GreaterThan0" />
+        
         <Style x:Key="BorderStyle" TargetType="Border">
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="BorderBrush" Value="#0c6ad2" />
@@ -74,6 +77,17 @@
         <!-- 品牌样式 -->
         <Thickness x:Key="BrandMargin" Left="0" Right="4" Top="3" Bottom="0" />
 
+        <Style x:Key="MainButtonStyle" BasedOn="{StaticResource SyncMainButton}" TargetType="Button">
+            <Setter Property="IsEnabled" Value="False" />
+
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=lbPhones, Path=SelectedIndex, Converter={StaticResource GreaterThan0}}" Value="True">
+                    <Setter Property="IsEnabled" Value="True" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+
     </Window.Resources>
 
     <DockPanel>
@@ -92,9 +106,8 @@
                 <SolidColorBrush Color="{StaticResource SyncWindowBorderColor}" />
             </Border.BorderBrush>
 
-            <Button Style="{StaticResource SyncMainButton}" 
-                    HorizontalAlignment="Right"
-                    Margin="0 0 40 0" >
+            <Button HorizontalAlignment="Right" Margin="0 0 40 0" Style="{StaticResource MainButtonStyle}"
+                    Command="{Binding StartConnectCommand}" Click="onButConnect">
                 开始连接
             </Button>
         </Border>
@@ -131,7 +144,7 @@
                         选择品牌：
                     </TextBlock>
 
-                    <ListBox Name="icBrands" ItemsSource="{Binding listBrand}" 
+                    <ListBox Name="lbBrands" ItemsSource="{Binding listBrand}" 
                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                              SelectedIndex="{Binding SelectedIndexBrand}">
                         <ListBox.ItemsPanel>
@@ -221,7 +234,8 @@
                     </Button>
 
                     <ListBox Name="lbPhones" ItemsSource="{Binding listPhone}" 
-                             ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                             ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                             SelectedIndex="{Binding SelectedIndexPhone}">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Orientation="Horizontal" />
