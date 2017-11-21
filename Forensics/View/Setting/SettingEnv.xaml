@@ -6,9 +6,9 @@
              xmlns:local="clr-namespace:Forensics.Model.Setting"
              mc:Ignorable="d" 
              d:DesignWidth="{StaticResource WidthSettingContent}" d:DesignHeight="{StaticResource HeightContent}">
-    <StackPanel Margin="{StaticResource SettingContentMarginValue}">
+    <DockPanel Margin="{StaticResource SettingContentMarginValue}">
 
-        <StackPanel.Resources>
+        <DockPanel.Resources>
 
             <ResourceDictionary>
                 <ResourceDictionary.MergedDictionaries>
@@ -18,10 +18,10 @@
                 <local:ItemsForEnvironment x:Key="MyData"/>
             </ResourceDictionary>
 
-        </StackPanel.Resources>
+        </DockPanel.Resources>
 
         <!-- header -->
-        <Border Style="{StaticResource SettingHeaderStyle}">
+        <Border Style="{StaticResource SettingHeaderStyle}" DockPanel.Dock="Top">
             <Border Style="{StaticResource SettingHeaderInnerStyle}">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Style="{StaticResource SettingHeaderTitleStyle}">环境检查</TextBlock>
@@ -44,5 +44,5 @@
                 </GridView>
             </ListView.View>
         </ListView>
-    </StackPanel>
+    </DockPanel>
 </UserControl>
