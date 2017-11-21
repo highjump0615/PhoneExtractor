@@ -140,20 +140,35 @@ namespace Forensics
             wSuccess.Owner = this;
             wSuccess.ShowDialog();
 
-            if (wSuccess.DialogResult == true)
+            MainViewModel mainVM = (MainViewModel)this.DataContext;
+            if (wSuccess.DialogResult == false)
             {
-                // 苹果设备直接进入提取页面
-                if (devType == MainHomeViewModel.DeviceType.Apple)
+                return;
+            }
+
+            this.ExtractPath = wSuccess.FileControl.TextPath.Text;
+
+            // 苹果设备直接进入提取页面
+            if (devType == MainHomeViewModel.DeviceType.Apple)
+            {
+                ((MainViewModel)this.DataContext).GoToExtractPage(devType, this.ExtractPath);
+            }
+            // 安卓设备要进入选择提取方式的界面
+            else if (devType == MainHomeViewModel.DeviceType.Android)
+            {
+                var wExtractType = new DialogSelectExtractType();
+                wExtractType.Owner = this;
+                wExtractType.ShowDialog();
+
+                if (wExtractType.DialogResult == false)
                 {
-                    this.ExtractPath = wSuccess.FileControl.TextPath.Text;
-                    ((MainViewModel)this.DataContext).GoToExtractPage(devType, this.ExtractPath);
+                    return;
                 }
-                // 安卓设备要进入选择提取方式的界面
-                else if (devType == MainHomeViewModel.DeviceType.Android)
+
+                if (mainVM.CurrentDevice != null)
                 {
-                    var wExtractType = new DialogSelectExtractType();
-                    wExtractType.Owner = this;
-                    wExtractType.ShowDialog();
+                    // 打开提取页面
+                    mainVM.GoToExtractPage(MainHomeViewModel.DeviceType.Android, this.ExtractPath);
                 }
             }
         }

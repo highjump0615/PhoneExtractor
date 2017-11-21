@@ -24,7 +24,17 @@ namespace Forensics.View.Dialog
         {
             InitializeComponent();
 
-            this.DataContext = new DialogExtractTypeViewModel();
+            DialogExtractTypeViewModel extractTypeVM = new DialogExtractTypeViewModel();
+            extractTypeVM.View = this;
+            this.DataContext = extractTypeVM;
+        }
+
+        /// <summary>
+        /// 点击开始提取
+        /// </summary>
+        public void onStartExtract()
+        {
+            DialogResult = true;
         }
     }
 }

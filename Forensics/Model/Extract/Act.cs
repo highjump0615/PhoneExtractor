@@ -11,7 +11,7 @@ namespace Forensics.Model.Extract
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<ExtractType> listExtractType { get; set; } = new List<ExtractType>();
+        public List<ActExtractType> listExtractType { get; set; } = new List<ActExtractType>();
 
         public string ImagePath
         {

@@ -56,43 +56,43 @@ namespace Forensics
                     // 逻辑提取
                     if (newAct.Id == 101)
                     {
-                        newAct.listExtractType.Add(new ExtractType("机身系统信息"));
-                        newAct.listExtractType.Add(new ExtractType("机身电话簿"));
-                        newAct.listExtractType.Add(new ExtractType("机身通话记录"));
-                        newAct.listExtractType.Add(new ExtractType("机身短信息"));
-                        newAct.listExtractType.Add(new ExtractType("机身app列表"));
+                        newAct.listExtractType.Add(new ActExtractType("机身系统信息"));
+                        newAct.listExtractType.Add(new ActExtractType("机身电话簿"));
+                        newAct.listExtractType.Add(new ActExtractType("机身通话记录"));
+                        newAct.listExtractType.Add(new ActExtractType("机身短信息"));
+                        newAct.listExtractType.Add(new ActExtractType("机身app列表"));
                     }
                     // 文件提取
                     else if (newAct.Id == 102)
                     {
-                        newAct.listExtractType.Add(new ExtractType("图片照片"));
-                        newAct.listExtractType.Add(new ExtractType("音频文件"));
-                        newAct.listExtractType.Add(new ExtractType("视频文件"));
-                        newAct.listExtractType.Add(new ExtractType("全部文件"));
+                        newAct.listExtractType.Add(new ActExtractType("图片照片"));
+                        newAct.listExtractType.Add(new ActExtractType("音频文件"));
+                        newAct.listExtractType.Add(new ActExtractType("视频文件"));
+                        newAct.listExtractType.Add(new ActExtractType("全部文件"));
                     }
                     // ADB备份
                     else if (newAct.Id == 103)
                     {
-                        newAct.listExtractType.Add(new ExtractType("备份全部"));
-                        newAct.listExtractType.Add(new ExtractType("微信降级"));
-                        newAct.listExtractType.Add(new ExtractType("QQ降级"));
+                        newAct.listExtractType.Add(new ActExtractType("备份全部"));
+                        newAct.listExtractType.Add(new ActExtractType("微信降级"));
+                        newAct.listExtractType.Add(new ActExtractType("QQ降级"));
                     }
                     // 手机系统备份
                     else if (newAct.Id == 104)
                     {
-                        newAct.listExtractType.Add(new ExtractType("华为"));
-                        newAct.listExtractType.Add(new ExtractType("小米"));
-                        newAct.listExtractType.Add(new ExtractType("oppo"));
-                        newAct.listExtractType.Add(new ExtractType("vivo"));
-                        newAct.listExtractType.Add(new ExtractType("联想"));
+                        newAct.listExtractType.Add(new ActExtractType("华为"));
+                        newAct.listExtractType.Add(new ActExtractType("小米"));
+                        newAct.listExtractType.Add(new ActExtractType("oppo"));
+                        newAct.listExtractType.Add(new ActExtractType("vivo"));
+                        newAct.listExtractType.Add(new ActExtractType("联想"));
                     }
                     // Root提取, Recovery提取 
                     else if (newAct.Id == 105 || newAct.Id == 106)
                     {
-                        newAct.listExtractType.Add(new ExtractType("镜像提取"));
-                        newAct.listExtractType.Add(new ExtractType("微信及其数据目录"));
-                        newAct.listExtractType.Add(new ExtractType("QQ及其数据目录"));
-                        newAct.listExtractType.Add(new ExtractType("选中目录"));
+                        newAct.listExtractType.Add(new ActExtractType("镜像提取"));
+                        newAct.listExtractType.Add(new ActExtractType("微信及其数据目录"));
+                        newAct.listExtractType.Add(new ActExtractType("QQ及其数据目录"));
+                        newAct.listExtractType.Add(new ActExtractType("选中目录"));
                     }
 
                     // 添加到提取方式组

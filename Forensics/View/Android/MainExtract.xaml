@@ -117,9 +117,11 @@
             </Border>
 
             <!-- system log -->
-            <Border Background="#d8dadc">
-                <HeaderedItemsControl ItemsSource="{Binding LogList}" />
-            </Border>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <Border Background="#d8dadc">
+                    <HeaderedItemsControl ItemsSource="{Binding LogList}" />
+                </Border>
+            </ScrollViewer>
         </DockPanel>
 
         <!-- 进度条 -->

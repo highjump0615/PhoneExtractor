@@ -177,7 +177,7 @@
     <Compile Include="Model\Device\iPhoneApps.cs" />
     <Compile Include="Model\Device\PhoneInfo.cs" />
     <Compile Include="Model\Extract\Act.cs" />
-    <Compile Include="Model\Extract\ExtractType.cs" />
+    <Compile Include="Model\Extract\ActExtractType.cs" />
     <Compile Include="Model\Extract\SystemLog.cs" />
     <Compile Include="SQLiteViewer\SQLiteHelper.cs" />
     <Compile Include="Util\CommonUtil.cs" />

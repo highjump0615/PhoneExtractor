@@ -1,6 +1,7 @@
 ﻿using Forensics.Command;
 using Forensics.Model.Extract;
 using Forensics.Util;
+using Forensics.View.Dialog;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -26,6 +27,15 @@ namespace Forensics.ViewModel.Dialog
         public ICommand GoToSecondaryCommand
         {
             get { return _goToSecondaryCommand ?? (_goToSecondaryCommand = new DelegateCommand(GoToSecondary)); }
+        }
+
+        /// <summary>
+        /// 开始提取命令
+        /// </summary>
+        private ICommand _startExtractCommand;
+        public ICommand StartExtractCommand
+        {
+            get { return _startExtractCommand ?? (_startExtractCommand = new DelegateCommand(StartExtract)); }
         }
 
         public List<Act> listNormalTypes { get; set; }
@@ -83,6 +93,16 @@ namespace Forensics.ViewModel.Dialog
 
             DialogExtractTypeViewModel vmParent = (DialogExtractTypeViewModel)this.ViewModelParent;
             vmParent.GoToSecondary(actSel);
+        }
+
+        /// <summary>
+        /// 开始提取
+        /// </summary>
+        private void StartExtract()
+        {
+            DialogExtractTypeViewModel vmParent = (DialogExtractTypeViewModel)this.ViewModelParent;
+            DialogSelectExtractType dlgExtractType = (DialogSelectExtractType)vmParent.View;
+            dlgExtractType.onStartExtract();
         }
 
         /// <summary>

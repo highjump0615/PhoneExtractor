@@ -98,7 +98,8 @@
                 <!-- 开始提取 -->
                 <Button Width="122" Height="30" Style="{StaticResource ExtractButtonStyle}"
                         HorizontalAlignment="Right"
-                        Margin="0 20 20 0" >
+                        Margin="0 20 20 0"
+                        Command="{Binding StartExtractCommand}">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Forensics;component/Resources/Images/dialog/dlg_out_mark.png" Stretch="None" />
                         <TextBlock Margin="10 0 0 0">
