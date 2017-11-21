@@ -12,7 +12,8 @@ namespace Forensics.ViewModel
     {
         public enum DeviceType {
             Apple,
-            Android
+            Android,
+            Other
         }
 
         /// <summary>
@@ -28,7 +29,7 @@ namespace Forensics.ViewModel
         public MainHomeViewModel()
         {
             this.RegisterChild<HomeHomeViewModel>(() => new HomeHomeViewModel());
-            this.RegisterChild<MainExtractViewModel>(() => new MainExtractViewModel());
+            //this.RegisterChild<MainExtractViewModel>(() => new MainExtractViewModel());
 
             this.SelectedChild = GetChild(typeof(HomeHomeViewModel));
 
@@ -76,7 +77,7 @@ namespace Forensics.ViewModel
         public void showExtractPage(DeviceType type, string saveExtractPath = null)
         {
             // 打开提取页面
-            this.SelectedChild = GetChild(typeof(MainExtractViewModel));
+            this.SelectedChild = new MainExtractViewModel();
 
             MainExtractViewModel vm = (MainExtractViewModel)SelectedChild;
             vm.startExtract(type, saveExtractPath);

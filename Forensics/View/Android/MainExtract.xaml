@@ -9,81 +9,6 @@
              d:DesignHeight="{StaticResource HeightHomeContent}" d:DesignWidth="{StaticResource WidthHomeContent}">
 
     <UserControl.Resources>
-        <Style x:Key="logListHeaderStyle" TargetType="Border">
-            <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="Height" Value="32" />
-            <Setter Property="Background" Value="#ebeef0" />
-        </Style>
-        <Style x:Key="logListHeaderBorderStyle" TargetType="Border">
-            <Setter Property="BorderThickness" Value="0 0 1 0" />
-            <Setter Property="BorderBrush" Value="#929292" />
-        </Style>
-        <Style x:Key="logListHeaderTextStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="14" />
-            <Setter Property="Padding" Value="10 0 10 0" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-        </Style>
-        <Style x:Key="logListContentTextStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="12" />
-            <Setter Property="Margin" Value="10 0 10 0" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-        </Style>
-
-        <Style TargetType="HeaderedItemsControl">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="HeaderedItemsControl">
-                        <StackPanel>
-                            <Border Style="{StaticResource logListHeaderStyle}">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1*" />
-                                        <ColumnDefinition Width="3*" />
-                                        <ColumnDefinition Width="1*" />
-                                    </Grid.ColumnDefinitions>
-
-                                    <Border Style="{StaticResource logListHeaderBorderStyle}">
-                                        <TextBlock Grid.Column="0" Style="{StaticResource logListHeaderTextStyle}">时间</TextBlock>
-                                    </Border>
-                                    <Border Grid.Column="1" Style="{StaticResource logListHeaderBorderStyle}">
-                                        <TextBlock Style="{StaticResource logListHeaderTextStyle}">项目</TextBlock>
-                                    </Border>
-                                    <TextBlock Grid.Column="2" Style="{StaticResource logListHeaderTextStyle}">路径</TextBlock>
-                                </Grid>
-                            </Border>
-                            <Grid>
-                                <ItemsPresenter />
-                            </Grid>
-                        </StackPanel>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <DataTemplate DataType="{x:Type model:SystemLog}">
-            <StackPanel>
-                <Border Height="23" BorderThickness="0 0 0 1" BorderBrush="#c1c1c1">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*" />
-                            <ColumnDefinition Width="3*" />
-                            <ColumnDefinition Width="1*" />
-                        </Grid.ColumnDefinitions>
-
-                        <Border Grid.Column="0" BorderThickness="0 0 1 0" BorderBrush="#c1c1c1">
-                            <TextBlock Style="{StaticResource listContentTextStyle}" Text="{Binding DateDesc}" />
-                        </Border>
-                        <Border Grid.Column="1" BorderThickness="0 0 1 0" BorderBrush="#c1c1c1">
-                            <TextBlock Style="{StaticResource listContentTextStyle}" Text="{Binding Item}" />
-                        </Border>
-                        <Border Grid.Column="2" BorderThickness="0 0 1 0" BorderBrush="#c1c1c1">
-                            <TextBlock Style="{StaticResource listContentTextStyle}" Text="{Binding Result}" />
-                        </Border>
-                    </Grid>
-                </Border>
-            </StackPanel>
-        </DataTemplate>
-
     </UserControl.Resources>
 
     <Grid Margin="20 15">
@@ -117,11 +42,47 @@
             </Border>
 
             <!-- system log -->
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <Border Background="#d8dadc">
-                    <HeaderedItemsControl ItemsSource="{Binding LogList}" />
-                </Border>
-            </ScrollViewer>
+            <DataGrid ColumnHeaderHeight="33" RowHeaderWidth="0"
+                      ItemsSource="{Binding LogList}"
+                      AutoGenerateColumns="False" RowHeight="24"
+                      HorizontalGridLinesBrush="#c1c1c1"
+                      VerticalGridLinesBrush="#c1c1c1"
+                      IsReadOnly="True">
+                <DataGrid.RowHeaderStyle>
+                    <Style TargetType="DataGridRowHeader">
+                        <Setter Property="FontSize" Value="14" />
+                    </Style>
+                </DataGrid.RowHeaderStyle>
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="FontSize" Value="12" />
+                        <Setter Property="Background" Value="{x:Null}" />
+                    </Style>
+                </DataGrid.RowStyle>
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="DataGridCell">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGrid.CellStyle>
+                
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding DateDesc}" ClipboardContentBinding="{x:Null}" Header="时间"
+                                        Width="150"/>
+                    <DataGridTextColumn Binding="{Binding Item}" ClipboardContentBinding="{x:Null}" Header="项目"
+                                        Width="*"/>
+                    <DataGridTextColumn Binding="{Binding Result}" ClipboardContentBinding="{x:Null}" Header="结果"
+                                        Width="80"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            
         </DockPanel>
 
         <!-- 进度条 -->

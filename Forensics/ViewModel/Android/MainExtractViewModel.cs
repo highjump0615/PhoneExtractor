@@ -27,9 +27,9 @@ namespace Forensics.ViewModel
         private DeviceType Type { get; set; } = DeviceType.Apple;
 
         public ExtractProgressViewModel progressVM { get; set; }
-        public ObservableCollection<SystemLog> LogList { get; set; }
+        public ObservableCollection<SystemLog> LogList { get; set; } = new ObservableCollection<SystemLog>();
 
-        private RyLib.AndroidExtractHelp AExtractHelp = new RyLib.AndroidExtractHelp();
+        private RyLib.AndroidExtractHelp AExtractHelp = null;
 
         /// 提取参数
         private string savePath = "f:\\temp\\Data";
@@ -56,19 +56,7 @@ namespace Forensics.ViewModel
 
         public MainExtractViewModel()
         {
-            this.LogList = new ObservableCollection<SystemLog>();
             this.progressVM = new ExtractProgressViewModel();
-
-            // 安卓提取初始化
-            AExtractHelp.FinishEvent += new RyLib.AndroidExtractHelp.FinishHandle(AndroidExtractOK);
-            AExtractHelp.InfoEvent += new RyLib.AndroidExtractHelp.InfoHandle(ExtractInfo);
-            AExtractHelp.UpdateProgressBarEvent += (i) =>
-            {
-                var ii = 0;
-                //this.Invoke(new DelegateUpdateProgress(SetProgress), i);
-            };
-            AExtractHelp.evidenceDataPath = CommonUtil.Rulename.GetEvRawFolder();
-            AExtractHelp.evidenceXmlPath = CommonUtil.Rulename.GetEvDataFolder();
 
             // 初始化Timer
             mTimer.Tick += new EventHandler(dispatcherTimerProgressTick);
@@ -125,14 +113,62 @@ namespace Forensics.ViewModel
                 Directory.CreateDirectory(savePath);
             }
 
-            tempDataPath = savePath;
+            if (type == DeviceType.Apple || type == DeviceType.Android)
+            {
+                tempDataPath = savePath;
 
-            // 更新进度条
-            this.progressVM.startExtract(type);
+                // 更新进度条
+                this.progressVM.startExtract(type);
 
-            // 开始
-            Thread threadMain = new Thread(new ThreadStart(backupThread));
-            threadMain.Start();
+                if (type == DeviceType.Android)
+                {
+                    // 安卓提取初始化
+                    AExtractHelp = new RyLib.AndroidExtractHelp();
+
+                    AExtractHelp.FinishEvent += new RyLib.AndroidExtractHelp.FinishHandle(AndroidExtractOK);
+                    AExtractHelp.InfoEvent += new RyLib.AndroidExtractHelp.InfoHandle(ExtractInfo);
+                    AExtractHelp.UpdateProgressBarEvent += (i) =>
+                    {
+                        var ii = 0;
+                        //this.Invoke(new DelegateUpdateProgress(SetProgress), i);
+                    };
+                    AExtractHelp.evidenceDataPath = CommonUtil.Rulename.GetEvRawFolder();
+                    AExtractHelp.evidenceXmlPath = CommonUtil.Rulename.GetEvDataFolder();
+                }
+
+                // 开始
+                Thread threadMain = new Thread(new ThreadStart(backupThread));
+                threadMain.Start();
+            }
+            // 测试
+            else
+            {
+                addSystemLog("数据备份中，请勿中途卸载设备...123 ", "开始");
+                addSystemLog("数据备份中，请勿中途卸载设备...2", "开始");
+                addSystemLog("数据备份中，请勿中途卸载设备...lskdfj ls", "开始");
+                addSystemLog("数据备份中，请勿中途卸载设备...f s", "开始");
+                addSystemLog("数据备份中，请勿中途卸载设备...f", "开始");
+                addSystemLog("数据备份中，请勿中途卸载设备...123 ", "开始");
+                addSystemLog("数据备份中，请勿中途卸载设备...2", "开始");
+                addSystemLog("数据备份中，请勿中途卸载设备...lskdfj ls", "开始");
+                addSystemLog("数据备份中，请勿中途卸载设备...f s", "开始");
+                addSystemLog("数据备份中，请勿中途卸载设备...f", "开始");
+                addSystemLog("数据备份中，请勿中途卸载设备...123 ", "开始");
+                addSystemLog("数据备份中，请勿中途卸载设备...2", "开始");
+                addSystemLog("数据备份中，请勿中途卸载设备...lskdfj ls", "开始");
+                addSystemLog("数据备份中，请勿中途卸载设备...f s", "开始");
+                addSystemLog("数据备份中，请勿中途卸载设备...f", "开始");
+                addSystemLog("数据备份中，请勿中途卸载设备...123 ", "开始");
+                addSystemLog("数据备份中，请勿中途卸载设备...2", "开始");
+                addSystemLog("数据备份中，请勿中途卸载设备...lskdfj ls", "开始");
+                addSystemLog("数据备份中，请勿中途卸载设备...f s", "开始");
+                addSystemLog("数据备份中，请勿中途卸载设备...f", "开始");
+                addSystemLog("数据备份中，请勿中途卸载设备...123 ", "开始");
+                addSystemLog("数据备份中，请勿中途卸载设备...2", "开始");
+                addSystemLog("数据备份中，请勿中途卸载设备...lskdfj ls", "开始");
+                addSystemLog("数据备份中，请勿中途卸载设备...f s", "开始");
+                addSystemLog("数据备份中，请勿中途卸载设备...f", "开始");
+            }
         }
 
         /// <summary>
@@ -144,7 +180,7 @@ namespace Forensics.ViewModel
         {
             App.Current.Dispatcher.Invoke(new Action(() =>
             {
-                this.LogList.Add(new SystemLog() { Date = DateTime.Now, Item = item, Result = result });
+                this.LogList.Add(new SystemLog() { Item = item, Result = result });
             }));
         }
 
