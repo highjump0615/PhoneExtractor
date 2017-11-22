@@ -14,8 +14,6 @@
                 <ResourceDictionary.MergedDictionaries>
                     <ResourceDictionary Source="/Resources\SettingListView.xaml" />
                 </ResourceDictionary.MergedDictionaries>
-
-                <local:ItemsForEnvironment x:Key="MyData"/>
             </ResourceDictionary>
 
         </DockPanel.Resources>
@@ -30,7 +28,7 @@
             </Border>
         </Border>
 
-        <ListView ItemsSource="{StaticResource MyData}">
+        <ListView ItemsSource="{Binding listEnvItem}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="FontSize" Value="13" />
@@ -39,7 +37,7 @@
             </ListView.ItemContainerStyle>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="名称" DisplayMemberBinding="{Binding Path=Name}" />
+                    <GridViewColumn Header="名称" DisplayMemberBinding="{Binding Path=Name}" Width="500" />
                     <GridViewColumn Header="状态" DisplayMemberBinding="{Binding Path=StatusDescription}"/>
                 </GridView>
             </ListView.View>

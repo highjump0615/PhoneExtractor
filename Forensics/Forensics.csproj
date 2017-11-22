@@ -235,7 +235,6 @@
     </Compile>
     <Compile Include="Model\DataManagement\Case2.cs" />
     <Compile Include="Model\Setting\EnvironmentItem.cs" />
-    <Compile Include="Model\Setting\ItemsForEnvironment.cs" />
     <Compile Include="View\Dialog\DialogAddEvidence.xaml.cs">
       <DependentUpon>DialogAddEvidence.xaml</DependentUpon>
     </Compile>

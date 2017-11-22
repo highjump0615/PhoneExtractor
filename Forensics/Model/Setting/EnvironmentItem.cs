@@ -12,14 +12,14 @@ namespace Forensics.Model.Setting
         {
             INSTALLING,
             INSTALLED,
+            NOTINSTALLED
         };
 
-        private StatusEnum Status;
+        public StatusEnum Status { get; set; } = StatusEnum.NOTINSTALLED;
 
-        public EnvironmentItem(string name, StatusEnum status)
+        public EnvironmentItem(string name)
         {
             Name = name;
-            Status = status;
         }
 
         public String Name { get; set; }
@@ -31,9 +31,13 @@ namespace Forensics.Model.Setting
                 {
                     return "已安装";
                 }
-                else
+                else if (Status == StatusEnum.INSTALLING)
                 {
                     return "正在安装";
+                }
+                else
+                {
+                    return "未安装";
                 }
             }
 
