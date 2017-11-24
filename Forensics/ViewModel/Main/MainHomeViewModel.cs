@@ -10,8 +10,10 @@ namespace Forensics.ViewModel
 {
     public class MainHomeViewModel : HostViewModel
     {
-        public enum ExtractType {
+        public enum DeviceType {
             Apple,
+            Android,
+            Other
         }
 
         /// <summary>
@@ -27,12 +29,13 @@ namespace Forensics.ViewModel
         public MainHomeViewModel()
         {
             this.RegisterChild<HomeHomeViewModel>(() => new HomeHomeViewModel());
-            this.RegisterChild<MainExtractViewModel>(() => new MainExtractViewModel());
+            //this.RegisterChild<MainExtractViewModel>(() => new MainExtractViewModel());
 
             this.SelectedChild = GetChild(typeof(HomeHomeViewModel));
 
             // 未连接
             this.PhoneArea = new PhoneReadyViewModel();
+            showDeviceInfo();
         }
 
         /// <summary>
@@ -40,14 +43,29 @@ namespace Forensics.ViewModel
         /// </summary>
         public void showDeviceInfo()
         {
+            // 获取主页面
             MainViewModel mainVM = Globals.Instance.MainVM;
+            if (mainVM == null)
+            {
+                return; 
+            }
+
             if (mainVM.CurrentDevice == null)
             {
                 this.PhoneArea = new PhoneReadyViewModel();
             }
             else
             {
-                this.PhoneArea = new PhoneInfoAppleViewModel(mainVM.CurrentDevice.DeviceProperty);
+                if (String.IsNullOrEmpty(mainVM.CurrentDevice.DeviceProperty.Brand))
+                {
+                    // 苹果设备
+                    this.PhoneArea = new PhoneInfoAppleViewModel(mainVM.CurrentDevice.DeviceProperty);
+                }
+                else
+                {
+                    // 安卓设备
+                    this.PhoneArea = new PhoneInfoAndroidViewModel(mainVM.CurrentDevice.DeviceProperty);
+                }
             }
 
             PropertyChanging("PhoneArea");
@@ -56,10 +74,10 @@ namespace Forensics.ViewModel
         /// <summary>
         /// 打开提取页面
         /// </summary>
-        public void showExtractPage(ExtractType type, string saveExtractPath = null)
+        public void showExtractPage(DeviceType type, string saveExtractPath = null)
         {
             // 打开提取页面
-            this.SelectedChild = GetChild(typeof(MainExtractViewModel));
+            this.SelectedChild = new MainExtractViewModel();
 
             MainExtractViewModel vm = (MainExtractViewModel)SelectedChild;
             vm.startExtract(type, saveExtractPath);

@@ -30,6 +30,10 @@ namespace Forensics.Util
 
         public static RuleName Rulename = new RuleName();  //20160323 add for name logic function su
 
+        public static Boolean GB_flag_auto;    //flag the auto quice process add 201508
+
+        public static List<System.Threading.Thread> GT_arr = new List<System.Threading.Thread>();        //201512 add for the refresh thread dtetce over or not
+
         #region Upcasting
         public static TDerived ToDerived<TBase, TDerived>(TBase tBase) where TDerived : TBase, new()
         {

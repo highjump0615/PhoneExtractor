@@ -120,6 +120,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\Manzana.dll</HintPath>
     </Reference>
+    <Reference Include="RyLib">
+      <HintPath>Lib\RyLib.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -134,6 +137,7 @@
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.105.2\lib\net451\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Serialization.Plists">
       <HintPath>Lib\System.Runtime.Serialization.Plists.dll</HintPath>
     </Reference>
@@ -164,14 +168,20 @@
     </ApplicationDefinition>
     <Compile Include="Command\DelegateCommand.cs" />
     <Compile Include="Converter\EnumToBoolConverter.cs" />
+    <Compile Include="Converter\GreaterThanZeroConverter.cs" />
     <Compile Include="Globals.cs" />
+    <Compile Include="Model\Device\BrandInfo.cs" />
     <Compile Include="Model\Device\DeviceInfo.cs" />
     <Compile Include="Model\Device\DeviceProperty.cs" />
     <Compile Include="Model\Device\IPhone.cs" />
     <Compile Include="Model\Device\iPhoneApps.cs" />
+    <Compile Include="Model\Device\PhoneInfo.cs" />
+    <Compile Include="Model\Extract\Act.cs" />
+    <Compile Include="Model\Extract\ActExtractType.cs" />
     <Compile Include="Model\Extract\SystemLog.cs" />
     <Compile Include="SQLiteViewer\SQLiteHelper.cs" />
     <Compile Include="Util\CommonUtil.cs" />
+    <Compile Include="Util\DatabaseUtil.cs" />
     <Compile Include="Util\PropertyList-1_0.cs" />
     <Compile Include="Util\RuleName.cs" />
     <Compile Include="Util\xdict.cs" />
@@ -182,7 +192,12 @@
     <Compile Include="ViewModel\Apple\AppleSyncViewModel.cs" />
     <Compile Include="ViewModel\Apple\StepViewModel.cs" />
     <Compile Include="ViewModel\Base\BaseStepViewModel.cs" />
+    <Compile Include="ViewModel\Data\DataEvidenceViewModel.cs" />
     <Compile Include="ViewModel\Dialog\DialogEvidenceViewModel.cs" />
+    <Compile Include="ViewModel\Dialog\DialogExtractTypeViewModel.cs" />
+    <Compile Include="ViewModel\Dialog\DialogManualViewModel.cs" />
+    <Compile Include="ViewModel\Dialog\ExtractTypePrimaryViewModel.cs" />
+    <Compile Include="ViewModel\Dialog\ExtractTypeSecondaryViewModel.cs" />
     <Compile Include="ViewModel\Home\HomeHomeViewModel.cs" />
     <Compile Include="ViewModel\Android\MainExtractViewModel.cs" />
     <Compile Include="ViewModel\Main\PhoneInfoViewModel.cs" />
@@ -212,14 +227,19 @@
     <Compile Include="View\Data\DataCaseDetail.xaml.cs">
       <DependentUpon>DataCaseDetail.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Data\DataEvidence.xaml.cs">
+      <DependentUpon>DataEvidence.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Data\DataManagement.xaml.cs">
       <DependentUpon>DataManagement.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\DataManagement\Case2.cs" />
     <Compile Include="Model\Setting\EnvironmentItem.cs" />
-    <Compile Include="Model\Setting\ItemsForEnvironment.cs" />
     <Compile Include="View\Dialog\DialogAddEvidence.xaml.cs">
       <DependentUpon>DialogAddEvidence.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialog\DialogConnectFail.xaml.cs">
+      <DependentUpon>DialogConnectFail.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Dialog\DialogConnectWaiting.xaml.cs">
       <DependentUpon>DialogConnectWaiting.xaml</DependentUpon>
@@ -230,8 +250,20 @@
     <Compile Include="View\Dialog\DialogConnectTitlebar.xaml.cs">
       <DependentUpon>DialogConnectTitlebar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Dialog\DialogSelectExtractType.xaml.cs">
+      <DependentUpon>DialogSelectExtractType.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Dialog\DialogSelectFile.xaml.cs">
       <DependentUpon>DialogSelectFile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialog\DialogSelectModel.xaml.cs">
+      <DependentUpon>DialogSelectModel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialog\ExtractTypePrimary.xaml.cs">
+      <DependentUpon>ExtractTypePrimary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialog\ExtractTypeSecondary.xaml.cs">
+      <DependentUpon>ExtractTypeSecondary.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Home\HomeHome.xaml.cs">
       <DependentUpon>HomeHome.xaml</DependentUpon>
@@ -315,11 +347,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Data\DataEvidence.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Data\DataManagement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Dialog\DialogAddEvidence.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialog\DialogConnectFail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -335,7 +375,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Dialog\DialogSelectExtractType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Dialog\DialogSelectFile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialog\DialogSelectModel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialog\ExtractTypePrimary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialog\ExtractTypeSecondary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -592,9 +648,29 @@
   <ItemGroup>
     <Resource Include="Resources\Images\dialog\dlg_con_success.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Images\dialog\dlg_con_fail.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\dialog\dlg_connecting.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\brand\Huawei.png" />
+    <Resource Include="Resources\Images\brand\Meizu.png" />
+    <Resource Include="Resources\Images\brand\OPPO.png" />
+    <Resource Include="Resources\Images\brand\Samsung.png" />
+    <Resource Include="Resources\Images\brand\VIVO.png" />
+    <Resource Include="Resources\Images\brand\Xiaomi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\dialog\dlg_out_mark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\dialog\dlg_exttype_bg.png" />
+    <Resource Include="Resources\Images\dialog\dlg_exttype_selected_bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\dialog\ext_type_selected.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets')" />

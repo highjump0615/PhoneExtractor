@@ -11,7 +11,7 @@
         Title="MainWindow" 
         Height="{StaticResource HeightWindow}" Width="{StaticResource WidthWindow}"
         BorderBrush="Black" 
-        MinWidth="{StaticResource WidthWindow}" MinHeight="{StaticResource HeightWindow}" MouseDown="onMouseDown" >
+        MinWidth="{StaticResource WidthWindow}" MinHeight="{StaticResource HeightWindow}" PreviewMouseUp="onMouseDown" >
 
     <Window.Resources>
         
@@ -354,7 +354,8 @@
 
                 <!-- Button 快速检测 -->
                 <Button Width="86" Height="83" HorizontalAlignment="Left" Margin="173,0,0,0" Style="{StaticResource OneclickButStyle}"
-                        BorderBrush="{x:Null}">
+                        BorderBrush="{x:Null}"
+                        Command="{Binding QuickCheckCommand}">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Image Source="/Resources/Images/bottom_oneclick_icon.png" Width="14" Height="13" />
                         <TextBlock Margin="2,0,0,0" FontSize="13" >快速检测</TextBlock>
@@ -436,10 +437,11 @@
                                 <ImageBrush ImageSource="/Resources/Images/bottom_submenu_bg_middle.png" Stretch="UniformToFill" />
                             </StackPanel.Background>
 
-                            <Button Style="{StaticResource BottomSubmenuButStyle}" Margin="0,0,0,5" Click="onButAndroidConnectAuto">
+                            <Button Style="{StaticResource BottomSubmenuButStyle}" Margin="0,0,0,5" 
+                                    Command="{Binding AndroidAutoConnectCommand}">
                                 <TextBlock>自动连接</TextBlock>
                             </Button>
-                            <Button Style="{StaticResource BottomSubmenuButStyle}" Margin="0,0,0,5">
+                            <Button Style="{StaticResource BottomSubmenuButStyle}" Margin="0,0,0,5" Click="onAndroidManual">
                                 <TextBlock>手动连接</TextBlock>
                             </Button>
                             <Button Style="{StaticResource BottomSubmenuButStyle}" Margin="0,0,0,40">

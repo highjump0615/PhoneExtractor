@@ -80,6 +80,16 @@ namespace Forensics.BLL
         {
             return es.GetAllEvidenceByCaseId(caseId);
         }
+
+        /// <summary>
+        /// 获取所有物证
+        /// </summary>
+        /// <returns></returns>
+        public List<Evidence> GetAllEvidences()
+        {
+            return es.GetAllEvidences();
+        }
+
         /// <summary>
         /// 根据ID 获取物证
         /// </summary>

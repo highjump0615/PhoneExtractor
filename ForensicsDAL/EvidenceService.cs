@@ -67,6 +67,22 @@ namespace Forensics.DAL
             return getList(dt);
         }
 
+        /// <summary>
+        /// 获取所有物证信息
+        /// </summary>
+        /// <returns></returns>
+        public List<Evidence> GetAllEvidences()
+        {
+            DBHelper._conString = _conString;
+            String sql = @"select   EVIDENCE_GUID,EVIDENCE_NUMBER,EVIDENCE_SENDER,EVIDENCE_SENDERUNIT,ADDTIME,EVIDENCE_REMARK,CASE_GUID,QUZHENG_DATE,EVIDENCE_JYR,EVIDENCE_NAME,
+                           OWNER_NAME,OWNER_SEX,OWNER_ID,OWNER_PHONENUMBER,COLLECTIONUNIT_CODE,COLLECTIONUNIT_NAME,COLLECTIONUNIT_PHONENUMBER,COLLECTIONPEOPLE_NAME,COLLECTIONPEOPLE_ID
+                           from  TBL_EVIDENCE
+                        order by rowid desc";
+
+            DataTable dt = DBHelper.GetDataTable(sql);
+            return getList(dt);
+        }
+
         private List<Evidence> getList(DataTable dt)
         {
             List<Evidence> list = null;

@@ -1,0 +1,334 @@
+﻿<Window x:Class="Forensics.View.Dialog.DialogSelectModel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Forensics.View.Dialog"
+        xmlns:fa="clr-namespace:FontAwesome.WPF;assembly=FontAwesome.WPF"
+        xmlns:converter="clr-namespace:Forensics.Converter"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        ShowInTaskbar="False"
+        WindowChrome.WindowChrome="{StaticResource SubWindowChromeKey}"
+        Height="459" Width="{StaticResource WidthSyncWindow}"
+        MinHeight="459" MinWidth="{StaticResource WidthSyncWindow}"
+        MaxHeight="459" MaxWidth="{StaticResource WidthSyncWindow}"
+        WindowStartupLocation="CenterOwner">
+
+    <Window.Background>
+        <SolidColorBrush Color="{StaticResource ThemeColor}" />
+    </Window.Background>
+
+    <Window.Resources>
+        <converter:GreaterThanZeroConverter x:Key="GreaterThan0" />
+        
+        <Style x:Key="BorderStyle" TargetType="Border">
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="#0c6ad2" />
+            <Setter Property="Background" Value="#4a96ea" />
+            <Setter Property="Padding" Value="10" />
+        </Style>
+
+        <Style x:Key="placeHolder" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <TextBox Text="{Binding Path=Text,
+                                                RelativeSource={RelativeSource TemplatedParent}, 
+                                                Mode=TwoWay,
+                                                UpdateSourceTrigger=PropertyChanged}"
+                                     x:Name="textSource" 
+                                     BorderThickness="0"
+                                     Background="{x:Null}" 
+                                     VerticalContentAlignment="Center"
+                                     Panel.ZIndex="2" />
+                            <TextBox Text="{TemplateBinding Tag}" 
+                                     Background="{TemplateBinding Background}" BorderThickness="0"
+                                     VerticalContentAlignment="Center"
+                                     Panel.ZIndex="1">
+                                <TextBox.Style>
+                                    <Style TargetType="{x:Type TextBox}">
+                                        <Setter Property="Foreground" Value="Transparent"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=Text, Source={x:Reference textSource}}" Value="">
+                                                <Setter Property="Foreground" Value="Gray"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="LabelStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="13" />
+        </Style>
+
+        <Style TargetType="ListBox">
+            <Setter Property="Background" Value="{x:Null}" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+
+        <!-- 品牌样式 -->
+        <Thickness x:Key="BrandMargin" Left="0" Right="4" Top="3" Bottom="0" />
+
+        <Style x:Key="MainButtonStyle" BasedOn="{StaticResource SyncMainButton}" TargetType="Button">
+            <Setter Property="IsEnabled" Value="False" />
+
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=lbPhones, Path=SelectedIndex, Converter={StaticResource GreaterThan0}}" Value="True">
+                    <Setter Property="IsEnabled" Value="True" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+
+    </Window.Resources>
+
+    <DockPanel>
+        <local:DialogConnectTitlebar DockPanel.Dock="Top" 
+                                     Title="选择您要连接的设备" />
+
+        <!-- Bottom bar -->
+        <Border VerticalAlignment="Bottom" 
+                Height="{StaticResource HeightDialogBottomBar}" 
+                DockPanel.Dock="Bottom" 
+                BorderThickness="0 1 0 0">
+            <Border.Background>
+                <SolidColorBrush Color="{StaticResource DialogBottomColor}" />
+            </Border.Background>
+            <Border.BorderBrush>
+                <SolidColorBrush Color="{StaticResource SyncWindowBorderColor}" />
+            </Border.BorderBrush>
+
+            <Button HorizontalAlignment="Right" Margin="0 0 40 0" Style="{StaticResource MainButtonStyle}"
+                    Command="{Binding StartConnectCommand}" Click="onButConnect">
+                开始连接
+            </Button>
+        </Border>
+
+        <!-- content -->
+        <Grid Margin="12 10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="146" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <Border Grid.Row="0" Style="{StaticResource BorderStyle}">
+                <StackPanel>
+                    <!-- 搜索框 -->
+                    <Border Width="321" Height="28" 
+                            Background="#f3f6f9" BorderBrush="#4686cd" CornerRadius="7" BorderThickness="1"
+                            Padding="10 0">
+                        <DockPanel >
+                            <fa:FontAwesome DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center"
+                                            Icon="Search" 
+                                            FontSize="15" 
+                                            Foreground="#838384"  />
+                            <TextBox Style="{StaticResource placeHolder}" 
+                                     BorderThickness="0" Background="{x:Null}"
+                                     FontSize="13"
+                                     Tag="搜索品牌或机型"
+                                     Text="{Binding TextSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        </DockPanel>
+                    </Border>
+                    
+                    <!-- 品牌列表 -->
+                    <TextBlock Style="{StaticResource LabelStyle}" Margin="0 7">
+                        选择品牌：
+                    </TextBlock>
+
+                    <ListBox Name="lbBrands" ItemsSource="{Binding listBrand}" 
+                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                             SelectedIndex="{Binding SelectedIndexBrand}">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="Width" Value="71" />
+                                <Setter Property="Height" Value="23" />
+
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                            <Grid>
+                                                <Border BorderBrush="#347dce" BorderThickness="1" Background="White" Margin="{StaticResource BrandMargin}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                </Border>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                                    <Grid>
+                                                        <Border BorderBrush="#347dce" BorderThickness="1" Background="White" Margin="{StaticResource BrandMargin}">
+                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                        </Border>
+                                                        <Border Background="#157ef3" Margin="{StaticResource BrandMargin}" Opacity="0.5" />
+                                                        <!-- Tick Mark -->
+                                                        <Border Background="#0a4cc5" 
+                                                                BorderThickness="0"
+                                                                CornerRadius="5"
+                                                                Width="10" Height="10"
+                                                                HorizontalAlignment="Right" VerticalAlignment="Top" 
+                                                                Margin="0 0 3 0" Padding="2">
+                                                            <fa:ImageAwesome 
+                                                                Icon="Check" 
+                                                                Foreground="White"  />
+                                                        </Border>
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding ImagePath}" Stretch="None" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </Border>
+
+            <!-- 设备列表 -->
+            <Border Grid.Row="1" Style="{StaticResource BorderStyle}" Margin="0 10 0 0" 
+                    Padding="12 5">
+                <DockPanel>
+                    <Grid DockPanel.Dock="Left" Width="80" HorizontalAlignment="Left">
+                        <TextBlock Style="{StaticResource LabelStyle}" 
+                                   Margin="0 10" 
+                                   HorizontalAlignment="Left" VerticalAlignment="Top">
+                            选择机型：
+                        </TextBlock>
+                        <Button Style="{StaticResource NavButStyle}" 
+                                HorizontalAlignment="Right"
+                                Width="28" Height="42"
+                                Margin="15" Click="onButPhoneScrollBack">
+                            <Image Source="/Forensics;component/Resources/Images/extract/ext_nav_left.png"  />
+                        </Button>
+                    </Grid>
+
+                    <Button Style="{StaticResource NavButStyle}" 
+                            HorizontalAlignment="Right"
+                            DockPanel.Dock="Right"
+                            Width="28" Height="42"
+                            Margin="15" Click="onButPhoneScrollForward">
+                        <Image Source="/Forensics;component/Resources/Images/extract/ext_nav_right.png"  />
+                    </Button>
+
+                    <ListBox Name="lbPhones" ItemsSource="{Binding listPhone}" 
+                             ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                             SelectedIndex="{Binding SelectedIndexPhone}">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="Width" Value="111" />
+
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                            <Grid>
+                                                <Border BorderThickness="0" Background="#8ec4ff"
+                                        Margin="4 0">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                </Border>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                                    <Grid>
+                                                        <Border BorderThickness="0" Background="#c9e3ff" Margin="4 0">
+                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                        </Border>
+                                                        <!-- Tick Mark -->
+                                                        <Border Background="#a3a3a3" 
+                                                BorderThickness="0"
+                                                CornerRadius="12"
+                                                Width="24" Height="24"
+                                                HorizontalAlignment="Right" VerticalAlignment="Bottom" 
+                                                Margin="0 0 6 2" Padding="6">
+                                                            <fa:ImageAwesome 
+                                                Icon="Check" 
+                                                Foreground="#c9e3ff" />
+                                                        </Border>
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                                    <Grid>
+                                                        <Border BorderThickness="0" Background="#c9e3ff" Margin="4 0">
+                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                        </Border>
+                                                        <!-- Tick Mark -->
+                                                        <Border BorderThickness="0"
+                                                CornerRadius="12"
+                                                Width="24" Height="24"
+                                                HorizontalAlignment="Right" VerticalAlignment="Bottom" 
+                                                Margin="0 0 6 2" Padding="6">
+                                                            <Border.Background>
+                                                                <SolidColorBrush Color="{StaticResource ThemeColor}" />
+                                                            </Border.Background>
+                                                            <fa:ImageAwesome 
+                                                Icon="Check" 
+                                                Foreground="#c9e3ff" />
+                                                        </Border>
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <Image Height="120" Margin="0 8"
+                                            Source="{Binding ImagePath}" Stretch="UniformToFill" 
+                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    <TextBlock FontSize="13" Text="{Binding ModelName}" TextAlignment="Center" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                </DockPanel>
+            </Border>
+        </Grid>
+
+    </DockPanel>
+</Window>

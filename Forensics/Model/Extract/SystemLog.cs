@@ -9,12 +9,12 @@ namespace Forensics.Model.Extract
     class SystemLog
     {
         // 时间
-        public DateTime Date { get; set; }
+        private DateTime Date { get; set; }
         public String DateDesc
         {
             get
             {
-                return Date.ToString("yyyy-MM-dd HH:mm:ss");
+                return this.Date.ToString("yyyy-MM-dd HH:mm:ss");
             }
         }
 

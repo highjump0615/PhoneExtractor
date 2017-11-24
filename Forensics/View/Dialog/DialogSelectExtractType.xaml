@@ -1,0 +1,70 @@
+﻿<Window x:Class="Forensics.View.Dialog.DialogSelectExtractType"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Forensics.View.Dialog"
+        xmlns:ViewModel="clr-namespace:Forensics.ViewModel"
+        mc:Ignorable="d"
+        Title="DialogSelectExtractType"
+        WindowStyle="None"
+        ShowInTaskbar="False"
+        WindowChrome.WindowChrome="{StaticResource SubWindowChromeKey}"
+        Height="{StaticResource HeightSyncWindow}" Width="{StaticResource WidthSyncWindow}"
+        MinHeight="{StaticResource HeightSyncWindow}" MinWidth="{StaticResource WidthSyncWindow}"
+        MaxHeight="{StaticResource HeightSyncWindow}" MaxWidth="{StaticResource WidthSyncWindow}"
+        WindowStartupLocation="CenterOwner">
+
+    <Window.Background>
+        <SolidColorBrush Color="{StaticResource ThemeColor}" />
+    </Window.Background>
+
+    <Window.Resources>
+        <Style x:Key="LeftTextStyle" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="18" />
+        </Style>
+
+        <Style x:Key="AdvancedBorderStyle" TargetType="Border">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding SelectedChild.PageIndex}" Value="{x:Static ViewModel:Pages.ExtractTypeSecondary}">
+                    <Setter Property="Visibility" Value="Hidden" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <DockPanel>
+        <local:DialogConnectTitlebar DockPanel.Dock="Top"
+                                     Title="选择提取手段" />
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="110" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" Background="#2989f4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{StaticResource HeightExtractTypeFirst}" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                    
+                <Border Grid.Row="0" Padding="{StaticResource SelectExtractTypeMargin}">
+                    <TextBlock Style="{StaticResource LeftTextStyle}">一般提取</TextBlock>
+                </Border>
+                <Border Grid.Row="1" Padding="{StaticResource SelectExtractTypeMargin}"
+                        Style="{StaticResource AdvancedBorderStyle}"
+                        BorderThickness="0 1 0 0"
+                        BorderBrush="#0c6ad2">
+                    <TextBlock Style="{StaticResource LeftTextStyle}">高级提取</TextBlock>
+                </Border>
+            </Grid>
+
+            <ContentControl Grid.Column="1"
+                            Content="{Binding SelectedChild}"/>
+        </Grid>
+    </DockPanel>
+
+</Window>

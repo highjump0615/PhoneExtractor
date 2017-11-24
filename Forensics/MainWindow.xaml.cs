@@ -17,6 +17,7 @@ using Forensics.View.Apple;
 using static Forensics.ViewModel.AppleSyncViewModel;
 using Forensics.View;
 using Forensics.View.Dialog;
+using System.Threading;
 
 namespace Forensics
 {
@@ -106,7 +107,7 @@ namespace Forensics
                 if (mainVM.CurrentDevice != null)
                 {
                     // 打开提取页面
-                    mainVM.GoToExtractPage(MainHomeViewModel.ExtractType.Apple, this.ExtractPath);
+                    mainVM.GoToExtractPage(MainHomeViewModel.DeviceType.Apple, this.ExtractPath);
                 }
                 else
                 {
@@ -131,7 +132,7 @@ namespace Forensics
         /// <summary>
         /// 打开连接成功对话框
         /// </summary>
-        public void openConnectSuccess()
+        public void openConnectSuccess(MainHomeViewModel.DeviceType devType)
         {
             hideMenus();
 
@@ -139,10 +140,57 @@ namespace Forensics
             wSuccess.Owner = this;
             wSuccess.ShowDialog();
 
-            if (wSuccess.DialogResult == true)
+            MainViewModel mainVM = (MainViewModel)this.DataContext;
+            if (wSuccess.DialogResult == false)
             {
-                this.ExtractPath = wSuccess.FileControl.TextPath.Text;
-                ((MainViewModel)this.DataContext).GoToExtractPage(MainHomeViewModel.ExtractType.Apple, this.ExtractPath);
+                return;
+            }
+
+            this.ExtractPath = wSuccess.FileControl.TextPath.Text;
+
+            // 苹果设备直接进入提取页面
+            if (devType == MainHomeViewModel.DeviceType.Apple)
+            {
+                ((MainViewModel)this.DataContext).GoToExtractPage(devType, this.ExtractPath);
+            }
+            // 安卓设备要进入选择提取方式的界面
+            else if (devType == MainHomeViewModel.DeviceType.Android)
+            {
+                var wExtractType = new DialogSelectExtractType();
+                wExtractType.Owner = this;
+                wExtractType.ShowDialog();
+
+                if (wExtractType.DialogResult == false)
+                {
+                    return;
+                }
+
+                if (mainVM.CurrentDevice != null)
+                {
+                    // 打开提取页面
+                    mainVM.GoToExtractPage(MainHomeViewModel.DeviceType.Android, this.ExtractPath);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 打开连接失败
+        /// </summary>
+        public void openConnectFail()
+        {
+            hideMenus();
+
+            var wFail = new DialogConnectFail();
+            wFail.Owner = this;
+            wFail.ShowDialog();
+
+            if (wFail.DialogResult == true)
+            {
+                hideMenus();
+
+                var windowAndroid = new AndroidConnectAuto();
+                windowAndroid.Owner = this;
+                windowAndroid.ShowDialog();
             }
         }
 
@@ -165,32 +213,27 @@ namespace Forensics
         /// <param name="e"></param>
         private void onButAppleBypass(object sender, RoutedEventArgs e)
         {
-            //hideMenus();
-
-            //var windowAppleBypass = new AppleSync(AppleSyncType.APPLEBYPASS);
-            //windowAppleBypass.Owner = this;
-            //windowAppleBypass.ShowDialog();
-
-            //CommonUtil.CurrentPD.IMEI_string = imei;
-            //CommonUtil.CurrentPD.Phone_os = "iOS " + labelVersion.Text;
-            //CommonUtil.CurrentPD.Phone_model = productType;
-            //CommonUtil.CurrentPD.Phone_brand = "Apple";
-            //CommonUtil.CurrentPD.Case_ai_file = applexmlPath;
-            openAddEvidence("f:\\temp\\Data");
         }
 
         /// <summary>
-        /// 安卓自动连接
+        /// 安卓手动连接
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void onButAndroidConnectAuto(object sender, RoutedEventArgs e)
-        {
+        private void onAndroidManual(object sender, RoutedEventArgs e)
+        {           
             hideMenus();
 
-            var windowAndroid = new AndroidConnectAuto();
-            windowAndroid.Owner = this;
-            windowAndroid.ShowDialog();
+            var wDialog = new DialogSelectModel();
+            wDialog.Owner = this;
+            wDialog.ShowDialog();
+
+            if (wDialog.DialogResult == true)
+            {
+                var wExtract = new DialogSelectExtractType();
+                wExtract.Owner = this;
+                wExtract.ShowDialog();
+            }
         }
 
         /// <summary>

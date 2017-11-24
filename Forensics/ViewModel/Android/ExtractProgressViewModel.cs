@@ -57,9 +57,9 @@ namespace Forensics.ViewModel.Android
             this.Percent = 0;
         }
 
-        public void startExtract(ExtractType type)
+        public void startExtract(DeviceType type)
         {
-            if (type == ExtractType.Apple)
+            if (type == DeviceType.Apple)
             {
                 Desc = "提取苹果设备";
             }

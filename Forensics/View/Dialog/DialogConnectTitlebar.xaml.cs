@@ -20,9 +20,26 @@ namespace Forensics.View.Dialog
     /// </summary>
     public partial class DialogConnectTitlebar : UserControl
     {
+        public string Title
+        {
+            get { return (string)GetValue(TitleProperty); }
+            set { SetValue(TitleProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Title.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TitleProperty =
+            DependencyProperty.Register(
+                "Title", 
+                typeof(string), 
+                typeof(DialogConnectTitlebar), 
+                null
+            );
+
         public DialogConnectTitlebar()
         {
             InitializeComponent();
+
+            this.Title = "连接设备";
         }
     }
 }

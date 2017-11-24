@@ -1,0 +1,100 @@
+﻿<UserControl x:Class="Forensics.View.Data.DataEvidence"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Forensics.Model;assembly=ForensicsModel"
+             mc:Ignorable="d" 
+             d:DesignWidth="{StaticResource WidthSettingContent}" d:DesignHeight="{StaticResource HeightContent}">
+    
+    <UserControl.Resources>
+
+        <ResourceDictionary>
+
+            <Style TargetType="HeaderedItemsControl">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="HeaderedItemsControl">
+                            <StackPanel>
+                                <Border Style="{StaticResource listHeaderStyle}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="16*" />
+                                            <ColumnDefinition Width="13*" />
+                                            <ColumnDefinition Width="13*" />
+                                            <ColumnDefinition Width="8*" />
+                                            <ColumnDefinition Width="8*" />
+                                            <ColumnDefinition Width="120" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0" Style="{StaticResource listHeaderTextStyle}">物证编号</TextBlock>
+                                        <TextBlock Grid.Column="1" Style="{StaticResource listHeaderTextStyle}">手机号</TextBlock>
+                                        <TextBlock Grid.Column="2" Style="{StaticResource listHeaderTextStyle}">涉案人姓名</TextBlock>
+                                        <TextBlock Grid.Column="3" Style="{StaticResource listHeaderTextStyle}">性别</TextBlock>
+                                        <TextBlock Grid.Column="4" Style="{StaticResource listHeaderTextStyle}">民族</TextBlock>
+                                        <TextBlock Grid.Column="5" Style="{StaticResource listHeaderTextStyle}" HorizontalAlignment="Right">操作</TextBlock>
+                                    </Grid>
+                                </Border>
+                                <Grid>
+                                    <ItemsPresenter />
+                                </Grid>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <DataTemplate DataType="{x:Type local:Evidence}">
+                <StackPanel>
+                    <Grid Height="40">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="16*" />
+                            <ColumnDefinition Width="13*" />
+                            <ColumnDefinition Width="13*" />
+                            <ColumnDefinition Width="8*" />
+                            <ColumnDefinition Width="8*" />
+                            <ColumnDefinition Width="120" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Style="{StaticResource listContentTextStyle}" Text="{Binding EVIDENCE_NUMBER}" />
+                        <TextBlock Grid.Column="1" Style="{StaticResource listContentTextStyle}" Text="{Binding OWNER_PHONENUMBER}" />
+                        <TextBlock Grid.Column="2" Style="{StaticResource listContentTextStyle}" Text="{Binding OWNER_NAME}" />
+                        <TextBlock Grid.Column="3" Style="{StaticResource listContentTextStyle}" Text="{Binding OWNER_SEX}" />
+                        <TextBlock Grid.Column="4" Style="{StaticResource listContentTextStyle}" />
+                        <Button Grid.Column="5" 
+                                Style="{StaticResource transparentButton}" 
+                                Width="94" 
+                                HorizontalAlignment="Right">
+                            解析并查看
+                        </Button>
+
+                        <!-- Border -->
+                        <Rectangle Style="{StaticResource listDashBorder}" Grid.ColumnSpan="6" />
+                    </Grid>
+                </StackPanel>
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid Margin="{StaticResource SettingContentMarginValue}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="72" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- header -->
+        <Border Grid.Row="0" Style="{StaticResource SettingHeaderStyle}">
+            <Border Style="{StaticResource SettingHeaderInnerStyle}">
+            </Border>
+        </Border>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <!-- ListView -->
+            <HeaderedItemsControl ItemsSource="{Binding ListEvidence, Mode=Default}" />
+        </ScrollViewer>
+
+    </Grid>
+    
+</UserControl>

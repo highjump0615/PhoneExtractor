@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="Forensics.View.Dialog.ExtractTypeSecondary"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Forensics.View.Dialog"
+             mc:Ignorable="d" 
+             d:DesignHeight="418" d:DesignWidth="655">
+
+    <UserControl.Resources>
+        <Style x:Key="itemButtonTextStyle" TargetType="CheckBox">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Margin" Value="0 10 0 0" />
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid Margin="10 20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="108" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <Border Grid.Column="0" Style="{StaticResource ExtractTypeItemBorderImageStyle}" 
+                VerticalAlignment="Top">
+            <Image Source="{Binding ActSelected.ImagePath}" Stretch="None" />
+        </Border>
+
+        <StackPanel Grid.Column="1" 
+                    VerticalAlignment="Top"
+                    Margin="5 0">
+            <Border Background="#0a69d3"
+                    BorderThickness="1" BorderBrush="#0057b8" CornerRadius="5">
+                <ItemsControl ItemsSource="{Binding ActSelected.listExtractType}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Margin="30 10 30 20" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox Style="{StaticResource itemButtonTextStyle}" 
+                                      VerticalContentAlignment="Center" 
+                                      IsChecked="{Binding IsSelected}">
+                                <TextBlock Text="{Binding Desc}" />
+                            </CheckBox>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Border>
+
+            <Button Height="30" Margin="0 30" 
+                    HorizontalAlignment="Right"
+                    Style="{StaticResource ExtractButtonStyle}"
+                    Command="{Binding GoBackCommand}">
+                <TextBlock Padding="17 0">确定并返回</TextBlock>
+            </Button>
+        </StackPanel>
+    </Grid>
+    
+</UserControl>
