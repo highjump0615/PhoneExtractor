@@ -136,7 +136,7 @@ namespace Forensics
         {
             hideMenus();
 
-            var wSuccess = new DialogConnectSuccess();
+            var wSuccess = new DialogConnectSuccess(devType);
             wSuccess.Owner = this;
             wSuccess.ShowDialog();
 
