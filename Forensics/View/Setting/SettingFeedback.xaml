@@ -31,6 +31,12 @@
                             </Border.BorderBrush>
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Button.IsPressed" Value="True">
+                                <Setter Property="Opacity" Value="0.5" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -68,7 +74,8 @@
             <TextBox Grid.Row="0" Grid.Column="1" 
                      Style="{StaticResource editText}" 
                      Height="40"
-                     Margin="0 0 0 10"/>
+                     Margin="0 0 0 10"
+                     Text="{Binding Title, Mode=TwoWay}" VerticalContentAlignment="Center"/>
 
             <!-- 内容 -->
             <TextBlock Grid.Row="1" Grid.Column="0" 
@@ -78,11 +85,15 @@
             <TextBox Grid.Row="1" Grid.Column="1" 
                      Style="{StaticResource editText}" 
                      Height="340"
-                     Margin="0 0 0 15"/>
+                     Margin="0 0 0 15"
+                     Text="{Binding Content, Mode=TwoWay}" 
+                     TextWrapping="Wrap" 
+                     AcceptsReturn="True"/>
 
             <Button Grid.Row="2" Grid.Column="1" 
                     Width="96" Height="30" HorizontalAlignment="Right"
-                    Style="{StaticResource SettingFrameButton}">
+                    Style="{StaticResource SettingFrameButton}"
+                    Command="{Binding SubmitCommand}">
                 确认提交
             </Button>
         </Grid>

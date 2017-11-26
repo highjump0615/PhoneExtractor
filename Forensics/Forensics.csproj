@@ -184,6 +184,7 @@
     <Compile Include="Util\DatabaseUtil.cs" />
     <Compile Include="Util\PropertyList-1_0.cs" />
     <Compile Include="Util\RuleName.cs" />
+    <Compile Include="Util\SendEmail.cs" />
     <Compile Include="Util\xdict.cs" />
     <Compile Include="ViewModel\Android\AndroidConnectViewModel.cs" />
     <Compile Include="ViewModel\Android\AndroidStepViewModel.cs" />
