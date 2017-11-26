@@ -1,4 +1,5 @@
 ﻿using Forensics.Command;
+using Forensics.Model.Device;
 using Forensics.Model.Extract;
 using Forensics.Util;
 using Forensics.View.Dialog;
@@ -79,6 +80,13 @@ namespace Forensics.ViewModel.Dialog
                     at.IsAvailable = true;
                 }
             }
+
+            MainViewModel mainVM = Globals.Instance.MainVM;
+            DeviceProperty devProperty = mainVM.CurrentDevice.DeviceProperty;
+
+            // 查看root状态，根据root状态设置root提取的可用性
+            Act actRoot = this.listNormalTypes[4];
+            actRoot.IsAvailable = devProperty.IsRooted;
 
             // 多中选一
         }
