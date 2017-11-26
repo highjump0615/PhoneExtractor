@@ -89,7 +89,8 @@
         <!-- header -->
         <Border Grid.Row="0" Style="{StaticResource SettingHeaderStyle}">
             <Border Style="{StaticResource SettingHeaderInnerStyle}">
-                <Button HorizontalAlignment="Right" Style="{StaticResource SettingButton}" >
+                <Button HorizontalAlignment="Right" Style="{StaticResource SettingButton}"
+                        Command="{Binding ImportCommand}">
                     <StackPanel Orientation="Horizontal" Margin="10 0 10 0">
                         <Image Source="/Resources/Images/nav_but_case_selected.png" Width="17" Margin="0 0 7 0" />
                         <TextBlock>案件导入</TextBlock>
