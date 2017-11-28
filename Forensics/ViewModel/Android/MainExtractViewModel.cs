@@ -685,6 +685,9 @@ namespace Forensics.ViewModel
             AExtractHelp.rootPath = tempDataPath;
             AExtractHelp.evidenceDataPath = CommonUtil.Rulename.GetEvRawFolder();
 
+            //
+            // 逻辑提取
+            //
             AExtractHelp.StartExtract(new string[] { "SMS", "CALLLOG", "CONTACT", "APP", "DEV" });
 
             setPrgressPrepared(5);

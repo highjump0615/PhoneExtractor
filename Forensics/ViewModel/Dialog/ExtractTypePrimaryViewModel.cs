@@ -82,13 +82,16 @@ namespace Forensics.ViewModel.Dialog
             }
 
             MainViewModel mainVM = Globals.Instance.MainVM;
-            DeviceProperty devProperty = mainVM.CurrentDevice.DeviceProperty;
+            if (mainVM.CurrentDevice != null)
+            {
+                DeviceProperty devProperty = mainVM.CurrentDevice.DeviceProperty;
 
-            // 查看root状态，根据root状态设置root提取的可用性
-            Act actRoot = this.listNormalTypes[4];
-            actRoot.IsAvailable = devProperty.IsRooted;
+                // 查看root状态，根据root状态设置root提取的可用性
+                Act actRoot = this.listNormalTypes[4];
+                actRoot.IsAvailable = devProperty.IsRooted;
 
-            // 多中选一
+                // 多中选一
+            }
         }
 
         /// <summary>
