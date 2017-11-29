@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Forensics.View.Android"
+             xmlns:view="clr-namespace:Forensics.View"
              mc:Ignorable="d"
              d:DesignHeight="130" d:DesignWidth="{StaticResource WidthHomeContent}" >
 
@@ -18,7 +19,7 @@
         </Style>
 
         <!-- Button style -->
-        <Style x:Key="ProgressButtonStyle" TargetType="Button">
+        <Style x:Key="ProgressButtonStyle" TargetType="Button" BasedOn="{StaticResource TransparentClickButton}">
             <Setter Property="Width" Value="88" />
             <Setter Property="Height" Value="28" />
             <Setter Property="FontSize" Value="14" />
@@ -32,7 +33,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border CornerRadius="13" BorderThickness="1">
+                        <Border CornerRadius="13" BorderThickness="1" Background="White">
                             <Border.BorderBrush>
                                 <SolidColorBrush Color="{StaticResource ThemeColor}" />
                             </Border.BorderBrush>
@@ -60,6 +61,24 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <!-- 红色风格按钮 -->
+        <Style x:Key="ProgressButtonRedStyle" TargetType="Button" BasedOn="{StaticResource ProgressButtonStyle}">
+            <Setter Property="Foreground" Value="#fa7829" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="13" BorderThickness="1" Background="White">
+                            <Border.BorderBrush>
+                                <SolidColorBrush Color="#fa7829" />
+                            </Border.BorderBrush>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
     </UserControl.Resources>
 
     <!-- 进度条 -->
@@ -92,11 +111,19 @@
             </TextBlock>
 
             <!-- buttons -->
-            <Button Style="{StaticResource ProgressButtonStyle}" Margin="0,12,14,0"
-                        IsEnabled="False">
+            <Button Style="{StaticResource ProgressButtonRedStyle}" Margin="0,12,14,0" Name="ButAnalyse"
+                    Command="{Binding DataContext.AnalyseCommand, RelativeSource={RelativeSource AncestorType=view:MainExtract}}"
+                    IsEnabled="{Binding DataContext.IsAnayseAvailable, RelativeSource={RelativeSource AncestorType=view:MainExtract}}">
+                分析查看
+            </Button>
+            <Button Style="{StaticResource ProgressButtonStyle}" Margin="0,12,114,0" Name="ButStop"
+                    IsEnabled="{Binding DataContext.IsInProgress, RelativeSource={RelativeSource AncestorType=view:MainExtract}}"
+                    Command="{Binding DataContext.PauseCommand, RelativeSource={RelativeSource AncestorType=view:MainExtract}}">
                 停止
             </Button>
-            <Button Style="{StaticResource ProgressButtonStyle}" Margin="0,12,114,0" >
+            <Button Style="{StaticResource ProgressButtonStyle}" Margin="0,12,214,0" Name="ButRestart"
+                    Command="{Binding DataContext.RestartCommand, RelativeSource={RelativeSource AncestorType=view:MainExtract}}"
+                    IsEnabled="{Binding DataContext.IsInProgress, RelativeSource={RelativeSource AncestorType=view:MainExtract}, Converter={StaticResource InverseBool}}">
                 重新提取
             </Button>
 

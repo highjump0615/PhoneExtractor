@@ -169,6 +169,7 @@
     <Compile Include="Command\DelegateCommand.cs" />
     <Compile Include="Converter\EnumToBoolConverter.cs" />
     <Compile Include="Converter\GreaterThanZeroConverter.cs" />
+    <Compile Include="Converter\InverseBooleanConverter.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="Model\Device\BrandInfo.cs" />
     <Compile Include="Model\Device\DeviceInfo.cs" />

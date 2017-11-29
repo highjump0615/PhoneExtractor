@@ -25,6 +25,7 @@
             <!-- Converters -->
             <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
             <converter:EnumToBoolConverter x:Key="EnumToBool" />
+            <converter:InverseBooleanConverter x:Key="InverseBool" />
 
             <!-- Sub Window style -->
             <WindowChrome x:Key="SubWindowChromeKey" 
@@ -117,8 +118,17 @@
                 <Setter Property="Margin" Value="20 0 0 0" />
                 <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
+            
+            <!-- Transparent Click style -->
+            <Style x:Key="TransparentClickButton" TargetType="Button">
+                <Style.Triggers>
+                    <Trigger Property="Button.IsPressed" Value="True">
+                        <Setter Property="Opacity" Value="0.5" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
 
-            <Style x:Key="SettingButton" TargetType="Button">
+            <Style x:Key="SettingButton" TargetType="Button" BasedOn="{StaticResource TransparentClickButton}">
                 <Setter Property="Foreground" Value="White" />
                 <Setter Property="FontSize" Value="15" />
                 <Setter Property="Template">
@@ -130,11 +140,6 @@
                                 </Border.Background>
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="Button.IsPressed" Value="True">
-                                    <Setter Property="Opacity" Value="0.5" />
-                                </Trigger>
-                            </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>

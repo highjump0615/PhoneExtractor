@@ -20,7 +20,7 @@
             <Setter Property="FontSize" Value="16" />
         </Style>
 
-        <Style x:Key="SettingFrameButton" TargetType="Button">
+        <Style x:Key="SettingFrameButton" TargetType="Button" BasedOn="{StaticResource TransparentClickButton}">
             <Setter Property="FontSize" Value="15" />
             <Setter Property="Template">
                 <Setter.Value>
@@ -31,12 +31,6 @@
                             </Border.BorderBrush>
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
-
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="Button.IsPressed" Value="True">
-                                <Setter Property="Opacity" Value="0.5" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>

@@ -140,7 +140,6 @@ namespace Forensics
             wSuccess.Owner = this;
             wSuccess.ShowDialog();
 
-            MainViewModel mainVM = (MainViewModel)this.DataContext;
             if (wSuccess.DialogResult == false)
             {
                 return;
@@ -156,20 +155,29 @@ namespace Forensics
             // 安卓设备要进入选择提取方式的界面
             else if (devType == MainHomeViewModel.DeviceType.Android)
             {
-                var wExtractType = new DialogSelectExtractType();
-                wExtractType.Owner = this;
-                wExtractType.ShowDialog();
+                this.openExtractType();
+            }
+        }
+        
+        /// <summary>
+        /// 打开提取方式对话框
+        /// </summary>
+        public void openExtractType()
+        {
+            MainViewModel mainVM = (MainViewModel)this.DataContext;
+            var wExtractType = new DialogSelectExtractType();
+            wExtractType.Owner = this;
+            wExtractType.ShowDialog();
 
-                if (wExtractType.DialogResult == false)
-                {
-                    return;
-                }
+            if (wExtractType.DialogResult == false)
+            {
+                return;
+            }
 
-                if (mainVM.CurrentDevice != null)
-                {
-                    // 打开提取页面
-                    mainVM.GoToExtractPage(MainHomeViewModel.DeviceType.Android, this.ExtractPath);
-                }
+            if (mainVM.CurrentDevice != null)
+            {
+                // 打开提取页面
+                mainVM.GoToExtractPage(MainHomeViewModel.DeviceType.Android, this.ExtractPath);
             }
         }
 
@@ -213,6 +221,9 @@ namespace Forensics
         /// <param name="e"></param>
         private void onButAppleBypass(object sender, RoutedEventArgs e)
         {
+            // TODO: test & delete
+            MainViewModel mainVM = (MainViewModel)this.DataContext;
+            mainVM.GoToExtractPage(MainHomeViewModel.DeviceType.Apple);
         }
 
         /// <summary>
