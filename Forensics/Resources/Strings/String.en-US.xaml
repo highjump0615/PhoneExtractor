@@ -1,0 +1,177 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Forensics.Resources.Strings"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+ 
+    <!-- 主页面 -->
+    <system:String x:Key="mainTitle">EDEC V-5.0</system:String>
+    <system:String x:Key="mainTool">Tool Management</system:String>
+    <system:String x:Key="mainData">Browse Data</system:String>
+    <system:String x:Key="mainHome">Home</system:String>
+    <system:String x:Key="mainButQuckCheck">Quick Check</system:String>
+    <system:String x:Key="mainButPhone">Phone</system:String>
+    <system:String x:Key="mainButSIM">SIM Card</system:String>
+    <system:String x:Key="mainButBluetooth">Bluetooth</system:String>
+    <system:String x:Key="mainButSync">Synchronize</system:String>
+    <system:String x:Key="mainButBypass">Bypass Pwd</system:String>
+    <system:String x:Key="mainButApple">Apple</system:String>
+    <system:String x:Key="mainButConnectAuto">AutoConnect</system:String>
+    <system:String x:Key="mainButConnectManual">Manual Connect</system:String>
+    <system:String x:Key="mainButConnectPassword">Password</system:String>
+    <system:String x:Key="mainButAndroid">Android</system:String>
+    <system:String x:Key="mainButCard">Storage</system:String>
+
+    <!-- 设置 -->
+    <system:String x:Key="settingSystem">Setting</system:String>
+    <system:String x:Key="settingEnv">Environment</system:String>
+    <system:String x:Key="settingUpgrade">Upgrade</system:String>
+    <system:String x:Key="settingFeedback">Feedback</system:String>
+    <system:String x:Key="settingAbout">About us</system:String>
+    
+    <!-- 关于我们 -->
+    <system:String x:Key="aboutWebsite">Offical Website：</system:String>
+    <system:String x:Key="aboutOfficial">Offical Account：</system:String>
+
+    <!-- 环境检测 -->
+    <system:String x:Key="envNotice">Notice: When Antivirus program asks disable starting, click "No"</system:String>
+
+    <!-- 用户反馈 -->
+    <system:String x:Key="feedbackNotice">Thank you for your useful feedback! We will do it as soon as possible.</system:String>
+    <system:String x:Key="feedbackTitle">Title: </system:String>
+    <system:String x:Key="feedbackContent">Content: </system:String>
+
+    <!-- 系统设置 -->
+    <system:String x:Key="systemDefaultPath">Default Path:</system:String>
+    <system:String x:Key="systemCasePath">Case Path Setting</system:String>
+    <system:String x:Key="systemEvidOriginPath">Evidence Origin Path:</system:String>
+    <system:String x:Key="systemEvidAnalysePath">Evidence Analyse Path:</system:String>
+    <system:String x:Key="systemEvidReportPath">Evidence Report Path:</system:String>
+    <system:String x:Key="systemCheckerName">Checker Name:</system:String>
+    <system:String x:Key="systemCaseNamingRule">Case Path Naming Rule</system:String>
+    <system:String x:Key="systemSelectLang">Language</system:String>
+    <system:String x:Key="systemSelectTZ">TimeZone:</system:String>
+    <system:String x:Key="systemTimeZone">Selet TimeZone</system:String>
+    <system:String x:Key="systemRainbowPath">Rainbow Path</system:String>
+    <system:String x:Key="systemSelect">Browse</system:String>
+    <system:String x:Key="systemOfflineMap">Offline Map</system:String>
+    <system:String x:Key="systemDefaultSize">Default Size:</system:String>
+    <system:String x:Key="systemPageSizeLimit">Page Size Limit</system:String>
+    <system:String x:Key="systemSave">Save</system:String>
+
+    <!-- 在线更新 -->
+    <system:String x:Key="upgradeBut">Upgrade</system:String>
+
+    <!-- 连接 -->
+    <system:String x:Key="connectDevice">Connec Device</system:String>
+    <system:String x:Key="connectUsbDebugging">Check this tutorial, Open "USB Debugging" option</system:String>
+    <system:String x:Key="connectAndroidVersion">Android Version</system:String>
+    <system:String x:Key="connectUsbNotice">Notice: When usb connecting is only charging, phone cannot be connected</system:String>
+    <system:String x:Key="connectiOSNotice">iTunes Synchronize, Operation Notice</system:String>
+    <system:String x:Key="connectFailTitle">Sorry, connecting was failed</system:String>
+    <system:String x:Key="connectFailContent" xml:space="preserve">1、使用USB数据线连接电脑。&#x0d;&#x0a;2、若设备中出现USB调试状态授权弹框，&#x0d;&#x0a;需点击【确定】以完成连接。</system:String>
+    <system:String x:Key="connectFailHow">How to open USB Debugging?</system:String>
+    <system:String x:Key="connectConnecting">Checking connection of the device...</system:String>
+    
+    <!-- 提取 -->
+    <system:String x:Key="extractSystemLog">System log</system:String>
+    
+    <!-- 提取对话框 -->
+    <system:String x:Key="dlgExtractTitle">Select Extract Method</system:String>
+    <system:String x:Key="dlgExtractNormal">Normal</system:String>
+    <system:String x:Key="dlgExtractAdvanced">Advanced</system:String>
+    <system:String x:Key="dlgExtractStart">Extract</system:String>
+    <system:String x:Key="dlgExtractBack">Save</system:String>
+    <system:String x:Key="dlgSavePath">Save Path:</system:String>
+    <system:String x:Key="dlgChooseBrand">Select Brand:</system:String>
+    <system:String x:Key="dlgChooseModel">Select Model:</system:String>
+
+    <!-- 案件 -->
+    <system:String x:Key="caseID">ID</system:String>
+    <system:String x:Key="caseName">Case Name</system:String>
+    <system:String x:Key="caseCreatedAt">Created At</system:String>
+    <system:String x:Key="caseEvidenceCount">Evidence Count</system:String>
+    <system:String x:Key="casePath">Path</system:String>
+    <system:String x:Key="caseOperation">Operation</system:String>
+    <system:String x:Key="caseButImport">Import Case</system:String>
+    
+    <!-- 物证 -->
+    <system:String x:Key="evidID">Evidence ID</system:String>
+    <system:String x:Key="evidNoColon">Evidence ID:</system:String>
+    <system:String x:Key="evidPhone">Phone</system:String>
+    <system:String x:Key="evidName">Name</system:String>
+    <system:String x:Key="evidGender">Sex</system:String>
+    <system:String x:Key="evidNation">Nation</system:String>
+    <system:String x:Key="evidIdNumber">ID card No</system:String>
+    <system:String x:Key="evidSaveBack">Save &amp; Back</system:String>
+    <system:String x:Key="evidCaseNo">Case ID:</system:String>
+    <system:String x:Key="evidCaseName">Case Name:</system:String>
+    <system:String x:Key="evidCasePath">Case Path:</system:String>
+    <system:String x:Key="evidPath">Evidence Path:</system:String>
+
+    <!-- 资料 -->
+    <system:String x:Key="dataManageCase">Cases</system:String>
+    <system:String x:Key="dataManageEvid">Evidences</system:String>
+
+    <!-- 添加物证 -->
+    <system:String x:Key="addEvidTitle">Extraction Successful! Please input evidence data</system:String>
+    <system:String x:Key="addEvidName">Evidence Name</system:String>
+    <system:String x:Key="addEvidCaseId">Case ID</system:String>
+    <system:String x:Key="addEvidPerson">Person Involved</system:String>
+    <system:String x:Key="addEvidPersonName">Name</system:String>
+    <system:String x:Key="addEvidPersonMale">Male</system:String>
+    <system:String x:Key="addEvidPersonFemale">Femail</system:String>
+    
+    <!-- 手机信息 -->
+    <system:String x:Key="phoneBrand">Brand</system:String>
+    <system:String x:Key="phoneModel">Model</system:String>
+    <system:String x:Key="phoneRoot">root Status</system:String>
+    <system:String x:Key="phoneName">Device Name</system:String>
+    <system:String x:Key="phoneNotConnect">Not Connect</system:String>
+    
+    <!-- 首页 -->
+    <system:String x:Key="homeHistory">History</system:String>
+    <system:String x:Key="homeExtract">Extract</system:String>
+    <system:String x:Key="homeUnit">个</system:String>
+    <system:String x:Key="homeHardStatus">Disk Status</system:String>
+    <system:String x:Key="homeTotalCapacity">Total Capacity:</system:String>
+    <system:String x:Key="homeCapacityCase" xml:space="preserve">Case Cap.  </system:String>
+    <system:String x:Key="homeCapacityPartition" xml:space="preserve">Part Cap.  </system:String>
+    <system:String x:Key="homeDevicesWeek">Extracted Device Data This Week</system:String>
+    <system:String x:Key="homeGraphUnit">Unit</system:String>
+    <system:String x:Key="homeFilesWeek">File Count Extracted This Week</system:String>
+    <system:String x:Key="homeMon">Mon</system:String>
+    <system:String x:Key="homeTue">Tue</system:String>
+    <system:String x:Key="homeWed">Wed</system:String>
+    <system:String x:Key="homeThu">Thu</system:String>
+    <system:String x:Key="homeFri">Fri</system:String>
+    <system:String x:Key="homeSat">Sat</system:String>
+    <system:String x:Key="homeSun">Sun</system:String>
+    
+    <!-- 工具列表 -->
+    <system:String x:Key="toolAdd">+ Add Tool</system:String>
+    <system:String x:Key="toolSystem">System</system:String>
+    <system:String x:Key="toolAndroid">Android</system:String>
+    <system:String x:Key="tooliOS">Apple</system:String>
+    <system:String x:Key="toolOther">Additional</system:String>
+    
+    <!-- 提示信息 -->
+    <system:String x:Key="msgNoData">No data in the library</system:String>
+    <system:String x:Key="msgImportRepeat">This case has already exist in the database, not repeat the import</system:String>
+    <system:String x:Key="msgImportSuccess">The import was successful!!!</system:String>
+    <system:String x:Key="msgImportFailNoCase">Directory not the case, can not be imported</system:String>
+    <system:String x:Key="msgImportFail">The import failed</system:String>
+    <system:String x:Key="msgAddCaseFail">Failed to add case</system:String>
+    <system:String x:Key="msgEmptyCaseName">Case name cannot be empty</system:String>
+    <system:String x:Key="msgEmptyEvidName">Evidence name cannot be empty</system:String>
+    <system:String x:Key="msgConnectNotFound">Please make sure the phone is connected.</system:String>
+    <system:String x:Key="msgAnalyseInProgress">Current Decode Process is still running ,please wait all finished then refresh again</system:String>
+    <system:String x:Key="msgEmptyTitle">The title cannot be empty!</system:String>
+    <system:String x:Key="msgEmptyContent">The content cannot be empty!</system:String>
+    <system:String x:Key="msgFeedbackSent">The feedback information to send your.</system:String>
+    <system:String x:Key="msgSettingPageSizeLimit">Please input the limit of photo</system:String>
+    <system:String x:Key="msgSettingCaseNaming">Please select Evidence Folder</system:String>
+    <system:String x:Key="msgSettingTimeZone">Please choose to set the TimeZone</system:String>
+    <system:String x:Key="msgToolPath">To start the program was not found in the corresponding path, whether to choose to start the program path?？</system:String>
+    <system:String x:Key="msgToolStartError">Start the program error</system:String>
+    
+</ResourceDictionary>

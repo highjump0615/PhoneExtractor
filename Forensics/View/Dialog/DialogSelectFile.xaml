@@ -8,9 +8,7 @@
              d:DesignHeight="30">
 
     <StackPanel Orientation="Horizontal" >
-        <TextBlock FontSize="16" Foreground="White" VerticalAlignment="Center">
-                存储目录：
-        </TextBlock>
+        <TextBlock FontSize="16" Foreground="White" VerticalAlignment="Center" Text="{DynamicResource dlgSavePath}" />
         <TextBox VerticalContentAlignment="Center" FontSize="14" Width="252"
                  Name="TextPath">
             <TextBox.Foreground>

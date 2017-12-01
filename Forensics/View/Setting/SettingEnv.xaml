@@ -22,8 +22,8 @@
         <Border Style="{StaticResource SettingHeaderStyle}" DockPanel.Dock="Top">
             <Border Style="{StaticResource SettingHeaderInnerStyle}">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource SettingHeaderTitleStyle}">环境检查</TextBlock>
-                    <TextBlock Style="{StaticResource SettingHeaderDescStyle}">提示：电脑的杀毒软件会提示是否禁止启动，请点击“否”</TextBlock>
+                    <TextBlock Style="{StaticResource SettingHeaderTitleStyle}" Text="{DynamicResource settingEnv}" />
+                    <TextBlock Style="{StaticResource SettingHeaderDescStyle}" Text="{DynamicResource envNotice}" />
                 </StackPanel>
             </Border>
         </Border>

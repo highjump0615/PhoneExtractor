@@ -72,19 +72,19 @@
                     </Grid.Resources>
 
                     <StackPanel Grid.Row="0" Grid.Column="0" Style="{StaticResource textBoxStyle}">
-                        <TextBlock Style="{StaticResource infoLabelStyle}">手机品牌:</TextBlock>
+                        <TextBlock Style="{StaticResource infoLabelStyle}" Text="{DynamicResource phoneBrand}" />
                         <TextBlock Style="{StaticResource infoLabelStyle}" Text="{Binding Brand}" />
                     </StackPanel>
                     <StackPanel Grid.Row="0" Grid.Column="1" Style="{StaticResource textBoxStyle}">
-                        <TextBlock Style="{StaticResource infoLabelStyle}">安卓版本:</TextBlock>
+                        <TextBlock Style="{StaticResource infoLabelStyle}" Text="{DynamicResource connectAndroidVersion}" />
                         <TextBlock Style="{StaticResource infoLabelStyle}" Text="{Binding OSVersion}" />
                     </StackPanel>
                     <StackPanel Grid.Row="1" Grid.Column="0" Style="{StaticResource textBoxStyle}">
-                        <TextBlock Style="{StaticResource infoLabelStyle}">手机型号:</TextBlock>
+                        <TextBlock Style="{StaticResource infoLabelStyle}" Text="{DynamicResource phoneModel}" />
                         <TextBlock Style="{StaticResource infoLabelStyle}" Text="{Binding ModelNumber}" />
                     </StackPanel>
                     <StackPanel Grid.Row="1" Grid.Column="1" Style="{StaticResource textBoxStyle}">
-                        <TextBlock Style="{StaticResource infoLabelStyle}">root状态:</TextBlock>
+                        <TextBlock Style="{StaticResource infoLabelStyle}" Text="{DynamicResource phoneRoot}" />
                         <TextBlock Style="{StaticResource infoLabelStyle}" Text="{Binding RootStatus}" />
                     </StackPanel>
                 </Grid>

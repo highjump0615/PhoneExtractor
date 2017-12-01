@@ -174,6 +174,40 @@ namespace Forensics.ViewModel
             {
                 //保存登录人信息
                 User.LoginUser = user;
+                setLanguage();
+            }
+        }
+
+        /// <summary>
+        /// 设置语言
+        /// </summary>
+        public void setLanguage()
+        {
+            //
+            // 加载语言
+            //
+            ResourceDictionary langRd = null;
+            try
+            {
+                langRd = Application.LoadComponent(
+                        new Uri(@"Resources/Strings/String." + User.LoginUser.USER_LANGUAGE + ".xaml", 
+                        UriKind.Relative)
+                    ) as ResourceDictionary;
+            }
+            catch
+            {
+            }
+
+            if (langRd != null)
+            {
+                // 删除已设置的语言
+                if (Application.Current.Resources.MergedDictionaries.Count() > 2)
+                {
+                    Application.Current.Resources.MergedDictionaries.RemoveAt(2);
+                }
+
+                // 添加新的语言
+                Application.Current.Resources.MergedDictionaries.Add(langRd);
             }
         }
 
@@ -275,7 +309,8 @@ namespace Forensics.ViewModel
             }
             else
             {
-                MessageBox.Show("未发现任何手机联接，请确认");
+                var strMsg = Application.Current.FindResource("msgConnectNotFound") as string;
+                MessageBox.Show(strMsg);
             }
         }
 
@@ -293,7 +328,8 @@ namespace Forensics.ViewModel
             }
             if (lbcheck)
             {
-                MessageBox.Show("当前解析过程还在进行中，请等待全部解析完毕后再进行案件变更操作！");
+                var strMsg = Application.Current.FindResource("msgAnalyseInProgress") as string;
+                MessageBox.Show(strMsg);
                 return true;
             }
 

@@ -13,7 +13,7 @@
         <Border Style="{StaticResource SettingHeaderStyle}">
             <Border Style="{StaticResource SettingHeaderInnerStyle}">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource SettingHeaderTitleStyle}">在线更新</TextBlock>
+                    <TextBlock Style="{StaticResource SettingHeaderTitleStyle}" Text="{DynamicResource settingUpgrade}" />
                 </StackPanel>
             </Border>
         </Border>
@@ -42,9 +42,8 @@
         <Button Width="97" Height="30" 
                 Style="{StaticResource SettingButton}" 
                 HorizontalAlignment="Right"
-                Margin="0 20 0 0">
-            立即更新
-        </Button>
+                Margin="0 20 0 0" 
+                Content="{DynamicResource upgradeBut}" />
 
     </StackPanel>
 </UserControl>

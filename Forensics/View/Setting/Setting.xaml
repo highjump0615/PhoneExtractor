@@ -37,7 +37,7 @@
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
                             <StackPanel Style="{StaticResource NavbarButPanelStyle}">
                                 <Image Name="imgIcon" Source="/Resources/Images/nav_but_setting.png" Stretch="None" />
-                                <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}">系统设置</TextBlock>
+                                <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}" Text="{DynamicResource settingSystem}" />
                             </StackPanel>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -67,7 +67,7 @@
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
                             <StackPanel Style="{StaticResource NavbarButPanelStyle}">
                                 <Image Name="imgIcon" Source="/Resources/Images/nav_but_find.png" Stretch="None" />
-                                <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}">环境检查</TextBlock>
+                                <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}" Text="{DynamicResource settingEnv}" />
                             </StackPanel>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -97,7 +97,7 @@
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
                             <StackPanel Style="{StaticResource NavbarButPanelStyle}">
                                 <Image Name="imgIcon" Source="/Resources/Images/nav_but_update.png" Stretch="None" />
-                                <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}">在线更新</TextBlock>
+                                <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}" Text="{DynamicResource settingUpgrade}" />
                             </StackPanel>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -127,7 +127,7 @@
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
                             <StackPanel Style="{StaticResource NavbarButPanelStyle}">
                                 <Image Name="imgIcon" Source="/Resources/Images/nav_but_feedback.png" Stretch="None" />
-                                <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}">用户反馈</TextBlock>
+                                <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}" Text="{DynamicResource settingFeedback}" />
                             </StackPanel>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -157,7 +157,7 @@
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
                             <StackPanel Style="{StaticResource NavbarButPanelStyle}">
                                 <Image Name="imgIcon" Source="/Resources/Images/nav_but_about.png" Stretch="None" />
-                                <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}">关于系统</TextBlock>
+                                <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}" Text="{DynamicResource settingAbout}" />
                             </StackPanel>
                         </Border>
                         <ControlTemplate.Triggers>

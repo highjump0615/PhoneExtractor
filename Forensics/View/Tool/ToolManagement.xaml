@@ -30,7 +30,7 @@
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
                             <StackPanel Style="{StaticResource NavbarButPanelStyle}">
                                 <Image Name="imgIcon" Source="/Resources/Images/nav_but_setting.png" Stretch="None" />
-                                <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}">系统工具</TextBlock>
+                                <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}" Text="{DynamicResource toolSystem}" />
                             </StackPanel>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -52,7 +52,7 @@
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
                             <StackPanel Style="{StaticResource NavbarButPanelStyle}">
                                 <Image Name="imgIcon" Source="/Resources/Images/tool_android.png" Stretch="None" />
-                                <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}">安卓相关</TextBlock>
+                                <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}" Text="{DynamicResource toolAndroid}" />
                             </StackPanel>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -74,7 +74,7 @@
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
                             <StackPanel Style="{StaticResource NavbarButPanelStyle}">
                                 <Image Name="imgIcon" Source="/Resources/Images/tool_apple.png" Stretch="None" />
-                                <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}">苹果相关</TextBlock>
+                                <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}" Text="{DynamicResource tooliOS}" />
                             </StackPanel>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -96,7 +96,7 @@
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
                             <StackPanel Style="{StaticResource NavbarButPanelStyle}">
                                 <Image Name="imgIcon" Source="/Resources/Images/tool_near.png" Stretch="None" />
-                                <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}">附件工具</TextBlock>
+                                <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}" Text="{DynamicResource toolOther}" />
                             </StackPanel>
                         </Border>
                         <ControlTemplate.Triggers>

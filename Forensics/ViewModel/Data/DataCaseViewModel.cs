@@ -86,6 +86,7 @@ namespace Forensics.ViewModel
         /// </summary>
         private void ImportCase()
         {
+            var strMsg = "";
             var dialog = new System.Windows.Forms.OpenFileDialog();
             dialog.Filter = "文件格式|*.db";
 
@@ -101,7 +102,8 @@ namespace Forensics.ViewModel
                 int lireturn = dataManager.GetAllData2(dialog.FileName);
                 if (lireturn == 0)
                 {
-                    MessageBox.Show("库中没有数据", _clew, MessageBoxButton.OK, MessageBoxImage.Warning);
+                    strMsg = Application.Current.FindResource("msgNoData") as string;
+                    MessageBox.Show(strMsg, _clew, MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
@@ -111,7 +113,8 @@ namespace Forensics.ViewModel
                 {
                     if (caseManager.HasCase(myCase.CASE_GUID))
                     {
-                        MessageBox.Show("数据库中已经存在此案件，不能重复导入", _clew, MessageBoxButton.OK, MessageBoxImage.Warning);
+                        strMsg = Application.Current.FindResource("msgImportRepeat") as string;
+                        MessageBox.Show(strMsg, _clew, MessageBoxButton.OK, MessageBoxImage.Warning);
                         return;
                     }
 
@@ -137,17 +140,20 @@ namespace Forensics.ViewModel
                         // 重新加载案件数据
                         InitialCaseInfo();
 
-                        MessageBox.Show("导入成功 ！！！", _clew);
+                        strMsg = Application.Current.FindResource("msgImportSuccess") as string;
+                        MessageBox.Show(strMsg, _clew);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("目录下没有此案件，不能导入", _clew, MessageBoxButton.OK, MessageBoxImage.Warning);
+                    strMsg = Application.Current.FindResource("msgImportFailNoCase") as string;
+                    MessageBox.Show(strMsg, _clew, MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "导入失败", MessageBoxButton.OK, MessageBoxImage.Warning);
+                strMsg = Application.Current.FindResource("msgImportFail") as string;
+                MessageBox.Show(ex.Message, strMsg, MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
             // 恢复鼠标

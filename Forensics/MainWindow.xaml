@@ -170,7 +170,7 @@
 
             <!-- Logo & Title -->
             <Image VerticalAlignment="Center" Width="32" HorizontalAlignment="Left" Source="/Resources/Images/logo_title.png" Margin="15,0,0,0"/>
-            <TextBlock TextWrapping="Wrap" Style="{StaticResource titlebarTextStyle}" Text="狼蛛手机检验系统V-5.0" Margin="10,0,0,0"/>
+            <TextBlock TextWrapping="Wrap" Style="{StaticResource titlebarTextStyle}" Text="{DynamicResource mainTitle}" Margin="10,0,0,0"/>
 
             <!-- Window Buttons -->
             <Button Width="45" HorizontalContentAlignment="Center" Style="{StaticResource TitleBarButStyle}" Click="onButClose">
@@ -206,7 +206,7 @@
                                 Click="onButSettingItem">
                             <StackPanel Orientation="Horizontal">
                                 <Image Style="{StaticResource SettingButImgStyle}" Source="/Resources/Images/nav_but_setting.png" />
-                                <TextBlock Style="{StaticResource SettingButTextStyle}">系统设置</TextBlock>
+                                <TextBlock Style="{StaticResource SettingButTextStyle}" Text="{DynamicResource settingSystem}" />
                             </StackPanel>
                         </Button>
                         
@@ -215,7 +215,7 @@
                                 Click="onButSettingItem">
                             <StackPanel Orientation="Horizontal">
                                 <Image Style="{StaticResource SettingButImgStyle}" Source="/Resources/Images/nav_but_find.png" />
-                                <TextBlock Style="{StaticResource SettingButTextStyle}">环境检测</TextBlock>
+                                <TextBlock Style="{StaticResource SettingButTextStyle}" Text="{DynamicResource settingEnv}" />
                             </StackPanel>
                         </Button>
                         
@@ -224,7 +224,7 @@
                                 Click="onButSettingItem">
                             <StackPanel Orientation="Horizontal">
                                 <Image Style="{StaticResource SettingButImgStyle}" Source="/Resources/Images/nav_but_update.png" />
-                                <TextBlock Style="{StaticResource SettingButTextStyle}">在线更新</TextBlock>
+                                <TextBlock Style="{StaticResource SettingButTextStyle}" Text="{DynamicResource settingUpgrade}" />
                             </StackPanel>
                         </Button>
                         
@@ -233,7 +233,7 @@
                                 Click="onButSettingItem">
                             <StackPanel Orientation="Horizontal">
                                 <Image Style="{StaticResource SettingButImgStyle}" Source="/Resources/Images/nav_but_feedback.png" />
-                                <TextBlock Style="{StaticResource SettingButTextStyle}">用户反馈</TextBlock>
+                                <TextBlock Style="{StaticResource SettingButTextStyle}" Text="{DynamicResource settingFeedback}" />
                             </StackPanel>
                         </Button>
                         
@@ -242,7 +242,7 @@
                                 Click="onButSettingItem">
                             <StackPanel Orientation="Horizontal">
                                 <Image Style="{StaticResource SettingButImgStyle}" Source="/Resources/Images/nav_but_about.png" />
-                                <TextBlock Style="{StaticResource SettingButTextStyle}">关于我们</TextBlock>
+                                <TextBlock Style="{StaticResource SettingButTextStyle}" Text="{DynamicResource settingAbout}" />
                             </StackPanel>
                         </Button>
                     </StackPanel>
@@ -307,7 +307,7 @@
                                 
                                 <StackPanel VerticalAlignment="Center">
                                     <Image Source="/Resources/Images/bottom_tab_tool.png" Width="{StaticResource TabButtonSize}" Height="{StaticResource TabButtonSize}" />
-                                    <TextBlock Style="{StaticResource TabbarButTextStyle}">工具管理</TextBlock>
+                                    <TextBlock Style="{StaticResource TabbarButTextStyle}" Text="{DynamicResource mainTool}" />
                                 </StackPanel>
                             </RadioButton>
 
@@ -325,7 +325,7 @@
                                 
                                 <StackPanel VerticalAlignment="Center">
                                     <Image Source="/Resources/Images/bottom_tab_data.png" Width="{StaticResource TabButtonSize}" Height="{StaticResource TabButtonSize}" />
-                                    <TextBlock Style="{StaticResource TabbarButTextStyle}">资料浏览</TextBlock>
+                                    <TextBlock Style="{StaticResource TabbarButTextStyle}" Text="{DynamicResource mainData}" />
                                 </StackPanel>
                             </RadioButton>
 
@@ -343,7 +343,7 @@
 
                                 <StackPanel VerticalAlignment="Center">
                                     <Image Source="/Resources/Images/bottom_tab_home.png" Width="{StaticResource TabButtonSize}" Height="{StaticResource TabButtonSize}" />
-                                    <TextBlock Style="{StaticResource TabbarButTextStyle}">首页</TextBlock>
+                                    <TextBlock Style="{StaticResource TabbarButTextStyle}" Text="{DynamicResource mainHome}" />
                                 </StackPanel>
                             </RadioButton>
 
@@ -358,7 +358,7 @@
                         Command="{Binding QuickCheckCommand}">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Image Source="/Resources/Images/bottom_oneclick_icon.png" Width="14" Height="13" />
-                        <TextBlock Margin="2,0,0,0" FontSize="13" >快速检测</TextBlock>
+                        <TextBlock Margin="2,0,0,0" FontSize="13" Text="{DynamicResource mainButQuckCheck}" />
                     </StackPanel>
                 </Button>
 
@@ -367,7 +367,7 @@
                     <Button Style="{StaticResource BottomButStyle}" Canvas.Left="46" Canvas.Bottom="99">
                         <StackPanel Style="{StaticResource BottomButPanelStyle}">
                             <Image Source="/Resources/Images/bottom_but_phone.png" Width="9" Height="17" />
-                            <TextBlock Style="{StaticResource BottomButTextStyle}">功能机提取</TextBlock>
+                            <TextBlock Style="{StaticResource BottomButTextStyle}" Text="{DynamicResource mainButPhone}" />
                         </StackPanel>
                     </Button>
 
@@ -375,7 +375,7 @@
                     <Button Style="{StaticResource BottomButStyle}" Canvas.Left="19" Canvas.Bottom="54">
                         <StackPanel Style="{StaticResource BottomButPanelStyle}">
                             <Image Source="/Resources/Images/bottom_but_sim.png" Width="16" Height="12" />
-                            <TextBlock Style="{StaticResource BottomButTextStyle}">SIM卡提取</TextBlock>
+                            <TextBlock Style="{StaticResource BottomButTextStyle}" Text="{DynamicResource mainButSIM}" />
                         </StackPanel>
                     </Button>
 
@@ -383,7 +383,7 @@
                     <Button Style="{StaticResource BottomButStyle}" Canvas.Left="46" Canvas.Bottom="9">
                         <StackPanel Style="{StaticResource BottomButPanelStyle}">
                             <Image Source="/Resources/Images/bottom_but_bluetooth.png" Width="12" Height="16" />
-                            <TextBlock Style="{StaticResource BottomButTextStyle}">蓝牙提取</TextBlock>
+                            <TextBlock Style="{StaticResource BottomButTextStyle}" Text="{DynamicResource mainButBluetooth}" />
                         </StackPanel>
                     </Button>
 
@@ -403,10 +403,10 @@
                             </StackPanel.Background>
 
                             <Button Style="{StaticResource BottomSubmenuButStyle}" Margin="0,0,0,5" Click="onButAppleSync">
-                                <TextBlock>同步获取</TextBlock>
+                                <TextBlock Text="{DynamicResource mainButSync}" />
                             </Button>
                             <Button Style="{StaticResource BottomSubmenuButStyle}" Margin="0,0,0,40" Click="onButAppleBypass">
-                                <TextBlock>密码文件绕过</TextBlock>
+                                <TextBlock Text="{DynamicResource mainButBypass}" />
                             </Button>
                         </StackPanel>
                         <Image Grid.Row="2" Source="/Resources/Images/bottom_submenu_bg_bottom.png" Stretch="UniformToFill" />
@@ -418,7 +418,7 @@
                                   Canvas.Left="270" Canvas.Bottom="99">
                         <StackPanel Style="{StaticResource BottomButPanelStyle}">
                             <Image Source="/Resources/Images/bottom_but_apple.png" Width="12" Height="14" />
-                            <TextBlock Style="{StaticResource BottomButTextStyle}">苹果提取</TextBlock>
+                            <TextBlock Style="{StaticResource BottomButTextStyle}" Text="{DynamicResource mainButApple}" />
                         </StackPanel>
                     </RadioButton>
 
@@ -439,13 +439,13 @@
 
                             <Button Style="{StaticResource BottomSubmenuButStyle}" Margin="0,0,0,5" 
                                     Command="{Binding AndroidAutoConnectCommand}">
-                                <TextBlock>自动连接</TextBlock>
+                                <TextBlock Text="{DynamicResource mainButConnectAuto}" />
                             </Button>
                             <Button Style="{StaticResource BottomSubmenuButStyle}" Margin="0,0,0,5" Click="onAndroidManual">
-                                <TextBlock>手动连接</TextBlock>
+                                <TextBlock Text="{DynamicResource mainButConnectManual}" />
                             </Button>
                             <Button Style="{StaticResource BottomSubmenuButStyle}" Margin="0,0,0,40">
-                                <TextBlock>密码破解</TextBlock>
+                                <TextBlock Text="{DynamicResource mainButConnectPassword}" />
                             </Button>
                         </StackPanel>
                         <Image Grid.Row="2" Source="/Resources/Images/bottom_submenu_bg_bottom.png" Stretch="UniformToFill" />
@@ -457,7 +457,7 @@
                                   Canvas.Left="298" Canvas.Bottom="54">
                         <StackPanel Style="{StaticResource BottomButPanelStyle}">
                             <Image Source="/Resources/Images/bottom_but_android.png" Width="14" Height="16" />
-                            <TextBlock Style="{StaticResource BottomButTextStyle}">安卓提取</TextBlock>
+                            <TextBlock Style="{StaticResource BottomButTextStyle}" Text="{DynamicResource mainButAndroid}" />
                         </StackPanel>
                     </RadioButton>
 
@@ -465,7 +465,7 @@
                     <ToggleButton Style="{StaticResource BottomButStyle}" Canvas.Left="270" Canvas.Bottom="9">
                         <StackPanel Style="{StaticResource BottomButPanelStyle}">
                             <Image Source="/Resources/Images/bottom_but_card.png" Width="12" Height="16" />
-                            <TextBlock Style="{StaticResource BottomButTextStyle}">存储卡提取</TextBlock>
+                            <TextBlock Style="{StaticResource BottomButTextStyle}" Text="{DynamicResource mainButCard}" />
                         </StackPanel>
                     </ToggleButton>
 

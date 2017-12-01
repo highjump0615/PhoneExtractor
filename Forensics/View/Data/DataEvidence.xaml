@@ -27,12 +27,12 @@
                                             <ColumnDefinition Width="120" />
                                         </Grid.ColumnDefinitions>
 
-                                        <TextBlock Grid.Column="0" Style="{StaticResource listHeaderTextStyle}">物证编号</TextBlock>
-                                        <TextBlock Grid.Column="1" Style="{StaticResource listHeaderTextStyle}">手机号</TextBlock>
-                                        <TextBlock Grid.Column="2" Style="{StaticResource listHeaderTextStyle}">涉案人姓名</TextBlock>
-                                        <TextBlock Grid.Column="3" Style="{StaticResource listHeaderTextStyle}">性别</TextBlock>
-                                        <TextBlock Grid.Column="4" Style="{StaticResource listHeaderTextStyle}">民族</TextBlock>
-                                        <TextBlock Grid.Column="5" Style="{StaticResource listHeaderTextStyle}" HorizontalAlignment="Right">操作</TextBlock>
+                                        <TextBlock Grid.Column="0" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource evidID}" />
+                                        <TextBlock Grid.Column="1" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource evidPhone}" />
+                                        <TextBlock Grid.Column="2" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource evidName}" />
+                                        <TextBlock Grid.Column="3" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource evidGender}" />
+                                        <TextBlock Grid.Column="4" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource evidNation}" />
+                                        <TextBlock Grid.Column="5" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource caseOperation}" HorizontalAlignment="Right" />
                                     </Grid>
                                 </Border>
                                 <Grid>

@@ -76,7 +76,8 @@ namespace Forensics.ViewModel
                 else
                 {
                     // MessageBox.Show("找不到程序",_clew,MessageBoxButtons.OK,MessageBoxIcon.Warning);
-                    if (MessageBoxResult.OK.Equals(MessageBox.Show("在对应的路径中找不到启动程序，是否重新选择启动程序路径？", _clew, MessageBoxButton.OKCancel, MessageBoxImage.Question)))
+                    var strMsg = Application.Current.FindResource("msgToolPath") as string;
+                    if (MessageBoxResult.OK.Equals(MessageBox.Show(strMsg, _clew, MessageBoxButton.OKCancel, MessageBoxImage.Question)))
                     {
                         //创建一个对话框对象
                         OpenFileDialog ofd = new OpenFileDialog();
@@ -121,7 +122,9 @@ namespace Forensics.ViewModel
             catch (Exception ex)
             {
                 log.Info(ex.Message, ex);
-                MessageBox.Show("启动程序错误", _clew, MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                var strMsg = Application.Current.FindResource("msgToolStartError") as string;
+                MessageBox.Show(strMsg, _clew, MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
     }

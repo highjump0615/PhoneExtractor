@@ -311,7 +311,8 @@ namespace Forensics.ViewModel.Dialog
                 // 添加案件
                 if (!caseManager.AddCase(caseCurrent))
                 {
-                    MessageBox.Show("添加案件失败", _clew, MessageBoxButton.OK, MessageBoxImage.Warning);
+                    var strMsg = Application.Current.FindResource("msgAddCaseFail") as string;
+                    MessageBox.Show(strMsg, _clew, MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
@@ -352,12 +353,14 @@ namespace Forensics.ViewModel.Dialog
         {
             if (String.IsNullOrWhiteSpace(this.CaseName))
             {
-                MessageBox.Show("案件名称不能为空", _clew, MessageBoxButton.OK, MessageBoxImage.Warning);
+                var strMsg = Application.Current.FindResource("msgEmptyCaseName") as string;
+                MessageBox.Show(strMsg, _clew, MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
             if (String.IsNullOrWhiteSpace(this.EvidenceName))
             {
-                MessageBox.Show("物证名称不能为空", _clew, MessageBoxButton.OK, MessageBoxImage.Warning);
+                var strMsg = Application.Current.FindResource("msgEmptyEvidName") as string;
+                MessageBox.Show(strMsg, _clew, MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 

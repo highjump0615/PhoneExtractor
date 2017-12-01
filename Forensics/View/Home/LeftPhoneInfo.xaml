@@ -13,7 +13,7 @@
         <StackPanel Width="228" VerticalAlignment="Top"
                     Margin="{Binding MarginInfo}">
             <StackPanel Margin="10 0">
-                <TextBlock Foreground="White" FontSize="16">设备名称</TextBlock>
+                <TextBlock Foreground="White" FontSize="16" Text="{DynamicResource phoneName}" />
                 <TextBlock Foreground="#b8bbbf" FontSize="14" Margin="0 5" Text="{Binding DeviceName}" />
             </StackPanel>
             <Rectangle Fill="#5b657a" Height="1" />

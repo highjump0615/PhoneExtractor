@@ -140,9 +140,7 @@
                     </Border>
                     
                     <!-- 品牌列表 -->
-                    <TextBlock Style="{StaticResource LabelStyle}" Margin="0 7">
-                        选择品牌：
-                    </TextBlock>
+                    <TextBlock Style="{StaticResource LabelStyle}" Margin="0 7" Text="{DynamicResource dlgChooseBrand}" />
 
                     <ListBox Name="lbBrands" ItemsSource="{Binding listBrand}" 
                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
@@ -214,9 +212,8 @@
                     <Grid DockPanel.Dock="Left" Width="80" HorizontalAlignment="Left">
                         <TextBlock Style="{StaticResource LabelStyle}" 
                                    Margin="0 10" 
-                                   HorizontalAlignment="Left" VerticalAlignment="Top">
-                            选择机型：
-                        </TextBlock>
+                                   HorizontalAlignment="Left" VerticalAlignment="Top"
+                                   Text="{DynamicResource dlgChooseModel}" />
                         <Button Style="{StaticResource NavButStyle}" 
                                 HorizontalAlignment="Right"
                                 Width="28" Height="42"

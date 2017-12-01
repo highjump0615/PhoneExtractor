@@ -122,7 +122,7 @@
                             <ColumnDefinition Width="{StaticResource WidthSettingItemRight}" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}">默认路径:</TextBlock>
+                        <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}" Text="{DynamicResource systemDefaultPath}" />
                         <TextBox Grid.Column="1" 
                                  Style="{StaticResource TextInputStyle}" 
                                  IsEnabled="False"
@@ -131,7 +131,7 @@
                         <Button Grid.Column="2" Style="{StaticResource RightButStyle}" Click="onBrowseDirectoryCase">选择</Button>
                     </Grid>
                 </Border>
-                <TextBlock Style="{StaticResource TextFrameTitleStyle}">案件目录设置</TextBlock>
+                <TextBlock Style="{StaticResource TextFrameTitleStyle}" Text="{DynamicResource systemCasePath}" />
             </Grid>
 
             <!-- 案件目录命名规则 -->
@@ -179,7 +179,7 @@
                                 <ColumnDefinition Width="{StaticResource WidthSettingItemRight}" />
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}">案件编号:</TextBlock>
+                            <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}" Text="{DynamicResource evidCaseNo}" />
                             <TextBox Grid.Column="1" 
                                      Style="{StaticResource TextInputStyle}"
                                      IsEnabled="{Binding IsChecked, ElementName=RadioNamingCustom}"
@@ -197,7 +197,7 @@
                                 <ColumnDefinition Width="{StaticResource WidthSettingItemRight}" />
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}">物证编号:</TextBlock>
+                            <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}" Text="{DynamicResource evidNoColon}" />
                             <TextBox Grid.Column="1" 
                                      Style="{StaticResource TextInputStyle}"
                                      IsEnabled="{Binding IsChecked, ElementName=RadioNamingCustom}"
@@ -215,7 +215,7 @@
                                 <ColumnDefinition Width="{StaticResource WidthSettingItemRight}" />
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}">案件目录:</TextBlock>
+                            <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}" Text="{DynamicResource evidCasePath}" />
                             <TextBox Grid.Column="1" 
                                      Style="{StaticResource TextInputStyle}"
                                      IsEnabled="{Binding IsChecked, ElementName=RadioNamingCustom}"
@@ -233,7 +233,7 @@
                                 <ColumnDefinition Width="{StaticResource WidthSettingItemRight}" />
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}">物证目录:</TextBlock>
+                            <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}" Text="{DynamicResource evidPath}" />
                             <TextBox Grid.Column="1" 
                                      Style="{StaticResource TextInputStyle}" 
                                      IsEnabled="{Binding IsChecked, ElementName=RadioNamingCustom}"
@@ -251,7 +251,7 @@
                                 <ColumnDefinition Width="{StaticResource WidthSettingItemRight}" />
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}">物证原始目录:</TextBlock>
+                            <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}" Text="{DynamicResource systemEvidOriginPath}" />
                             <TextBox Grid.Column="1" 
                                      Style="{StaticResource TextInputStyle}" 
                                      IsEnabled="{Binding IsChecked, ElementName=RadioNamingCustom}"
@@ -269,7 +269,7 @@
                                 <ColumnDefinition Width="{StaticResource WidthSettingItemRight}" />
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}">物证解析目录:</TextBlock>
+                            <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}" Text="{DynamicResource systemEvidAnalysePath}" />
                             <TextBox Grid.Column="1" 
                                      Style="{StaticResource TextInputStyle}" 
                                      IsEnabled="{Binding IsChecked, ElementName=RadioNamingCustom}"
@@ -287,7 +287,7 @@
                                 <ColumnDefinition Width="{StaticResource WidthSettingItemRight}" />
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}">物证报告目录:</TextBlock>
+                            <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}" Text="{DynamicResource systemEvidReportPath}" />
                             <TextBox Grid.Column="1" 
                                      Style="{StaticResource TextInputStyle}" 
                                      IsEnabled="{Binding IsChecked, ElementName=RadioNamingCustom}"
@@ -305,14 +305,14 @@
                                 <ColumnDefinition Width="{StaticResource WidthSettingItemRight}" />
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}">检验人姓名:</TextBlock>
+                            <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}" Text="{DynamicResource systemCheckerName}" />
                             <TextBox Grid.Column="1" 
                                      Style="{StaticResource TextInputStyle}"
                                      Text="{Binding Path=Examiner, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </Grid>
                     </StackPanel>
                 </Border>
-                <TextBlock Style="{StaticResource TextFrameTitleStyle}">案件目录命名规则</TextBlock>
+                <TextBlock Style="{StaticResource TextFrameTitleStyle}" Text="{DynamicResource systemCaseNamingRule}" />
             </Grid>
         </StackPanel>
 
@@ -327,14 +327,16 @@
                             <ColumnDefinition Width="{StaticResource WidthSettingItemRight}" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}">默认路径:</TextBlock>
-                        <ComboBox Grid.Column="1" Style="{StaticResource ComboboxStyle}">
-                            <ComboBoxItem IsSelected="True">简体中文</ComboBoxItem>
-                            <ComboBoxItem>English</ComboBoxItem>
+                        <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}" Text="{DynamicResource systemSelectLang}" />
+                        <ComboBox Grid.Column="1" Style="{StaticResource ComboboxStyle}" 
+                                  SelectedValuePath="Tag" 
+                                  SelectedValue="{Binding Language, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <ComboBoxItem Tag="zh-CN">简体中文</ComboBoxItem>
+                            <ComboBoxItem Tag="en-US">English</ComboBoxItem>
                         </ComboBox>
                     </Grid>
                 </Border>
-                <TextBlock Style="{StaticResource TextFrameTitleStyle}">选择语言</TextBlock>
+                <TextBlock Style="{StaticResource TextFrameTitleStyle}" Text="{DynamicResource systemSelectLang}" />
             </Grid>
 
             <!-- 系统时区 -->
@@ -350,7 +352,7 @@
                             <ColumnDefinition Width="{StaticResource WidthSettingItemRight}" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}">选择时区:</TextBlock>
+                        <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}" Text="{DynamicResource systemSelectTZ}" />
                         <ComboBox Grid.Column="1" 
                                   Style="{StaticResource ComboboxStyle}"
                                   ItemsSource="{Binding ListTimeZone, Mode=OneWay}" 
@@ -359,7 +361,7 @@
                                   SelectedValue="{Binding TimeZoneSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     </Grid>
                 </Border>
-                <TextBlock Style="{StaticResource TextFrameTitleStyle}">系统时区</TextBlock>
+                <TextBlock Style="{StaticResource TextFrameTitleStyle}" Text="{DynamicResource systemTimeZone}" />
             </Grid>
 
             <!-- 彩虹表目录 -->
@@ -375,7 +377,7 @@
                             <ColumnDefinition Width="{StaticResource WidthSettingItemRight}" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}">默认目录:</TextBlock>
+                        <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}" Text="{DynamicResource systemDefaultPath}" />
                         <TextBox Grid.Column="1" 
                                  Style="{StaticResource TextInputStyle}" 
                                  IsEnabled="False"
@@ -384,7 +386,7 @@
                         <Button Grid.Column="2" Style="{StaticResource RightButStyle}" Click="onBrowseDirectoryWc">选择</Button>
                     </Grid>
                 </Border>
-                <TextBlock Style="{StaticResource TextFrameTitleStyle}">彩虹表目录</TextBlock>
+                <TextBlock Style="{StaticResource TextFrameTitleStyle}" Text="{DynamicResource systemRainbowPath}" />
             </Grid>
 
             <!-- 离线地图 -->
@@ -400,15 +402,15 @@
                             <ColumnDefinition Width="{StaticResource WidthSettingItemRight}" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}">默认目录:</TextBlock>
+                        <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}" Text="{DynamicResource systemDefaultPath}" />
                         <TextBox Grid.Column="1" 
                                  Style="{StaticResource TextInputStyle}"
                                  Name="TextMapDirectory" 
                                  Text="{Binding Path=DefaultPathMap, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                        <Button Grid.Column="2" Style="{StaticResource RightButStyle}" Click="onBrowseDirectoryMap">选择</Button>
+                        <Button Grid.Column="2" Style="{StaticResource RightButStyle}" Click="onBrowseDirectoryMap" Content="{DynamicResource systemSelect}" />
                     </Grid>
                 </Border>
-                <TextBlock Style="{StaticResource TextFrameTitleStyle}">离线地图</TextBlock>
+                <TextBlock Style="{StaticResource TextFrameTitleStyle}" Text="{DynamicResource systemOfflineMap}" />
             </Grid>
 
             <!-- 照片数据分页上限 -->
@@ -424,22 +426,21 @@
                             <ColumnDefinition Width="{StaticResource WidthSettingItemRight}" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}">默认大小:</TextBlock>
+                        <TextBlock Grid.Column="0" Style="{StaticResource TextLabelStyle}" Text="{DynamicResource systemDefaultSize}" />
                         <TextBox Grid.Column="1" 
                                  Style="{StaticResource TextInputStyle}"
                                  Text="{Binding Path=PhotoLimit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     </Grid>
                 </Border>
-                <TextBlock Style="{StaticResource TextFrameTitleStyle}">照片数据分页上限</TextBlock>
+                <TextBlock Style="{StaticResource TextFrameTitleStyle}" Text="{DynamicResource systemPageSizeLimit}" />
             </Grid>
 
             <Button Width="97" Height="35" 
                 Style="{StaticResource SettingButton}" 
                 HorizontalAlignment="Right"
                 Margin="0 20 0 0"
-                Command="{Binding SaveCommand}">
-                保存
-            </Button>
+                Command="{Binding SaveCommand}" Content="{DynamicResource systemSave}" />
+            
         </StackPanel>
     </Grid>
 

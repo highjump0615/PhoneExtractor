@@ -48,19 +48,22 @@ namespace Forensics.ViewModel
             //
             if (String.IsNullOrWhiteSpace(this.Title))
             {
-                MessageBox.Show("标题不能为空！", _clew, MessageBoxButton.OK, MessageBoxImage.Warning);
+                var strMsg = Application.Current.FindResource("msgEmptyTitle") as string;
+                MessageBox.Show(strMsg, _clew, MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             if (String.IsNullOrWhiteSpace(this.Content))
             {
-                MessageBox.Show("内容不能为空！", _clew, MessageBoxButton.OK, MessageBoxImage.Warning);
+                var strMsg = Application.Current.FindResource("msgEmptyContent") as string;
+                MessageBox.Show(strMsg, _clew, MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             SendEmail se = new SendEmail();
             if (se.Send(null, this.Title, this.Content, false).Equals("OK"))
             {
-                MessageBox.Show("已将您的反馈信息发送。", _clew);
+                var strMsg = Application.Current.FindResource("msgFeedbackSent") as string;
+                MessageBox.Show(strMsg, _clew);
             }
         }
     }

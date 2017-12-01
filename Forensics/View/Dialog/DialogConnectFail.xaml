@@ -32,16 +32,11 @@
 
         <Grid>
             <TextBlock Margin="59 58 0 0" 
-                       Style="{StaticResource TextStyle}">
-                很抱歉，设备连接不成功！
-            </TextBlock>
+                       Style="{StaticResource TextStyle}" 
+                       Text="{DynamicResource connectFailTitle}" />
             <TextBlock Margin="59 170 0 0" 
                        LineHeight="33"
-                       Style="{StaticResource TextStyle}">
-                1、使用USB数据线连接电脑。<LineBreak />
-                2、若设备中出现USB调试状态授权弹框，<LineBreak />
-                需点击【确定】以完成连接。
-            </TextBlock>
+                       Style="{StaticResource TextStyle}" Text="{DynamicResource connectFailContent}" />
 
             <Image Source="/Forensics;component/Resources/Images/dialog/dlg_con_fail.png" 
                    Stretch="None" 
@@ -51,9 +46,8 @@
             <Button FontSize="16" Style="{StaticResource BackButStyle}" 
                     VerticalAlignment="Bottom"
                     Margin="0,0,50,28" 
-                    Click="onButHelp">
-                如何开启USB调试？
-            </Button>
+                    Click="onButHelp" 
+                    Content="{DynamicResource connectFailHow}" />
         </Grid>
     </DockPanel>
 </Window>

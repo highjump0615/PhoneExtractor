@@ -102,9 +102,7 @@
                         Command="{Binding StartExtractCommand}">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Forensics;component/Resources/Images/dialog/dlg_out_mark.png" Stretch="None" />
-                        <TextBlock Margin="10 0 0 0">
-                            开始提取
-                        </TextBlock>
+                        <TextBlock Margin="10 0 0 0" Text="{DynamicResource dlgExtractStart}" />
                     </StackPanel>
                 </Button>
             </StackPanel>

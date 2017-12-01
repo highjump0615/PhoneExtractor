@@ -36,7 +36,9 @@
                 </DockPanel.Background>
 
                 <!-- Title -->
-                <TextBlock TextWrapping="Wrap" Style="{StaticResource titlebarTextStyle}" Text="iTunes同步获取，操作提示" Margin="20,0,0,0"/>
+                <TextBlock TextWrapping="Wrap" Style="{StaticResource titlebarTextStyle}" 
+                           Text="{DynamicResource connectiOSNotice}" 
+                           Margin="20,0,0,0"/>
 
                 <!-- Window Buttons -->
                 <Button Width="40" 
