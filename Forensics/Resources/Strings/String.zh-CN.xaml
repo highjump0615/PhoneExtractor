@@ -71,6 +71,7 @@
     <system:String x:Key="connectFailContent" xml:space="preserve">1、使用USB数据线连接电脑。&#x0d;&#x0a;2、若设备中出现USB调试状态授权弹框，&#x0d;&#x0a;需点击【确定】以完成连接。</system:String>
     <system:String x:Key="connectFailHow">如何开启USB调试？</system:String>
     <system:String x:Key="connectConnecting">正在检测设备是否连接成功。。。</system:String>
+    <system:String x:Key="connectDisconnect">设备已断开。。。</system:String>
     
     <!-- 提取 -->
     <system:String x:Key="extractSystemLog">系统log日志</system:String>

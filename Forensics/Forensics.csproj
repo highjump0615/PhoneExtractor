@@ -244,6 +244,9 @@
     <Compile Include="View\Dialog\DialogConnectFail.xaml.cs">
       <DependentUpon>DialogConnectFail.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Dialog\DialogDisconnect.xaml.cs">
+      <DependentUpon>DialogDisconnect.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Dialog\DialogConnectWaiting.xaml.cs">
       <DependentUpon>DialogConnectWaiting.xaml</DependentUpon>
     </Compile>
@@ -378,6 +381,10 @@
     <Page Include="View\Dialog\DialogConnectFail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialog\DialogDisconnect.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Dialog\DialogConnectWaiting.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -688,6 +695,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\dialog\ext_type_selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\dialog\dlg_con.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets')" />

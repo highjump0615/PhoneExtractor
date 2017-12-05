@@ -62,7 +62,7 @@ namespace Forensics.ViewModel
             this.ListCase.Clear();
 
             // 获取案件列表
-            List<Case> caseList = caseManager.GetCaseByWhere("all");
+            List<Case> caseList = caseManager.GetCaseByWhere("all", "ADDTIME", "desc");
 
             foreach (Case c in caseList)
             {

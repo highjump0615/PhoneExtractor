@@ -158,7 +158,19 @@ namespace Forensics
                 this.openExtractType();
             }
         }
-        
+
+        /// <summary>
+        /// 打开连接断开对话框
+        /// </summary>
+        public void openConnectDisconnect()
+        {
+            hideMenus();
+
+            var wSuccess = new DialogDisconnect();
+            wSuccess.Owner = this;
+            wSuccess.ShowDialog();
+        }
+
         /// <summary>
         /// 打开提取方式对话框
         /// </summary>
@@ -221,9 +233,6 @@ namespace Forensics
         /// <param name="e"></param>
         private void onButAppleBypass(object sender, RoutedEventArgs e)
         {
-            // TODO: test & delete
-            MainViewModel mainVM = (MainViewModel)this.DataContext;
-            mainVM.GoToExtractPage(MainHomeViewModel.DeviceType.Apple);
         }
 
         /// <summary>

@@ -506,6 +506,15 @@ namespace Forensics.ViewModel
             this.CurrentDevice = null;
             showDeviceInfo();
 
+            // 弹出连接断开对话框，如果已有弹出的窗口，则忽略
+            MainWindow viewMain = (MainWindow)this.View;
+            viewMain.Dispatcher.Invoke(new Action(() => {
+                if (App.Current.MainWindow.OwnedWindows.Count == 0)
+                {
+                    viewMain.openConnectDisconnect();
+                }
+            }));
+
             ////myDisconnect = new afcTest(myAFCDisconnect);
             ////this.Invoke(myDisconnect);
             //cleariPhoneInfo();

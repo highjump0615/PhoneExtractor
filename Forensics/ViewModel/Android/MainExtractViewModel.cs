@@ -314,43 +314,43 @@ namespace Forensics.ViewModel
                         return;
                     }
 
-                    //Process p = new Process();
-                    //try
-                    //{
-                    //    tempDataPath = tempDataPath.TrimEnd('\\');
-                    //    p.StartInfo.UseShellExecute = false;
-                    //    p.StartInfo.CreateNoWindow = true;
-                    //    p.StartInfo.FileName = backupEXE;
-                    //    p.StartInfo.RedirectStandardOutput = true;
-                    //    p.StartInfo.RedirectStandardError = true;
-                    //    p.StartInfo.Arguments = "-b --target " + devProp.UniqueDeviceID + " --root \"" + tempDataPath + "\"";
-                    //    p.Start();
+                    Process p = new Process();
+                    try
+                    {
+                        tempDataPath = tempDataPath.TrimEnd('\\');
+                        p.StartInfo.UseShellExecute = false;
+                        p.StartInfo.CreateNoWindow = true;
+                        p.StartInfo.FileName = backupEXE;
+                        p.StartInfo.RedirectStandardOutput = true;
+                        p.StartInfo.RedirectStandardError = true;
+                        p.StartInfo.Arguments = "-b --target " + devProp.UniqueDeviceID + " --root \"" + tempDataPath + "\"";
+                        p.Start();
 
-                    //    string strst = p.StandardOutput.ReadToEnd();
-                    //    strst += p.StandardError.ReadToEnd();
+                        string strst = p.StandardOutput.ReadToEnd();
+                        strst += p.StandardError.ReadToEnd();
 
-                    //    Console.WriteLine(strst);
-                    //    if (strst.IndexOf("ERROR") > -1)
-                    //    {
-                    //        saveErrorLog(strst);
-                    //        //saveErrorLog(backupEXE);
-                    //        //saveErrorLog(p.StartInfo.Arguments);
+                        Console.WriteLine(strst);
+                        if (strst.IndexOf("ERROR") > -1)
+                        {
+                            saveErrorLog(strst);
+                            //saveErrorLog(backupEXE);
+                            //saveErrorLog(p.StartInfo.Arguments);
 
-                    //        showFailed();
-                    //    }
-                    //}
-                    //catch (Exception ex)
-                    //{
-                    //    saveErrorLog(ex.Message);
-                    //    saveErrorLog(ex.HelpLink);
-                    //    saveErrorLog(ex.StackTrace);
-                    //    saveErrorLog(ex.TargetSite.ToString());
-                    //    p.Close();
+                            showFailed();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        saveErrorLog(ex.Message);
+                        saveErrorLog(ex.HelpLink);
+                        saveErrorLog(ex.StackTrace);
+                        saveErrorLog(ex.TargetSite.ToString());
+                        p.Close();
 
-                    //    showFailed();
-                    //}
-                    //p.Close();
-                    //p.Dispose();
+                        showFailed();
+                    }
+                    p.Close();
+                    p.Dispose();
 
 
                     // 进度更新
@@ -1564,6 +1564,7 @@ namespace Forensics.ViewModel
         private void PauseExtract()
         {
             mnProgress = -1;
+            addSystemLog("提交了停止要求。", "正在处理");
         }
 
         /// <summary>

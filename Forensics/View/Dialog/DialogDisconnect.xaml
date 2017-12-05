@@ -1,9 +1,8 @@
-﻿<Window x:Class="Forensics.View.Dialog.DialogConnectWaiting"
+﻿<Window x:Class="Forensics.View.Dialog.DialogDisconnect"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:gif="http://wpfanimatedgif.codeplex.com"
         xmlns:local="clr-namespace:Forensics.View.Dialog"
         mc:Ignorable="d"
         WindowStyle="None"
@@ -23,12 +22,12 @@
         
         <!-- Content -->
         <StackPanel Margin="30">
-            <Image gif:ImageBehavior.AnimatedSource="/Resources/Images/dialog/dlg_connecting.gif" Width="150" />
+            <Image Source="/Resources/Images/dialog/dlg_con.png" Width="150" />
             <TextBlock FontSize="18"
                        Foreground="White"
                        TextAlignment="Center"
                        Margin="20"
-                       Text="{DynamicResource connectConnecting}" />
+                       Text="{DynamicResource connectDisconnect}" />
         </StackPanel>
     
     </DockPanel>
