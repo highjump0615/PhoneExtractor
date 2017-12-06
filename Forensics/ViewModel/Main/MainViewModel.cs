@@ -18,6 +18,7 @@ using System.Management;
 using System.Text.RegularExpressions;
 using Forensics.Util;
 using System.Threading;
+using System.IO;
 
 namespace Forensics.ViewModel
 {
@@ -251,6 +252,60 @@ namespace Forensics.ViewModel
             this.SelectedChild = GetChild(typeof(MainSettingViewModel));
 
             ((MainSettingViewModel)this.SelectedChild).SelectChildViewModel((Type)param);
+        }
+
+        /// <summary>
+        /// 苹果密码绕过
+        /// </summary>
+        /// <param name="lockdownPath"></param>
+        public void DoAppleByPass(string lockdownPath)
+        {
+            string lslockfolder = "";
+
+            try
+            {
+                // 只考虑文件
+                if ((File.GetAttributes(lockdownPath) & FileAttributes.Directory) == FileAttributes.Directory)
+                {
+                    return;
+                }
+
+                FileInfo fi = new FileInfo(lockdownPath);
+
+                lslockfolder = Path.Combine("C:\\ProgramData", "Apple", "Lockdown");
+                if (Directory.Exists(lslockfolder))
+                {
+                    if (File.Exists(Path.Combine(lslockfolder, fi.Name)))
+                        File.Delete(Path.Combine(lslockfolder, fi.Name));
+                    File.Copy(lockdownPath, Path.Combine(lslockfolder, fi.Name));
+                }
+                lslockfolder = Path.Combine("D:\\ProgramData", "Apple", "Lockdown");
+                if (Directory.Exists(lslockfolder))
+                {
+                    if (File.Exists(Path.Combine(lslockfolder, fi.Name)))
+                        File.Delete(Path.Combine(lslockfolder, fi.Name));
+                    File.Copy(lockdownPath, Path.Combine(lslockfolder, fi.Name));
+                }
+                lslockfolder = Path.Combine("E:\\ProgramData", "Apple", "Lockdown");
+                if (Directory.Exists(lslockfolder))
+                {
+                    if (File.Exists(Path.Combine(lslockfolder, fi.Name)))
+                        File.Delete(Path.Combine(lslockfolder, fi.Name));
+                    File.Copy(lockdownPath, Path.Combine(lslockfolder, fi.Name));
+                }
+                lslockfolder = Path.Combine("F:\\ProgramData", "Apple", "Lockdown");
+                if (Directory.Exists(lslockfolder))
+                {
+                    if (File.Exists(Path.Combine(lslockfolder, fi.Name)))
+                        File.Delete(Path.Combine(lslockfolder, fi.Name));
+                    File.Copy(lockdownPath, Path.Combine(lslockfolder, fi.Name));
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.ToString());
+                return;
+            }
         }
 
         /// <summary>

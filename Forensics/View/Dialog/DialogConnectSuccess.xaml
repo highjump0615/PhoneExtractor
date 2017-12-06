@@ -93,7 +93,8 @@
             <local:DialogSelectFile x:Name="FileControl"
                                     Height="30" 
                                     HorizontalAlignment="Center" 
-                                    Margin="0 10 0 0" />
+                                    Margin="0 10 0 0"
+                                    Type="0" />
         </StackPanel>
 
     </DockPanel>

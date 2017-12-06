@@ -10,6 +10,7 @@
                  ShowInTaskbar="False"
                  Title="AppleSync" 
                  WindowChrome.WindowChrome="{StaticResource SubWindowChromeKey}"
+                 Height="{StaticResource HeightSyncWindow}" Width="{StaticResource WidthSyncWindow}"
                  MinHeight="{StaticResource HeightSyncWindow}" MinWidth="{StaticResource WidthSyncWindow}"
                  MaxHeight="{StaticResource HeightSyncWindow}" MaxWidth="{StaticResource WidthSyncWindow}"
                  WindowStartupLocation="CenterOwner">
@@ -63,9 +64,10 @@
             </Border.BorderBrush>
 
             <Button Style="{StaticResource SyncMainButton}" 
-                    IsEnabled="{Binding IsStartAvailable}" Click="onButStart">
-                开始提取
-            </Button>
+                    Width="Auto"
+                    IsEnabled="{Binding IsStartAvailable}" Click="onButStart" 
+                    Content="{Binding ButtonCaption}" 
+                    HorizontalAlignment="Center" />
         </Border>
 
         <Grid>

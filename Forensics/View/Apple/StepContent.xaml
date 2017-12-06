@@ -18,7 +18,8 @@
                                      VerticalAlignment="Top" 
                                      HorizontalAlignment="Left" 
                                      Height="30" Margin="30 280 0 0"
-                                     Visibility="{Binding ShowSavePath, Converter={StaticResource BoolToVisibility}}" />
+                                     Visibility="{Binding ShowSavePath, Converter={StaticResource BoolToVisibility}}"
+                                     Type="{Binding FileOpenType}" />
 
         <Image Width="252" Height="307" 
                Source="{Binding ImageSrc}" 

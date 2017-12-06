@@ -104,6 +104,7 @@ namespace Forensics
                 MainViewModel mainVM = (MainViewModel)this.DataContext;
                 this.ExtractPath = windowAppleSync.ExtractPath;
 
+
                 if (mainVM.CurrentDevice != null)
                 {
                     // 打开提取页面
@@ -233,6 +234,17 @@ namespace Forensics
         /// <param name="e"></param>
         private void onButAppleBypass(object sender, RoutedEventArgs e)
         {
+            hideMenus();
+
+            var windowAppleSync = new AppleSync(AppleSyncType.APPLEBYPASS);
+            windowAppleSync.Owner = this;
+            windowAppleSync.ShowDialog();
+
+            if (windowAppleSync.DialogResult == true)
+            {
+                MainViewModel mainVM = (MainViewModel)this.DataContext;
+                mainVM.DoAppleByPass(windowAppleSync.ExtractPath);
+            }
         }
 
         /// <summary>
