@@ -198,6 +198,7 @@
     <Compile Include="ViewModel\Dialog\DialogEvidenceViewModel.cs" />
     <Compile Include="ViewModel\Dialog\DialogExtractTypeViewModel.cs" />
     <Compile Include="ViewModel\Dialog\DialogManualViewModel.cs" />
+    <Compile Include="ViewModel\Dialog\DialogMultiDeviceModel.cs" />
     <Compile Include="ViewModel\Dialog\DialogSuccessViewModel.cs" />
     <Compile Include="ViewModel\Dialog\ExtractTypePrimaryViewModel.cs" />
     <Compile Include="ViewModel\Dialog\ExtractTypeSecondaryViewModel.cs" />
@@ -255,6 +256,9 @@
     </Compile>
     <Compile Include="View\Dialog\DialogConnectTitlebar.xaml.cs">
       <DependentUpon>DialogConnectTitlebar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialog\DialogMultiDevice.xaml.cs">
+      <DependentUpon>DialogMultiDevice.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Dialog\DialogSelectExtractType.xaml.cs">
       <DependentUpon>DialogSelectExtractType.xaml</DependentUpon>
@@ -395,6 +399,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Dialog\DialogConnectTitlebar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialog\DialogMultiDevice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

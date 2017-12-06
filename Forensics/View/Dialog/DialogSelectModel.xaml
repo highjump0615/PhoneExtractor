@@ -69,11 +69,6 @@
             <Setter Property="FontSize" Value="13" />
         </Style>
 
-        <Style TargetType="ListBox">
-            <Setter Property="Background" Value="{x:Null}" />
-            <Setter Property="BorderThickness" Value="0" />
-        </Style>
-
         <!-- 品牌样式 -->
         <Thickness x:Key="BrandMargin" Left="0" Right="4" Top="3" Bottom="0" />
 
@@ -144,7 +139,8 @@
 
                     <ListBox Name="lbBrands" ItemsSource="{Binding listBrand}" 
                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                             SelectedIndex="{Binding SelectedIndexBrand}">
+                             SelectedIndex="{Binding SelectedIndexBrand}"
+                             Style="{StaticResource TransparentListbox}">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel />
@@ -232,7 +228,8 @@
 
                     <ListBox Name="lbPhones" ItemsSource="{Binding listPhone}" 
                              ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                             SelectedIndex="{Binding SelectedIndexPhone}">
+                             SelectedIndex="{Binding SelectedIndexPhone}"
+                             Style="{StaticResource TransparentListbox}">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Orientation="Horizontal" />

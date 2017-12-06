@@ -452,6 +452,12 @@
                 </Setter>
             </Style>
 
+            <!-- 透明列表 -->
+            <Style x:Key="TransparentListbox" TargetType="ListBox">
+                <Setter Property="Background" Value="{x:Null}" />
+                <Setter Property="BorderThickness" Value="0" />
+            </Style>
+
         </ResourceDictionary>
 
     </Application.Resources>
