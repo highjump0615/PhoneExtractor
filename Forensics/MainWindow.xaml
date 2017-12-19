@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:Forensics"
         xmlns:ViewModel="clr-namespace:Forensics.ViewModel"
         mc:Ignorable="d"
-        WindowStyle="None"
         WindowChrome.WindowChrome="{DynamicResource WindowChromeKey}"
         Title="MainWindow" 
         Height="{StaticResource HeightWindow}" Width="{StaticResource WidthWindow}"
@@ -372,7 +371,8 @@
                     </Button>
 
                     <!-- Button SIM卡提取 -->
-                    <Button Style="{StaticResource BottomButStyle}" Canvas.Left="19" Canvas.Bottom="54">
+                    <Button Style="{StaticResource BottomButStyle}" Canvas.Left="19" Canvas.Bottom="54"
+                            Command="{Binding ExtractSimCommand}" >
                         <StackPanel Style="{StaticResource BottomButPanelStyle}">
                             <Image Source="/Resources/Images/bottom_but_sim.png" Width="16" Height="12" />
                             <TextBlock Style="{StaticResource BottomButTextStyle}" Text="{DynamicResource mainButSIM}" />
@@ -380,7 +380,8 @@
                     </Button>
 
                     <!-- Button 蓝牙提取 -->
-                    <Button Style="{StaticResource BottomButStyle}" Canvas.Left="46" Canvas.Bottom="9">
+                    <Button Style="{StaticResource BottomButStyle}" Canvas.Left="46" Canvas.Bottom="9"
+                            Command="{Binding ExtractBluetoothCommand}">
                         <StackPanel Style="{StaticResource BottomButPanelStyle}">
                             <Image Source="/Resources/Images/bottom_but_bluetooth.png" Width="12" Height="16" />
                             <TextBlock Style="{StaticResource BottomButTextStyle}" Text="{DynamicResource mainButBluetooth}" />

@@ -69,9 +69,32 @@ namespace Forensics.ViewModel
         public iPhone iPhoneInterface;
 
         /// <summary>
+        /// 功能机、SIM卡
+        /// </summary>
+        private List<Tool> mlistTool;
+
+        /// <summary>
         /// 当前连接的设备
         /// </summary>
         public DeviceInfo CurrentDevice { get; set; }
+
+        /// <summary>
+        /// SIM卡提取命令
+        /// </summary>
+        private ICommand _extractSimCommand;
+        public ICommand ExtractSimCommand
+        {
+            get { return _extractSimCommand ?? (_extractSimCommand = new DelegateCommand(ExtractSim)); }
+        }
+
+        /// <summary>
+        /// 蓝牙命令
+        /// </summary>
+        private ICommand _extractBluetoothCommand;
+        public ICommand ExtractBluetoothCommand
+        {
+            get { return _extractBluetoothCommand ?? (_extractBluetoothCommand = new DelegateCommand(ExtractBluetooth)); }
+        }
 
         /// <summary>
         /// 首页命令
@@ -177,6 +200,10 @@ namespace Forensics.ViewModel
                 User.LoginUser = user;
                 setLanguage();
             }
+
+            // 加载附件工具
+            var toolManager = new ToolManager();
+            mlistTool = toolManager.GetAllTools((int)ToolsType.Other);
         }
 
         /// <summary>
@@ -218,6 +245,22 @@ namespace Forensics.ViewModel
                 ((ViewModelBase)SelectedChild).Dispose();
 
             base.OnDispose();
+        }
+
+        /// <summary>
+        /// SIM卡提取
+        /// </summary>
+        private void ExtractSim()
+        {
+            ToolUtil.OpenTool(mlistTool[0]);
+        }
+
+        /// <summary>
+        /// 蓝牙提取
+        /// </summary>
+        private void ExtractBluetooth()
+        {
+            ToolUtil.OpenTool(mlistTool[1]);
         }
 
         /// <summary>
