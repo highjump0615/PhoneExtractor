@@ -10,7 +10,8 @@
         Title="MainWindow" 
         Height="{StaticResource HeightWindow}" Width="{StaticResource WidthWindow}"
         BorderBrush="Black" 
-        MinWidth="{StaticResource WidthWindow}" MinHeight="{StaticResource HeightWindow}" PreviewMouseUp="onMouseDown" >
+        MinWidth="{StaticResource WidthWindow}" MinHeight="{StaticResource HeightWindow}" PreviewMouseUp="onMouseDown" 
+                  WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         

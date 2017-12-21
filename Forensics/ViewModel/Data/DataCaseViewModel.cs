@@ -45,6 +45,15 @@ namespace Forensics.ViewModel
             get { return _importCommand ?? (_importCommand = new DelegateCommand(ImportCase)); }
         }
 
+        /// <summary>
+        /// 删除命令
+        /// </summary>
+        private ICommand _deleteCommand;
+        public ICommand DeleteCommand
+        {
+            get { return _deleteCommand ?? (_deleteCommand = new DelegateCommand(DeleteCase)); }
+        }
+
         public DataCaseViewModel(ViewModelBase vmParent)
         {
             this.ViewModelParent = vmParent;
@@ -161,6 +170,36 @@ namespace Forensics.ViewModel
             {
                 Mouse.OverrideCursor = null;
             });
+        }
+
+        /// <summary>
+        /// 删除案件
+        /// </summary>
+        private void DeleteCase()
+        {
+            // 检查有没有选择的
+            if (this.ListCase.Where(x => x.IsSelected).Count() == 0)
+            {
+                return;
+            }
+
+            // 删除
+            if (!MessageBoxResult.OK.Equals(MessageBox.Show("确定要删除此案件吗？", _clew, MessageBoxButton.OKCancel, MessageBoxImage.Question)))
+            {
+                return;
+            }
+
+            for (var i = this.ListCase.Count() - 1; i >= 0; i--)
+            {
+                var cc = this.ListCase[i];
+                if (!cc.IsSelected)
+                {
+                    continue;
+                }
+
+                caseManager.DelCase(this.ListCase[i]);
+                this.ListCase.RemoveAt(i);
+            }
         }
     }
 }

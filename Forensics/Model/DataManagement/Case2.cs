@@ -10,6 +10,8 @@ namespace Forensics.Model.DataManagement
 {
     public class Case2 : Case
     {
+        public bool IsSelected { get; set; }
+
         public string DateText
         {
             get

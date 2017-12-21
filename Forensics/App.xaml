@@ -128,6 +128,7 @@
                 </Style.Triggers>
             </Style>
 
+            <!-- blue setting button -->
             <Style x:Key="SettingButton" TargetType="Button" BasedOn="{StaticResource TransparentClickButton}">
                 <Setter Property="Foreground" Value="White" />
                 <Setter Property="FontSize" Value="15" />
@@ -139,6 +140,24 @@
                                     <SolidColorBrush Color="{StaticResource ThemeColor}" />
                                 </Border.Background>
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!-- gray setting button -->
+            <Style x:Key="SettingGrayButton" TargetType="Button" BasedOn="{StaticResource TransparentClickButton}">
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border BorderBrush="{x:Null}" CornerRadius="5">
+                                <Border.Background>
+                                    <SolidColorBrush Color="Gray" />
+                                </Border.Background>
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15 0" />
                             </Border>
                         </ControlTemplate>
                     </Setter.Value>

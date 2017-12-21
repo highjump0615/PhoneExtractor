@@ -94,6 +94,7 @@
     <system:String x:Key="casePath">路径</system:String>
     <system:String x:Key="caseOperation">操作</system:String>
     <system:String x:Key="caseButImport">案件导入</system:String>
+    <system:String x:Key="caseButDelete">删除</system:String>
     
     <!-- 物证 -->
     <system:String x:Key="evidID">物证编号</system:String>

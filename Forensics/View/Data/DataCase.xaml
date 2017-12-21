@@ -19,6 +19,7 @@
                                 <Border Style="{StaticResource listHeaderStyle}">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="30" />
                                             <ColumnDefinition Width="150" />
                                             <ColumnDefinition Width="150" />
                                             <ColumnDefinition Width="150" />
@@ -26,13 +27,13 @@
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="120" />
                                         </Grid.ColumnDefinitions>
-
-                                        <TextBlock Grid.Column="0" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource caseID}" />
-                                        <TextBlock Grid.Column="1" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource caseName}" />
-                                        <TextBlock Grid.Column="2" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource caseCreatedAt}" />
-                                        <TextBlock Grid.Column="3" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource caseEvidenceCount}" />
-                                        <TextBlock Grid.Column="4" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource casePath}" />
-                                        <TextBlock Grid.Column="5" Style="{StaticResource listHeaderTextStyle}" HorizontalAlignment="Right" Text="{DynamicResource caseOperation}" />
+                                        
+                                        <TextBlock Grid.Column="1" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource caseID}" />
+                                        <TextBlock Grid.Column="2" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource caseName}" />
+                                        <TextBlock Grid.Column="3" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource caseCreatedAt}" />
+                                        <TextBlock Grid.Column="4" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource caseEvidenceCount}" />
+                                        <TextBlock Grid.Column="5" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource casePath}" />
+                                        <TextBlock Grid.Column="6" Style="{StaticResource listHeaderTextStyle}" HorizontalAlignment="Right" Text="{DynamicResource caseOperation}" />
                                     </Grid>
                                 </Border>
                                 <Grid>
@@ -48,6 +49,7 @@
                 <StackPanel>
                     <Grid Height="40">
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30" />
                             <ColumnDefinition Width="150" />
                             <ColumnDefinition Width="150" />
                             <ColumnDefinition Width="150" />
@@ -56,12 +58,13 @@
                             <ColumnDefinition Width="120" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="0" Style="{StaticResource listContentTextStyle}" Text="{Binding CASE_NUMBER}" />
-                        <TextBlock Grid.Column="1" Style="{StaticResource listContentTextStyle}" Text="{Binding CASE_NAME}" />
-                        <TextBlock Grid.Column="2" Style="{StaticResource listContentTextStyle}" Text="{Binding DateText}" />
-                        <TextBlock Grid.Column="3" Style="{StaticResource listContentTextStyle}" Text="{Binding EVIDENCECOUNT}" />
-                        <TextBlock Grid.Column="4" Style="{StaticResource listContentTextStyle}" Text="{Binding CASE_PATH}" />
-                        <Button Grid.Column="5" 
+                        <CheckBox Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding IsSelected}" />
+                        <TextBlock Grid.Column="1" Style="{StaticResource listContentTextStyle}" Text="{Binding CASE_NUMBER}" />
+                        <TextBlock Grid.Column="2" Style="{StaticResource listContentTextStyle}" Text="{Binding CASE_NAME}" />
+                        <TextBlock Grid.Column="3" Style="{StaticResource listContentTextStyle}" Text="{Binding DateText}" />
+                        <TextBlock Grid.Column="4" Style="{StaticResource listContentTextStyle}" Text="{Binding EVIDENCECOUNT}" />
+                        <TextBlock Grid.Column="5" Style="{StaticResource listContentTextStyle}" Text="{Binding CASE_PATH}" />
+                        <Button Grid.Column="6" 
                                 Style="{StaticResource transparentButton}" 
                                 Width="94" 
                                 HorizontalAlignment="Right"
@@ -71,7 +74,7 @@
                         </Button>
                         
                         <!-- Border -->
-                        <Rectangle Style="{StaticResource listDashBorder}" Grid.ColumnSpan="6" />
+                        <Rectangle Style="{StaticResource listDashBorder}" Grid.ColumnSpan="8" />
                     </Grid>
                 </StackPanel>
             </DataTemplate>
@@ -89,13 +92,21 @@
         <!-- header -->
         <Border Grid.Row="0" Style="{StaticResource SettingHeaderStyle}">
             <Border Style="{StaticResource SettingHeaderInnerStyle}">
-                <Button HorizontalAlignment="Right" Style="{StaticResource SettingButton}"
-                        Command="{Binding ImportCommand}">
-                    <StackPanel Orientation="Horizontal" Margin="10 0 10 0">
-                        <Image Source="/Resources/Images/nav_but_case_selected.png" Width="17" Margin="0 0 7 0" />
-                        <TextBlock Text="{DynamicResource caseButImport}" />
-                    </StackPanel>
-                </Button>
+                <Grid>
+                    <!-- 导入 -->
+                    <Button HorizontalAlignment="Right" Style="{StaticResource SettingButton}"
+                            Command="{Binding ImportCommand}">
+                        <StackPanel Orientation="Horizontal" Margin="10 0 10 0">
+                            <Image Source="/Resources/Images/nav_but_case_selected.png" Width="17" Margin="0 0 7 0" />
+                            <TextBlock Text="{DynamicResource caseButImport}" />
+                        </StackPanel>
+                    </Button>
+
+                    <!-- 删除 -->
+                    <Button HorizontalAlignment="Left" Style="{StaticResource SettingGrayButton}"
+                            Command="{Binding DeleteCommand}"
+                            Content="{DynamicResource caseButDelete}" />
+                </Grid>
             </Border>
         </Border>
 
