@@ -17,6 +17,8 @@ namespace Forensics.ViewModel
 
         private static readonly ILog Log = LogManager.GetLogger(typeof(ViewModelBase));
 
+        protected String _clew = "操作提示";
+
         protected virtual void OnDispose()
         {
             Console.WriteLine(string.Format("Disposing {0} , {1}", this.GetType().Name, this.GetType().FullName));

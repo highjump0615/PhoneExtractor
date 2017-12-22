@@ -19,20 +19,21 @@
                                 <Border Style="{StaticResource listHeaderStyle}">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="16*" />
-                                            <ColumnDefinition Width="13*" />
-                                            <ColumnDefinition Width="13*" />
-                                            <ColumnDefinition Width="8*" />
-                                            <ColumnDefinition Width="8*" />
+                                            <ColumnDefinition Width="30" />
+                                            <ColumnDefinition Width="200" />
+                                            <ColumnDefinition Width="150" />
+                                            <ColumnDefinition Width="150" />
+                                            <ColumnDefinition Width="150" />
+                                            <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="120" />
                                         </Grid.ColumnDefinitions>
 
-                                        <TextBlock Grid.Column="0" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource evidID}" />
-                                        <TextBlock Grid.Column="1" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource evidPhone}" />
-                                        <TextBlock Grid.Column="2" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource evidName}" />
-                                        <TextBlock Grid.Column="3" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource evidGender}" />
-                                        <TextBlock Grid.Column="4" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource evidNation}" />
-                                        <TextBlock Grid.Column="5" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource caseOperation}" HorizontalAlignment="Right" />
+                                        <TextBlock Grid.Column="1" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource evidID}" />
+                                        <TextBlock Grid.Column="2" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource evidPhone}" />
+                                        <TextBlock Grid.Column="3" Style="{StaticResource listHeaderTextStyle}" Text="所属案件" />
+                                        <TextBlock Grid.Column="4" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource caseCreatedAt}" />
+                                        <TextBlock Grid.Column="5" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource casePath}" />
+                                        <TextBlock Grid.Column="6" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource caseOperation}" HorizontalAlignment="Right" />
                                     </Grid>
                                 </Border>
                                 <Grid>
@@ -48,20 +49,22 @@
                 <StackPanel>
                     <Grid Height="40">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="16*" />
-                            <ColumnDefinition Width="13*" />
-                            <ColumnDefinition Width="13*" />
-                            <ColumnDefinition Width="8*" />
-                            <ColumnDefinition Width="8*" />
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="120" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="0" Style="{StaticResource listContentTextStyle}" Text="{Binding EVIDENCE_NUMBER}" />
-                        <TextBlock Grid.Column="1" Style="{StaticResource listContentTextStyle}" Text="{Binding OWNER_PHONENUMBER}" />
-                        <TextBlock Grid.Column="2" Style="{StaticResource listContentTextStyle}" Text="{Binding OWNER_NAME}" />
-                        <TextBlock Grid.Column="3" Style="{StaticResource listContentTextStyle}" Text="{Binding OWNER_SEX}" />
-                        <TextBlock Grid.Column="4" Style="{StaticResource listContentTextStyle}" />
-                        <Button Grid.Column="5" 
+                        <CheckBox Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding IsSelected}" />
+                        <TextBlock Grid.Column="1" Style="{StaticResource listContentTextStyle}" Text="{Binding EVIDENCE_NUMBER}" />
+                        <TextBlock Grid.Column="2" Style="{StaticResource listContentTextStyle}" Text="{Binding OWNER_PHONENUMBER}" />
+                        <TextBlock Grid.Column="3" Style="{StaticResource listContentTextStyle}" Text="{Binding CaseBelonged.CASE_NAME}" />
+                        <TextBlock Grid.Column="4" Style="{StaticResource listContentTextStyle}" Text="{Binding DateText}" />
+                        <TextBlock Grid.Column="5" Style="{StaticResource listContentTextStyle}" Text="{Binding FILE_PATH}" />
+                        <Button Grid.Column="6" 
                                 Style="{StaticResource transparentButton}" 
                                 Width="94" 
                                 HorizontalAlignment="Right">
@@ -69,7 +72,7 @@
                         </Button>
 
                         <!-- Border -->
-                        <Rectangle Style="{StaticResource listDashBorder}" Grid.ColumnSpan="6" />
+                        <Rectangle Style="{StaticResource listDashBorder}" Grid.ColumnSpan="7" />
                     </Grid>
                 </StackPanel>
             </DataTemplate>
@@ -87,6 +90,10 @@
         <!-- header -->
         <Border Grid.Row="0" Style="{StaticResource SettingHeaderStyle}">
             <Border Style="{StaticResource SettingHeaderInnerStyle}">
+                <!-- 删除 -->
+                <Button HorizontalAlignment="Left" Style="{StaticResource SettingGrayButton}"
+                            Command="{Binding DeleteCommand}"
+                            Content="{DynamicResource caseButDelete}" />
             </Border>
         </Border>
 

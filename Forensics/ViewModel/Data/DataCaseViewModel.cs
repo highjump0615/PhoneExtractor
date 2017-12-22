@@ -16,7 +16,6 @@ namespace Forensics.ViewModel
 {
     class DataCaseViewModel : ViewModelBase
     {
-        private String _clew = "操作提示";
         private CaseManager caseManager = new CaseManager();
         private DataManager dataManager = new DataManager();
 

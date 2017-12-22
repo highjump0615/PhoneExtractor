@@ -171,6 +171,7 @@
     <Compile Include="Converter\GreaterThanZeroConverter.cs" />
     <Compile Include="Converter\InverseBooleanConverter.cs" />
     <Compile Include="Globals.cs" />
+    <Compile Include="Model\DataManagement\Evidence2.cs" />
     <Compile Include="Model\Device\BrandInfo.cs" />
     <Compile Include="Model\Device\DeviceInfo.cs" />
     <Compile Include="Model\Device\DeviceProperty.cs" />
