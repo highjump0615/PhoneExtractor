@@ -47,6 +47,8 @@ namespace Forensics.ViewModel
                 stepVM.Desc = "第三步：备份目录空间为案件目录";
                 stepVM.ShowSavePath = true;
                 this.AddChild(stepVM);
+
+                this.StartIndex = 1;
             }
             else
             {

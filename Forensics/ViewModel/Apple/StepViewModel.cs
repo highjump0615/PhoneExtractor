@@ -14,6 +14,8 @@ namespace Forensics.ViewModel
 
         private int nCurrentIndex = 0;
 
+        public int StartIndex { get; set; } = -1;
+
         protected void initPages()
         {
             nCurrentIndex = 0;
@@ -68,7 +70,7 @@ namespace Forensics.ViewModel
         {
             get
             {
-                return !IsNextVisible;
+                return StartIndex >= 0 ? nCurrentIndex >= StartIndex : !IsNextVisible;
             }
         }
 
