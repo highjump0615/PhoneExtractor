@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,13 @@ namespace Forensics.View.Dialog
             set { SetValue(TypeProperty, value); }
         }
 
+        public string PathDefault
+        {
+            get { return (string)GetValue(PathDefaultProperty); }
+            set { SetValue(PathDefaultProperty, value); }
+        }
+
+
         // Using a DependencyProperty as the backing store for Title.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TypeProperty =
             DependencyProperty.Register(
@@ -35,9 +43,19 @@ namespace Forensics.View.Dialog
                 null
             );
 
+        public static readonly DependencyProperty PathDefaultProperty =
+            DependencyProperty.Register(
+                "PathDefault",
+                typeof(string),
+                typeof(DialogSelectFile),
+                null
+            );
+
         public DialogSelectFile()
         {
             InitializeComponent();
+
+            this.PathDefault = ConfigurationManager.AppSettings["caseDefaultPath"];
         }
 
         /// <summary>

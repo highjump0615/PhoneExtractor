@@ -10,11 +10,11 @@
     <StackPanel Orientation="Horizontal" >
         <TextBlock FontSize="16" Foreground="White" VerticalAlignment="Center" Text="{DynamicResource dlgSavePath}" />
         <TextBox VerticalContentAlignment="Center" FontSize="14" Width="252"
-                 Name="TextPath">
+                 Name="TextPath"
+                 Text="{Binding PathDefault, RelativeSource={RelativeSource AncestorType=UserControl}}">
             <TextBox.Foreground>
                 <SolidColorBrush Color="{StaticResource SettingGrayColor}" />
             </TextBox.Foreground>
-            D:\Users\Chris\Downloads
         </TextBox>
         <Button Width="64" 
                     Background="#91c5ff" 
