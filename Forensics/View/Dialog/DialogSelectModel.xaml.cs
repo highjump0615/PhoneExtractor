@@ -18,7 +18,7 @@ namespace Forensics.View.Dialog
     /// <summary>
     /// Interaction logic for DialogSelectModel.xaml
     /// </summary>
-    public partial class DialogSelectModel : Window
+    public partial class DialogSelectModel : WindowBase
     {
         private double mdScrollOffset = 4;
 

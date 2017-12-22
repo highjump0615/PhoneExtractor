@@ -41,23 +41,6 @@ namespace Forensics
         }
 
         /// <summary>
-        /// Maximize/Restore window
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void onButMaximize(object sender, RoutedEventArgs e)
-        {
-            if (this.WindowState == WindowState.Maximized)
-            {
-                this.WindowState = WindowState.Normal;
-            }
-            else
-            {
-                this.WindowState = WindowState.Maximized;
-            }
-        }
-
-        /// <summary>
         /// Minimize window
         /// </summary>
         /// <param name="sender"></param>
@@ -67,9 +50,9 @@ namespace Forensics
             this.WindowState = WindowState.Minimized;
         }
 
-        ///// <summary>
-        ///// 隐藏所有菜单
-        ///// </summary>
+        /// <summary>
+        /// 隐藏所有菜单
+        /// </summary>
         private void hideMenus()
         {
             this.butAppleExtract.IsChecked = false;

@@ -1,18 +1,17 @@
-﻿<Window x:Class="Forensics.View.Dialog.DialogSelectModel"
+﻿<localMain:WindowBase x:Class="Forensics.View.Dialog.DialogSelectModel"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Forensics.View.Dialog"
+            xmlns:localMain="clr-namespace:Forensics"
         xmlns:fa="clr-namespace:FontAwesome.WPF;assembly=FontAwesome.WPF"
         xmlns:converter="clr-namespace:Forensics.Converter"
         mc:Ignorable="d"
-        WindowStyle="None"
         ShowInTaskbar="False"
         WindowChrome.WindowChrome="{StaticResource SubWindowChromeKey}"
         Height="459" Width="{StaticResource WidthSyncWindow}"
         MinHeight="459" MinWidth="{StaticResource WidthSyncWindow}"
-        MaxHeight="459" MaxWidth="{StaticResource WidthSyncWindow}"
         WindowStartupLocation="CenterOwner">
 
     <Window.Background>
@@ -87,7 +86,8 @@
 
     <DockPanel>
         <local:DialogConnectTitlebar DockPanel.Dock="Top" 
-                                     Title="选择您要连接的设备" />
+                                     Title="选择您要连接的设备"
+                                     MaximizeAvailable="True" />
 
         <!-- Bottom bar -->
         <Border VerticalAlignment="Bottom" 
@@ -325,4 +325,4 @@
         </Grid>
 
     </DockPanel>
-</Window>
+</localMain:WindowBase>

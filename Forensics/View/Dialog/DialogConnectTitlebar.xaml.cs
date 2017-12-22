@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Forensics.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,13 @@ namespace Forensics.View.Dialog
             set { SetValue(TitleProperty, value); }
         }
 
+        public bool MaximizeAvailable
+        {
+            get { return (bool)GetValue(MaximizeAvailableProperty); }
+            set { SetValue(MaximizeAvailableProperty, value); }
+        }
+
+
         // Using a DependencyProperty as the backing store for Title.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register(
@@ -35,11 +43,26 @@ namespace Forensics.View.Dialog
                 null
             );
 
+        public static readonly DependencyProperty MaximizeAvailableProperty =
+            DependencyProperty.Register(
+                "MaximizeAvailable",
+                typeof(bool),
+                typeof(DialogConnectTitlebar),
+                null
+            );
+
         public DialogConnectTitlebar()
         {
             InitializeComponent();
 
             this.Title = "连接设备";
+            this.MaximizeAvailable = false;
+        }
+
+        private void onButMaximize(object sender, RoutedEventArgs e)
+        {
+            WindowBase parent = (WindowBase)CommonUtil.GetParentWindow(this);
+            parent.onButMaximize(sender, e);
         }
     }
 }

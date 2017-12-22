@@ -22,5 +22,22 @@ namespace Forensics
         {
             this.Close();
         }
+
+        /// <summary>
+        /// Maximize/Restore window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void onButMaximize(object sender, RoutedEventArgs e)
+        {
+            if (this.WindowState == WindowState.Maximized)
+            {
+                this.WindowState = WindowState.Normal;
+            }
+            else
+            {
+                this.WindowState = WindowState.Maximized;
+            }
+        }
     }
 }
