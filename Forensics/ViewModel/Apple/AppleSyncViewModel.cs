@@ -40,6 +40,7 @@ namespace Forensics.ViewModel
                 // 第二步
                 stepVM = new AppleStepViewModel();
                 stepVM.Desc = "第二步：第一次连接请注意信任选项";
+                stepVM.ImageSrc = "/Resources/Images/dialog/dlg_ios_trust.png";
                 this.AddChild(stepVM);
 
                 // 第三步

@@ -18,32 +18,22 @@
             </Border>
         </Border>
 
-        <Border Background="#f2f4f6" BorderThickness="1" BorderBrush="#c2d4eb">
-            <TextBlock xml:space="preserve" FontSize="16" Foreground="#777777">
-        EDEC V5.0.0 更新
-        更新日期：2017-08-05
-
-        新增：
-            -已提取设备数据查看
-            -已提取设备数据查看
-            
-        改进：
-            -已提取设备数据查看
-            -已提取设备数据查看
-            
-        修复：
-            -已提取设备数据查看
-            -已提取设备数据查看
-                
-                
-            </TextBlock>
+        <Border Background="#f2f4f6" BorderThickness="1" BorderBrush="#c2d4eb"
+                Height="500">
+            <ScrollViewer>
+                <TextBlock xml:space="preserve" FontSize="16" Foreground="#777777"
+                           Margin="15"
+                           LineHeight="33"
+                           Text="{Binding Description}" />
+            </ScrollViewer>
         </Border>
 
         <Button Width="97" Height="30" 
                 Style="{StaticResource SettingButton}" 
                 HorizontalAlignment="Right"
                 Margin="0 20 0 0" 
-                Content="{DynamicResource upgradeBut}" />
+                Content="{DynamicResource upgradeBut}"
+                Command="{Binding UpgradeCommand}" />
 
     </StackPanel>
 </UserControl>

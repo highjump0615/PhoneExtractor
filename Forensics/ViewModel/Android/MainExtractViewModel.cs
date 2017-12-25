@@ -10,6 +10,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Data;
 using System.Diagnostics;
 using System.IO;
@@ -34,7 +35,7 @@ namespace Forensics.ViewModel
         private RyLib.AndroidExtractHelp AExtractHelp = null;
 
         /// 提取参数
-        private string savePath = "f:\\temp\\Data";
+        private string savePath = ConfigurationManager.AppSettings["caseDefaultPath"];
         private string tempDataPath = "";
         private string unbackPath = "";
         private List<mbdbdump.mbdb.MBFileRecord> files92;

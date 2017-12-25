@@ -40,9 +40,12 @@ namespace Forensics.View.Apple
             // 获取提取路径
             AppleSyncViewModel vm = (AppleSyncViewModel)this.DataContext;
             AppleStepViewModel vmStep = (AppleStepViewModel)vm.GetChildAt(vm.GetCount() - 1);
-            StepContent stepView = (StepContent)vmStep.View;
 
-            this.ExtractPath = stepView.FileControl.TextPath.Text;
+            StepContent stepView = (StepContent)vmStep.View;
+            if (stepView != null)
+            {
+                this.ExtractPath = stepView.FileControl.TextPath.Text;
+            }
 
             DialogResult = true;
         }

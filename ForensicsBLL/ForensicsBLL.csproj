@@ -43,6 +43,7 @@
     <Compile Include="CaseManager.cs" />
     <Compile Include="DataManager.cs" />
     <Compile Include="EvidenceManager.cs" />
+    <Compile Include="ExtractionManager.cs" />
     <Compile Include="JournalManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ToolManager.cs" />
