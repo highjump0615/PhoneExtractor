@@ -719,9 +719,6 @@
     <Resource Include="Resources\Images\dialog\dlg_ios_trust.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Icons\default.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="default.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
