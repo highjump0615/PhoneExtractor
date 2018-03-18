@@ -35,9 +35,8 @@
                                Width="18" Height="5" />
                     <TextBlock VerticalAlignment="Center" 
                                FontSize="14"
-                               Margin="20 0 0 0">
-                        系统log日志
-                    </TextBlock>
+                               Margin="20 0 0 0"
+                               Text="{DynamicResource extractSystemLog}" />
                 </StackPanel>
             </Border>
 

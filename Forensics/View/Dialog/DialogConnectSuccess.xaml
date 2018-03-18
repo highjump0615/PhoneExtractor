@@ -8,6 +8,7 @@
         WindowStyle="None"
         ShowInTaskbar="False"
         WindowChrome.WindowChrome="{StaticResource SubWindowChromeKey}"
+        Height="{StaticResource HeightSyncWindow}" Width="{StaticResource WidthSyncWindow}"
         MinHeight="{StaticResource HeightSyncWindow}" MinWidth="{StaticResource WidthSyncWindow}"
         MaxHeight="{StaticResource HeightSyncWindow}" MaxWidth="{StaticResource WidthSyncWindow}"
         WindowStartupLocation="CenterOwner">
@@ -40,18 +41,60 @@
         
         <!-- Content -->
         <StackPanel Margin="20">
-            <Image Source="/Forensics;component/Resources/Images/dialog/dlg_con_success.png" Stretch="None" />
-            <TextBlock FontSize="18"
-                       Foreground="#07307b"
-                       TextAlignment="Center"
-                       Margin="20">
-                恭喜您，设备连接成功！
-            </TextBlock>
+            <Grid Height="254">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                
+                <Image Grid.Row="0" Source="/Forensics;component/Resources/Images/dialog/dlg_con_success.png" Height="198" />
+
+                <!-- 手机信息 -->
+                <Grid Grid.Row="1" HorizontalAlignment="Center" Margin="0 10 0 5" Visibility="{Binding IsAndroid, Converter={StaticResource BoolToVisibility}}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.Resources>
+                        <Style x:Key="textBoxStyle" TargetType="StackPanel">
+                            <Setter Property="Orientation" Value="Horizontal" />
+                            <Setter Property="Margin" Value="10 0 10 5" />
+                        </Style>
+                        <Style x:Key="infoLabelStyle" TargetType="TextBlock">
+                            <Setter Property="MinWidth" Value="70" />
+                            <Setter Property="FontSize" Value="14" />
+                            <Setter Property="Foreground" Value="White" />
+                        </Style>
+                    </Grid.Resources>
+
+                    <StackPanel Grid.Row="0" Grid.Column="0" Style="{StaticResource textBoxStyle}">
+                        <TextBlock Style="{StaticResource infoLabelStyle}" Text="{DynamicResource phoneBrand}" />
+                        <TextBlock Style="{StaticResource infoLabelStyle}" Text="{Binding Brand}" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="0" Grid.Column="1" Style="{StaticResource textBoxStyle}">
+                        <TextBlock Style="{StaticResource infoLabelStyle}" Text="{DynamicResource connectAndroidVersion}" />
+                        <TextBlock Style="{StaticResource infoLabelStyle}" Text="{Binding OSVersion}" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="0" Style="{StaticResource textBoxStyle}">
+                        <TextBlock Style="{StaticResource infoLabelStyle}" Text="{DynamicResource phoneModel}" />
+                        <TextBlock Style="{StaticResource infoLabelStyle}" Text="{Binding ModelNumber}" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="1" Style="{StaticResource textBoxStyle}">
+                        <TextBlock Style="{StaticResource infoLabelStyle}" Text="{DynamicResource phoneRoot}" />
+                        <TextBlock Style="{StaticResource infoLabelStyle}" Text="{Binding RootStatus}" />
+                    </StackPanel>
+                </Grid>
+            </Grid>
 
             <local:DialogSelectFile x:Name="FileControl"
                                     Height="30" 
                                     HorizontalAlignment="Center" 
-                                    Margin="0 10 0 0" />
+                                    Margin="0 10 0 0"
+                                    Type="0" />
         </StackPanel>
 
     </DockPanel>

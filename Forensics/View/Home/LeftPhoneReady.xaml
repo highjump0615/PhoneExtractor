@@ -14,7 +14,7 @@
         <StackPanel VerticalAlignment="Center">
             <Image Source="/Resources/Images/home_phone_usb.png" Stretch="Fill" Width="50" Height="202" />
             <Border CornerRadius="10" Background="#40000000" HorizontalAlignment="Center" Padding="10 5" Margin="0,-100,0,0" VerticalAlignment="Center">
-                <TextBlock HorizontalAlignment="Center" Foreground="White" FontSize="14">手机未连接</TextBlock>
+                <TextBlock HorizontalAlignment="Center" Foreground="White" FontSize="14" Text="{DynamicResource phoneNotConnect}" />
             </Border>
         </StackPanel>
     </Grid>

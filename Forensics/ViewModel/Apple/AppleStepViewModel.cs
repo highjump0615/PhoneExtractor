@@ -11,6 +11,9 @@ namespace Forensics.ViewModel
     {
         public bool ShowSavePath { get; set; }
 
+        // 默认是文件选择
+        public int FileOpenType { get; set; } = 0;
+
         public AppleStepViewModel()
         {
             ImageSrc = "/Resources/Images/extract/ext_apple_img.png";

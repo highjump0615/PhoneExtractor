@@ -27,7 +27,7 @@
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
                             <StackPanel Style="{StaticResource NavbarButPanelStyle}">
                                 <Image Name="imgIcon" Source="/Resources/Images/nav_but_case.png" Stretch="None" />
-                                <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}">案件管理</TextBlock>
+                                <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}" Text="{DynamicResource dataManageCase}" />
                             </StackPanel>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -49,7 +49,7 @@
                         <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}">
                             <StackPanel Style="{StaticResource NavbarButPanelStyle}">
                                 <Image Name="imgIcon" Source="/Resources/Images/nav_but_evid.png" Stretch="None" />
-                                <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}">物证管理</TextBlock>
+                                <TextBlock Name="txtName" Style="{StaticResource NavbarButTextStyle}" Text="{DynamicResource dataManageEvid}" />
                             </StackPanel>
                         </Border>
                         <ControlTemplate.Triggers>

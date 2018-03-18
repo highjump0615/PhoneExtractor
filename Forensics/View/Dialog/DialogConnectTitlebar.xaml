@@ -26,12 +26,22 @@
             </StackPanel>
 
             <!-- Window Buttons -->
-            <Button Width="40" 
-                    HorizontalContentAlignment="Center" 
-                    Style="{StaticResource TitleBarButStyle}" 
-                    IsCancel="True">
-                <Image Source="/Resources/Images/title_close.png" Width="{StaticResource WidthTitlebarButtonImg}" Margin="0,0,4,0" />
-            </Button>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right">
+                <Button Width="40"
+                        HorizontalContentAlignment="Center"
+                        Style="{StaticResource TitleBarButStyle}"
+                        Visibility="{Binding MaximizeAvailable, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BoolToVisibility}}"
+                        Click="onButMaximize">
+                    <Image Source="/Resources/Images/title_max.png" Width="{StaticResource WidthTitlebarButtonImg}" />
+                </Button>
+                <Button Width="40" 
+                        HorizontalContentAlignment="Center" 
+                        Style="{StaticResource TitleBarButStyle}" 
+                        IsCancel="True">
+                    <Image Source="/Resources/Images/title_close.png" Width="{StaticResource WidthTitlebarButtonImg}" Margin="0,0,4,0" />
+                </Button>
+            </StackPanel>
         </Grid>
     </Border>
 </UserControl>

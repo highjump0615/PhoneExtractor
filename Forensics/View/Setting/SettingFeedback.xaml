@@ -20,7 +20,7 @@
             <Setter Property="FontSize" Value="16" />
         </Style>
 
-        <Style x:Key="SettingFrameButton" TargetType="Button">
+        <Style x:Key="SettingFrameButton" TargetType="Button" BasedOn="{StaticResource TransparentClickButton}">
             <Setter Property="FontSize" Value="15" />
             <Setter Property="Template">
                 <Setter.Value>
@@ -43,8 +43,8 @@
         <Border Style="{StaticResource SettingHeaderStyle}">
             <Border Style="{StaticResource SettingHeaderInnerStyle}">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource SettingHeaderTitleStyle}">用户反馈</TextBlock>
-                    <TextBlock Style="{StaticResource SettingHeaderDescStyle}">感谢您给我们提出的意见和建议！我们会尽快对您的反馈进行处理。</TextBlock>
+                    <TextBlock Style="{StaticResource SettingHeaderTitleStyle}" Text="{DynamicResource settingFeedback}" />
+                    <TextBlock Style="{StaticResource SettingHeaderDescStyle}" Text="{DynamicResource feedbackNotice}" />
                 </StackPanel>
             </Border>
         </Border>
@@ -62,27 +62,30 @@
 
             <!-- 标题 -->
             <TextBlock Grid.Row="0" Grid.Column="0" 
-                       Style="{StaticResource textLabel}">
-                标题：
-            </TextBlock>
+                       Style="{StaticResource textLabel}"
+                       Text="{DynamicResource feedbackTitle}" />
             <TextBox Grid.Row="0" Grid.Column="1" 
                      Style="{StaticResource editText}" 
                      Height="40"
-                     Margin="0 0 0 10"/>
+                     Margin="0 0 0 10"
+                     Text="{Binding Title, Mode=TwoWay}" VerticalContentAlignment="Center"/>
 
             <!-- 内容 -->
             <TextBlock Grid.Row="1" Grid.Column="0" 
-                       Style="{StaticResource textLabel}">
-                内容：
-            </TextBlock>
+                       Style="{StaticResource textLabel}"
+                       Text="{DynamicResource feedbackContent}" />
             <TextBox Grid.Row="1" Grid.Column="1" 
                      Style="{StaticResource editText}" 
                      Height="340"
-                     Margin="0 0 0 15"/>
+                     Margin="0 0 0 15"
+                     Text="{Binding Content, Mode=TwoWay}" 
+                     TextWrapping="Wrap" 
+                     AcceptsReturn="True"/>
 
             <Button Grid.Row="2" Grid.Column="1" 
                     Width="96" Height="30" HorizontalAlignment="Right"
-                    Style="{StaticResource SettingFrameButton}">
+                    Style="{StaticResource SettingFrameButton}"
+                    Command="{Binding SubmitCommand}">
                 确认提交
             </Button>
         </Grid>

@@ -27,12 +27,12 @@
                                             <ColumnDefinition Width="20*" />
                                         </Grid.ColumnDefinitions>
 
-                                        <TextBlock Grid.Column="0" Style="{StaticResource listHeaderTextStyle}">物证编号</TextBlock>
-                                        <TextBlock Grid.Column="1" Style="{StaticResource listHeaderTextStyle}">手机号</TextBlock>
-                                        <TextBlock Grid.Column="2" Style="{StaticResource listHeaderTextStyle}">涉案人姓名</TextBlock>
-                                        <TextBlock Grid.Column="3" Style="{StaticResource listHeaderTextStyle}">性别</TextBlock>
-                                        <TextBlock Grid.Column="4" Style="{StaticResource listHeaderTextStyle}">民族</TextBlock>
-                                        <TextBlock Grid.Column="5" Style="{StaticResource listHeaderTextStyle}">身份证号码</TextBlock>
+                                        <TextBlock Grid.Column="0" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource evidID}" />
+                                        <TextBlock Grid.Column="1" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource evidPhone}" />
+                                        <TextBlock Grid.Column="2" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource evidName}" />
+                                        <TextBlock Grid.Column="3" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource evidGender}" />
+                                        <TextBlock Grid.Column="4" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource evidNation}" />
+                                        <TextBlock Grid.Column="5" Style="{StaticResource listHeaderTextStyle}" Text="{DynamicResource evidIdNumber}" />
                                     </Grid>
                                 </Border>
                                 <Grid>
@@ -90,7 +90,7 @@
                     Command="{Binding GoBackCommand}">
                 <StackPanel Orientation="Horizontal" Margin="10 0 10 0">
                     <Image Source="/Resources/Images/btn_case_back.png" Stretch="None" Margin="0 0 7 0" />
-                    <TextBlock>保存并返回</TextBlock>
+                    <TextBlock Text="{DynamicResource evidSaveBack}" />
                 </StackPanel>
             </Button>
         </Border>
@@ -114,19 +114,19 @@
 
                     <!-- 案件编号 -->
                     <StackPanel Orientation="Horizontal" Margin="{StaticResource bottomMargin}">
-                        <TextBlock>案件编号：</TextBlock>
+                        <TextBlock Text="{DynamicResource evidCaseNo}"/>
                         <TextBlock Text="{Binding CaseInfo.CASE_NUMBER}" />
                     </StackPanel>
 
                     <!-- 案件名称 -->
                     <StackPanel Orientation="Horizontal" Margin="{StaticResource bottomMargin}">
-                        <TextBlock>案件名称：</TextBlock>
+                        <TextBlock Text="{DynamicResource evidCaseName}" />
                         <TextBlock Text="{Binding CaseInfo.CASE_NAME}" />
                     </StackPanel>
 
                     <!-- 案件目录 -->
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock>案件目录：</TextBlock>
+                        <TextBlock Text="{DynamicResource evidCasePath}" />
                         <TextBlock Text="{Binding CaseInfo.CASE_PATH}" />
                     </StackPanel>
                 </StackPanel>

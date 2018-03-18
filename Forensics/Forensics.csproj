@@ -103,6 +103,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>default.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
@@ -169,7 +172,9 @@
     <Compile Include="Command\DelegateCommand.cs" />
     <Compile Include="Converter\EnumToBoolConverter.cs" />
     <Compile Include="Converter\GreaterThanZeroConverter.cs" />
+    <Compile Include="Converter\InverseBooleanConverter.cs" />
     <Compile Include="Globals.cs" />
+    <Compile Include="Model\DataManagement\Evidence2.cs" />
     <Compile Include="Model\Device\BrandInfo.cs" />
     <Compile Include="Model\Device\DeviceInfo.cs" />
     <Compile Include="Model\Device\DeviceProperty.cs" />
@@ -184,6 +189,8 @@
     <Compile Include="Util\DatabaseUtil.cs" />
     <Compile Include="Util\PropertyList-1_0.cs" />
     <Compile Include="Util\RuleName.cs" />
+    <Compile Include="Util\SendEmail.cs" />
+    <Compile Include="Util\ToolUtil.cs" />
     <Compile Include="Util\xdict.cs" />
     <Compile Include="ViewModel\Android\AndroidConnectViewModel.cs" />
     <Compile Include="ViewModel\Android\AndroidStepViewModel.cs" />
@@ -196,6 +203,8 @@
     <Compile Include="ViewModel\Dialog\DialogEvidenceViewModel.cs" />
     <Compile Include="ViewModel\Dialog\DialogExtractTypeViewModel.cs" />
     <Compile Include="ViewModel\Dialog\DialogManualViewModel.cs" />
+    <Compile Include="ViewModel\Dialog\DialogMultiDeviceModel.cs" />
+    <Compile Include="ViewModel\Dialog\DialogSuccessViewModel.cs" />
     <Compile Include="ViewModel\Dialog\ExtractTypePrimaryViewModel.cs" />
     <Compile Include="ViewModel\Dialog\ExtractTypeSecondaryViewModel.cs" />
     <Compile Include="ViewModel\Home\HomeHomeViewModel.cs" />
@@ -241,6 +250,9 @@
     <Compile Include="View\Dialog\DialogConnectFail.xaml.cs">
       <DependentUpon>DialogConnectFail.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Dialog\DialogDisconnect.xaml.cs">
+      <DependentUpon>DialogDisconnect.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Dialog\DialogConnectWaiting.xaml.cs">
       <DependentUpon>DialogConnectWaiting.xaml</DependentUpon>
     </Compile>
@@ -249,6 +261,9 @@
     </Compile>
     <Compile Include="View\Dialog\DialogConnectTitlebar.xaml.cs">
       <DependentUpon>DialogConnectTitlebar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialog\DialogMultiDevice.xaml.cs">
+      <DependentUpon>DialogMultiDevice.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Dialog\DialogSelectExtractType.xaml.cs">
       <DependentUpon>DialogSelectExtractType.xaml</DependentUpon>
@@ -315,6 +330,19 @@
     <Compile Include="ViewModel\Tool\ToolListViewModel.cs" />
     <Compile Include="ViewModel\Base\ViewModelBase.cs" />
     <Compile Include="WindowBase.cs" />
+    <Page Include="Properties\DesignTimeResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
+    </Page>
+    <Page Include="Resources\Strings\String.en-US.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Strings\String.zh-CN.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Android\AndroidConnectAuto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -363,6 +391,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Dialog\DialogDisconnect.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\Dialog\DialogConnectWaiting.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -372,6 +404,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Dialog\DialogConnectTitlebar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialog\DialogMultiDevice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -489,6 +525,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Design\projectGuides.guides" />
     <None Include="Forensics_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -671,6 +708,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\dialog\ext_type_selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\dialog\dlg_con.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="Resources\Images\splash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\dialog\dlg_ios_trust.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="default.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets')" />

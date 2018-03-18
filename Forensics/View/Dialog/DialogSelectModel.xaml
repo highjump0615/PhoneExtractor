@@ -1,18 +1,17 @@
-﻿<Window x:Class="Forensics.View.Dialog.DialogSelectModel"
+﻿<localMain:WindowBase x:Class="Forensics.View.Dialog.DialogSelectModel"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Forensics.View.Dialog"
+            xmlns:localMain="clr-namespace:Forensics"
         xmlns:fa="clr-namespace:FontAwesome.WPF;assembly=FontAwesome.WPF"
         xmlns:converter="clr-namespace:Forensics.Converter"
         mc:Ignorable="d"
-        WindowStyle="None"
         ShowInTaskbar="False"
         WindowChrome.WindowChrome="{StaticResource SubWindowChromeKey}"
         Height="459" Width="{StaticResource WidthSyncWindow}"
         MinHeight="459" MinWidth="{StaticResource WidthSyncWindow}"
-        MaxHeight="459" MaxWidth="{StaticResource WidthSyncWindow}"
         WindowStartupLocation="CenterOwner">
 
     <Window.Background>
@@ -27,6 +26,17 @@
             <Setter Property="BorderBrush" Value="#0c6ad2" />
             <Setter Property="Background" Value="#4a96ea" />
             <Setter Property="Padding" Value="10" />
+        </Style>
+
+        <Style x:Key="BorderTickStyle" TargetType="Border">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="CornerRadius" Value="12" />
+            <Setter Property="Width" Value="24" />
+            <Setter Property="Height" Value="24" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+            <Setter Property="Margin" Value="0 0 6 6" />
+            <Setter Property="Padding" Value="6" />
         </Style>
 
         <Style x:Key="placeHolder" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
@@ -69,11 +79,6 @@
             <Setter Property="FontSize" Value="13" />
         </Style>
 
-        <Style TargetType="ListBox">
-            <Setter Property="Background" Value="{x:Null}" />
-            <Setter Property="BorderThickness" Value="0" />
-        </Style>
-
         <!-- 品牌样式 -->
         <Thickness x:Key="BrandMargin" Left="0" Right="4" Top="3" Bottom="0" />
 
@@ -92,7 +97,8 @@
 
     <DockPanel>
         <local:DialogConnectTitlebar DockPanel.Dock="Top" 
-                                     Title="选择您要连接的设备" />
+                                     Title="选择您要连接的设备"
+                                     MaximizeAvailable="True" />
 
         <!-- Bottom bar -->
         <Border VerticalAlignment="Bottom" 
@@ -115,8 +121,8 @@
         <!-- content -->
         <Grid Margin="12 10">
             <Grid.RowDefinitions>
-                <RowDefinition Height="146" />
-                <RowDefinition Height="*" />
+                <RowDefinition MinHeight="146" Height="25*" />
+                <RowDefinition Height="75*" />
             </Grid.RowDefinitions>
             
             <Border Grid.Row="0" Style="{StaticResource BorderStyle}">
@@ -140,13 +146,12 @@
                     </Border>
                     
                     <!-- 品牌列表 -->
-                    <TextBlock Style="{StaticResource LabelStyle}" Margin="0 7">
-                        选择品牌：
-                    </TextBlock>
+                    <TextBlock Style="{StaticResource LabelStyle}" Margin="0 7" Text="{DynamicResource dlgChooseBrand}" />
 
                     <ListBox Name="lbBrands" ItemsSource="{Binding listBrand}" 
                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                             SelectedIndex="{Binding SelectedIndexBrand}">
+                             SelectedIndex="{Binding SelectedIndexBrand}"
+                             Style="{StaticResource TransparentListbox}">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel />
@@ -214,9 +219,8 @@
                     <Grid DockPanel.Dock="Left" Width="80" HorizontalAlignment="Left">
                         <TextBlock Style="{StaticResource LabelStyle}" 
                                    Margin="0 10" 
-                                   HorizontalAlignment="Left" VerticalAlignment="Top">
-                            选择机型：
-                        </TextBlock>
+                                   HorizontalAlignment="Left" VerticalAlignment="Top"
+                                   Text="{DynamicResource dlgChooseModel}" />
                         <Button Style="{StaticResource NavButStyle}" 
                                 HorizontalAlignment="Right"
                                 Width="28" Height="42"
@@ -235,10 +239,12 @@
 
                     <ListBox Name="lbPhones" ItemsSource="{Binding listPhone}" 
                              ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                             SelectedIndex="{Binding SelectedIndexPhone}">
+                             ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                             SelectedIndex="{Binding SelectedIndexPhone}"
+                             Style="{StaticResource TransparentListbox}">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <StackPanel Orientation="Horizontal" />
+                                <WrapPanel Orientation="Vertical" VerticalAlignment="Center" />
                             </ItemsPanelTemplate>
                         </ListBox.ItemsPanel>
 
@@ -250,9 +256,8 @@
                                     <Setter.Value>
                                         <ControlTemplate TargetType="{x:Type ListBoxItem}">
                                             <Grid>
-                                                <Border BorderThickness="0" Background="#8ec4ff"
-                                        Margin="4 0">
-                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                <Border BorderThickness="0" Background="#8ec4ff" Margin="4 4">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 3" />
                                                 </Border>
                                             </Grid>
                                         </ControlTemplate>
@@ -265,16 +270,11 @@
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                                                     <Grid>
-                                                        <Border BorderThickness="0" Background="#c9e3ff" Margin="4 0">
-                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                        <Border BorderThickness="0" Background="#c9e3ff" Margin="4 4">
+                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 3" />
                                                         </Border>
                                                         <!-- Tick Mark -->
-                                                        <Border Background="#a3a3a3" 
-                                                BorderThickness="0"
-                                                CornerRadius="12"
-                                                Width="24" Height="24"
-                                                HorizontalAlignment="Right" VerticalAlignment="Bottom" 
-                                                Margin="0 0 6 2" Padding="6">
+                                                        <Border Background="#a3a3a3" Style="{StaticResource BorderTickStyle}">
                                                             <fa:ImageAwesome 
                                                 Icon="Check" 
                                                 Foreground="#c9e3ff" />
@@ -289,15 +289,11 @@
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                                                     <Grid>
-                                                        <Border BorderThickness="0" Background="#c9e3ff" Margin="4 0">
-                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                        <Border BorderThickness="0" Background="#c9e3ff" Margin="4 4">
+                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 3" />
                                                         </Border>
                                                         <!-- Tick Mark -->
-                                                        <Border BorderThickness="0"
-                                                CornerRadius="12"
-                                                Width="24" Height="24"
-                                                HorizontalAlignment="Right" VerticalAlignment="Bottom" 
-                                                Margin="0 0 6 2" Padding="6">
+                                                        <Border Style="{StaticResource BorderTickStyle}">
                                                             <Border.Background>
                                                                 <SolidColorBrush Color="{StaticResource ThemeColor}" />
                                                             </Border.Background>
@@ -331,4 +327,4 @@
         </Grid>
 
     </DockPanel>
-</Window>
+</localMain:WindowBase>

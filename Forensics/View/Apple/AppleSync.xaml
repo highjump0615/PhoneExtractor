@@ -10,6 +10,7 @@
                  ShowInTaskbar="False"
                  Title="AppleSync" 
                  WindowChrome.WindowChrome="{StaticResource SubWindowChromeKey}"
+                 Height="{StaticResource HeightSyncWindow}" Width="{StaticResource WidthSyncWindow}"
                  MinHeight="{StaticResource HeightSyncWindow}" MinWidth="{StaticResource WidthSyncWindow}"
                  MaxHeight="{StaticResource HeightSyncWindow}" MaxWidth="{StaticResource WidthSyncWindow}"
                  WindowStartupLocation="CenterOwner">
@@ -36,7 +37,9 @@
                 </DockPanel.Background>
 
                 <!-- Title -->
-                <TextBlock TextWrapping="Wrap" Style="{StaticResource titlebarTextStyle}" Text="iTunes同步获取，操作提示" Margin="20,0,0,0"/>
+                <TextBlock TextWrapping="Wrap" Style="{StaticResource titlebarTextStyle}" 
+                           Text="{DynamicResource connectiOSNotice}" 
+                           Margin="20,0,0,0"/>
 
                 <!-- Window Buttons -->
                 <Button Width="40" 
@@ -61,9 +64,10 @@
             </Border.BorderBrush>
 
             <Button Style="{StaticResource SyncMainButton}" 
-                    IsEnabled="{Binding IsStartAvailable}" Click="onButStart">
-                开始提取
-            </Button>
+                    Width="Auto"
+                    IsEnabled="{Binding IsStartAvailable}" Click="onButStart" 
+                    Content="{Binding ButtonCaption}" 
+                    HorizontalAlignment="Center" />
         </Border>
 
         <Grid>

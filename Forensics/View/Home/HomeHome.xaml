@@ -31,7 +31,6 @@
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="VerticalAlignment" Value="Bottom" />
                 <Setter Property="HorizontalAlignment" Value="Left" />
-                <Setter Property="Margin" Value="10 0 0 10" />
             </Style>
 
             <Style x:Key="GraphTextStyle" TargetType="TextBlock">
@@ -83,7 +82,9 @@
                 <!-- Title bar -->
                 <Grid Grid.Row="0" Style="{StaticResource TitlebarStyle}">
                     <Rectangle Style="{StaticResource TitlebarMarkStyle}" />
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{StaticResource FontsizeHomeItemTitle}">历史</TextBlock>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               FontSize="{StaticResource FontsizeHomeItemTitle}"
+                               Text="{DynamicResource homeHistory}" />
                 </Grid>
 
                 <!-- Content -->
@@ -95,10 +96,12 @@
                         </Style>
                     </Grid.Resources>
 
-                    <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="30,0,0,20">提取设备</TextBlock>
+                    <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" 
+                               Margin="30,0,0,20"
+                               Text="{DynamicResource homeExtract}" />
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,30,20">
                         <TextBlock Margin="0,0,5,0">29</TextBlock>
-                        <TextBlock>个</TextBlock>
+                        <TextBlock Text="{DynamicResource homeUnit}" />
                     </StackPanel>
                 </Grid>
 
@@ -117,7 +120,9 @@
                 <!-- Title bar -->
                 <Grid Grid.Row="0" Style="{StaticResource TitlebarStyle}">
                     <Rectangle Style="{StaticResource TitlebarMarkStyle}" />
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{StaticResource FontsizeHomeItemTitle}">占用硬盘概览</TextBlock>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               FontSize="{StaticResource FontsizeHomeItemTitle}"
+                               Text="{DynamicResource homeHardStatus}" />
                 </Grid>
 
                 <!-- Content -->
@@ -174,7 +179,7 @@
                                     </Border.Resources>
 
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock xml:space="preserve">总容量:</TextBlock>
+                                        <TextBlock xml:space="preserve" Text="{DynamicResource homeTotalCapacity}" />
                                         <TextBlock>12.63G</TextBlock>
                                     </StackPanel>
                                 </Border>
@@ -191,7 +196,7 @@
                                     </StackPanel.Resources>
 
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock xml:space="preserve" Style="{StaticResource TextStyle}">案件容量  </TextBlock>
+                                        <TextBlock Style="{StaticResource TextStyle}" Text="{DynamicResource homeCapacityCase}" />
                                         <Rectangle>
                                             <Rectangle.Fill>
                                                 <SolidColorBrush Color="{StaticResource ColorTheme}" />
@@ -199,7 +204,7 @@
                                         </Rectangle>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
-                                        <TextBlock xml:space="preserve" Style="{StaticResource TextStyle}">分区容量  </TextBlock>
+                                        <TextBlock Style="{StaticResource TextStyle}" Text="{DynamicResource homeCapacityPartition}" />
                                         <Rectangle>
                                             <Rectangle.Fill>
                                                 <SolidColorBrush Color="{StaticResource ColorBg}" />
@@ -226,7 +231,9 @@
                 <!-- Title bar -->
                 <Grid Grid.Row="0" Style="{StaticResource TitlebarStyle}">
                     <Rectangle Style="{StaticResource TitlebarMarkStyle}" />
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{StaticResource FontsizeHomeItemTitle}">本周提取设备数据</TextBlock>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               FontSize="{StaticResource FontsizeHomeItemTitle}"
+                               Text="{DynamicResource homeDevicesWeek}" />
                 </Grid>
 
                 <!-- Content -->
@@ -241,7 +248,11 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
-                        <TextBlock Grid.Row="0" Style="{StaticResource GraphHeaderTextStyle}">单位: M</TextBlock>
+                        <StackPanel Orientation="Horizontal" Grid.Row="0"
+                                    Margin="10 0 0 10">
+                            <TextBlock Style="{StaticResource GraphHeaderTextStyle}" Text="{DynamicResource homeGraphUnit}" />
+                            <TextBlock Style="{StaticResource GraphHeaderTextStyle}">: M</TextBlock>
+                        </StackPanel>
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="{StaticResource GraphLeftWidth}" />
@@ -274,13 +285,13 @@
                                 </Border.BorderBrush>
 
                                 <UniformGrid Rows="1">
-                                    <TextBlock Style="{StaticResource GraphBottomTextStyle}">周一</TextBlock>
-                                    <TextBlock Style="{StaticResource GraphBottomTextStyle}">周二</TextBlock>
-                                    <TextBlock Style="{StaticResource GraphBottomTextStyle}">周三</TextBlock>
-                                    <TextBlock Style="{StaticResource GraphBottomTextStyle}">周四</TextBlock>
-                                    <TextBlock Style="{StaticResource GraphBottomTextStyle}">周五</TextBlock>
-                                    <TextBlock Style="{StaticResource GraphBottomTextStyle}">周六</TextBlock>
-                                    <TextBlock Style="{StaticResource GraphBottomTextStyle}">周日</TextBlock>
+                                    <TextBlock Style="{StaticResource GraphBottomTextStyle}" Text="{DynamicResource homeMon}" />
+                                    <TextBlock Style="{StaticResource GraphBottomTextStyle}" Text="{DynamicResource homeTue}" />
+                                    <TextBlock Style="{StaticResource GraphBottomTextStyle}" Text="{DynamicResource homeWed}" />
+                                    <TextBlock Style="{StaticResource GraphBottomTextStyle}" Text="{DynamicResource homeThu}" />
+                                    <TextBlock Style="{StaticResource GraphBottomTextStyle}" Text="{DynamicResource homeFri}" />
+                                    <TextBlock Style="{StaticResource GraphBottomTextStyle}" Text="{DynamicResource homeSat}" />
+                                    <TextBlock Style="{StaticResource GraphBottomTextStyle}" Text="{DynamicResource homeSun}" />
                                 </UniformGrid>
                             </Border>
 
@@ -312,7 +323,9 @@
                 <!-- Title bar -->
                 <Grid Grid.Row="0" Style="{StaticResource TitlebarStyle}">
                     <Rectangle Style="{StaticResource TitlebarMarkStyle}" />
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{StaticResource FontsizeHomeItemTitle}">本周提取文件数</TextBlock>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               FontSize="{StaticResource FontsizeHomeItemTitle}"
+                               Text="{DynamicResource homeFilesWeek}" />
                 </Grid>
 
                 <!-- Content -->
@@ -327,7 +340,13 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
-                        <TextBlock Grid.Row="0" Style="{StaticResource GraphHeaderTextStyle}">单位: 个</TextBlock>
+                        <StackPanel Orientation="Horizontal" Grid.Row="0"
+                                    Margin="10 0 0 10">
+                            <TextBlock Style="{StaticResource GraphHeaderTextStyle}" Text="{DynamicResource homeGraphUnit}" />
+                            <TextBlock Style="{StaticResource GraphHeaderTextStyle}" xml:space="preserve">: </TextBlock>
+                            <TextBlock Style="{StaticResource GraphHeaderTextStyle}" Text="{DynamicResource homeUnit}" />
+                        </StackPanel>
+
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="{StaticResource GraphLeftWidth}" />
@@ -360,13 +379,13 @@
                                 </Border.BorderBrush>
 
                                 <UniformGrid Rows="1">
-                                    <TextBlock Style="{StaticResource GraphBottomTextStyle}">周一</TextBlock>
-                                    <TextBlock Style="{StaticResource GraphBottomTextStyle}">周二</TextBlock>
-                                    <TextBlock Style="{StaticResource GraphBottomTextStyle}">周三</TextBlock>
-                                    <TextBlock Style="{StaticResource GraphBottomTextStyle}">周四</TextBlock>
-                                    <TextBlock Style="{StaticResource GraphBottomTextStyle}">周五</TextBlock>
-                                    <TextBlock Style="{StaticResource GraphBottomTextStyle}">周六</TextBlock>
-                                    <TextBlock Style="{StaticResource GraphBottomTextStyle}">周日</TextBlock>
+                                    <TextBlock Style="{StaticResource GraphBottomTextStyle}" Text="{DynamicResource homeMon}" />
+                                    <TextBlock Style="{StaticResource GraphBottomTextStyle}" Text="{DynamicResource homeTue}" />
+                                    <TextBlock Style="{StaticResource GraphBottomTextStyle}" Text="{DynamicResource homeWed}" />
+                                    <TextBlock Style="{StaticResource GraphBottomTextStyle}" Text="{DynamicResource homeThu}" />
+                                    <TextBlock Style="{StaticResource GraphBottomTextStyle}" Text="{DynamicResource homeFri}" />
+                                    <TextBlock Style="{StaticResource GraphBottomTextStyle}" Text="{DynamicResource homeSat}" />
+                                    <TextBlock Style="{StaticResource GraphBottomTextStyle}" Text="{DynamicResource homeSun}" />
                                 </UniformGrid>
                             </Border>
 

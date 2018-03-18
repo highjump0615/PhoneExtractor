@@ -25,6 +25,7 @@
             <!-- Converters -->
             <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
             <converter:EnumToBoolConverter x:Key="EnumToBool" />
+            <converter:InverseBooleanConverter x:Key="InverseBool" />
 
             <!-- Sub Window style -->
             <WindowChrome x:Key="SubWindowChromeKey" 
@@ -117,8 +118,18 @@
                 <Setter Property="Margin" Value="20 0 0 0" />
                 <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
+            
+            <!-- Transparent Click style -->
+            <Style x:Key="TransparentClickButton" TargetType="Button">
+                <Style.Triggers>
+                    <Trigger Property="Button.IsPressed" Value="True">
+                        <Setter Property="Opacity" Value="0.5" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
 
-            <Style x:Key="SettingButton" TargetType="Button">
+            <!-- blue setting button -->
+            <Style x:Key="SettingButton" TargetType="Button" BasedOn="{StaticResource TransparentClickButton}">
                 <Setter Property="Foreground" Value="White" />
                 <Setter Property="FontSize" Value="15" />
                 <Setter Property="Template">
@@ -129,6 +140,24 @@
                                     <SolidColorBrush Color="{StaticResource ThemeColor}" />
                                 </Border.Background>
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!-- gray setting button -->
+            <Style x:Key="SettingGrayButton" TargetType="Button" BasedOn="{StaticResource TransparentClickButton}">
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border BorderBrush="{x:Null}" CornerRadius="5">
+                                <Border.Background>
+                                    <SolidColorBrush Color="Gray" />
+                                </Border.Background>
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15 0" />
                             </Border>
                         </ControlTemplate>
                     </Setter.Value>
@@ -440,6 +469,12 @@
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
+            </Style>
+
+            <!-- 透明列表 -->
+            <Style x:Key="TransparentListbox" TargetType="ListBox">
+                <Setter Property="Background" Value="{x:Null}" />
+                <Setter Property="BorderThickness" Value="0" />
             </Style>
 
         </ResourceDictionary>

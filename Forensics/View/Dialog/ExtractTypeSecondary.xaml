@@ -53,7 +53,7 @@
                     HorizontalAlignment="Right"
                     Style="{StaticResource ExtractButtonStyle}"
                     Command="{Binding GoBackCommand}">
-                <TextBlock Padding="17 0">确定并返回</TextBlock>
+                <TextBlock Padding="17 0" Text="{DynamicResource dlgExtractBack}" />
             </Button>
         </StackPanel>
     </Grid>

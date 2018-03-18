@@ -41,23 +41,6 @@ namespace Forensics
         }
 
         /// <summary>
-        /// Maximize/Restore window
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void onButMaximize(object sender, RoutedEventArgs e)
-        {
-            if (this.WindowState == WindowState.Maximized)
-            {
-                this.WindowState = WindowState.Normal;
-            }
-            else
-            {
-                this.WindowState = WindowState.Maximized;
-            }
-        }
-
-        /// <summary>
         /// Minimize window
         /// </summary>
         /// <param name="sender"></param>
@@ -67,9 +50,9 @@ namespace Forensics
             this.WindowState = WindowState.Minimized;
         }
 
-        ///// <summary>
-        ///// 隐藏所有菜单
-        ///// </summary>
+        /// <summary>
+        /// 隐藏所有菜单
+        /// </summary>
         private void hideMenus()
         {
             this.butAppleExtract.IsChecked = false;
@@ -104,6 +87,7 @@ namespace Forensics
                 MainViewModel mainVM = (MainViewModel)this.DataContext;
                 this.ExtractPath = windowAppleSync.ExtractPath;
 
+
                 if (mainVM.CurrentDevice != null)
                 {
                     // 打开提取页面
@@ -136,11 +120,10 @@ namespace Forensics
         {
             hideMenus();
 
-            var wSuccess = new DialogConnectSuccess();
+            var wSuccess = new DialogConnectSuccess(devType);
             wSuccess.Owner = this;
             wSuccess.ShowDialog();
 
-            MainViewModel mainVM = (MainViewModel)this.DataContext;
             if (wSuccess.DialogResult == false)
             {
                 return;
@@ -156,20 +139,41 @@ namespace Forensics
             // 安卓设备要进入选择提取方式的界面
             else if (devType == MainHomeViewModel.DeviceType.Android)
             {
-                var wExtractType = new DialogSelectExtractType();
-                wExtractType.Owner = this;
-                wExtractType.ShowDialog();
+                this.openExtractType();
+            }
+        }
 
-                if (wExtractType.DialogResult == false)
-                {
-                    return;
-                }
+        /// <summary>
+        /// 打开连接断开对话框
+        /// </summary>
+        public void openConnectDisconnect()
+        {
+            hideMenus();
 
-                if (mainVM.CurrentDevice != null)
-                {
-                    // 打开提取页面
-                    mainVM.GoToExtractPage(MainHomeViewModel.DeviceType.Android, this.ExtractPath);
-                }
+            var wSuccess = new DialogDisconnect();
+            wSuccess.Owner = this;
+            wSuccess.ShowDialog();
+        }
+
+        /// <summary>
+        /// 打开提取方式对话框
+        /// </summary>
+        public void openExtractType()
+        {
+            MainViewModel mainVM = (MainViewModel)this.DataContext;
+            var wExtractType = new DialogSelectExtractType();
+            wExtractType.Owner = this;
+            wExtractType.ShowDialog();
+
+            if (wExtractType.DialogResult == false)
+            {
+                return;
+            }
+
+            if (mainVM.CurrentDevice != null)
+            {
+                // 打开提取页面
+                mainVM.GoToExtractPage(MainHomeViewModel.DeviceType.Android, this.ExtractPath);
             }
         }
 
@@ -213,6 +217,17 @@ namespace Forensics
         /// <param name="e"></param>
         private void onButAppleBypass(object sender, RoutedEventArgs e)
         {
+            hideMenus();
+
+            var windowAppleSync = new AppleSync(AppleSyncType.APPLEBYPASS);
+            windowAppleSync.Owner = this;
+            windowAppleSync.ShowDialog();
+
+            if (windowAppleSync.DialogResult == true)
+            {
+                MainViewModel mainVM = (MainViewModel)this.DataContext;
+                mainVM.DoAppleByPass(windowAppleSync.ExtractPath);
+            }
         }
 
         /// <summary>

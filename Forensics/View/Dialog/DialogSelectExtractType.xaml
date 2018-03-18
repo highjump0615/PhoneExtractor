@@ -37,7 +37,7 @@
 
     <DockPanel>
         <local:DialogConnectTitlebar DockPanel.Dock="Top"
-                                     Title="选择提取手段" />
+                                     Title="{StaticResource dlgExtractTitle}" />
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -52,13 +52,13 @@
                 </Grid.RowDefinitions>
                     
                 <Border Grid.Row="0" Padding="{StaticResource SelectExtractTypeMargin}">
-                    <TextBlock Style="{StaticResource LeftTextStyle}">一般提取</TextBlock>
+                    <TextBlock Style="{StaticResource LeftTextStyle}" Text="{DynamicResource dlgExtractNormal}" />
                 </Border>
                 <Border Grid.Row="1" Padding="{StaticResource SelectExtractTypeMargin}"
                         Style="{StaticResource AdvancedBorderStyle}"
                         BorderThickness="0 1 0 0"
                         BorderBrush="#0c6ad2">
-                    <TextBlock Style="{StaticResource LeftTextStyle}">高级提取</TextBlock>
+                    <TextBlock Style="{StaticResource LeftTextStyle}" Text="{DynamicResource dlgExtractAdvanced}" />
                 </Border>
             </Grid>
 

@@ -1,4 +1,5 @@
-﻿using Forensics.Model.Device;
+﻿using Forensics.Command;
+using Forensics.Model.Device;
 using Forensics.Model.Extract;
 using Forensics.Util;
 using Forensics.ViewModel.Android;
@@ -9,6 +10,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Data;
 using System.Diagnostics;
 using System.IO;
@@ -17,6 +19,7 @@ using System.Runtime.Serialization.Plists;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using System.Windows.Threading;
 using static Forensics.ViewModel.MainHomeViewModel;
 
@@ -32,7 +35,7 @@ namespace Forensics.ViewModel
         private RyLib.AndroidExtractHelp AExtractHelp = null;
 
         /// 提取参数
-        private string savePath = "f:\\temp\\Data";
+        private string savePath = ConfigurationManager.AppSettings["caseDefaultPath"];
         private string tempDataPath = "";
         private string unbackPath = "";
         private List<mbdbdump.mbdb.MBFileRecord> files92;
@@ -53,6 +56,66 @@ namespace Forensics.ViewModel
         {
             get { return Pages.HomeExtract; }
         }
+
+        /// <summary>
+        /// 是否在进行
+        /// </summary>
+        private bool _isInProgress = false;
+        public bool IsInProgress
+        {
+            get { return _isInProgress; }
+            set
+            {
+                _isInProgress = value;
+                PropertyChanging("IsInProgress");
+            }
+        }
+
+        /// <summary>
+        /// 是否能进入分析
+        /// </summary>
+        private bool _isAnalyseAvailable = false;
+        public bool IsAnayseAvailable
+        {
+            get
+            {
+                return _isAnalyseAvailable && !_isInProgress;
+            }
+            set
+            {
+                _isAnalyseAvailable = value;
+                PropertyChanging("IsAnayseAvailable");
+            }
+        }
+
+
+        /// <summary>
+        /// 分析命令
+        /// </summary>
+        private ICommand _analyseCommand;
+        public ICommand AnalyseCommand
+        {
+            get { return _analyseCommand ?? (_analyseCommand = new DelegateCommand(DoAnalyse)); }
+        }
+
+        /// <summary>
+        /// 停止命令
+        /// </summary>
+        private ICommand _pauseCommand;
+        public ICommand PauseCommand
+        {
+            get { return _pauseCommand ?? (_pauseCommand = new DelegateCommand(PauseExtract)); }
+        }
+
+        /// <summary>
+        /// 停止命令
+        /// </summary>
+        private ICommand _restartCommand;
+        public ICommand RestartCommand
+        {
+            get { return _restartCommand ?? (_restartCommand = new DelegateCommand(RestartExtract)); }
+        }
+
 
         public MainExtractViewModel()
         {
@@ -92,16 +155,24 @@ namespace Forensics.ViewModel
             {
                 // 进度更新
                 setProgress(null, null, 0);
+                this.IsInProgress = false;
                 return;
             }
 
             // 弹出添加物证
             doFinishExtract();
+            this.IsInProgress = false;
         }
 
         private void AndroidExtractInfo(string s, string result)
         {
             addSystemLog(s, result);
+
+            // 是否停止
+            if (mnProgress < 0)
+            {
+                stopAndroidExtract();
+            }
         }
 
         /// <summary>
@@ -111,6 +182,7 @@ namespace Forensics.ViewModel
         public void startExtract(DeviceType type, string saveExtractPath = null)
         {
             this.Type = type;
+            mnProgress = 0;
 
             if (saveExtractPath != null)
             {
@@ -155,10 +227,18 @@ namespace Forensics.ViewModel
         /// 进度更新准备
         /// </summary>
         /// <param name="percent"></param>
-        private void setPrgressPrepared(int percent)
+        /// <returns>false 触发停止</returns>
+        private bool setPrgressPrepared(int percent)
         {
+            if (mnProgress < 0)
+            {
+                return false;
+            }
+
             mnProgress = percent;
             mTimer.Start();
+
+            return true;
         }
 
         /// <summary>
@@ -190,475 +270,499 @@ namespace Forensics.ViewModel
         /// </summary>
         private void backupThread()
         {
+            this.IsInProgress = true;
+            DeviceInfo currentDevice = Globals.Instance.MainVM.CurrentDevice;
+            // 设备中途已卸载
+            if (currentDevice == null)
+            {
+                this.IsInProgress = false;
+                return;
+            }
+
             if (this.Type == DeviceType.Apple)
             {
-                DeviceInfo currentDevice = Globals.Instance.MainVM.CurrentDevice;
-
-                // 设备中途已卸载
-                if (currentDevice == null)
-                {
-                    return;
-                }
-                DeviceProperty devProp = currentDevice.DeviceProperty;
-
-                // 初始化
-                SerialNumber = devProp.SerialNumber;
-
-                addSystemLog("数据备份中，请勿中途卸载设备...", "开始");
-
-                string backupEXE = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonProgramFiles), "Apple", "Mobile Device Support", "AppleMobileBackup.exe");
-                if (!File.Exists(backupEXE)) backupEXE = Path.Combine(@"C:\Program Files\Common Files\Apple\Mobile Device Support", "AppleMobileBackup.exe");
-                if (File.Exists(backupEXE))
-                {
-                    if (devProp.UniqueDeviceID != "")
-                    {
-                        setProgress("数据备份中，请勿中途卸载设备...", null);
-                        setPrgressPrepared(50);
-
-                        //Process p = new Process();
-                        //try
-                        //{
-                        //    tempDataPath = tempDataPath.TrimEnd('\\');
-                        //    p.StartInfo.UseShellExecute = false;
-                        //    p.StartInfo.CreateNoWindow = true;
-                        //    p.StartInfo.FileName = backupEXE;
-                        //    p.StartInfo.RedirectStandardOutput = true;
-                        //    p.StartInfo.RedirectStandardError = true;
-                        //    p.StartInfo.Arguments = "-b --target " + devProp.UniqueDeviceID + " --root \"" + tempDataPath + "\"";
-                        //    p.Start();
-
-                        //    string strst = p.StandardOutput.ReadToEnd();
-                        //    strst += p.StandardError.ReadToEnd();
-
-                        //    Console.WriteLine(strst);
-                        //    if (strst.IndexOf("ERROR") > -1)
-                        //    {
-                        //        saveErrorLog(strst);
-                        //        //saveErrorLog(backupEXE);
-                        //        //saveErrorLog(p.StartInfo.Arguments);
-
-                        //        showFailed();
-                        //    }
-                        //}
-                        //catch (Exception ex)
-                        //{
-                        //    saveErrorLog(ex.Message);
-                        //    saveErrorLog(ex.HelpLink);
-                        //    saveErrorLog(ex.StackTrace);
-                        //    saveErrorLog(ex.TargetSite.ToString());
-                        //    p.Close();
-
-                        //    showFailed();
-                        //}
-                        //p.Close();
-                        //p.Dispose();
-
-
-                        // 进度更新
-                        setProgress(null, null, 50);
-                        setPrgressPrepared(80);
-
-                        backup = new iPhoneBackup();
-                        backup.path = Path.Combine(tempDataPath, devProp.UniqueDeviceID);
-
-                        timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
-                        gs_itunes_decpath = timestamp;  //all evidence use same time to decode itunes file and import for evidence
-                        savePath = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, devProp.SerialNumber + "_" + timestamp);
-                        if (Directory.Exists(tempDataPath))
-                            savePath = Path.Combine(tempDataPath, devProp.SerialNumber + "_" + timestamp);
-
-                        string mbdbFile = Path.Combine(tempDataPath, devProp.UniqueDeviceID, "Manifest.mbdb");
-                        string ios10dbFile = Path.Combine(backup.path, "Manifest.db");
-
-                        if (File.Exists(mbdbFile))
-                        {
-                            files92 = mbdbdump.mbdb.ReadMBDB(backup.path);
-                            BinaryPlistReader az = new BinaryPlistReader();
-                            IDictionary er = az.ReadObject(Path.Combine(backup.path, "Manifest.plist"));
-                            parseAll92(er);
-
-                            string tmpdir = Path.Combine(savePath, "var", "mobile", "applications");
-                            if (!Directory.Exists(tmpdir)) Directory.CreateDirectory(tmpdir);
-
-                            //fnPushPro = new AppDoc.Form1.fnPushProgress(pushProg);
-                            //fnPushWPro = new AppDoc.Form1.fnPushWholePro(pushWProg);
-                            //fm.getAPPFiles(applist, tmpdir, fnPushPro, fnPushWPro, sender);
-
-                            progressVM.Title = "备份完成";
-                            addSystemLog("数据备份完成", "成功");
-                            addSystemLog("数据目录建立", "开始");
-
-                            // 进度更新
-                            setProgress("正在建立数据目录树，请稍候...", null, 80);
-                            setPrgressPrepared(100);
-
-                            unbackPath = savePath;
-                            //TreeNode rootNode = new TreeNode();
-                            //if (Directory.Exists(unbackPath))
-                            //{
-                            //    rootNode = new TreeNode();
-                            //    rootNode.Text = deviceName;
-                            //    BuildTree(unbackPath, rootNode);
-                            //}
-                            //addTreeNode addNode = delegate ()
-                            //{
-                            //    if (Directory.Exists(unbackPath))
-                            //    {
-                            //        treeView1.Nodes.Add(rootNode);
-                            //    }
-                            //};
-                            //treeView1.Invoke(addNode);
-                            //conToolBtn.Enabled = true;
-                            //conToolBtn2.Enabled = true;
-
-                            // 
-                            AnalysisProc();
-
-
-                            // 提取成功
-                            doFinishExtract();
-                        }
-                        else if (File.Exists(ios10dbFile))
-                        {
-                            string infoFile = Path.Combine(backup.path, "info.plist");
-                            string manifestFile = Path.Combine(backup.path, "Manifest.plist");
-                            if (File.Exists(infoFile))
-                            {
-                                xdict dd = xdict.open(infoFile);
-
-                                if (dd != null)
-                                {
-                                    foreach (xdictpair xp in dd)
-                                    {
-                                        if (xp.item.GetType() == typeof(string))
-                                        {
-                                            switch (xp.key)
-                                            {
-                                                //case "Build Version":
-                                                //    buildVersion = xp.item.ToString();
-                                                //    break;
-                                                //case "Device Name":
-                                                //    deviceName = xp.item.ToString().Trim();
-                                                //    Console.WriteLine(deviceName);
-                                                //    break;
-                                                //case "ICCID":
-                                                //    iccid = xp.item.ToString();
-                                                //    break;
-                                                //case "IMEI":
-                                                //    imei = xp.item.ToString();
-                                                //    break;
-                                                //case "Last Backup Date":
-                                                //    //lbd = root.ChildNodes[i + 1].InnerText.Replace("T", " ").Replace("Z", "");
-                                                //    DateTime tmpTime;
-                                                //    DateTime.TryParse(xp.item.ToString(), out tmpTime);
-                                                //    lbd = tmpTime.ToString("yyyy-MM-dd HH:mm:ss");
-                                                //    break;
-                                                //case "Phone Number":
-                                                //    phoneNumber = xp.item.ToString();
-                                                //    break;
-                                                //case "Product Type":
-                                                //    productType = xp.item.ToString();
-                                                //    break;
-                                                //case "Product Version":
-                                                //    productVersion = xp.item.ToString();
-                                                //    break;
-                                                case "Serial Number":
-                                                    SerialNumber = xp.item.ToString();
-                                                    break;
-                                            }
-                                            Console.WriteLine(xp.key + " " + xp.item.ToString());
-                                        }
-                                    }
-
-
-
-                                    //savePath = @"c:\temp\" + SerialNumber + "_" + timestamp;‘
-                                }
-                            }
-                            if (File.Exists(manifestFile))
-                            {
-                                BinaryPlistReader az = new BinaryPlistReader();
-                                IDictionary er = az.ReadObject(Path.Combine(backup.path, "Manifest.plist"));
-
-                                if ((bool)er["IsEncrypted"])
-                                {
-                                    addSystemLog("当前iTunes备份设置了备份密码，请尝试去除或破解后再进行导入分析......", "提示终止");
-
-                                    setProgress("提取失败", null, 0);
-                                    return;
-                                }
-                                var sd = er["Lockdown"] as Dictionary<object, object>;
-                                if (sd != null)
-                                {
-                                    foreach (var pp in sd)
-                                    {
-                                        string pKey = pp.Key as string;
-                                        string pValue = pp.Value as string;
-                                        switch (pKey)
-                                        {
-                                            //case "BuildVersion":
-                                            //    buildVersion = pValue;
-                                            //    break;
-                                            //case "DeviceName":
-                                            //    deviceName = pValue;
-                                            //    break;
-                                            //case "ProductType":
-                                            //    productType = pValue;
-                                            //    break;
-                                            //case "ProductVersion":
-                                            //    productVersion = pValue;
-                                            //    break;
-                                            case "SerialNumber":
-                                                SerialNumber = pValue;
-                                                break;
-                                            case "UniqueDeviceID":
-                                                break;
-                                        }
-                                    }
-                                }
-                            }
-                            //labelDeviceName.Text = deviceName;
-                            //labelICCID.Text = iccid;
-                            //labelIMEI.Text = imei;
-                            //labelPhone.Text = phoneNumber;
-                            //labelSerial.Text = SerialNumber;
-                            //switch (productType.ToLower())
-                            //{
-                            //    case "iphone1,1":
-                            //        productType = "iPhone 2G";
-                            //        break;
-                            //    case "iphone1,2":
-                            //        productType = "iPhone 3G";
-                            //        break;
-                            //    case "iphone2,1":
-                            //        productType = "iPhone 3GS";
-                            //        break;
-                            //    case "iphone3,1":
-                            //    case "iphone3,2":
-                            //    case "iphone3,3":
-                            //        productType = "iPhone 4";
-                            //        break;
-                            //    case "iphone4,1":
-                            //        productType = "iPhone 4S";
-                            //        break;
-                            //    case "iphone5,1":
-                            //    case "iphone5,2":
-
-                            //        productType = "iPhone 5";
-                            //        break;
-                            //    case "ipod1,1":
-                            //        productType = "iPod touch 1G";
-                            //        break;
-                            //    case "ipod2,1":
-                            //        productType = "iPod touch 2G";
-                            //        break;
-                            //    case "ipod3,1":
-                            //        productType = "iPod touch 3G";
-                            //        break;
-                            //    case "ipod4,1":
-                            //        productType = "iPod touch 4G";
-                            //        break;
-                            //    case "ipod5,1":
-                            //        productType = "iPod touch 5G";
-                            //        break;
-                            //    case "ipad1,1":
-                            //        productType = "iPad 1G";
-                            //        break;
-                            //    case "ipad2,1":
-                            //    case "ipad2,2":
-                            //    case "ipad2,3":
-                            //    case "ipad2,4":
-                            //        productType = "iPad 2";
-                            //        break;
-                            //    case "ipad3,1":
-                            //    case "ipad3,2":
-                            //    case "ipad3,3":
-                            //        productType = "iPad 3";
-                            //        break;
-                            //    case "ipad3,4":
-                            //    case "ipad3,5":
-                            //    case "ipad3,6":
-                            //        productType = "iPad 4";
-                            //        break;
-                            //    case "ipad2,5":
-                            //    case "ipad2,6":
-                            //    case "ipad2,7":
-                            //        productType = "iPad mini 1G";
-                            //        break;
-                            //    default:
-                            //        break;
-                            //}
-                            //labelType.Text = productType;
-                            //labelVersion.Text = productVersion + "(" + buildVersion + ")";
-                            //labelBackTime.Text = lbd;
-
-                            string dbsql = "select fileid,domain,relativepath,flags from files";
-                            DataTable bakupfileDT = SQLiteCore.SQLiteHelper.ExecuteCleanQuery(ios10dbFile, dbsql);
-                            string baktmppath = Path.Combine(tempDataPath, timestamp);//DateTime.Now.ToString("yyyyMMddHHmmss"));
-                            if (!Directory.Exists(baktmppath)) Directory.CreateDirectory(baktmppath);
-                            string basePath = Path.Combine(baktmppath, "var");
-                            if (!Directory.Exists(basePath)) Directory.CreateDirectory(basePath);
-                            foreach (DataRow dr in bakupfileDT.Rows)
-                            {
-                                int flags = int.Parse(dr["flags"].ToString());
-                                string fileid = dr["fileid"].ToString();
-                                string domain = dr["domain"].ToString();
-                                string relativepath = dr["relativepath"].ToString();
-                                string tmpPath = "";
-                                try
-                                {
-                                    switch (domain)
-                                    {
-                                        case "ManagedPreferencesDomain":
-                                        case "KeyboardDomain":
-                                        case "DatabaseDomain":
-                                            tmpPath = basePath;
-
-                                            break;
-                                        case "KeychainDomain":
-                                            tmpPath = Path.Combine(basePath, "Keychains");
-
-                                            break;
-                                        case "HealthDomain":
-                                            tmpPath = Path.Combine(basePath, "Mobile");
-
-                                            break;
-                                        case "HomeKitDomain":
-                                        case "HomeDomain":
-                                        case "CameraRollDomain":
-                                        case "MediaDomain":
-                                        case "MobileDeviceDomain":
-                                            tmpPath = Path.Combine(basePath, "Mobile");
-
-                                            break;
-                                        case "RootDomain":
-                                            tmpPath = Path.Combine(basePath, "root");
-
-                                            break;
-                                        case "SystemPreferencesDomain":
-                                            tmpPath = Path.Combine(basePath, "Preferences");
-
-                                            break;
-                                        case "WirelessDomain":
-                                            tmpPath = Path.Combine(basePath, "wireless");
-
-                                            break;
-                                        default:
-                                            tmpPath = Path.Combine(basePath, "Mobile");
-                                            if (!Directory.Exists(tmpPath)) Directory.CreateDirectory(tmpPath);
-                                            tmpPath = Path.Combine(tmpPath, "Applications");
-                                            if (!Directory.Exists(tmpPath)) Directory.CreateDirectory(tmpPath);
-                                            if (domain.Contains("SysContainerDomain-"))
-                                            {
-                                                tmpPath = Path.Combine(tmpPath, domain.Substring("SysContainerDomain-".Length));
-                                            }
-                                            else if (domain.Contains("SysSharedContainerDomain-"))
-                                            {
-                                                tmpPath = Path.Combine(tmpPath, domain.Substring("SysSharedContainerDomain-".Length));
-                                            }
-                                            else if (domain.Contains("AppDomain-"))
-                                            {
-                                                tmpPath = Path.Combine(tmpPath, domain.Substring("AppDomain-".Length));
-                                            }
-                                            else if (domain.Contains("AppDomainGroup-"))
-                                            {
-                                                tmpPath = Path.Combine(tmpPath, domain.Substring("AppDomainGroup-".Length));
-                                            }
-                                            else if (domain.Contains("AppDomainPlugin-"))
-                                            {
-                                                tmpPath = Path.Combine(tmpPath, domain.Substring("AppDomainPlugin-".Length));
-                                            }
-                                            if (!Directory.Exists(tmpPath)) Directory.CreateDirectory(tmpPath);
-
-                                            break;
-                                    }
-
-                                    if (flags == 2)
-                                    {
-                                        if (relativepath.Contains("/"))
-                                        {
-
-                                            string[] s = relativepath.Split('/');
-                                            for (int i = 0; i < s.Length; i++)
-                                            {
-                                                tmpPath = Path.Combine(tmpPath, s[i]);
-                                                if (!Directory.Exists(tmpPath)) Directory.CreateDirectory(tmpPath);
-                                            }
-                                        }
-                                        else
-                                        {
-                                            tmpPath = Path.Combine(tmpPath, relativepath);
-                                            if (!Directory.Exists(tmpPath)) Directory.CreateDirectory(tmpPath);
-
-                                        }
-                                    }
-                                    else if (flags == 4 || flags == 1)
-                                    {
-                                        string filePath = Path.Combine(backup.path, fileid.Substring(0, 2), fileid);
-                                        if (File.Exists(filePath))
-                                        {
-                                            if (relativepath.Contains("/"))
-                                            {
-                                                string[] s = relativepath.Split('/');
-                                                for (int i = 0; i < s.Length - 1; i++)
-                                                {
-                                                    tmpPath = Path.Combine(tmpPath, s[i]);
-                                                    if (!Directory.Exists(tmpPath)) Directory.CreateDirectory(tmpPath);
-                                                }
-                                                File.Copy(filePath, Path.Combine(tmpPath, s[s.Length - 1]), true);
-                                            }
-                                            else
-                                            {
-                                                tmpPath = Path.Combine(tmpPath, relativepath);
-                                                File.Copy(filePath, tmpPath, true);
-                                            }
-                                        }
-                                    }
-
-
-                                }
-                                catch (Exception exx)
-                                {
-                                    Console.WriteLine(exx.Message);
-                                    Console.WriteLine(relativepath);
-                                }
-                            }
-
-                            setProgress(null, null, 50);
-
-                            setPrgressPrepared(100);
-                            setProgress("正在建立数据目录树，请稍候...");
-
-                            //unbackPath = baktmppath;
-                            //TreeNode rootNode = new TreeNode();
-                            //if (Directory.Exists(unbackPath))
-                            //{
-                            //    rootNode = new TreeNode();
-                            //    rootNode.Text = deviceName;
-                            //    BuildTree(unbackPath, rootNode);
-                            //}
-                            //addTreeNode addNode = delegate ()
-                            //{
-                            //    if (Directory.Exists(unbackPath))
-                            //    {
-                            //        treeView1.Nodes.Add(rootNode);
-                            //    }
-                            //};
-                            //treeView1.Invoke(addNode);
-                            //conToolBtn.Enabled = true;
-
-                            AnalysisProc();
-
-
-                            // 提取成功
-                            doFinishExtract();
-                        }
-                    }
-                }
+                this.DoAppleExtract();
+                this.IsInProgress = false;
             }
             else if (this.Type == DeviceType.Android)
             {
                 this.DoAndroidExtract();
+            }
+        }
+
+        /// <summary>
+        /// 苹果提取
+        /// </summary>
+        private void DoAppleExtract()
+        {
+            DeviceInfo currentDevice = Globals.Instance.MainVM.CurrentDevice;
+            DeviceProperty devProp = currentDevice.DeviceProperty;
+
+            // 初始化
+            SerialNumber = devProp.SerialNumber;
+
+            addSystemLog("数据备份中，请勿中途卸载设备...", "开始");
+
+            string backupEXE = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonProgramFiles), "Apple", "Mobile Device Support", "AppleMobileBackup.exe");
+            if (!File.Exists(backupEXE)) backupEXE = Path.Combine(@"C:\Program Files\Common Files\Apple\Mobile Device Support", "AppleMobileBackup.exe");
+            if (File.Exists(backupEXE))
+            {
+                if (devProp.UniqueDeviceID != "")
+                {
+                    setProgress("数据备份中，请勿中途卸载设备...", null);
+                    if (setPrgressPrepared(50) == false)
+                    {
+                        return;
+                    }
+
+                    Process p = new Process();
+                    try
+                    {
+                        tempDataPath = tempDataPath.TrimEnd('\\');
+                        p.StartInfo.UseShellExecute = false;
+                        p.StartInfo.CreateNoWindow = true;
+                        p.StartInfo.FileName = backupEXE;
+                        p.StartInfo.RedirectStandardOutput = true;
+                        p.StartInfo.RedirectStandardError = true;
+                        p.StartInfo.Arguments = "-b --target " + devProp.UniqueDeviceID + " --root \"" + tempDataPath + "\"";
+                        p.Start();
+
+                        string strst = p.StandardOutput.ReadToEnd();
+                        strst += p.StandardError.ReadToEnd();
+
+                        Console.WriteLine(strst);
+                        if (strst.IndexOf("ERROR") > -1)
+                        {
+                            saveErrorLog(strst);
+                            //saveErrorLog(backupEXE);
+                            //saveErrorLog(p.StartInfo.Arguments);
+
+                            showFailed();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        saveErrorLog(ex.Message);
+                        saveErrorLog(ex.HelpLink);
+                        saveErrorLog(ex.StackTrace);
+                        saveErrorLog(ex.TargetSite.ToString());
+                        p.Close();
+
+                        showFailed();
+                    }
+                    p.Close();
+                    p.Dispose();
+
+
+                    // 进度更新
+                    setProgress(null, null, 50);
+                    if (setPrgressPrepared(80) == false)
+                    {
+                        return;
+                    }
+
+                    backup = new iPhoneBackup();
+                    backup.path = Path.Combine(tempDataPath, devProp.UniqueDeviceID);
+
+                    timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
+                    gs_itunes_decpath = timestamp;  //all evidence use same time to decode itunes file and import for evidence
+                    savePath = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, devProp.SerialNumber + "_" + timestamp);
+                    if (Directory.Exists(tempDataPath))
+                        savePath = Path.Combine(tempDataPath, devProp.SerialNumber + "_" + timestamp);
+
+                    string mbdbFile = Path.Combine(tempDataPath, devProp.UniqueDeviceID, "Manifest.mbdb");
+                    string ios10dbFile = Path.Combine(backup.path, "Manifest.db");
+
+                    if (File.Exists(mbdbFile))
+                    {
+                        files92 = mbdbdump.mbdb.ReadMBDB(backup.path);
+                        BinaryPlistReader az = new BinaryPlistReader();
+                        IDictionary er = az.ReadObject(Path.Combine(backup.path, "Manifest.plist"));
+                        parseAll92(er);
+
+                        string tmpdir = Path.Combine(savePath, "var", "mobile", "applications");
+                        if (!Directory.Exists(tmpdir)) Directory.CreateDirectory(tmpdir);
+
+                        //fnPushPro = new AppDoc.Form1.fnPushProgress(pushProg);
+                        //fnPushWPro = new AppDoc.Form1.fnPushWholePro(pushWProg);
+                        //fm.getAPPFiles(applist, tmpdir, fnPushPro, fnPushWPro, sender);
+
+                        progressVM.Title = "备份完成";
+                        addSystemLog("数据备份完成", "成功");
+                        addSystemLog("数据目录建立", "开始");
+
+                        // 进度更新
+                        setProgress("正在建立数据目录树，请稍候...", null, 80);
+                        if (setPrgressPrepared(100) == false)
+                        {
+                            return;
+                        }
+
+                        unbackPath = savePath;
+                        //TreeNode rootNode = new TreeNode();
+                        //if (Directory.Exists(unbackPath))
+                        //{
+                        //    rootNode = new TreeNode();
+                        //    rootNode.Text = deviceName;
+                        //    BuildTree(unbackPath, rootNode);
+                        //}
+                        //addTreeNode addNode = delegate ()
+                        //{
+                        //    if (Directory.Exists(unbackPath))
+                        //    {
+                        //        treeView1.Nodes.Add(rootNode);
+                        //    }
+                        //};
+                        //treeView1.Invoke(addNode);
+                        //conToolBtn.Enabled = true;
+                        //conToolBtn2.Enabled = true;
+
+                        // 
+                        AnalysisProc();
+
+
+                        // 提取成功
+                        doFinishExtract();
+                    }
+                    else if (File.Exists(ios10dbFile))
+                    {
+                        string infoFile = Path.Combine(backup.path, "info.plist");
+                        string manifestFile = Path.Combine(backup.path, "Manifest.plist");
+                        if (File.Exists(infoFile))
+                        {
+                            xdict dd = xdict.open(infoFile);
+
+                            if (dd != null)
+                            {
+                                foreach (xdictpair xp in dd)
+                                {
+                                    if (xp.item.GetType() == typeof(string))
+                                    {
+                                        switch (xp.key)
+                                        {
+                                            //case "Build Version":
+                                            //    buildVersion = xp.item.ToString();
+                                            //    break;
+                                            //case "Device Name":
+                                            //    deviceName = xp.item.ToString().Trim();
+                                            //    Console.WriteLine(deviceName);
+                                            //    break;
+                                            //case "ICCID":
+                                            //    iccid = xp.item.ToString();
+                                            //    break;
+                                            //case "IMEI":
+                                            //    imei = xp.item.ToString();
+                                            //    break;
+                                            //case "Last Backup Date":
+                                            //    //lbd = root.ChildNodes[i + 1].InnerText.Replace("T", " ").Replace("Z", "");
+                                            //    DateTime tmpTime;
+                                            //    DateTime.TryParse(xp.item.ToString(), out tmpTime);
+                                            //    lbd = tmpTime.ToString("yyyy-MM-dd HH:mm:ss");
+                                            //    break;
+                                            //case "Phone Number":
+                                            //    phoneNumber = xp.item.ToString();
+                                            //    break;
+                                            //case "Product Type":
+                                            //    productType = xp.item.ToString();
+                                            //    break;
+                                            //case "Product Version":
+                                            //    productVersion = xp.item.ToString();
+                                            //    break;
+                                            case "Serial Number":
+                                                SerialNumber = xp.item.ToString();
+                                                break;
+                                        }
+                                        Console.WriteLine(xp.key + " " + xp.item.ToString());
+                                    }
+                                }
+
+
+
+                                //savePath = @"c:\temp\" + SerialNumber + "_" + timestamp;‘
+                            }
+                        }
+                        if (File.Exists(manifestFile))
+                        {
+                            BinaryPlistReader az = new BinaryPlistReader();
+                            IDictionary er = az.ReadObject(Path.Combine(backup.path, "Manifest.plist"));
+
+                            if ((bool)er["IsEncrypted"])
+                            {
+                                addSystemLog("当前iTunes备份设置了备份密码，请尝试去除或破解后再进行导入分析......", "提示终止");
+
+                                setProgress("提取失败", null, 0);
+                                return;
+                            }
+                            var sd = er["Lockdown"] as Dictionary<object, object>;
+                            if (sd != null)
+                            {
+                                foreach (var pp in sd)
+                                {
+                                    string pKey = pp.Key as string;
+                                    string pValue = pp.Value as string;
+                                    switch (pKey)
+                                    {
+                                        //case "BuildVersion":
+                                        //    buildVersion = pValue;
+                                        //    break;
+                                        //case "DeviceName":
+                                        //    deviceName = pValue;
+                                        //    break;
+                                        //case "ProductType":
+                                        //    productType = pValue;
+                                        //    break;
+                                        //case "ProductVersion":
+                                        //    productVersion = pValue;
+                                        //    break;
+                                        case "SerialNumber":
+                                            SerialNumber = pValue;
+                                            break;
+                                        case "UniqueDeviceID":
+                                            break;
+                                    }
+                                }
+                            }
+                        }
+                        //labelDeviceName.Text = deviceName;
+                        //labelICCID.Text = iccid;
+                        //labelIMEI.Text = imei;
+                        //labelPhone.Text = phoneNumber;
+                        //labelSerial.Text = SerialNumber;
+                        //switch (productType.ToLower())
+                        //{
+                        //    case "iphone1,1":
+                        //        productType = "iPhone 2G";
+                        //        break;
+                        //    case "iphone1,2":
+                        //        productType = "iPhone 3G";
+                        //        break;
+                        //    case "iphone2,1":
+                        //        productType = "iPhone 3GS";
+                        //        break;
+                        //    case "iphone3,1":
+                        //    case "iphone3,2":
+                        //    case "iphone3,3":
+                        //        productType = "iPhone 4";
+                        //        break;
+                        //    case "iphone4,1":
+                        //        productType = "iPhone 4S";
+                        //        break;
+                        //    case "iphone5,1":
+                        //    case "iphone5,2":
+
+                        //        productType = "iPhone 5";
+                        //        break;
+                        //    case "ipod1,1":
+                        //        productType = "iPod touch 1G";
+                        //        break;
+                        //    case "ipod2,1":
+                        //        productType = "iPod touch 2G";
+                        //        break;
+                        //    case "ipod3,1":
+                        //        productType = "iPod touch 3G";
+                        //        break;
+                        //    case "ipod4,1":
+                        //        productType = "iPod touch 4G";
+                        //        break;
+                        //    case "ipod5,1":
+                        //        productType = "iPod touch 5G";
+                        //        break;
+                        //    case "ipad1,1":
+                        //        productType = "iPad 1G";
+                        //        break;
+                        //    case "ipad2,1":
+                        //    case "ipad2,2":
+                        //    case "ipad2,3":
+                        //    case "ipad2,4":
+                        //        productType = "iPad 2";
+                        //        break;
+                        //    case "ipad3,1":
+                        //    case "ipad3,2":
+                        //    case "ipad3,3":
+                        //        productType = "iPad 3";
+                        //        break;
+                        //    case "ipad3,4":
+                        //    case "ipad3,5":
+                        //    case "ipad3,6":
+                        //        productType = "iPad 4";
+                        //        break;
+                        //    case "ipad2,5":
+                        //    case "ipad2,6":
+                        //    case "ipad2,7":
+                        //        productType = "iPad mini 1G";
+                        //        break;
+                        //    default:
+                        //        break;
+                        //}
+                        //labelType.Text = productType;
+                        //labelVersion.Text = productVersion + "(" + buildVersion + ")";
+                        //labelBackTime.Text = lbd;
+
+                        string dbsql = "select fileid,domain,relativepath,flags from files";
+                        DataTable bakupfileDT = SQLiteCore.SQLiteHelper.ExecuteCleanQuery(ios10dbFile, dbsql);
+                        string baktmppath = Path.Combine(tempDataPath, timestamp);//DateTime.Now.ToString("yyyyMMddHHmmss"));
+                        if (!Directory.Exists(baktmppath)) Directory.CreateDirectory(baktmppath);
+                        string basePath = Path.Combine(baktmppath, "var");
+                        if (!Directory.Exists(basePath)) Directory.CreateDirectory(basePath);
+                        foreach (DataRow dr in bakupfileDT.Rows)
+                        {
+                            int flags = int.Parse(dr["flags"].ToString());
+                            string fileid = dr["fileid"].ToString();
+                            string domain = dr["domain"].ToString();
+                            string relativepath = dr["relativepath"].ToString();
+                            string tmpPath = "";
+                            try
+                            {
+                                switch (domain)
+                                {
+                                    case "ManagedPreferencesDomain":
+                                    case "KeyboardDomain":
+                                    case "DatabaseDomain":
+                                        tmpPath = basePath;
+
+                                        break;
+                                    case "KeychainDomain":
+                                        tmpPath = Path.Combine(basePath, "Keychains");
+
+                                        break;
+                                    case "HealthDomain":
+                                        tmpPath = Path.Combine(basePath, "Mobile");
+
+                                        break;
+                                    case "HomeKitDomain":
+                                    case "HomeDomain":
+                                    case "CameraRollDomain":
+                                    case "MediaDomain":
+                                    case "MobileDeviceDomain":
+                                        tmpPath = Path.Combine(basePath, "Mobile");
+
+                                        break;
+                                    case "RootDomain":
+                                        tmpPath = Path.Combine(basePath, "root");
+
+                                        break;
+                                    case "SystemPreferencesDomain":
+                                        tmpPath = Path.Combine(basePath, "Preferences");
+
+                                        break;
+                                    case "WirelessDomain":
+                                        tmpPath = Path.Combine(basePath, "wireless");
+
+                                        break;
+                                    default:
+                                        tmpPath = Path.Combine(basePath, "Mobile");
+                                        if (!Directory.Exists(tmpPath)) Directory.CreateDirectory(tmpPath);
+                                        tmpPath = Path.Combine(tmpPath, "Applications");
+                                        if (!Directory.Exists(tmpPath)) Directory.CreateDirectory(tmpPath);
+                                        if (domain.Contains("SysContainerDomain-"))
+                                        {
+                                            tmpPath = Path.Combine(tmpPath, domain.Substring("SysContainerDomain-".Length));
+                                        }
+                                        else if (domain.Contains("SysSharedContainerDomain-"))
+                                        {
+                                            tmpPath = Path.Combine(tmpPath, domain.Substring("SysSharedContainerDomain-".Length));
+                                        }
+                                        else if (domain.Contains("AppDomain-"))
+                                        {
+                                            tmpPath = Path.Combine(tmpPath, domain.Substring("AppDomain-".Length));
+                                        }
+                                        else if (domain.Contains("AppDomainGroup-"))
+                                        {
+                                            tmpPath = Path.Combine(tmpPath, domain.Substring("AppDomainGroup-".Length));
+                                        }
+                                        else if (domain.Contains("AppDomainPlugin-"))
+                                        {
+                                            tmpPath = Path.Combine(tmpPath, domain.Substring("AppDomainPlugin-".Length));
+                                        }
+                                        if (!Directory.Exists(tmpPath)) Directory.CreateDirectory(tmpPath);
+
+                                        break;
+                                }
+
+                                if (flags == 2)
+                                {
+                                    if (relativepath.Contains("/"))
+                                    {
+
+                                        string[] s = relativepath.Split('/');
+                                        for (int i = 0; i < s.Length; i++)
+                                        {
+                                            tmpPath = Path.Combine(tmpPath, s[i]);
+                                            if (!Directory.Exists(tmpPath)) Directory.CreateDirectory(tmpPath);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        tmpPath = Path.Combine(tmpPath, relativepath);
+                                        if (!Directory.Exists(tmpPath)) Directory.CreateDirectory(tmpPath);
+
+                                    }
+                                }
+                                else if (flags == 4 || flags == 1)
+                                {
+                                    string filePath = Path.Combine(backup.path, fileid.Substring(0, 2), fileid);
+                                    if (File.Exists(filePath))
+                                    {
+                                        if (relativepath.Contains("/"))
+                                        {
+                                            string[] s = relativepath.Split('/');
+                                            for (int i = 0; i < s.Length - 1; i++)
+                                            {
+                                                tmpPath = Path.Combine(tmpPath, s[i]);
+                                                if (!Directory.Exists(tmpPath)) Directory.CreateDirectory(tmpPath);
+                                            }
+                                            File.Copy(filePath, Path.Combine(tmpPath, s[s.Length - 1]), true);
+                                        }
+                                        else
+                                        {
+                                            tmpPath = Path.Combine(tmpPath, relativepath);
+                                            File.Copy(filePath, tmpPath, true);
+                                        }
+                                    }
+                                }
+
+
+                            }
+                            catch (Exception exx)
+                            {
+                                Console.WriteLine(exx.Message);
+                                Console.WriteLine(relativepath);
+                            }
+                        }
+
+                        setProgress(null, null, 50);
+
+                        if (setPrgressPrepared(100) == false)
+                        {
+                            return;
+                        }
+                        setProgress("正在建立数据目录树，请稍候...");
+
+                        //unbackPath = baktmppath;
+                        //TreeNode rootNode = new TreeNode();
+                        //if (Directory.Exists(unbackPath))
+                        //{
+                        //    rootNode = new TreeNode();
+                        //    rootNode.Text = deviceName;
+                        //    BuildTree(unbackPath, rootNode);
+                        //}
+                        //addTreeNode addNode = delegate ()
+                        //{
+                        //    if (Directory.Exists(unbackPath))
+                        //    {
+                        //        treeView1.Nodes.Add(rootNode);
+                        //    }
+                        //};
+                        //treeView1.Invoke(addNode);
+                        //conToolBtn.Enabled = true;
+
+                        AnalysisProc();
+
+
+                        // 提取成功
+                        doFinishExtract();
+                    }
+                }
             }
         }
 
@@ -676,7 +780,10 @@ namespace Forensics.ViewModel
             {
                 // 进度更新
                 setProgress(null, null, i);
-                setPrgressPrepared(i + 10);
+                if (setPrgressPrepared(i + 10) == false)
+                {
+                    stopAndroidExtract();
+                }
             };
             AExtractHelp.evidenceDataPath = CommonUtil.Rulename.GetEvRawFolder();
             AExtractHelp.evidenceXmlPath = CommonUtil.Rulename.GetEvDataFolder();
@@ -685,9 +792,23 @@ namespace Forensics.ViewModel
             AExtractHelp.rootPath = tempDataPath;
             AExtractHelp.evidenceDataPath = CommonUtil.Rulename.GetEvRawFolder();
 
+            //
+            // 逻辑提取
+            //
             AExtractHelp.StartExtract(new string[] { "SMS", "CALLLOG", "CONTACT", "APP", "DEV" });
 
-            setPrgressPrepared(5);
+            if (setPrgressPrepared(5) == false)
+            {
+                stopAndroidExtract();
+            }
+        }
+
+        /// <summary>
+        /// 停止安卓提取
+        /// </summary>
+        private void stopAndroidExtract()
+        {
+            AExtractHelp.StopExtract();
         }
 
         /// <summary>
@@ -702,12 +823,7 @@ namespace Forensics.ViewModel
                 addSystemLog("分析数据文件结束，提取全部完成。", "结束");
             }
 
-            App.Current.Dispatcher.Invoke(new Action(() =>
-            {
-                // 打开添加案件窗口
-                MainWindow viewMain = (MainWindow)Globals.Instance.MainVM.View;
-                viewMain.openAddEvidence(savePath);
-            }));
+            this.IsAnayseAvailable = true;
         }
 
         private void parseAll92(IDictionary mbdb)
@@ -1428,6 +1544,45 @@ namespace Forensics.ViewModel
             progressVM.Percent = 0;
 
             addSystemLog("数据备份失败：请检查数据线和itunes是否能够正常联接。", "报错");
+        }
+
+        /// <summary>
+        /// 跳转到分析
+        /// </summary>
+        private void DoAnalyse()
+        {
+            App.Current.Dispatcher.Invoke(new Action(() =>
+            {
+                // 打开添加案件窗口
+                MainWindow viewMain = (MainWindow)Globals.Instance.MainVM.View;
+                viewMain.openAddEvidence(savePath);
+            }));
+        }
+
+        /// <summary>
+        /// 停止
+        /// </summary>
+        private void PauseExtract()
+        {
+            mnProgress = -1;
+            addSystemLog("提交了停止要求。", "正在处理");
+        }
+
+        /// <summary>
+        /// 重新提取
+        /// </summary>
+        private void RestartExtract()
+        {
+            if (this.Type == DeviceType.Android)
+            {
+                // 打开提取方式
+                MainWindow viewMain = (MainWindow)Globals.Instance.MainVM.View;
+                viewMain.openExtractType();
+            }
+            else if (this.Type == DeviceType.Apple)
+            {
+                startExtract(this.Type);
+            }
         }
     }
 }

@@ -9,6 +9,7 @@
         WindowStyle="None"
         ShowInTaskbar="False"
         WindowChrome.WindowChrome="{StaticResource SubWindowChromeKey}"
+        Height="{StaticResource HeightSyncWindow}" Width="{StaticResource WidthSyncWindow}"
         MinHeight="{StaticResource HeightSyncWindow}" MinWidth="{StaticResource WidthSyncWindow}"
         MaxHeight="{StaticResource HeightSyncWindow}" MaxWidth="{StaticResource WidthSyncWindow}"
         WindowStartupLocation="CenterOwner">
@@ -26,9 +27,8 @@
             <TextBlock FontSize="18"
                        Foreground="White"
                        TextAlignment="Center"
-                       Margin="20">
-                正在检测设备是否连接成功。。。
-            </TextBlock>
+                       Margin="20"
+                       Text="{DynamicResource connectConnecting}" />
         </StackPanel>
     
     </DockPanel>

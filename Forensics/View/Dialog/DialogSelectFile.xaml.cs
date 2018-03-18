@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,19 +21,71 @@ namespace Forensics.View.Dialog
     /// </summary>
     public partial class DialogSelectFile : UserControl
     {
+        public int Type
+        {
+            get { return (int)GetValue(TypeProperty); }
+            set { SetValue(TypeProperty, value); }
+        }
+
+        public string PathDefault
+        {
+            get { return (string)GetValue(PathDefaultProperty); }
+            set { SetValue(PathDefaultProperty, value); }
+        }
+
+
+        // Using a DependencyProperty as the backing store for Title.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TypeProperty =
+            DependencyProperty.Register(
+                "Type",
+                typeof(int),
+                typeof(DialogSelectFile),
+                null
+            );
+
+        public static readonly DependencyProperty PathDefaultProperty =
+            DependencyProperty.Register(
+                "PathDefault",
+                typeof(string),
+                typeof(DialogSelectFile),
+                null
+            );
+
         public DialogSelectFile()
         {
             InitializeComponent();
+
+            this.PathDefault = ConfigurationManager.AppSettings["caseDefaultPath"];
         }
 
+        /// <summary>
+        /// 点击浏览
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void onButBrowse(object sender, RoutedEventArgs e)
         {
-            using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
+            // 文件夹
+            if (this.Type == 0)
             {
+                var dialog = new System.Windows.Forms.FolderBrowserDialog();
                 dialog.SelectedPath = this.TextPath.Text;
 
-                System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+                dialog.ShowDialog();
                 this.TextPath.Text = dialog.SelectedPath;
+            }
+            // 文件
+            else if (this.Type == 1)
+            {
+                var dialog = new System.Windows.Forms.OpenFileDialog();
+                dialog.Filter = "文件格式|*.plist";
+                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.Cancel)
+                {
+                    // 点击了取消，直接退出
+                    return;
+                }
+
+                this.TextPath.Text = dialog.FileName;
             }
         }
     }

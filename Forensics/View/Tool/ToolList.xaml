@@ -22,9 +22,8 @@
             </TextBlock>
             <Button Style="{StaticResource transparentButton}" Padding="10 0"
                     HorizontalAlignment="Right"
-                    FontSize="{StaticResource ToolTitlebarSize}" >
-                + 添加工具
-            </Button>
+                    FontSize="{StaticResource ToolTitlebarSize}"
+                    Content="{DynamicResource toolAdd}" />
         </Grid>
 
         <ItemsControl Name="icTools" ItemsSource="{Binding listTool}">

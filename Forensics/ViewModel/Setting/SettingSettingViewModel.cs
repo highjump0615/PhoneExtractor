@@ -1,4 +1,6 @@
-﻿using Forensics.Command;
+﻿using Forensics.BLL;
+using Forensics.Command;
+using Forensics.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -71,6 +73,7 @@ namespace Forensics.ViewModel
         /// </summary>
         public ObservableCollection<TimeZoneInfo> ListTimeZone { get; set; } = new ObservableCollection<TimeZoneInfo>();
         public string TimeZoneSelected { get; set; }
+        public string Language { get; set; }
 
         public override Pages PageIndex
         {
@@ -137,6 +140,9 @@ namespace Forensics.ViewModel
                 this.ListTimeZone.Add(tzi);
             }
             this.TimeZoneSelected = ConfigurationManager.AppSettings["TimeZoneName"];
+
+            // 语言
+            this.Language = User.LoginUser.USER_LANGUAGE;
         }
 
         /// <summary>
@@ -156,7 +162,8 @@ namespace Forensics.ViewModel
 
             if (String.IsNullOrWhiteSpace(this.PhotoLimit))
             {
-                MessageBox.Show("请确定照片分页上限数值", _clew, MessageBoxButton.OK, MessageBoxImage.Warning);
+                var strMsg = Application.Current.FindResource("msgSettingPageSizeLimit") as string;
+                MessageBox.Show(strMsg, _clew, MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             UpdateAppConfig("PhotolimitsNumber", this.PhotoLimit);
             #endregion
@@ -174,7 +181,8 @@ namespace Forensics.ViewModel
                     String.IsNullOrWhiteSpace(this.RuleData) || 
                     String.IsNullOrWhiteSpace(this.RuleReport))
                 {
-                    MessageBox.Show("请输入案件目录命名规则后再次保存", _clew, MessageBoxButton.OK, MessageBoxImage.Warning);
+                    var strMsg = Application.Current.FindResource("msgSettingCaseNaming") as string;
+                    MessageBox.Show(strMsg, _clew, MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
@@ -191,6 +199,22 @@ namespace Forensics.ViewModel
             UpdateAppConfig("Examiner", this.Examiner);
             #endregion
 
+            #region  语言设置
+            UserManager um = new UserManager();
+            User.LoginUser.USER_LANGUAGE = this.Language;
+            Globals.Instance.MainVM.setLanguage();
+
+            // 更新用户信息
+            try
+            {
+                um.UpdateUser(User.LoginUser);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, _clew, MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            #endregion 
+
             #region  时区设置
             int hours = 0;
             if (this.TimeZoneSelected != null)
@@ -206,7 +230,8 @@ namespace Forensics.ViewModel
             }
             else
             {
-                MessageBox.Show("请选择要设置的时区", _clew, MessageBoxButton.OK, MessageBoxImage.Warning);
+                var strMsg = Application.Current.FindResource("msgSettingTimeZone") as string;
+                MessageBox.Show(strMsg, _clew, MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 

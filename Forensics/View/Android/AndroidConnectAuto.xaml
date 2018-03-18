@@ -10,6 +10,7 @@
                  WindowStyle="None"
                  ShowInTaskbar="False"
                  WindowChrome.WindowChrome="{StaticResource SubWindowChromeKey}"
+                 Height="{StaticResource HeightSyncWindow}" Width="{StaticResource WidthSyncWindow}"
                  MinHeight="{StaticResource HeightSyncWindow}" MinWidth="{StaticResource WidthSyncWindow}"
                  MaxHeight="{StaticResource HeightSyncWindow}" MaxWidth="{StaticResource WidthSyncWindow}"
                  WindowStartupLocation="CenterOwner">
@@ -41,9 +42,8 @@
                                     FontSize="23" 
                                     Foreground="#98c13b" />
                     <TextBlock Foreground="White" FontSize="14" VerticalAlignment="Center"
-                               Margin="7 0 0 0">
-                        连接设备
-                    </TextBlock>
+                               Margin="7 0 0 0"
+                               Text="{DynamicResource connectDevice}" />
                 </StackPanel>
 
                 <!-- Window Buttons -->
@@ -55,17 +55,16 @@
                 </Button>
 
                 <!-- title -->
-                <TextBlock FontSize="18" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="44,30.6,0,0">
-                    请参考以下教程，在手机上打开“USB调试”开关
-                </TextBlock>
+                <TextBlock FontSize="18" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="44,30.6,0,0"
+                           Text="{DynamicResource connectUsbDebugging}" />
 
                 <!-- version combo box-->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,34.66,45,0">
                     <TextBlock Style="{StaticResource CaptionStyle}" 
                                VerticalAlignment="Center"
-                               Margin="0 0 7 0">
-                        安卓版本
-                    </TextBlock>
+                               Margin="0 0 7 0"
+                               Text="{DynamicResource connectAndroidVersion}" />
+
                     <ComboBox Width="90" SelectedValuePath="Tag" SelectedValue="{Binding Version}">
                         <ComboBoxItem Tag="20">2.1 - 2.3.7</ComboBoxItem>
                         <ComboBoxItem Tag="40">4.0 - 4.1.2</ComboBoxItem>
@@ -80,9 +79,8 @@
 
         <!-- bottom bar -->
         <Grid Height="53" DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
-            <TextBlock Style="{StaticResource CaptionStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,12,0,0">
-                温馨提示：若设备的USB连接模式处于仅充电状态，将无法连接至手机
-            </TextBlock>
+            <TextBlock Style="{StaticResource CaptionStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,12,0,0"
+                       Text="{DynamicResource connectUsbNotice}" />
             <Button FontSize="16" Style="{StaticResource BackButStyle}" 
                     VerticalAlignment="Top"
                     Margin="0,12,50,0" 

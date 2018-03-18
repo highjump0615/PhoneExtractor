@@ -18,6 +18,7 @@ using System.Management;
 using System.Text.RegularExpressions;
 using Forensics.Util;
 using System.Threading;
+using System.IO;
 
 namespace Forensics.ViewModel
 {
@@ -68,9 +69,32 @@ namespace Forensics.ViewModel
         public iPhone iPhoneInterface;
 
         /// <summary>
+        /// 功能机、SIM卡
+        /// </summary>
+        private List<Tool> mlistTool;
+
+        /// <summary>
         /// 当前连接的设备
         /// </summary>
         public DeviceInfo CurrentDevice { get; set; }
+
+        /// <summary>
+        /// SIM卡提取命令
+        /// </summary>
+        private ICommand _extractSimCommand;
+        public ICommand ExtractSimCommand
+        {
+            get { return _extractSimCommand ?? (_extractSimCommand = new DelegateCommand(ExtractSim)); }
+        }
+
+        /// <summary>
+        /// 蓝牙命令
+        /// </summary>
+        private ICommand _extractBluetoothCommand;
+        public ICommand ExtractBluetoothCommand
+        {
+            get { return _extractBluetoothCommand ?? (_extractBluetoothCommand = new DelegateCommand(ExtractBluetooth)); }
+        }
 
         /// <summary>
         /// 首页命令
@@ -174,6 +198,44 @@ namespace Forensics.ViewModel
             {
                 //保存登录人信息
                 User.LoginUser = user;
+                setLanguage();
+            }
+
+            // 加载附件工具
+            var toolManager = new ToolManager();
+            mlistTool = toolManager.GetAllTools((int)ToolsType.Other);
+        }
+
+        /// <summary>
+        /// 设置语言
+        /// </summary>
+        public void setLanguage()
+        {
+            //
+            // 加载语言
+            //
+            ResourceDictionary langRd = null;
+            try
+            {
+                langRd = Application.LoadComponent(
+                        new Uri(@"Resources/Strings/String." + User.LoginUser.USER_LANGUAGE + ".xaml", 
+                        UriKind.Relative)
+                    ) as ResourceDictionary;
+            }
+            catch
+            {
+            }
+
+            if (langRd != null)
+            {
+                // 删除已设置的语言
+                if (Application.Current.Resources.MergedDictionaries.Count() > 2)
+                {
+                    Application.Current.Resources.MergedDictionaries.RemoveAt(2);
+                }
+
+                // 添加新的语言
+                Application.Current.Resources.MergedDictionaries.Add(langRd);
             }
         }
 
@@ -183,6 +245,22 @@ namespace Forensics.ViewModel
                 ((ViewModelBase)SelectedChild).Dispose();
 
             base.OnDispose();
+        }
+
+        /// <summary>
+        /// SIM卡提取
+        /// </summary>
+        private void ExtractSim()
+        {
+            ToolUtil.OpenTool(mlistTool[0]);
+        }
+
+        /// <summary>
+        /// 蓝牙提取
+        /// </summary>
+        private void ExtractBluetooth()
+        {
+            ToolUtil.OpenTool(mlistTool[1]);
         }
 
         /// <summary>
@@ -217,6 +295,60 @@ namespace Forensics.ViewModel
             this.SelectedChild = GetChild(typeof(MainSettingViewModel));
 
             ((MainSettingViewModel)this.SelectedChild).SelectChildViewModel((Type)param);
+        }
+
+        /// <summary>
+        /// 苹果密码绕过
+        /// </summary>
+        /// <param name="lockdownPath"></param>
+        public void DoAppleByPass(string lockdownPath)
+        {
+            string lslockfolder = "";
+
+            try
+            {
+                // 只考虑文件
+                if ((File.GetAttributes(lockdownPath) & FileAttributes.Directory) == FileAttributes.Directory)
+                {
+                    return;
+                }
+
+                FileInfo fi = new FileInfo(lockdownPath);
+
+                lslockfolder = Path.Combine("C:\\ProgramData", "Apple", "Lockdown");
+                if (Directory.Exists(lslockfolder))
+                {
+                    if (File.Exists(Path.Combine(lslockfolder, fi.Name)))
+                        File.Delete(Path.Combine(lslockfolder, fi.Name));
+                    File.Copy(lockdownPath, Path.Combine(lslockfolder, fi.Name));
+                }
+                lslockfolder = Path.Combine("D:\\ProgramData", "Apple", "Lockdown");
+                if (Directory.Exists(lslockfolder))
+                {
+                    if (File.Exists(Path.Combine(lslockfolder, fi.Name)))
+                        File.Delete(Path.Combine(lslockfolder, fi.Name));
+                    File.Copy(lockdownPath, Path.Combine(lslockfolder, fi.Name));
+                }
+                lslockfolder = Path.Combine("E:\\ProgramData", "Apple", "Lockdown");
+                if (Directory.Exists(lslockfolder))
+                {
+                    if (File.Exists(Path.Combine(lslockfolder, fi.Name)))
+                        File.Delete(Path.Combine(lslockfolder, fi.Name));
+                    File.Copy(lockdownPath, Path.Combine(lslockfolder, fi.Name));
+                }
+                lslockfolder = Path.Combine("F:\\ProgramData", "Apple", "Lockdown");
+                if (Directory.Exists(lslockfolder))
+                {
+                    if (File.Exists(Path.Combine(lslockfolder, fi.Name)))
+                        File.Delete(Path.Combine(lslockfolder, fi.Name));
+                    File.Copy(lockdownPath, Path.Combine(lslockfolder, fi.Name));
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.ToString());
+                return;
+            }
         }
 
         /// <summary>
@@ -275,7 +407,8 @@ namespace Forensics.ViewModel
             }
             else
             {
-                MessageBox.Show("未发现任何手机联接，请确认");
+                var strMsg = Application.Current.FindResource("msgConnectNotFound") as string;
+                MessageBox.Show(strMsg);
             }
         }
 
@@ -293,7 +426,8 @@ namespace Forensics.ViewModel
             }
             if (lbcheck)
             {
-                MessageBox.Show("当前解析过程还在进行中，请等待全部解析完毕后再进行案件变更操作！");
+                var strMsg = Application.Current.FindResource("msgAnalyseInProgress") as string;
+                MessageBox.Show(strMsg);
                 return true;
             }
 
@@ -469,6 +603,15 @@ namespace Forensics.ViewModel
 
             this.CurrentDevice = null;
             showDeviceInfo();
+
+            // 弹出连接断开对话框，如果已有弹出的窗口，则忽略
+            MainWindow viewMain = (MainWindow)this.View;
+            viewMain.Dispatcher.Invoke(new Action(() => {
+                if (App.Current.MainWindow.OwnedWindows.Count == 0)
+                {
+                    viewMain.openConnectDisconnect();
+                }
+            }));
 
             ////myDisconnect = new afcTest(myAFCDisconnect);
             ////this.Invoke(myDisconnect);
