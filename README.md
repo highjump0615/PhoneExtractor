@@ -1,4 +1,4 @@
-# PhoneExtractor
+PhoneExtractor
 ======
 
 > Windows Application for extracting data from phone, .NET Framework + WPF
